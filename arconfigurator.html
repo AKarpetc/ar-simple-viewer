@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Homeoutside AR viewer</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles/styles.css" rel="stylesheet" />
+    <link type="text/css" href="./styles/arconfigurator.css" rel="stylesheet" />
+    <link type="text/css" href="./styles/loading.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="loader" class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <div class="viewer-wrapper">
+        <div class="viewer">
+            <div class="container-wrapper" id="container-wrapper">
+                <div class="viewer-box" id="container">
+                    <!-- <model-viewer> HTML element -->
+
+                    <div id="model-viewer-mixed">
+                        <model-viewer metalness="0" id="model-viewer" ar ar-modes="webxr scene-viewer quick-look"
+                            camera-controls poster="loading.jpeg" ar-scale="auto" shadow-softness="0" camera-controls
+                            touch-action="pan-y" shadow-intensity="1" environment-rotation="0">
+                            <effect-composer id="customComposer">
+
+                            </effect-composer>
+                            <div class="progress-bar" slot="progress-bar">
+                                <div class="update-bar"></div>
+                            </div>
+                            <div id="ar-prompt">
+                                <img src="./img/ar_hand_prompt.png">
+                            </div>
+                        </model-viewer>
+
+                        <button slot="ar-button" id="ar-button" class="ar-button">
+                            View in your space
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="veiwer-toolbox">
+                <div class="veiwer-toolbox__header">Configurator</div>
+                <div class="toolbox-item">
+                    <div class="toolbox-item__box-header">Staging & Cameras
+                    </div>
+                    <label>Hold the right button of the mouse for staging and use mouse wheel from zooming</label>
+                    <div class="toolbox-item__box-body">
+                        <div class="box-item">
+                            <div class="par-name">Position:</div>
+                        </div>
+
+
+                        <div class="box-item">
+                            <div class="par-name">x:</div>
+                            <div class="par-value">
+                                <input id="cam-x" class="position-element" type="number">
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">y:</div>
+                            <div class="par-value">
+                                <input id="cam-y" class="position-element" type="number">
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">z:</div>
+                            <div class="par-value">
+                                <input id="cam-z" class="position-element" type="number">
+                            </div>
+                        </div>
+
+
+                        <div class="box-item">
+                            <div class="par-name">zoom:</div>
+                            <div class="par-value">
+                                <span id="cam-zoom" class="position-element" type="number">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">zoom min:</div>
+                            <div class="par-value">
+                                <input id="cam-zoom-min" class="position-element" value="0.2" type="number">
+                            </div>
+                        </div>
+
+
+                        <div class="box-item">
+                            <div class="par-name">zoom max:</div>
+                            <div class="par-value">
+                                <input id="cam-zoom-max" class="position-element" value="2" type="number">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Target:</div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">x:</div>
+                            <div class="par-value">
+                                <input id="tar-x" class="position-element" type="number">
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">y:</div>
+                            <div class="par-value">
+                                <input id="tar-y" class="position-element" type="number">
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">z:</div>
+                            <div class="par-value">
+                                <input id="tar-z" class="position-element" type="number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="buttons-box">
+                        <button onclick="applyCamera()">apply</button>
+                        <button onclick="defaultCamera()">reset</button>
+                    </div>
+                </div>
+
+                <div class="toolbox-item">
+                    <div class="toolbox-item__box-header">Background
+                    </div>
+                    <div class="toolbox-item__box-body">
+                        <div class="box-item">
+                            <div class="par-name">background:</div>
+                            <div class="par-value">
+                                <input id="back-color" type="color" name="back-color" value="#d1e9ff"
+                                    oninput="rangeValueChange(this)">
+                                <span id="back-color-value">#d1e9ff</span>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Floor color:</div>
+                            <div class="par-value">
+                                <input id="floor-color" name="floor-color" type="color" value="#d3cfcf"
+                                    oninput="rangeValueChange(this)">
+                                <span id="floor-color-value">#d3cfcf</span>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Floor size:</div>
+                            <div class="par-value">
+                                width:<input id="floor-width" type="number" value="7">
+                                height: <input id="floor-height" type="number" value="7">
+                            </div>
+                        </div>
+
+
+                        <div class="box-item">
+                            <div class="par-name">Fog:</div>
+                            <div class="par-value">
+                                <input id="fog" type="checkbox" checked value="true">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Fog color:</div>
+                            <div class="par-value">
+                                <input id="fog-color" name="fog-color" type="color" value="#d1e9ff"
+                                    oninput="rangeValueChange(this)">
+                                <span id="fog-color-value">#d1e9ff</span>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">Fog near:</div>
+                            <div class="par-value">
+                                <input id="fog-near" type="number" value="2">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Fog far:</div>
+                            <div class="par-value">
+                                <input id="fog-far" type="number" value="4">
+                            </div>
+                        </div>
+                        <div class="buttons-box">
+                            <button onclick="applySkybox()">apply</button>
+                            <button onclick="defaultSkybox()">default</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="toolbox-item">
+                    <div class="toolbox-item__box-header">Lightning
+                    </div>
+
+                    <div class="toolbox-item__box-header">Direct light
+                    </div>
+                    <div class="toolbox-item__box-body">
+                        <div class="box-item">
+                            <div class="par-name">x :</div>
+                            <div class="par-value">
+                                <input id="light-x" name="light-x" value="-10" oninput="rangeValueChange(this)"
+                                    value="1" step="0.1" type="range" min="-30" max="30" /><span
+                                    id="light-x-value">-10</span>
+                            </div>
+                        </div>
+
+
+                        <div class="box-item">
+                            <div class="par-name">y :</div>
+                            <div class="par-value">
+                                <input id="light-y" name="light-y" value="10" oninput="rangeValueChange(this)" value="1"
+                                    step="0.1" type="range" min="-30" max="30" /><span id="light-y-value">10</span>
+                            </div>
+                        </div>
+
+
+                        <div class="box-item">
+                            <div class="par-name">z :</div>
+                            <div class="par-value">
+                                <input id="light-z" name="light-z" value="-10" oninput="rangeValueChange(this)"
+                                    value="1" step="0.1" type="range" min="-30" max="30" /><span
+                                    id="light-z-value">-10</span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="box-item">
+                            <div class="par-name">light intensity:</div>
+                            <div class="par-value">
+                                <input id="intensity" name="intensity" value="3" oninput="rangeValueChange(this)"
+                                    value="1" step="0.1" type="range" min="0" max="10" /><span
+                                    id="intensity-value">3</span>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">light color:</div>
+                            <div class="par-value">
+                                <input id="direct-color" name="direct-color" type="color" value="#FFFFFF"
+                                    oninput="rangeValueChange(this)">
+                                <span id="direct-color-value">#FFFFFF</span>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="toolbox-item__box-header">Hemispheres light
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">Light intensity:</div>
+                            <div class="par-value">
+                                <input id="hemis-intensity" name="hemis-intensity" value="3"
+                                    oninput="rangeValueChange(this)" value="2" step="0.1" type="range" min="0"
+                                    max="10" /><span id="hemis-intensity-value">2</span>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">Sky color:</div>
+                            <div class="par-value">
+                                <input id="hemis-sky-color" name="hemis-sky-color" type="color" value="#FFFFFF"
+                                    oninput="rangeValueChange(this)">
+                                <span id="hemis-sky-color-value">#FFFFFF</span>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">Ground colors:</div>
+                            <div class="par-value">
+                                <input id="hemis-ground-color" name="hemis-ground-color" type="color" value="#FFFFFF"
+                                    oninput="rangeValueChange(this)">
+                                <span id="hemis-ground-color-value">#FFFFFF</span>
+                            </div>
+                        </div>
+
+                        <div class="buttons-box">
+                            <button onclick="defaultLighting()">default</button>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="toolbox-item">
+                    <div class="toolbox-item__box-header">Shadow
+                    </div>
+                    <div class="toolbox-item__box-body">
+                        <div class="box-item">
+                            <div class="par-name">bias :</div>
+                            <div class="par-value">
+                                <input id="shadow-bias" name="shadow-bias" oninput="rangeValueChange(this,'bias')"
+                                    value="0" step="0.0001" type="range" min="0" max="1" /><span
+                                    id="shadow-bias-value">0</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="toolbox-item">
+                    <div class="toolbox-item__box-header">AR</div>
+                    <div class="toolbox-item__box-body">
+                        <div class="box-item">
+                            <div class="par-name">ar-scale</div>
+                            <div class="par-value">
+                                <select name="" id="ar-scale">
+                                    <option>auto</option>
+                                    <option>fixed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="buttons-box">
+                        <button onclick="applyAR()">apply</button>
+                    </div>
+                </div>
+
+                <div class="toolbox-item">
+                    <div class="toolbox-item__box-header ">iFrame
+                    </div>
+                    <div class="toolbox-item__box-body common">
+                        <div class="box-item">
+                            <div class="par-name">width px:</div>
+                            <div class="par-value">
+                                <input id="iframe-with" type="number" value="300" />
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">height px:</div>
+                            <div class="par-value">
+                                <input id="iframe-height" type="number" value="300" />
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">title:</div>
+                            <div class="par-value">
+                                <textarea id="iframe-title"></textarea>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">alt:</div>
+                            <div class="par-value">
+                                <textarea id="iframe-alt"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toolbox-item">
+                    <div class="toolbox-item__box-header">Common
+                    </div>
+                    <div class="toolbox-item__box-body common">
+                        <div class="box-item">
+                            <div class="par-name">Show back button</div>
+                            <div class="par-value">
+                                <input id="showBack" type="checkbox" />
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Button URL</div>
+                            <div class="par-value">
+                                <textarea id="buttonUrl" value=""></textarea>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Button font family</div>
+                            <div class="par-value">
+                                <input id="buttonFont" value="Raleway">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Button font size</div>
+                            <div class="par-value">
+                                <input id="buttonFontSize" value="17" type="number">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Button font weight </div>
+                            <div class="par-value">
+                                <input id="buttonFontWeight" type="number" value="700">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Button font color </div>
+                            <div class="par-value">
+                                <input id="buttonFontColor" type="color" value="#4D840A">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Caching models</div>
+                            <div class="par-value">
+                                <input id="cacheModels" type="checkbox" />
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">zoom buttons</div>
+                            <div class="par-value">
+                                <input id="zoomActivate" type="checkbox" checked />
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Show model title</div>
+                            <div class="par-value">
+                                <input id="modelTitle" type="checkbox" checked />
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Title icon:</div>
+                            <div class="par-value">
+                                <input id="iconfile" type="file" checked />
+                                <button onclick="uploadIcon()">Upload</button>
+                                <button onclick="clearIcon()">Clear</button>
+                                <label id="uploadStatus" class="icon-upload-process"></label>
+
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Title font family</div>
+                            <div class="par-value">
+                                <input id="titleFont" value="Raleway">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Title font size</div>
+                            <div class="par-value">
+                                <input id="titleFontSize" value="17" type="number">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Title font weight </div>
+                            <div class="par-value">
+                                <input id="titleFontWeight" type="number" value="700">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">Title font color </div>
+                            <div class="par-value">
+                                <input id="titleFontColor" type="color" value="#A9A9A9">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-button">
+                    <button onclick="generateLink()">Open viewer</button>
+                    <button onclick="openInTheSameWindow()">Open viewer in the same window</button>
+
+                    <button onclick="generateQR()">Show QR to open viewer</button>
+                    <div id="qrcode"></div>
+                    <button onclick="generateIFrame()">Show Iframe code</button>
+                    <a href="./ifraime.html" target="_blank">Test Iframe code here:</a>
+                    <textarea id="iframeText" type="text" cols="40" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./dist/auth.bandle.js"></script>
+    <script src="./src/common/loading.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script type="module" src="./dist/arconfigurator.bandle.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated using SpeedTree tools -->
+<Materials Count="2" Mesh="ACG Coronation Gold Yarrow.fbx" FlipOpacity="0">
+	<Material ID="1" Name="ACG_Coronation_Gold_Yarrow_cluster_Mat" TwoSided="1" UserData="" VertexOpacity="1" FlipNormalsOnBackside="1">
+		<Map Name="Color" File="ACG_Coronation_Gold_Yarrow_cluster.png" Source="D:/001_Work/HomeOutside/000_plants_models/FGT Plants/ACG Coronation Gold Yarrow/textures/cluster/ACG Coronation Gold Yarrow cluster.png" />
+		<Map Name="Opacity" File="ACG_Coronation_Gold_Yarrow_cluster_Opacity.png" Source="D:/001_Work/HomeOutside/000_plants_models/FGT Plants/ACG Coronation Gold Yarrow/textures/cluster/ACG Coronation Gold Yarrow cluster_Opacity.png" />
+		<Map Name="Normal" File="ACG_Coronation_Gold_Yarrow_cluster_Normal.png" Source="D:/001_Work/HomeOutside/000_plants_models/FGT Plants/ACG Coronation Gold Yarrow/textures/cluster/ACG Coronation Gold Yarrow cluster_Normal.png" />
+		<Map Name="Gloss" File="ACG_Coronation_Gold_Yarrow_cluster_Gloss.png" Source="D:/001_Work/HomeOutside/000_plants_models/FGT Plants/ACG Coronation Gold Yarrow/textures/cluster/ACG Coronation Gold Yarrow cluster_Gloss.png" />
+		<Map Name="Specular" ColorR="0.75" ColorG="0.75" ColorB="0.75" />
+		<Map Name="SubsurfaceColor" File="ACG_Coronation_Gold_Yarrow_cluster_SubsurfaceColor.png" Source="D:/001_Work/HomeOutside/000_plants_models/FGT Plants/ACG Coronation Gold Yarrow/textures/cluster/ACG Coronation Gold Yarrow cluster_Subsurface.png" />
+		<Map Name="SubsurfaceAmount" File="ACG_Coronation_Gold_Yarrow_cluster_SubsurfaceAmount.png" Source="D:/001_Work/HomeOutside/000_plants_models/FGT Plants/ACG Coronation Gold Yarrow/textures/cluster/ACG Coronation Gold Yarrow cluster_SubsurfaceAmount.png" />
+		<Map Name="AO" File="ACG_Coronation_Gold_Yarrow_cluster_AO.png" Source="D:/001_Work/HomeOutside/000_plants_models/FGT Plants/ACG Coronation Gold Yarrow/textures/cluster/ACG Coronation Gold Yarrow cluster_AO.png" />
+		<Map Name="Height" Value="0.5" />
+		<Map Name="Custom" ColorR="0" ColorG="0" ColorB="0" />
+		<Map Name="Custom2" Value="0" />
+	</Material>
+	<Material ID="2" Name="ACG_Coronation_Gold_Yarrow_trunk_Mat" TwoSided="0" UserData="" VertexOpacity="1" FlipNormalsOnBackside="1">
+		<Map Name="Color" File="ACG_Coronation_Gold_Yarrow_trunk.png" Source="D:/001_Work/HomeOutside/000_plants_models/FGT Plants/ACG Coronation Gold Yarrow/textures/RfsG_Goldsturm_Black_Eyed_Susan_Trunk.png" />
+		<Map Name="Normal" File="ACG_Coronation_Gold_Yarrow_trunk_Normal.png" Source="D:/001_Work/HomeOutside/000_plants_models/FGT Plants/ACG Coronation Gold Yarrow/textures/RfsG_Goldsturm_Black_Eyed_Susan_Trunk_Normal.png" />
+		<Map Name="Gloss" File="ACG_Coronation_Gold_Yarrow_trunk_Gloss.png" Source="D:/001_Work/HomeOutside/000_plants_models/FGT Plants/ACG Coronation Gold Yarrow/textures/RfsG_Goldsturm_Black_Eyed_Susan_Trunk_Specular.png" />
+		<Map Name="Specular" ColorR="0.75" ColorG="0.75" ColorB="0.75" />
+		<Map Name="Height" Value="0.5" />
+		<Map Name="Custom" ColorR="0" ColorG="0" ColorB="0" />
+		<Map Name="Custom2" Value="0" />
+	</Material>
+</Materials>

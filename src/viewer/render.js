@@ -1,0 +1,435 @@
+
+import * as THREE from 'three';
+import Stats from 'three/addons/libs/stats.module.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import * as TWEEN from "three/addons/libs/tween.module.js";
+
+const container = document.getElementById('container');
+let mv = document.getElementById("model-viewer");
+let message = null;
+let scene, renderer, camera, stats;
+let model, skeleton, mixer, clock;
+let controls;
+let numAnimations;
+let armessage = null;
+let newCache;
+
+
+window.loaderShow();
+
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get('id');
+armessage = urlParams?.get('armessage') == null ? null : base64ToJson(urlParams?.get('armessage'));
+message = urlParams?.get('armessage') == null ? null : base64ToJson(urlParams?.get('message'));
+
+if (id != null) {
+    const settingsResponse = await fetch("https://api-gw.dev.homeoutside.com/armodels/settings/" + id);
+    var settings = await settingsResponse.json();
+    armessage = base64ToJson(settings.models);
+    message = base64ToJson(settings.settings);
+    console.log(armessage, message);
+}
+
+
+let signedUrl = null;
+
+function base64ToJson(encoded) {
+    if (encoded == 'undefined' || encoded == null || encoded == '')
+        return null;
+
+    var actual = JSON.parse(atob(encoded))
+    return actual;
+}
+
+var addAttribute = (name, value) => {
+    mv.setAttribute(name, value)
+}
+
+function ApplyARSettings() {
+    if (armessage == null)
+        urlParams.forEach((value, key) => {
+            addAttribute(key, value);
+        });
+    else
+        for (let prop in armessage) {
+            addAttribute(prop, armessage[prop]);
+        }
+}
+
+
+let android = armessage?.src ?? urlParams.get('src');
+let name = armessage?.name ?? urlParams.get('name');
+document.title = name;
+
+if (message?.titleIcon) {
+    var titleIcon = document.getElementById("titleIcon");
+    titleIcon.classList.remove("hidden");
+    titleIcon.src = message?.titleIcon;
+
+}
+
+
+
+if (message?.showBackButton == true) {
+    document.getElementById("back").classList.remove('hidden');
+
+    if (message?.backButtonStyle) {
+        document.getElementById("back").setAttribute("style", message?.backButtonStyle);
+    }
+}
+
+if (message?.zoomActivate == false) {
+    document.getElementById("zoomButtons").classList.add('hidden');
+}
+
+if (message?.modelTitle == true) {
+    var modelTitle = document.getElementById("modelTitle");
+
+    modelTitle.setAttribute("style", message?.modelTitleStyle);
+
+    modelTitle.innerText = message.modelTitleText
+}
+//modelTitle
+
+
+fetch("https://api-gw.dev.homeoutside.com/armodels/uploadurl?name=" + name)
+    .then(response => response.json())
+    .then((urlObj) => {
+        signedUrl = urlObj.url;
+    });
+
+const onProgress = (event) => {
+    if (event.detail.totalProgress === 1) {
+        if (mv.canActivateAR) {
+            var arButton = document.getElementById("ar-button-repiter");
+            arButton.classList.remove('hidden');
+        }
+        event.target.removeEventListener('progress', onProgress);
+        mv.classList.add("hidden");
+        mv.setAttribute("reveal", "manual");
+        ApplyARSettings();
+    }
+};
+
+mv.addEventListener('progress', onProgress);
+mv.setAttribute("src", "models/ARTestOnly/artest.glb")
+
+
+let cachedModels = [];
+if ('caches' in window && message?.cacheModels == true) {
+    newCache = await caches.open('models-cache');
+    const requests = await newCache.keys();
+    cachedModels = requests.map(request => request.url);
+
+    console.log(cachedModels);
+}
+
+if ('caches' in window && message?.cacheModels == true) {
+    cacheModel();
+} else {
+    init();
+}
+
+window.aRShow = () => {
+    var f = new File([""], name);
+    let response = fetch(signedUrl, {
+        method: 'PUT',
+        data: f
+    }).then(response => {
+        document.getElementById("ar-button").click();
+    }).catch((error) => {
+        console.log(error)
+        document.getElementById("ar-button").click();
+    });
+}
+
+window.backOnClick = () => {
+    if (message?.buttonUrl)
+        document.location = message?.buttonUrl;
+    else
+        history.back();
+
+}
+
+function UpdateAndroidScr(response) {
+    response.arrayBuffer()
+        .then((data) => {
+            const glbBlob = new Blob([data], { type: 'model/glb-binary' });
+            android = window.URL.createObjectURL(glbBlob);
+            init();
+        });
+}
+
+function cacheModel() {
+    if (cachedModels.indexOf(android) >= 0) {
+        newCache.match(android).then((response) => {
+            console.log(response);
+            UpdateAndroidScr(response);
+        })
+
+    } else
+        fetch(android)
+            .then((response) => {
+                if (response.body) {
+                    newCache.put(android, response.clone());
+                    UpdateAndroidScr(response);
+                } else {
+                    throw Error('Unable to Download Model');
+                }
+            });
+}
+
+
+
+function tween(inout) { // in - true, out - false
+
+
+    let desiredDistance = inout ? parseFloat(controls.getDistance()) + 0.4 : parseFloat(controls.getDistance()) - 0.4;
+
+    if (desiredDistance > controls.maxDistance)
+        desiredDistance = maxDistance;
+
+    if (desiredDistance < controls.minDistance)
+        desiredDistance = minDistance;
+
+
+    let dir = new THREE.Vector3();
+    camera.getWorldDirection(dir);
+    dir.negate();
+    let dist = controls.getDistance();
+    new TWEEN.Tween({ val: dist })
+        .to({ val: desiredDistance }, 300)
+        .onUpdate(val => {
+            camera.position.copy(controls.target).addScaledVector(dir, val.val);
+        })
+        .start();
+}
+
+window.zoomIn = () => {
+    tween(false);
+}
+
+window.zoomOut = () => {
+    tween(true);
+}
+
+
+function init() {
+    clock = new THREE.Clock();
+    scene = new THREE.Scene();
+
+    if (message?.sceneDecoration?.sceneBackground)
+        scene.background = new THREE.Color(message?.sceneDecoration?.sceneBackground);
+    else
+        scene.background = new THREE.Color(0xa0a0a0);
+
+    if (message?.sceneDecoration?.fog)
+        scene.fog = new THREE.Fog(message?.sceneDecoration?.fog?.color, message?.sceneDecoration?.fog?.near, message?.sceneDecoration?.fog?.far);
+    else
+        scene.fog = new THREE.Fog(0xa0a0a0, 2, 4);
+
+    if (message?.sceneDecoration?.fogEnable == false)
+        scene.fog = null
+
+    let hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 2);
+
+    if (message?.hemiLight)
+        hemiLight = new THREE.HemisphereLight(message?.hemiLight?.color, message?.hemiLight?.groundColor, message?.hemiLight.intensity);
+
+    hemiLight.position.set(0, 50, 0);
+    scene.add(hemiLight);
+    let dirLight = new THREE.DirectionalLight(0xffffff, 3);
+    if (message?.lightning) {
+        dirLight = new THREE.DirectionalLight(message?.lightning.color, message?.lightning?.intensity);
+        dirLight.position.set(message?.lightning.position.x, message?.lightning.position.y, message?.lightning.position.z);
+    }
+    else {
+        dirLight = new THREE.DirectionalLight(0xffffff, 3);
+        dirLight.position.set(-10, 10, -10);
+    }
+
+    dirLight.castShadow = true;
+    dirLight.shadow.camera.top = 2;
+    dirLight.shadow.camera.bottom = - 2;
+    dirLight.shadow.camera.left = - 2;
+    dirLight.shadow.camera.right = 2;
+    dirLight.shadow.camera.near = 0.1;
+    dirLight.shadow.camera.far = 40;
+
+    if (message?.lightning?.bias)
+        dirLight.shadow.bias = message?.lightning?.bias;
+
+    scene.add(dirLight);
+    // ground
+
+    let floorColor = 0xa0a0a0;
+    if (message?.sceneDecoration?.floorMaterialColor)
+        floorColor = message?.sceneDecoration?.floorMaterialColor
+
+    let mesh = new THREE.Mesh(new THREE.BoxGeometry(100, 100, 100), new THREE.MeshPhongMaterial({ color: "#A0A0A0", depthWrite: false }));
+
+    if (message?.sceneDecoration)
+        mesh = new THREE.Mesh(new THREE.BoxGeometry(message?.sceneDecoration.width, message?.sceneDecoration.height, 100), new THREE.MeshPhongMaterial({ color: floorColor, depthWrite: false }));
+
+
+    mesh.position.set(0, -50, 0)
+    mesh.rotation.x = - Math.PI / 2;
+    mesh.receiveShadow = true;
+    scene.add(mesh);
+
+    const gltfLoader = new GLTFLoader();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath("decoder/");
+    gltfLoader.setDRACOLoader(dracoLoader);
+
+    gltfLoader.load(android, async (gltf) => {
+        scene.add(gltf.scene);
+        model = gltf.scene;
+        setUpAnimation(model);
+        window.loaderHide();
+    })
+
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    container.appendChild(renderer.domElement);
+
+    // camera
+    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
+
+    if (message?.cameraPosition) {
+        camera.position.set(message.cameraPosition.x, message.cameraPosition.y, message.cameraPosition.z);
+    } else {
+        camera.position.set(- 1, 1.5, 3);
+    }
+
+    controls = new OrbitControls(camera, renderer.domElement);
+    controls.enablePan = false;
+    controls.enableZoom = true;
+
+    if (message?.cameraZooming) {
+        controls.minDistance = message?.cameraZooming.min;
+        controls.maxDistance = message?.cameraZooming.max;
+    }
+
+
+    if (message?.cameraTarget)
+        controls.target.set(message.cameraTarget.x, message.cameraTarget.y, message.cameraTarget.z);
+    else
+        controls.target.set(0, 1, 0);
+
+    controls.update();
+
+
+    stats = new Stats();
+    window.addEventListener('resize', onWindowResize);
+}
+
+function setUpAnimation(model) {
+    model.traverse(function (object) {
+        if (object.isMesh) {
+            object.castShadow = true;
+            object.receiveShadow = true;
+        }
+    });
+
+    skeleton = new THREE.SkeletonHelper(model);
+    skeleton.visible = false;
+    scene.add(skeleton);
+
+    const animations = model.animations;
+    mixer = new THREE.AnimationMixer(model);
+
+    numAnimations = animations.length;
+
+    for (let i = 0; i !== numAnimations; ++i) {
+
+        let clip = animations[i];
+        const name = clip.name;
+
+        if (baseActions[name]) {
+
+            const action = mixer.clipAction(clip);
+            activateAction(action);
+            baseActions[name].action = action;
+            allActions.push(action);
+
+        } else if (additiveActions[name]) {
+
+            // Make the clip additive and remove the reference frame
+            THREE.AnimationUtils.makeClipAdditive(clip);
+
+            if (clip.name.endsWith('_pose')) {
+
+                clip = THREE.AnimationUtils.subclip(clip, clip.name, 2, 3, 30);
+
+            }
+
+            const action = mixer.clipAction(clip);
+            activateAction(action);
+            additiveActions[name].action = action;
+            allActions.push(action);
+
+        }
+
+    }
+
+    animate();
+}
+
+function activateAction(action) {
+
+    const clip = action.getClip();
+    const settings = baseActions[clip.name] || additiveActions[clip.name];
+    setWeight(action, settings.weight);
+    action.play();
+
+}
+
+// This function is needed, since animationAction.crossFadeTo() disables its start action and sets
+// the start action's timeScale to ((start animation's duration) / (end animation's duration))
+
+function setWeight(action, weight) {
+    action.enabled = true;
+    action.setEffectiveTimeScale(1);
+    action.setEffectiveWeight(weight);
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function animate() {
+
+    // Render loop
+
+    requestAnimationFrame(animate);
+
+    for (let i = 0; i !== numAnimations; ++i) {
+
+        const action = allActions[i];
+        const clip = action.getClip();
+        const settings = baseActions[clip.name] || additiveActions[clip.name];
+        settings.weight = action.getEffectiveWeight();
+
+    }
+
+    // Get the time elapsed since the last frame, used for mixer update
+
+    const mixerUpdateDelta = clock.getDelta();
+
+    // Update the animation mixer, the stats panel, and render this frame
+
+    TWEEN.update();
+    mixer.update(mixerUpdateDelta);
+
+    stats.update();
+
+    renderer.render(scene, camera);
+
+}
