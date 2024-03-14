@@ -16,24 +16,12 @@ let numAnimations;
 let armessage = null;
 let newCache;
 
-
 window.loaderShow();
 
 const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get('id');
 armessage = urlParams?.get('armessage') == null ? null : base64ToJson(urlParams?.get('armessage'));
-message = urlParams?.get('armessage') == null ? null : base64ToJson(urlParams?.get('message'));
-
-if (id != null) {
-    const settingsResponse = await fetch("https://api-gw.dev.homeoutside.com/armodels/settings/" + id);
-    var settings = await settingsResponse.json();
-    armessage = base64ToJson(settings.models);
-    message = base64ToJson(settings.settings);
-    console.log(armessage, message);
-}
-
-
-let signedUrl = null;
+message = urlParams?.get('message') == null ? null : base64ToJson(urlParams?.get('message'));
+console.log(armessage, message);
 
 function base64ToJson(encoded) {
     if (encoded == 'undefined' || encoded == null || encoded == '')
@@ -58,7 +46,6 @@ function ApplyARSettings() {
         }
 }
 
-
 let android = armessage?.src ?? urlParams.get('src');
 let name = armessage?.name ?? urlParams.get('name');
 document.title = name;
@@ -67,10 +54,7 @@ if (message?.titleIcon) {
     var titleIcon = document.getElementById("titleIcon");
     titleIcon.classList.remove("hidden");
     titleIcon.src = message?.titleIcon;
-
 }
-
-
 
 if (message?.showBackButton == true) {
     document.getElementById("back").classList.remove('hidden');
@@ -91,14 +75,6 @@ if (message?.modelTitle == true) {
 
     modelTitle.innerText = message.modelTitleText
 }
-//modelTitle
-
-
-fetch("https://api-gw.dev.homeoutside.com/armodels/uploadurl?name=" + name)
-    .then(response => response.json())
-    .then((urlObj) => {
-        signedUrl = urlObj.url;
-    });
 
 const onProgress = (event) => {
     if (event.detail.totalProgress === 1) {
@@ -115,7 +91,6 @@ const onProgress = (event) => {
 
 mv.addEventListener('progress', onProgress);
 mv.setAttribute("src", "models/ARTestOnly/artest.glb")
-
 
 let cachedModels = [];
 if ('caches' in window && message?.cacheModels == true) {
@@ -181,11 +156,7 @@ function cacheModel() {
             });
 }
 
-
-
 function tween(inout) { // in - true, out - false
-
-
     let desiredDistance = inout ? parseFloat(controls.getDistance()) + 0.4 : parseFloat(controls.getDistance()) - 0.4;
 
     if (desiredDistance > controls.maxDistance)
@@ -193,7 +164,6 @@ function tween(inout) { // in - true, out - false
 
     if (desiredDistance < controls.minDistance)
         desiredDistance = minDistance;
-
 
     let dir = new THREE.Vector3();
     camera.getWorldDirection(dir);
@@ -214,7 +184,6 @@ window.zoomIn = () => {
 window.zoomOut = () => {
     tween(true);
 }
-
 
 function init() {
     clock = new THREE.Clock();
@@ -273,7 +242,6 @@ function init() {
     if (message?.sceneDecoration)
         mesh = new THREE.Mesh(new THREE.BoxGeometry(message?.sceneDecoration.width, message?.sceneDecoration.height, 100), new THREE.MeshPhongMaterial({ color: floorColor, depthWrite: false }));
 
-
     mesh.position.set(0, -50, 0)
     mesh.rotation.x = - Math.PI / 2;
     mesh.receiveShadow = true;
@@ -315,14 +283,12 @@ function init() {
         controls.maxDistance = message?.cameraZooming.max;
     }
 
-
     if (message?.cameraTarget)
         controls.target.set(message.cameraTarget.x, message.cameraTarget.y, message.cameraTarget.z);
     else
         controls.target.set(0, 1, 0);
 
     controls.update();
-
 
     stats = new Stats();
     window.addEventListener('resize', onWindowResize);
@@ -372,16 +338,13 @@ function setUpAnimation(model) {
             activateAction(action);
             additiveActions[name].action = action;
             allActions.push(action);
-
         }
-
     }
 
     animate();
 }
 
 function activateAction(action) {
-
     const clip = action.getClip();
     const settings = baseActions[clip.name] || additiveActions[clip.name];
     setWeight(action, settings.weight);
@@ -431,5 +394,4 @@ function animate() {
     stats.update();
 
     renderer.render(scene, camera);
-
 }

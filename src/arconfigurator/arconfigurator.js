@@ -271,9 +271,6 @@ var generateNewLink = async () => {
             `font-weight: ${document.getElementById("titleFontWeight").value};` +
             `color: ${document.getElementById("titleFontColor").value};` +
             `font-size: ${document.getElementById("titleFontSize").value}px`;
-
-
-
     }
 
     if (sceneParamerters.showBackButton == true) {
@@ -288,27 +285,13 @@ var generateNewLink = async () => {
     var armessage = jsonToBase64(attributes);
     var message = jsonToBase64(sceneParamerters);
 
-    const response = await fetch("https://api-gw.dev.homeoutside.com/armodels/settings", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(
-            {
-                "models": armessage,
-                "settings": message
-            }),
-    });
-
-    var setting = await response.json();
-
     var baseUrl = window.location.origin;
 
     if (baseUrl.indexOf('127.0.0.1') >= 0 || baseUrl.indexOf('localhost') >= 0) {
         baseUrl = "http://192.168.100.27:5500"
     }
 
-    let link = baseUrl + `/viewer.html?id=${setting.id}`;
+    let link = baseUrl + `/viewer.html?armessage=${armessage}&message=${message}`;
     return link;
 }
 
