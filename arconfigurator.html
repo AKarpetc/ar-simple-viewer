@@ -2,13 +2,15 @@
 <html lang="en">
 
 <head>
-    <title>Homeoutside AR viewer</title>
     <meta charset="utf-8">
+    <title>AR Viewer</title>
+
     <meta name="description" content="&lt;model-viewer&gt; template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="text/css" href="./styles/styles.css" rel="stylesheet" />
-    <link type="text/css" href="./styles/arconfigurator.css" rel="stylesheet" />
-    <link type="text/css" href="./styles/loading.css" rel="stylesheet" />
+    <link type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="./styles/styles.css" rel="stylesheet">
+    <link type="text/css" href="./styles/arconfigurator.css" rel="stylesheet">
+    <link type="text/css" href="./styles/loading.css" rel="stylesheet">
 </head>
 
 <body>
@@ -38,24 +40,22 @@
                         </model-viewer>
 
                         <button slot="ar-button" id="ar-button" class="ar-button">
-                            View in your space
+                            Просмотр в пространстве
                         </button>
                     </div>
-
                 </div>
             </div>
 
             <div class="veiwer-toolbox">
-                <div class="veiwer-toolbox__header">Configurator</div>
+                <div class="veiwer-toolbox__header"><b>Конфигуратор</b></div>
                 <div class="toolbox-item">
-                    <div class="toolbox-item__box-header">Staging & Cameras
-                    </div>
-                    <label>Hold the right button of the mouse for staging and use mouse wheel from zooming</label>
+                    <div class="toolbox-item__box-header"><b>Сценография и камеры</b></div>
+                    <label>Удерживайте правую кнопку мыши для постановки и используйте колесо мыши для
+                        масштабирования.</label>
                     <div class="toolbox-item__box-body">
                         <div class="box-item">
-                            <div class="par-name">Position:</div>
+                            <div class="par-name"><b>Позиция:</b></div>
                         </div>
-
 
                         <div class="box-item">
                             <div class="par-name">x:</div>
@@ -76,31 +76,29 @@
                             </div>
                         </div>
 
-
                         <div class="box-item">
-                            <div class="par-name">zoom:</div>
+                            <div class="par-name"><b>Масштаб:</b></div>
                             <div class="par-value">
                                 <span id="cam-zoom" class="position-element" type="number">
                             </div>
                         </div>
 
                         <div class="box-item">
-                            <div class="par-name">zoom min:</div>
+                            <div class="par-name">мин масштаб:</div>
                             <div class="par-value">
                                 <input id="cam-zoom-min" class="position-element" value="0.2" type="number">
                             </div>
                         </div>
 
-
                         <div class="box-item">
-                            <div class="par-name">zoom max:</div>
+                            <div class="par-name">макс масштаб:</div>
                             <div class="par-value">
                                 <input id="cam-zoom-max" class="position-element" value="2" type="number">
                             </div>
                         </div>
 
                         <div class="box-item">
-                            <div class="par-name">Target:</div>
+                            <div><b>Позиционирование камеры:</b></div>
                         </div>
                         <div class="box-item">
                             <div class="par-name">x:</div>
@@ -123,84 +121,86 @@
                     </div>
 
                     <div class="buttons-box">
-                        <button onclick="applyCamera()">apply</button>
-                        <button onclick="defaultCamera()">reset</button>
+                        <button type="button" class="btn btn-success" onclick="applyCamera()">Применить</button>
+                        <button type="button" class="btn btn-danger" onclick="defaultCamera()">Сбросить</button>
                     </div>
                 </div>
 
                 <div class="toolbox-item">
-                    <div class="toolbox-item__box-header">Background
+                    <div class="toolbox-item__box-header"><b>Фон</b>
                     </div>
                     <div class="toolbox-item__box-body">
                         <div class="box-item">
-                            <div class="par-name">background:</div>
+                            <div class="par-name"><b>Цвет фона:</b></div>
                             <div class="par-value">
-                                <input id="back-color" type="color" name="back-color" value="#d1e9ff"
-                                    oninput="rangeValueChange(this)">
+                                <input id="back-color" type="color" class="form-control form-control-color"
+                                    value="#d1e9ff" oninput="rangeValueChange(this)">
                                 <span id="back-color-value">#d1e9ff</span>
                             </div>
                         </div>
 
                         <div class="box-item">
-                            <div class="par-name">Floor color:</div>
+                            <div class="par-name"><b>Цвет пола:</b></div>
                             <div class="par-value">
-                                <input id="floor-color" name="floor-color" type="color" value="#d3cfcf"
-                                    oninput="rangeValueChange(this)">
+                                <input id="floor-color" type="color" class="form-control form-control-color"
+                                    value="#d3cfcf" oninput="rangeValueChange(this)">
                                 <span id="floor-color-value">#d3cfcf</span>
                             </div>
                         </div>
 
                         <div class="box-item">
-                            <div class="par-name">Floor size:</div>
-                            <div class="par-value">
-                                width:<input id="floor-width" type="number" value="7">
-                                height: <input id="floor-height" type="number" value="7">
+                            <div class="par-name"><b>Размер пола:</b></div>
+                            <div class="par-value" style="margin-top: -3px;">
+                                ширина: <input id="floor-width" type="number" value="7">
+                                высота: <input id="floor-height" type="number" value="7">
                             </div>
                         </div>
 
 
                         <div class="box-item">
-                            <div class="par-name">Fog:</div>
+                            <div class="par-name"><b>Туман:</b></div>
                             <div class="par-value">
-                                <input id="fog" type="checkbox" checked value="true">
+                                <div class="form-check">
+                                    <input id="fog" class="form-check-input" type="checkbox" checked value="true">
+                                </div>
                             </div>
                         </div>
 
                         <div class="box-item">
-                            <div class="par-name">Fog color:</div>
+                            <div class="par-name"><b>Цвет тумана:</b></div>
                             <div class="par-value">
-                                <input id="fog-color" name="fog-color" type="color" value="#d1e9ff"
+                                <input id="fog-color" name="fog-color" type="color"
+                                    class="form-control form-control-color" value="#d1e9ff"
                                     oninput="rangeValueChange(this)">
                                 <span id="fog-color-value">#d1e9ff</span>
                             </div>
                         </div>
                         <div class="box-item">
-                            <div class="par-name">Fog near:</div>
-                            <div class="par-value">
+                            <div class="par-name"><b>Туман неподалеку:</b></div>
+                            <div class="par-value" style="margin-top: 10px;">
                                 <input id="fog-near" type="number" value="2">
                             </div>
                         </div>
 
                         <div class="box-item">
-                            <div class="par-name">Fog far:</div>
-                            <div class="par-value">
+                            <div class="par-name"><b>Туман в далеке:</b></div>
+                            <div class="par-value" style="margin-top: 10px;">
                                 <input id="fog-far" type="number" value="4">
                             </div>
                         </div>
                         <div class="buttons-box">
-                            <button onclick="applySkybox()">apply</button>
-                            <button onclick="defaultSkybox()">default</button>
+                            <button type="button" class="btn btn-success" onclick="applySkybox()">Применить</button>
+                            <button type="button" class="btn btn-danger" onclick="defaultSkybox()">Сбросить</button>
                         </div>
-
                     </div>
-
                 </div>
 
                 <div class="toolbox-item">
-                    <div class="toolbox-item__box-header">Lightning
+                    <div class="toolbox-item__box-header"><b>Освещение</b>
                     </div>
 
-                    <div class="toolbox-item__box-header">Direct light
+                    <div class="box-item">
+                        <div><b>Направление освещения:</b></div>
                     </div>
                     <div class="toolbox-item__box-body">
                         <div class="box-item">
@@ -212,7 +212,6 @@
                             </div>
                         </div>
 
-
                         <div class="box-item">
                             <div class="par-name">y :</div>
                             <div class="par-value">
@@ -220,7 +219,6 @@
                                     step="0.1" type="range" min="-30" max="30" /><span id="light-y-value">10</span>
                             </div>
                         </div>
-
 
                         <div class="box-item">
                             <div class="par-name">z :</div>
@@ -230,8 +228,6 @@
                                     id="light-z-value">-10</span>
                             </div>
                         </div>
-
-
 
                         <div class="box-item">
                             <div class="par-name">light intensity:</div>
@@ -281,12 +277,9 @@
                         </div>
 
                         <div class="buttons-box">
-                            <button onclick="defaultLighting()">default</button>
+                            <button type="button" class="btn btn-danger" onclick="defaultLighting()">Сбросить</button>
                         </div>
-
-
                     </div>
-
                 </div>
 
                 <div class="toolbox-item">
@@ -301,9 +294,7 @@
                                     id="shadow-bias-value">0</span>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
 
                 <div class="toolbox-item">
@@ -476,7 +467,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <script src="./src/common/loading.js"></script>

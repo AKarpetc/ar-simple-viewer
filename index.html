@@ -2,22 +2,30 @@
 <html lang="en">
 
 <head>
-  <title>Homeoutside AR viewer</title>
   <meta charset="utf-8">
+  <title>AR Viewer</title>
+
   <meta name="description" content="&lt;model-viewer&gt; template">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link type="text/css" href="./styles/index.css" rel="stylesheet" />
 </head>
 
 <body>
-  <ul id="list">
-    <li>
-      <a href="arconfigurator.html?android=models/sofa_1/glb/sofa_1.glb&ios=/models/sofa_1/usdz/Sofa_couch.usdz">
-        local model | </a>
-      <a href="viewer.html?src=/models/sofa_1/glb/sofa_1.glb&ios-src=/models/sofa_1/usdz/Sofa_couch.usdz">
-        viewer</a>
-    </li>
-  </ul>
+  <div class="container-fluid" style="padding: 7em;">
+    <div class="d-flex justify-content-around flex-wrap">
+      <div class="card mt-2" style="width: 18rem;">
+        <img src="./models/sofa_1/img/sofa_1.jpg" class="card-img-top" alt="Sofa">
+        <div class="card-body" style="font-family: none; text-align: center;">
+          <h4 class="card-title"><b>Sofa</b></h4>
+          <a href="viewer.html?src=/models/sofa_1/glb/sofa_1.glb&ios-src=/models/sofa_1/usdz/Sofa_couch.usdz"
+            class="btn btn-success">Просмотр</a>
+          <a href="arconfigurator.html?android=models/sofa_1/glb/sofa_1.glb&ios=/models/sofa_1/usdz/Sofa_couch.usdz"
+            class="btn btn-primary">Настройки</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="./dist/index.bandle.js?v=1"></script>
 

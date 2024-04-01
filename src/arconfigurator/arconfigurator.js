@@ -44,7 +44,7 @@ init();
 
 function getControlsZoom(e) {
 
-    document.getElementById("cam-zoom").innerHTML = 'Zoom = ' + controls.getDistance();
+    document.getElementById("cam-zoom").innerHTML = 'Масштаб = ' + controls.getDistance();
 }
 
 var originalDistance = null;
