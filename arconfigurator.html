@@ -151,8 +151,8 @@
                         <div class="box-item">
                             <div class="par-name"><b>Размер пола:</b></div>
                             <div class="par-value">
-                                ширина: <input id="floor-width" class="form-control" style="display: inline" type="number" value="7">
-                                высота: <input id="floor-height" class="form-control" style="display: inline" type="number" value="7">
+                                ширина: <input id="floor-width" class="form-control flor-input-display" type="number" value="7">
+                                высота: <input id="floor-height" class="form-control flor-input-display" type="number" value="7">
                             </div>
                         </div>
 
@@ -177,14 +177,14 @@
                         </div>
                         <div class="box-item">
                             <div class="par-name"><b>Туман неподалеку:</b></div>
-                            <div class="par-value" style="margin-top: 6px;">
+                            <div class="par-value par-value-margin">
                                 <input class="form-control" id="fog-near" type="number" value="2">
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Туман в далеке:</b></div>
-                            <div class="par-value" style="margin-top: 6px;">
+                            <div class="par-value par-value-margin">
                                 <input class="form-control" id="fog-far" type="number" value="4">
                             </div>
                         </div>
@@ -309,7 +309,7 @@
                         <div class="box-item">
                             <div class="par-name"><b>Масштаб AR:</b></div>
                             <div class="par-value">
-                                <select class="form-select" style="width: 171px;" name="" id="ar-scale">
+                                <select class="form-select ar-scale-select" name="" id="ar-scale">
                                     <option>Автоматически</option>
                                     <option>Фиксированный</option>
                                 </select>
@@ -329,13 +329,13 @@
                         <div class="box-item">
                             <div class="par-name"><b>Ширина (px):</b></div>
                             <div class="par-value">
-                                <input class="form-control" style="width: 80px;" id="iframe-with" type="number" value="300" />
+                                <input class="form-control input-width" id="iframe-with" type="number" value="300" />
                             </div>
                         </div>
                         <div class="box-item">
                             <div class="par-name"><b>Высота (px):</b></div>
                             <div class="par-value">
-                                <input class="form-control" id="iframe-height" style="width: 80px;" type="number" value="300" />
+                                <input class="form-control input-width" id="iframe-height" type="number" value="300" />
                             </div>
                         </div>
                         <div class="box-item">
@@ -359,7 +359,7 @@
                     <div class="toolbox-item__box-body common">
                         <div class="box-item">
                             <div class="par-name"><b>Показать кнопку «Назад»</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
+                            <div class="par-value par-value-align">
                                 <input class="form-check-input" id="showBack" type="checkbox" />
                             </div>
                         </div>
@@ -373,89 +373,89 @@
 
                         <div class="box-item">
                             <div class="par-name"><b>Семейство шрифтов кнопки</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
+                            <div class="par-value par-value-align">
                                 <input class="form-control position-element" id="buttonFont" value="Raleway">
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Размер шрифта кнопки</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
-                                <input class="form-control" style="width: 80px;" id="buttonFontSize" value="17" type="number">
+                            <div class="par-value par-value-align">
+                                <input class="form-control input-width" id="buttonFontSize" value="17" type="number">
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Толщина шрифта кнопки</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
-                                <input class="form-control" style="width: 80px;" id="buttonFontWeight" type="number" value="700">
+                            <div class="par-value par-value-align">
+                                <input class="form-control input-width" id="buttonFontWeight" type="number" value="700">
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Цвет шрифта кнопки</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
+                            <div class="par-value par-value-align">
                                 <input class="form-control form-control-color" id="buttonFontColor" type="color" value="#4D840A">
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Кэшировать модели</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
+                            <div class="par-value par-value-align">
                                 <input class="form-check-input" id="cacheModels" type="checkbox" />
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Кнопки увеличения</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
+                            <div class="par-value par-value-align">
                                 <input class="form-check-input" id="zoomActivate" type="checkbox" checked />
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Показать название модели</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
+                            <div class="par-value par-value-align">
                                 <input class="form-check-input" id="modelTitle" type="checkbox" checked />
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Иконка заголовка</b></div>
-                            <div class="par-value" style="width: 284px; align-content: space-evenly;">
+                            <div class="par-value par-value-align">
                                 <input class="form-control" id="iconfile" type="file" checked />
                                 <div class="d-flex justify-content-around">
                                     <button type="button" class="btn btn-secondary" onclick="uploadIcon()">Загрузить</button>
                                     <button type="button" class="btn btn-secondary" onclick="clearIcon()">Сбросить</button>
                                 </div>
-                                <label style="margin-top: 8px; margin-left: 105px;" id="uploadStatus" class="icon-upload-process"></label>
+                                <label id="uploadStatus" class="icon-upload-process"></label>
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Семейство шрифтов заголовка</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
+                            <div class="par-value par-value-align">
                                 <input class="form-control position-element" id="titleFont" value="Raleway">
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Размер шрифта заголовка</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
-                                <input class="form-control" style="width: 80px;" id="titleFontSize" value="17" type="number">
+                            <div class="par-value par-value-align">
+                                <input class="form-control input-width" id="titleFontSize" value="17" type="number">
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Толщина шрифта заголовка</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
-                                <input class="form-control" id="titleFontWeight" style="width: 80px;" type="number" value="700">
+                            <div class="par-value par-value-align">
+                                <input class="form-control input-width" id="titleFontWeight" type="number" value="700">
                             </div>
                         </div>
 
                         <div class="box-item">
                             <div class="par-name"><b>Цвет шрифта заголовка</b></div>
-                            <div class="par-value" style="align-content: space-evenly;">
+                            <div class="par-value par-value-align">
                                 <input class="form-control form-control-color" id="titleFontColor" type="color" value="#A9A9A9">
                             </div>
                         </div>
@@ -465,7 +465,6 @@
                 <div class="final-button">
                     <button type="button" class="btn btn-secondary" onclick="generateLink()">Предпросмотр</button>
                     <button type="button" class="btn btn-secondary" onclick="openInTheSameWindow()">Предпросмотр в этом же окне</button>
-
                     <button type="button" class="btn btn-secondary" onclick="generateQR()">Показать QR для предпросмотра</button>
                     <div id="qrcode"></div>
                     <button type="button" class="btn btn-secondary" onclick="generateIFrame()">Показать код iFrame</button>

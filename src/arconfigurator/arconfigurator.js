@@ -338,20 +338,20 @@ window.uploadIcon = () => {
 
     let status=document.getElementById("uploadStatus");
     status.innerText ="uploading"
-    status.className="";
+    status.className="icon-upload-margin";
     status.classList.add("icon-upload-process");
 
     formData.append("file", icon);
     fetch('https://api-gw.dev.homeoutside.com/armodels/logo', { method: "POST", body: formData })
         .then((response) => response.json()).then((json) => {
             sceneParamerters.titleIcon = json.uri;
-            status.className="";
+            status.className="icon-upload-margin";
             status.classList.add("icon-upload-success");
             status.innerText ="uploaded"
         })
         .catch(()=>
         {
-            status.className="";
+            status.className="icon-upload-margin";
             status.classList.add("icon-upload-error");
             status.text="error"
         });
