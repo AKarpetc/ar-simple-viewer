@@ -2,29 +2,28 @@
 <html lang="en">
 
 <head>
-  <title>Test IFrame</title>
   <meta charset="utf-8">
+  <title>Тест iFrame</title>
+  
   <meta name="description" content="&lt;model-viewer&gt; template">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link type="text/css" href="./styles.css" rel="stylesheet" />
+  <link type="text/css" href="./styles/styles.css" rel="stylesheet">
+  <link type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-
-  <div>
-    Add IFrame code here:
+  <div class="container-fluid card-container">
+    <div>
+      Добавьте сюда код iFrame:
+    </div>
+    <textarea id="code" cols="100" rows="10"></textarea>
+  
+    <div>
+      <button class="btn btn-primary" onclick="addIFrame()">Проверить</button>
+    </div>
+    <div id="container" class="iframe-container"></div>
   </div>
-  <textarea id="code" cols="100" rows="10"></textarea>
-
-  <div>
-    <button onclick="addIFrame()">Show</button>
-  </div>
-  <div id="container" style="width: 100%; height:100%">
-
-  </div>
-
 </body>
-
 
 <script>
   window.addIFrame = () => {
