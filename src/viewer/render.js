@@ -98,7 +98,7 @@ const onProgress = (event) => {
 };
 
 mv.addEventListener('progress', onProgress);
-mv.setAttribute("src", "models/ARTestOnly/artest.glb")
+mv.setAttribute("src", "/models/sofa_1/glb/sofa_1.glb")
 
 let cachedModels = [];
 if ('caches' in window && message?.cacheModels == true) {
