@@ -23,6 +23,8 @@ armessage = urlParams?.get('armessage') == null ? null : base64ToJson(urlParams?
 message = urlParams?.get('message') == null ? null : base64ToJson(urlParams?.get('message'));
 console.log(armessage, message);
 
+let signedUrl = null;
+
 function base64ToJson(encoded) {
     if (encoded == 'undefined' || encoded == null || encoded == '')
         return null;
@@ -75,6 +77,12 @@ if (message?.modelTitle == true) {
 
     modelTitle.innerText = message.modelTitleText
 }
+
+fetch("https://api-gw.dev.homeoutside.com/armodels/uploadurl?name=" + name)
+    .then(response => response.json())
+    .then((urlObj) => {
+        signedUrl = urlObj.url;
+    });
 
 const onProgress = (event) => {
     if (event.detail.totalProgress === 1) {
