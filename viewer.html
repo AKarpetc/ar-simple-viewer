@@ -2,16 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>Homeoutside AR viewer</title>
+    <title>AR Viewer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" href="./styles/styles.css" rel="stylesheet" />
     <link type="text/css" href="./styles/loading.css" rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Acme|Alegreya|Alegreya+Sans|Anton|Archivo|Archivo+Black|Archivo+Narrow|Arimo|Arvo|Asap|Asap+Condensed|Bitter|Bowlby+One+SC|Bree+Serif|Cabin|Cairo|Catamaran|Crete+Round|Crimson+Text|Cuprum|Dancing+Script|Dosis|Droid+Sans|Droid+Serif|EB+Garamond|Exo|Exo+2|Faustina|Fira+Sans|Fjalla+One|Francois+One|Gloria+Hallelujah|Hind|Inconsolata|Indie+Flower|Josefin+Sans|Julee|Karla|Lato|Libre+Baskerville|Libre+Franklin|Lobster|Lora|Mada|Manuale|Maven+Pro|Merriweather|Merriweather+Sans|Montserrat|Montserrat+Subrayada|Mukta+Vaani|Muli|Noto+Sans|Noto+Serif|Nunito|Open+Sans|Open+Sans+Condensed:300|Oswald|Oxygen|PT+Sans|PT+Sans+Caption|PT+Sans+Narrow|PT+Serif|Pacifico|Passion+One|Pathway+Gothic+One|Play|Playfair+Display|Poppins|Questrial|Quicksand|Raleway|Roboto|Roboto+Condensed|Roboto+Mono|Roboto+Slab|Ropa+Sans|Rubik|Saira|Saira+Condensed|Saira+Extra+Condensed|Saira+Semi+Condensed|Sedgwick+Ave|Sedgwick+Ave+Display|Shadows+Into+Light|Signika|Slabo+27px|Source+Code+Pro|Source+Sans+Pro|Spectral|Titillium+Web|Ubuntu|Ubuntu+Condensed|Varela+Round|Vollkorn|Work+Sans|Yanone+Kaffeesatz|Zilla+Slab|Zilla+Slab+Highlight"
-        rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -20,7 +15,7 @@
     </div>
     <div class="viewer-wrapper">
         <div class="viewer" id="container">
-            <a class="back_button hidden" id="back" onclick="backOnClick()">&laquo; Back</a>
+            <a class="back_button hidden" id="back" onclick="backOnClick()">&laquo; Назад</a>
             <!-- <model-viewer> HTML element -->
             <model-viewer id="model-viewer" ar ar-modes="webxr scene-viewer quick-look" loading="lazy" camera-controls
                 tone-mapping="commerce" shadow-intensity="1">
@@ -31,11 +26,11 @@
                     <img src="./img/ar_hand_prompt.png">
                 </div>
                 <button slot="ar-button" id="ar-button" class="ar-button">
-                    View in your space
+                    Просмотр в пространстве
                 </button>
             </model-viewer>
             <button onclick="aRShow()" id="ar-button-repiter" class="ar-button hidden">
-                View in your space
+                Просмотр в пространстве
             </button>
             <div class="model-title">
                 <img id="titleIcon" class="title-icon hidden" width="50px" height="50px"/>
@@ -48,15 +43,12 @@
             </div>
         </div>
     </div>
-
     </div>
-
     <script src="./src/common/loading.js"></script>
 
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <script type="module" src="./dist/viewer.bandle.js"></script>
 </body>
-
 
 </html>

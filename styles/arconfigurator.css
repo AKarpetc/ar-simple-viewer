@@ -45,7 +45,6 @@
     flex-direction: column;
     margin-top: 20px;
     padding-bottom: 20px;
-
     border: 2px;
     border-color: darkgrey;
     border-style: outset;
@@ -54,7 +53,6 @@
 .toolbox-item__box-body {
     display: flex;
     flex-direction: column;
-
 }
 
 .body-deg {
@@ -62,7 +60,9 @@
 }
 
 .par-name {
-    width: 100px;
+    width: 110px;
+    margin-left: 7px;
+    align-content: space-evenly;
 }
 
 .par-value {
@@ -73,21 +73,19 @@
     width: 60px;
 }
 
-
-
 .par-value>input[type=range] {
     width: 220px;
+    margin-left: 20px;
 }
 
 .buttons-box {
     display: flex;
     justify-content: space-around;
     margin-top: 10PX;
-
 }
 
 .buttons-box button {
-    width: 80px;
+    width: 110px;
 }
 
 .veiwer-toolbox__header {
@@ -117,17 +115,13 @@
 .final-button {
     margin-top: 10px;
     display: flex;
-
     flex-direction: column;
-
 }
-
 
 .final-button div,
 textarea,
 button {
     margin-top: 5px;
-    ;
 }
 
 .position-element {
@@ -144,4 +138,33 @@ button {
 
 .icon-upload-error {
     color: red;
+}
+
+.flor-input-display {
+    display: inline
+}
+
+.par-value-margin {
+    margin-top: 6px;
+}
+
+.ar-scale-select {
+    width: 171px;
+}
+
+.input-width {
+    width: 80px !important;
+}
+
+.par-value-align {
+    align-content: space-evenly;
+}
+
+.file-width {
+    width: 284px;
+}
+
+.icon-upload-margin {
+    margin-top: 8px;
+    margin-left: 105px;
 }

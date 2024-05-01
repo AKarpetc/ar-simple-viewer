@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@badgateway/oauth2-client": "^2.3.0",
+    "bootstrap": "^5.3.3",
     "jso": "^4.1.1",
     "qrcodejs": "^1.0.0",
     "three": "^0.161.0"
