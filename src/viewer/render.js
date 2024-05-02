@@ -116,16 +116,7 @@ if ('caches' in window && message?.cacheModels == true) {
 }
 
 window.aRShow = () => {
-    var f = new File([""], name);
-    let response = fetch(signedUrl, {
-        method: 'PUT',
-        data: f
-    }).then(response => {
-        document.getElementById("ar-button").click();
-    }).catch((error) => {
-        console.log(error)
-        document.getElementById("ar-button").click();
-    });
+    document.getElementById("ar-button").click();
 }
 
 window.backOnClick = () => {
