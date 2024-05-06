@@ -95,7 +95,11 @@ const onProgress = (event) => {
         mv.classList.add("hidden");
         mv.setAttribute("reveal", "manual");
 
-        // if()
+         if(message?.ar)
+         {
+            mv.setAttribute("ar-placement", message.ar.arPlacement);
+            mv.setAttribute("ar-scale", message.ar.arScale);
+         }
 
         ApplyARSettings();
     }
