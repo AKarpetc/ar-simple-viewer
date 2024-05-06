@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "npx webpack --config webpack.config.js --mode=development --env LOCAL",
+    "start": "npx webpack --config webpack.config.js --mode=development --env LOCAL --watch",
     "build-dev": "npx webpack --config webpack.config.js --mode=development --env DEV",
     "build-prod": "npx webpack --config webpack.config.js --mode=production  --env PROD"
   }

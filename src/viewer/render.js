@@ -78,11 +78,12 @@ if (message?.modelTitle == true) {
     modelTitle.innerText = message.modelTitleText
 }
 
+/* TODO: For Ar logs
 fetch("https://api-gw.dev.homeoutside.com/armodels/uploadurl?name=" + name)
     .then(response => response.json())
     .then((urlObj) => {
         signedUrl = urlObj.url;
-    });
+    });*/
 
 const onProgress = (event) => {
     if (event.detail.totalProgress === 1) {
@@ -93,6 +94,9 @@ const onProgress = (event) => {
         event.target.removeEventListener('progress', onProgress);
         mv.classList.add("hidden");
         mv.setAttribute("reveal", "manual");
+
+        // if()
+
         ApplyARSettings();
     }
 };
