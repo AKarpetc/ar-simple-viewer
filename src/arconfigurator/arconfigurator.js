@@ -175,6 +175,18 @@ window.applySkybox = () => {
 
 }
 
+window.applyAR = () => {
+    var arPlacementValue = document.getElementById("ar-attachment").value;
+    var arScaleValue = document.getElementById("ar-scale").value;
+
+    sceneParamerters.ar =
+    {
+        arPlacement: arPlacementValue,
+        arScale: arScaleValue
+    }
+
+}
+
 window.defaultSkybox = () => {
     document.getElementById("back-color").value = backgroundColor;
     document.getElementById("floor-color").value = floorColor;
@@ -288,7 +300,7 @@ var generateNewLink = async () => {
     var baseUrl = window.location.origin;
 
     if (baseUrl.indexOf('127.0.0.1') >= 0 || baseUrl.indexOf('localhost') >= 0) {
-        baseUrl = "http://192.168.100.27:5500"
+        baseUrl = "https://192.168.100.27:5502"
     }
 
     let link = baseUrl + `/viewer.html?armessage=${armessage}&message=${message}`;
@@ -336,12 +348,15 @@ window.uploadIcon = () => {
     let icon = document.getElementById("iconfile").files[0];
     let formData = new FormData();
 
-    let status=document.getElementById("uploadStatus");
-    status.innerText ="uploading"
-    status.className="icon-upload-margin";
+    let status = document.getElementById("uploadStatus");
+    status.innerText = "uploading"
+    status.className = "icon-upload-margin";
     status.classList.add("icon-upload-process");
 
     formData.append("file", icon);
+
+    //TODO: add server code to save icon
+    /*
     fetch('https://api-gw.dev.homeoutside.com/armodels/logo', { method: "POST", body: formData })
         .then((response) => response.json()).then((json) => {
             sceneParamerters.titleIcon = json.uri;
@@ -354,7 +369,7 @@ window.uploadIcon = () => {
             status.className="icon-upload-margin";
             status.classList.add("icon-upload-error");
             status.text="error"
-        });
+        });*/
 
 }
 
