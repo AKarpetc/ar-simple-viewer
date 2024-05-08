@@ -3,32 +3,50 @@
 
 <head>
   <meta charset="utf-8">
-  <title>AR Viewer</title>
-
   <meta name="description" content="&lt;model-viewer&gt; template">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>AR Viewer</title>
+
+  <link type="text/css" href="./styles/loading.css" rel="stylesheet" />
   <link type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link type="text/css" href="./styles/index.css" rel="stylesheet" />
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="d-flex justify-content-around flex-wrap">
-      <div class="card mt-2 card-size">
-        <img src="./models/sofa_1/img/sofa_1.jpg" class="card-img-top" alt="Sofa">
-        <div class="card-body card-body-text">
-          <h4 class="card-title"><b>Sofa</b></h4>
-          <a href="viewer.html?src=/models/sofa_1/glb/sofa_1.glb&ios-src=/models/sofa_1/usdz/Sofa_couch.usdz&name=sofa"
-            class="btn btn-success">Просмотр</a>
-          <a href="arconfigurator.html?android=models/sofa_1/glb/sofa_1.glb&ios=/models/sofa_1/usdz/Sofa_couch.usdz&name=sofa""
-            class="btn btn-primary">Настройки</a>
+  <div id="loader" class="loader-wrapper">
+    <div class="loader"></div>
+  </div>
+
+  <div class="container">
+    <div id="search">
+      <div class="container text-center mt-2">
+        <div class="row">
+          <div class="col">
+            <div class="d-flex">
+              <input id="search-input" type="text" class="form-control" placeholder="Поиск по названию модели ... ">
+              <div style="margin-top: 7px; margin-left: -30px; cursor: pointer; z-index: 100;" class="input-group-btn"
+                data-dismiss="alert">
+                <button onclick="clearSearchResult()" type="button" class="btn-close"></button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-auto mt-2">
+          </div>
+          <div class="col col-lg-2">
+            <button onclick="searchModels()" type="submit" class="btn btn-secondary mb-3">Найти</button>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <div id="cards">
+      <div id="cards-row" class="row row-cols-2 row-cols-lg-4 g-2 g-lg-3">
       </div>
     </div>
   </div>
 
+  <script src="./src/common/loading.js"></script>
   <script src="./dist/index.bandle.js?v=1"></script>
-
 </body>
 
 </html>

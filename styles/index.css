@@ -64,11 +64,11 @@ li:nth-child(3n - 1)::marker {
 	padding: 7em;
 }
 
-.card-size {
-	width: 18rem;
+.card-padding {
+	padding: 9px;
 }
 
-.card-body-text {
+.text {
 	font-family: none; 
 	text-align: center;
 }
