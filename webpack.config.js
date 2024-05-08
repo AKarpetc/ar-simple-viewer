@@ -12,7 +12,7 @@ module.exports =
 
         fs.copyFile(`./src/config/envs/${config}.js`, './src/config/config.js', (err) => {
             if (err) throw err;
-            console.log('source.txt was copied to destination.txt');
+            console.log('config was copied');
         });
 
         return {
@@ -20,9 +20,7 @@ module.exports =
                 return {
                     arconfigurator: ['./src/arconfigurator/arconfigurator.js'],
                     viewer: ['./src/viewer/render.js'],
-                    index: ['./src/index/index.js'],
-                    callBack: ['./src/loginCalback.js'],
-                    auth: ['./src/common/auth.js'],
+                    index: ['./src/index/index.js']
                 }
             },
             module: {
