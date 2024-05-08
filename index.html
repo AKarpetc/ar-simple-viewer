@@ -8,6 +8,7 @@
 
   <title>AR Viewer</title>
 
+  <link type="text/css" href="./styles/index.css" rel="stylesheet" />
   <link type="text/css" href="./styles/loading.css" rel="stylesheet" />
   <link type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -24,8 +25,7 @@
           <div class="col">
             <div class="d-flex">
               <input id="search-input" type="text" class="form-control" placeholder="Поиск по названию модели ... ">
-              <div style="margin-top: 7px; margin-left: -30px; cursor: pointer; z-index: 100;" class="input-group-btn"
-                data-dismiss="alert">
+              <div class="input-group-btn search-input-close-icon">
                 <button onclick="clearSearchResult()" type="button" class="btn-close"></button>
               </div>
             </div>
