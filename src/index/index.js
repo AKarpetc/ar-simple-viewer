@@ -56,14 +56,16 @@ function enrichModels(models) {
 }
 
 function drawCardsByModels() {
-  const container = document.querySelector('#cards-row');
-  container.replaceChildren();
+  const cardsContainer = document.querySelector('#cards-row');
+  cardsContainer.replaceChildren();
   modelsInfo.filter(x => x.visible).forEach(cardData => {
     let col = document.createElement('div');
     col.classList.add('col');
     let card = document.createElement('div');
     card.classList.add('card', 'mt-2');
     let img = document.createElement('img');
+    img.setAttribute('style', 'cursor: pointer;');
+    img.onclick = () => window.open(cardData.viewerLink, '_self');
     img.src = cardData.imgLink;
     img.classList.add('card-img-top');
     img.alt = cardData.name;
@@ -87,18 +89,21 @@ function drawCardsByModels() {
     card.appendChild(img);
     card.appendChild(cardBody);
     col.appendChild(card);
-    container.appendChild(col);
+    cardsContainer.appendChild(col);
   });
 }
 
 window.searchModels = () => {
-  const container = document.getElementById('search-input');
-  const searchValue = container.value;
+  const searchInput = document.getElementById('search-input');
+  const searchValue = searchInput.value;
 
-  if (searchValue === undefined || searchValue === null || searchValue === '') return;
+  if (searchValue === undefined || searchValue === null || searchValue === '') {
+    clearSearchResult();
+    return;
+  }
 
   modelsInfo.forEach(x => {
-    let isMatch = x.name.match(container.value);
+    let isMatch = x.name.match(searchValue);
     x.visible = isMatch ? true : false;
   });
 
@@ -106,8 +111,58 @@ window.searchModels = () => {
 }
 
 window.clearSearchResult = () => {
-  const container = document.getElementById('search-input');
+  const searchInput = document.getElementById('search-input');
   modelsInfo.forEach(x => x.visible = true);
-  container.value = '';
+  searchInput.value = '';
   drawCardsByModels();
 }
+
+window.sendEmail = () => {
+  const emailInput = document.getElementById('email-input');
+  const value = emailInput.value;
+
+  if (value === undefined || value === null || value === '') {
+    emailInput.classList.add('is-invalid');
+    createEmailMsg('Вы не указали: "Адрес эл. почты"', ['alert-danger']);
+    return;
+  }
+
+  if (!validateEmail(value)) {
+    emailInput.classList.add('is-invalid');
+    createEmailMsg('Не корректно введен: "Адрес эл. почты"', ['alert-danger']);
+    return;
+  }
+
+  //ToDo использовать smtp для нам отправки уведомления
+  createEmailMsg('В ближайшее время наш менеджер с Вами свяжется.', ['alert-primary']);
+  emailInput.classList.remove('is-invalid');
+}
+
+function createEmailMsg(msg, classList = []) {
+  const emailForm = document.getElementById('email-form');
+  let emailErrMsg = document.createElement('div');
+  emailErrMsg.classList.add('mt-2', 'fade', 'show', 'd-flex', 'alert', 'alert-dismissible');
+  if (classList.length > 0) {
+    classList.forEach(c => emailErrMsg.classList.add(c))
+  }
+  let div = document.createElement('div');
+  div.innerHTML = msg;
+  let button = document.createElement('button');
+  button.classList.add('btn-close');
+  button.setAttribute('type', 'button');
+  button.setAttribute('data-bs-dismiss', 'alert');
+
+  emailErrMsg.appendChild(div);
+  emailErrMsg.appendChild(button);
+  emailForm.appendChild(emailErrMsg);
+
+  setTimeout(() => {
+    emailErrMsg.remove();
+  }, 3500);
+}
+
+validateEmail = (email) => {
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+};
