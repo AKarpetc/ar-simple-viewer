@@ -60,6 +60,20 @@ li:nth-child(3n - 1)::marker {
 	display: none;
 }
 
+.card {
+	margin-left: 25px;
+}
+
+.card-img-top {
+	height: 175px;
+}
+
+.card-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
 .card-container {
 	padding: 7em;
 }
@@ -69,6 +83,6 @@ li:nth-child(3n - 1)::marker {
 }
 
 .card-body-text {
-	font-family: none; 
+	font-family: none;
 	text-align: center;
 }
