@@ -67,6 +67,8 @@ function drawCardsByModels() {
     img.src = cardData.imgLink;
     img.classList.add('card-img-top');
     img.alt = cardData.name;
+    let paddingDiv = document.createElement('div');
+    paddingDiv.setAttribute('style', 'padding: 10px;')
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body', 'card-body-text');
     let title = document.createElement('h4');
@@ -85,7 +87,9 @@ function drawCardsByModels() {
     cardBody.appendChild(viewerLink);
     cardBody.appendChild(arconfiguratorLink);
     card.appendChild(img);
-    cardsContainer.appendChild(card);
+    card.appendChild(cardBody);
+    paddingDiv.appendChild(card);
+    cardsContainer.appendChild(paddingDiv);
   });
 }
 
@@ -98,8 +102,9 @@ window.searchModels = () => {
     return;
   }
 
+  const regex = new RegExp(searchValue, "i");
   modelsInfo.forEach(x => {
-    let isMatch = x.name.match(searchValue);
+    let isMatch = x.name.match(regex);
     x.visible = isMatch ? true : false;
   });
 
