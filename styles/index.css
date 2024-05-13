@@ -5,6 +5,29 @@
 	z-index: 100;
 }
 
+.card {
+	margin-left: 25px;
+}
+
+.card-img-top {
+	height: 175px;
+}
+
+.card-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.card-size {
+	width: 18rem;
+}
+
+.card-body-text {
+	font-family: none;
+	text-align: center;
+}
+
 .empty-content {
     min-height: calc(100vh - 200px);
 }
