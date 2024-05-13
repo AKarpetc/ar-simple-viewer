@@ -59,18 +59,16 @@ function drawCardsByModels() {
   const container = document.querySelector('#cards-row');
   container.replaceChildren();
   modelsInfo.filter(x => x.visible).forEach(cardData => {
-    let col = document.createElement('div');
-    col.classList.add('col');
     let card = document.createElement('div');
-    card.classList.add('card', 'mt-2');
+    card.classList.add('card', 'card-size');
     let img = document.createElement('img');
     img.src = cardData.imgLink;
     img.classList.add('card-img-top');
     img.alt = cardData.name;
     let cardBody = document.createElement('div');
-    cardBody.classList.add('card-body');
+    cardBody.classList.add('card-body', 'card-body-text');
     let title = document.createElement('h4');
-    title.classList.add('text-center', 'card-title');
+    title.classList.add('card-title');
     title.innerHTML = `<b>${cardData.name}</b>`;
     let viewerLink = document.createElement('a');
     viewerLink.href = cardData.viewerLink;
@@ -86,8 +84,7 @@ function drawCardsByModels() {
     cardBody.appendChild(arconfiguratorLink);
     card.appendChild(img);
     card.appendChild(cardBody);
-    col.appendChild(card);
-    container.appendChild(col);
+    container.appendChild(card);
   });
 }
 
