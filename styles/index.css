@@ -1,5 +1,6 @@
 .search-input-close-icon {
 	margin-top: 7px;
+	/* -30px конечно не хорошо, но ничего не придумал */
 	margin-left: -30px;
 	cursor: pointer;
 	z-index: 100;
@@ -16,7 +17,7 @@
 }
 
 .card-size {
-	width: 18rem;
+	width: 16rem;
 }
 
 .card-body-text {
@@ -25,7 +26,7 @@
 }
 
 .empty-content {
-    min-height: calc(100vh - 200px);
+	min-height: calc(100vh - 200px);
 }
 
 .footer-color {
@@ -33,10 +34,16 @@
 }
 
 .phone {
-	text-decoration: none; 
+	text-decoration: none;
 	color: black;
 }
 
 .footer-separator {
 	margin-bottom: 24px;
+}
+
+@media (max-width: 767px) {
+	.card-list {
+		justify-content: center;
+	}
 }
