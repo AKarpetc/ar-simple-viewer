@@ -3,3 +3,9 @@ package-lock.json
 src/config/config.js
 dist
 .vscode/settings.json
+.vs/VSWorkspaceState.json
+.vs/ar-simple-viewer/v17/.wsuo
+.vs/ProjectSettings.json
+.vs/slnx.sqlite
+.vs/ar-simple-viewer/FileContentIndex/*.vsidx
+.vs/ar-simple-viewer/config/applicationhost.config
