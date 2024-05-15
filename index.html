@@ -3,56 +3,107 @@
 
 <head>
   <meta charset="utf-8">
-  <title>AR Viewer</title>
-
   <meta name="description" content="&lt;model-viewer&gt; template">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <title>AR Viewer</title>
+
   <link type="text/css" href="./styles/index.css" rel="stylesheet" />
+  <link type="text/css" href="./styles/loading.css" rel="stylesheet" />
+  <link type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="card-list">
-      <div class="card  card-size">
-        <img src="./models/sofa_1/img/sofa_1.jpg" class="card-img-top" alt="Sofa">
-        <div class="card-body card-body-text">
-          <h4 class="card-title"><b>Диван</b></h4>
-          <a href="viewer.html?src=/models/sofa_1/glb/sofa_1.glb&ios-src=/models/sofa_1/usdz/Sofa_couch.usdz&name=sofa"
-            class="btn btn-success">Просмотр</a>
-          <a href="arconfigurator.html?android=models/sofa_1/glb/sofa_1.glb&ios=/models/sofa_1/usdz/Sofa_couch.usdz&name=sofa""
-            class=" btn btn-primary">Настройки</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="tg" viewBox="0 0 50 50">
+      <path d="M46.137,6.552c-0.75-0.636-1.928-0.727-3.146-0.238l-0.002,0C41.708,6.828,6.728,21.832,5.304,22.445 c-0.259,0.09-2.521,0.934-2.288,2.814c0.208,1.695,2.026,2.397,2.248,2.478l8.893,3.045c0.59,1.964,2.765,9.21,3.246,10.758 c0.3,0.965,0.789,2.233,1.646,2.494c0.752,0.29,1.5,0.025,1.984-0.355l5.437-5.043l8.777,6.845l0.209,0.125 c0.596,0.264,1.167,0.396,1.712,0.396c0.421,0,0.825-0.079,1.211-0.237c1.315-0.54,1.841-1.793,1.896-1.935l6.556-34.077 C47.231,7.933,46.675,7.007,46.137,6.552z M22,32l-3,8l-3-10l23-17L22,32z" />
+    </symbol>
+    <symbol id="vk" viewBox="0 0 50 50">
+      <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M37.72,33l-3.73-0.01 c0,0-0.08,0.01-0.21,0.01c-0.3,0-0.92-0.08-1.65-0.58c-1.31-0.91-2.56-3.17-3.55-3.17c-0.07,0-0.13,0.01-0.19,0.03 c-0.86,0.27-1.12,1.13-1.12,2.18c0,0.37-0.26,0.54-0.96,0.54h-1.93c-2.16,0-4.25-0.05-6.6-2.62c-3.46-3.79-6.7-10.53-6.7-10.53 s-0.18-0.39,0.01-0.62c0.18-0.21,0.6-0.23,0.76-0.23c0.04,0,0.06,0,0.06,0h4c0,0,0.37,0.07,0.64,0.27c0.23,0.17,0.35,0.48,0.35,0.48 s0.68,1.32,1.53,2.81c1.43,2.46,2.2,3.28,2.75,3.28c0.09,0,0.18-0.02,0.27-0.07c0.82-0.45,0.58-4.09,0.58-4.09s0.01-1.32-0.42-1.9 c-0.33-0.46-0.96-0.59-1.24-0.63c-0.22-0.03,0.14-0.55,0.62-0.79c0.62-0.3,1.65-0.36,2.89-0.36h0.6c1.17,0.02,1.2,0.14,1.66,0.25 c1.38,0.33,0.91,1.62,0.91,4.71c0,0.99-0.18,2.38,0.53,2.85c0.05,0.03,0.12,0.05,0.21,0.05c0.46,0,1.45-0.59,3.03-3.26 c0.88-1.52,1.56-3.03,1.56-3.03s0.15-0.27,0.38-0.41c0.22-0.13,0.22-0.13,0.51-0.13h0.03c0.32,0,3.5-0.03,4.2-0.03h0.08 c0.67,0,1.28,0.01,1.39,0.42c0.16,0.62-0.49,1.73-2.2,4.03c-2.82,3.77-3.14,3.49-0.8,5.67c2.24,2.08,2.7,3.09,2.78,3.22 C39.68,32.88,37.72,33,37.72,33z" />
+    </symbol>
+    <symbol id="wp" viewBox="0 0 50 50">
+      <path d="M25,2C12.318,2,2,12.318,2,25c0,3.96,1.023,7.854,2.963,11.29L2.037,46.73c-0.096,0.343-0.003,0.711,0.245,0.966 C2.473,47.893,2.733,48,3,48c0.08,0,0.161-0.01,0.24-0.029l10.896-2.699C17.463,47.058,21.21,48,25,48c12.682,0,23-10.318,23-23 S37.682,2,25,2z M36.57,33.116c-0.492,1.362-2.852,2.605-3.986,2.772c-1.018,0.149-2.306,0.213-3.72-0.231 c-0.857-0.27-1.957-0.628-3.366-1.229c-5.923-2.526-9.791-8.415-10.087-8.804C15.116,25.235,13,22.463,13,19.594 s1.525-4.28,2.067-4.864c0.542-0.584,1.181-0.73,1.575-0.73s0.787,0.005,1.132,0.021c0.363,0.018,0.85-0.137,1.329,1.001 c0.492,1.168,1.673,4.037,1.819,4.33c0.148,0.292,0.246,0.633,0.05,1.022c-0.196,0.389-0.294,0.632-0.59,0.973 s-0.62,0.76-0.886,1.022c-0.296,0.291-0.603,0.606-0.259,1.19c0.344,0.584,1.529,2.493,3.285,4.039 c2.255,1.986,4.158,2.602,4.748,2.894c0.59,0.292,0.935,0.243,1.279-0.146c0.344-0.39,1.476-1.703,1.869-2.286 s0.787-0.487,1.329-0.292c0.542,0.194,3.445,1.604,4.035,1.896c0.59,0.292,0.984,0.438,1.132,0.681 C37.062,30.587,37.062,31.755,36.57,33.116z" />
+    </symbol>
+  </svg>
+
+  <div id="loader" class="loader-wrapper">
+    <div class="loader"></div>
+  </div>
+
+  <div class="container empty-content">
+    <div id="search">
+      <div class="text-center mt-2">
+        <div class="d-flex">
+          <input oninput="searchModels()" id="search-input" type="text" class="form-control" placeholder="Поиск ... ">
+          <div class="input-group-btn search-input-close-icon">
+            <button onclick="clearSearchResult()" type="button" class="btn-close"></button>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="card card-size">
-        <img src="./models/Armchair-1/preview.png" class="card-img-top" alt="Sofa">
-        <div class="card-body card-body-text">
-          <h4 class="card-title"><b>Кресло</b></h4>
-          <a href="viewer.html?src=/models/Armchair-1/glb/Armchair-1.glb&ios-src=/models/Armchair-1/usdz/Armchair-1.usdz&name=Armchair"
-            class="btn btn-success">Просмотр</a>
-          <a href="arconfigurator.html?android=models/Armchair-1/glb/Armchair-1.glb&ios=/models/Armchair-1/usdz/Armchair-1.usdz&name=Armchair"
-            class=" btn btn-primary">Настройки</a>
-        </div>
-      </div>
-
-
-      <div class="card card-size">
-        <img src="./models/sofa_1/img/sofa_1.jpg" class="card-img-top" alt="Sofa">
-        <div class="card-body card-body-text">
-          <h4 class="card-title"><b>Стул</b></h4>
-          <a href="viewer.html?src=/models/sofa_1/glb/sofa_1.glb&ios-src=/models/sofa_1/usdz/Sofa_couch.usdz&name=sofa"
-            class="btn btn-success">Просмотр</a>
-          <a href="arconfigurator.html?android=models/sofa_1/glb/sofa_1.glb&ios=/models/sofa_1/usdz/Sofa_couch.usdz&name=sofa""
-            class=" btn btn-primary">Настройки</a>
-        </div>
-      </div>
-
+    <div id="cards-row" class="card-list">
     </div>
   </div>
 
-  <script src="./dist/index.bandle.js?v=1"></script>
+  <div class="container mt-5">
+    <footer class="footer-color">
+      <div class="row">
+        <div class="col-md-5 mb-3">
+          <form id="email-form">
+            <h5>Хочу AR + 3D виджет на свой сайт!</h5>
+            <p>Укажите адрес электронной почты и в ближайшее время с Вами свяжется наш менеджер.</p>
+            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+              <input type="email" id="email-input" type="text" class="form-control" placeholder="Адрес эл. почты">
+              <button onclick="sendEmail()" class="btn btn-primary" type="button">Получить</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-5 offset-md-2 mb-3">
+          <h5>Остались вопросы?</h5>
+          <p>Звоните нам:</p>
+          <b>
+            <a class="phone" href="tel:+77777777777">+7 (777) 777-77-77</a>
+          </b>
+          <br></br>
+          <p>Ежедневно с <b>9:00</b> до <b>19:00</b> (Москва, Россия)</p>
+        </div>
+      </div>
 
+      <div class="footer-separator border-top"></div>
+
+      <div class="row row-cols-2">
+        <div class="mb-3">
+          <p id="copyright">&copy;
+            <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+            Art Vision Tech
+          </p>
+        </div>
+        <div class="mb-3">
+          <ul class="list-unstyled d-flex justify-content-end">
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="#">
+                <svg class="bi" width="24" height="24">
+                  <use xlink:href="#tg" />
+                </svg>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a class="link-body-emphasis" href="#">
+                <svg class="bi" width="24" height="24">
+                  <use xlink:href="#wp" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./src/common/loading.js"></script>
+  <script src="./dist/index.bandle.js?v=1"></script>
 </body>
 
 </html>
