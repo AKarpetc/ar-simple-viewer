@@ -300,7 +300,7 @@ var generateNewLink = async () => {
     var baseUrl = window.location.origin;
 
     if (baseUrl.indexOf('127.0.0.1') >= 0 || baseUrl.indexOf('localhost') >= 0) {
-        baseUrl = "https://192.168.100.27:5502"
+        baseUrl = "https://192.168.100.27:5501"
     }
 
     let link = baseUrl + `/viewer.html?armessage=${armessage}&message=${message}`;

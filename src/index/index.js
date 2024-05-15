@@ -6,50 +6,39 @@ window.onload = async (_) => {
 }
 
 async function fetchModels() {
-  let models = [];
+  let models;
   const regexModel = /\/models\//;
 
-  await fetch(window.location.origin + '/models/')
-    .then(response => response.text())
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const links = doc.querySelectorAll('a[href]');
-
-      links.forEach(link => {
-        const url = new URL(link.href);
-        if (url.pathname.match(regexModel)) {
-          let pathParts = url.pathname.split('/')
-            .filter(x => x !== '');
-          const modelName = pathParts[1];
-          if (!models.includes(modelName)) {
-            models.push(pathParts[1]);
-          }
-        }
-      });
+  await fetch(window.location.origin + '/models/getModels.json')
+    .then(response => response.json())
+    .then(responce => {
+      models = responce.data;
     })
     .catch(error => {
       console.error('Ошибка загрузки моделей:', error);
     });
+
+  console.log(models);
 
   return models;
 }
 
 function enrichModels(models) {
   models.forEach(modelName => {
-    const imgLink = `./models/${modelName}/img/${modelName}.jpg`;
-    const gblLink = `./models/${modelName}/glb/${modelName}.glb`;
-    const usdzLink = `./models/${modelName}/usdz/${modelName}.usdz`;
+    const imgLink = modelName.preview;
+    const gblLink = modelName.glb;
+    const usdzLink = modelName.usdz;
     const viewerLink = `viewer.html?src=${gblLink}&ios-src=${usdzLink}&name=${modelName}`;
     const configLink = `arconfigurator.html?android=${gblLink}&ios=${usdzLink}&name=${modelName}`
 
     if (modelsInfo.find(x => x.name === modelName) === undefined) {
       modelsInfo.push({
         visible: true,
-        name: modelName,
+        name: modelName.name,
         imgLink: imgLink,
         viewerLink: viewerLink,
-        configLink: configLink
+        configLink: configLink,
+        source: modelName
       });
     }
   });
@@ -61,12 +50,22 @@ function drawCardsByModels() {
   modelsInfo.filter(x => x.visible).forEach(cardData => {
     let card = document.createElement('div');
     card.classList.add('card', 'card-size');
+
     let img = document.createElement('img');
     img.setAttribute('style', 'cursor: pointer;');
     img.onclick = () => window.open(cardData.viewerLink, '_self');
     img.src = cardData.imgLink;
     img.classList.add('card-img-top');
     img.alt = cardData.name;
+
+
+    let ifrm = document.createElement('iframe');
+    ifrm.setAttribute("src",cardData.source.previewLink);
+    ifrm.style.height = "200px";
+
+
+
+
     let paddingDiv = document.createElement('div');
     paddingDiv.setAttribute('style', 'padding: 10px;')
     let cardBody = document.createElement('div');
@@ -86,7 +85,7 @@ function drawCardsByModels() {
     cardBody.appendChild(title);
     cardBody.appendChild(viewerLink);
     cardBody.appendChild(arconfiguratorLink);
-    card.appendChild(img);
+    card.appendChild(ifrm);
     card.appendChild(cardBody);
     paddingDiv.appendChild(card);
     cardsContainer.appendChild(paddingDiv);
