@@ -199,12 +199,12 @@ function init() {
     if (message?.sceneDecoration?.sceneBackground)
         scene.background = new THREE.Color(message?.sceneDecoration?.sceneBackground);
     else
-        scene.background = new THREE.Color(0xa0a0a0);
+        scene.background = new THREE.Color(13756927);
 
     if (message?.sceneDecoration?.fog)
         scene.fog = new THREE.Fog(message?.sceneDecoration?.fog?.color, message?.sceneDecoration?.fog?.near, message?.sceneDecoration?.fog?.far);
     else
-        scene.fog = new THREE.Fog(0xa0a0a0, 2, 4);
+        scene.fog = new THREE.Fog(13756927, 5, 6);
 
     if (message?.sceneDecoration?.fogEnable == false)
         scene.fog = null
@@ -240,7 +240,7 @@ function init() {
     scene.add(dirLight);
     // ground
 
-    let floorColor = 0xa0a0a0;
+    let floorColor = 13881295;
     if (message?.sceneDecoration?.floorMaterialColor)
         floorColor = message?.sceneDecoration?.floorMaterialColor
 
