@@ -9,3 +9,4 @@ dist
 .vs/slnx.sqlite
 .vs/ar-simple-viewer/FileContentIndex/*.vsidx
 .vs/ar-simple-viewer/config/applicationhost.config
+/.vs/slnx.sqlite-journal
