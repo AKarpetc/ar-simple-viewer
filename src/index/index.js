@@ -7,7 +7,6 @@ window.onload = async (_) => {
 
 async function fetchModels() {
   let models;
-  const regexModel = /\/models\//;
 
   await fetch(window.location.origin + '/models/getModels.json')
     .then(response => response.json())
@@ -18,27 +17,26 @@ async function fetchModels() {
       console.error('Ошибка загрузки моделей:', error);
     });
 
-  console.log(models);
-
   return models;
 }
 
 function enrichModels(models) {
-  models.forEach(modelName => {
-    const imgLink = modelName.preview;
-    const gblLink = modelName.glb;
-    const usdzLink = modelName.usdz;
+  models.forEach(model => {
+    const modelName = model.name;
+    const imgLink = model.preview;
+    const gblLink = model.glb;
+    const usdzLink = model.usdz;
     const viewerLink = `viewer.html?src=${gblLink}&ios-src=${usdzLink}&name=${modelName}`;
     const configLink = `arconfigurator.html?android=${gblLink}&ios=${usdzLink}&name=${modelName}`
 
     if (modelsInfo.find(x => x.name === modelName) === undefined) {
       modelsInfo.push({
         visible: true,
-        name: modelName.name,
+        name: modelName,
         imgLink: imgLink,
         viewerLink: viewerLink,
         configLink: configLink,
-        source: modelName
+        source: model,
       });
     }
   });
@@ -51,13 +49,6 @@ function drawCardsByModels() {
     
     let card = document.createElement('div');
     card.classList.add('card', 'card-size');
-
-    let img = document.createElement('img');
-    img.setAttribute('style', 'cursor: pointer;');
-    img.onclick = () => window.open(cardData.viewerLink, '_self');
-    img.src = cardData.imgLink;
-    img.classList.add('card-img-top');
-    img.alt = cardData.name;
 
     let ifrm = document.createElement('iframe');
     ifrm.setAttribute("src",cardData.source.previewLink);
@@ -73,18 +64,12 @@ function drawCardsByModels() {
     title.classList.add('card-title');
     title.innerHTML = `<b>${cardData.name}</b>`;
    
-    let viewerLink = document.createElement('a');
-    viewerLink.href = cardData.viewerLink;
-    viewerLink.classList.add('btn', 'btn-success', 'd-flex', 'justify-content-center', 'mx-auto');
-    viewerLink.textContent = 'Просмотр';
-   
     let arconfiguratorLink = document.createElement('a');
     arconfiguratorLink.href = cardData.configLink;
     arconfiguratorLink.classList.add('btn', 'btn-primary', 'd-flex', 'justify-content-center', 'mx-auto', 'mt-2');
     arconfiguratorLink.textContent = 'Настройки';
 
     cardBody.appendChild(title);
-    cardBody.appendChild(viewerLink);
     cardBody.appendChild(arconfiguratorLink);
     card.appendChild(ifrm);
     card.appendChild(cardBody);
@@ -113,6 +98,12 @@ window.searchModels = () => {
 
 window.clearSearchResult = () => {
   const searchInput = document.getElementById('search-input');
+  const searchValue = searchInput.value;
+
+  if (searchValue === undefined || searchValue === null || searchValue === '') {
+    return;
+  }
+
   modelsInfo.forEach(x => x.visible = true);
   searchInput.value = '';
   drawCardsByModels();

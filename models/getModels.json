@@ -8,7 +8,7 @@
             "previewLink":"/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvc29mYV8xL2dsYi9zb2ZhXzEuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9zb2ZhXzEvdXNkei9zb2ZhXzEudXNkeiIsIm5hbWUiOiJbb2JqZWN0IE9iamVjdF0ifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMC4zNjg0NjUxNTM5NzAxMTk1LCJ5IjowLjk4MDk3NjIwMTc1NzQyNywieiI6Mi4zOTIzMDQ1OTY2NzgzNjF9LCJjYW1lcmFUYXJnZXQiOnsieCI6MC43MzkyNjUyOTk0NjQ2Mjk5LCJ5IjowLjMzODI5MTE2MDMzODY2OTcsInoiOjAuMTQ3MTcyMjA0MDI3NTA4MTZ9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjUifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiNCIsImZhciI6IjQifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         },
         {
-            "name": "Коесло",
+            "name": "Кресло",
             "glb": "models/Armchair-1/glb/Armchair-1.glb",
             "usdz": "models/Armchair-1/usdz/Armchair-1.usdz",
             "preview": "models/Armchair-1/img/Armchair-1.jpg",
@@ -16,5 +16,5 @@
 
         }
     ],
-    "total": 3
+    "total": 2
 }
