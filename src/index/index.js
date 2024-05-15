@@ -48,6 +48,7 @@ function drawCardsByModels() {
   const cardsContainer = document.querySelector('#cards-row');
   cardsContainer.replaceChildren();
   modelsInfo.filter(x => x.visible).forEach(cardData => {
+    
     let card = document.createElement('div');
     card.classList.add('card', 'card-size');
 
@@ -58,25 +59,25 @@ function drawCardsByModels() {
     img.classList.add('card-img-top');
     img.alt = cardData.name;
 
-
     let ifrm = document.createElement('iframe');
     ifrm.setAttribute("src",cardData.source.previewLink);
     ifrm.style.height = "200px";
 
-
-
-
     let paddingDiv = document.createElement('div');
     paddingDiv.setAttribute('style', 'padding: 10px;')
+   
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body', 'card-body-text');
+   
     let title = document.createElement('h4');
     title.classList.add('card-title');
     title.innerHTML = `<b>${cardData.name}</b>`;
+   
     let viewerLink = document.createElement('a');
     viewerLink.href = cardData.viewerLink;
     viewerLink.classList.add('btn', 'btn-success', 'd-flex', 'justify-content-center', 'mx-auto');
     viewerLink.textContent = 'Просмотр';
+   
     let arconfiguratorLink = document.createElement('a');
     arconfiguratorLink.href = cardData.configLink;
     arconfiguratorLink.classList.add('btn', 'btn-primary', 'd-flex', 'justify-content-center', 'mx-auto', 'mt-2');
