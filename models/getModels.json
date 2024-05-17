@@ -2,6 +2,7 @@
     "data": [
         {
             "name": "Диван",
+            "alias": "divan",
             "glb": "models/sofa_1/glb/sofa_1.glb",
             "usdz": "models/sofa_1/usdz/sofa_1.usdz",
             "preview": "models/sofa_1/img/sofa_1.jpg",
@@ -9,6 +10,7 @@
         },
         {
             "name": "Кресло",
+            "alias": "kreslo",
             "glb": "models/Armchair-1/glb/Armchair-1.glb",
             "usdz": "models/Armchair-1/usdz/Armchair-1.usdz",
             "preview": "models/Armchair-1/img/Armchair-1.jpg",

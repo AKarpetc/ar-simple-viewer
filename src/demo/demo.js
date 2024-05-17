@@ -1,3 +1,4 @@
+let cards = [];
 let modelsInfo = [];
 
 window.onload = async (_) => {
@@ -22,12 +23,13 @@ async function fetchModels() {
 
 function enrichModels(models) {
   models.forEach(model => {
+    const modelAlias = model.alias;
     const modelName = model.name;
     const imgLink = model.preview;
     const gblLink = model.glb;
     const usdzLink = model.usdz;
-    const viewerLink = `viewer.html?src=${gblLink}&ios-src=${usdzLink}&name=${modelName}`;
-    const configLink = `arconfigurator.html?android=${gblLink}&ios=${usdzLink}&name=${modelName}`
+    const viewerLink = `viewer.html?src=${gblLink}&ios-src=${usdzLink}&name=${modelName}&alias=${modelAlias}`;
+    const configLink = `arconfigurator.html?android=${gblLink}&ios=${usdzLink}&name=${modelName}&alias=${modelAlias}`
 
     if (modelsInfo.find(x => x.name === modelName) === undefined) {
       modelsInfo.push({
@@ -43,12 +45,22 @@ function enrichModels(models) {
 }
 
 function drawCardsByModels() {
+  if (cards.length > 0) {
+    redrawCards();
+    return;
+  }
+  let id = 1;
   const cardsContainer = document.querySelector('#cards-row');
-  cardsContainer.replaceChildren();
-  modelsInfo.filter(x => x.visible).forEach(cardData => {
-    
+  modelsInfo.forEach(cardData => {
+    const key = id++;
+    console.log(key);
+    cards.push({
+      key: key,
+      value: cardData
+    });
     let card = document.createElement('div');
     card.classList.add('card', 'card-size');
+    card.setAttribute("id", key);
 
     let ifrm = document.createElement('iframe');
     ifrm.setAttribute("src",cardData.source.previewLink);
@@ -76,6 +88,18 @@ function drawCardsByModels() {
     paddingDiv.appendChild(card);
     cardsContainer.appendChild(paddingDiv);
   });
+  console.log(manyId);
+}
+
+function redrawCards() {
+  if (cards.length > 0) {
+    cards.forEach(x => {
+      let el = document.getElementById(x.key);
+      x.value.visible 
+        ? el.setAttribute('style', 'display: ;') 
+        : el.setAttribute('style', 'display: none;');
+    });
+  }
 }
 
 window.searchModels = () => {
@@ -98,11 +122,6 @@ window.searchModels = () => {
 
 window.clearSearchResult = () => {
   const searchInput = document.getElementById('search-input');
-  const searchValue = searchInput.value;
-
-  if (searchValue === undefined || searchValue === null || searchValue === '') {
-    return;
-  }
 
   modelsInfo.forEach(x => x.visible = true);
   searchInput.value = '';
