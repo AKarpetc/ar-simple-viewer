@@ -21,6 +21,7 @@ window.loaderShow();
 const urlParams = new URLSearchParams(window.location.search);
 armessage = urlParams?.get('armessage') == null ? null : base64ToJson(urlParams?.get('armessage'));
 message = urlParams?.get('message') == null ? null : base64ToJson(urlParams?.get('message'));
+
 console.log(armessage, message);
 
 let signedUrl = null;
@@ -95,11 +96,10 @@ const onProgress = (event) => {
         mv.classList.add("hidden");
         mv.setAttribute("reveal", "manual");
 
-         if(message?.ar)
-         {
+        if (message?.ar) {
             mv.setAttribute("ar-placement", message.ar.arPlacement);
             mv.setAttribute("ar-scale", message.ar.arScale);
-         }
+        }
 
         ApplyARSettings();
     }
