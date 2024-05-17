@@ -88,7 +88,6 @@ function drawCardsByModels() {
     paddingDiv.appendChild(card);
     cardsContainer.appendChild(paddingDiv);
   });
-  console.log(manyId);
 }
 
 function redrawCards() {
