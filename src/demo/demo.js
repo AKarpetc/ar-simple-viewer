@@ -67,7 +67,8 @@ function drawCardsByModels() {
     ifrm.style.height = "200px";
 
     let paddingDiv = document.createElement('div');
-    paddingDiv.setAttribute('style', 'padding: 10px;')
+    paddingDiv.setAttribute("name", "padding");
+    paddingDiv.setAttribute('style', 'padding: 10px;');
    
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body', 'card-body-text');
@@ -92,6 +93,21 @@ function drawCardsByModels() {
 
 function redrawCards() {
   if (cards.length > 0) {
+    const visibleCards = cards.filter(x => x.value.visible);
+    if (visibleCards.length === 1) {
+      let els = document.getElementsByName("padding");
+      els.forEach(el => {
+        el.setAttribute('style', 'padding: 0px;');
+        el.setAttribute('style', 'margin-top: 10px;');
+      });
+    }
+    else {
+      let els = document.getElementsByName("padding");
+      els.forEach(el => {
+        el.setAttribute('style', 'padding: 10px;');
+      });
+    }
+
     cards.forEach(x => {
       let el = document.getElementById(x.key);
       x.value.visible 

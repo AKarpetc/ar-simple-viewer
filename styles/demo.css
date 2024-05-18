@@ -6,6 +6,10 @@
 	z-index: 100;
 }
 
+.card-padding {
+	padding: 10px;
+}
+
 .card-img-top {
 	height: 175px;
 }
