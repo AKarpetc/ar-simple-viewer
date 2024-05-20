@@ -2159,7 +2159,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 #pricing {
   background: #ebebeb;
-  padding-top: 15rem;
+  padding-top: 10rem;
   padding-bottom: 12rem;
 }
 
@@ -2355,7 +2355,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 #testimonials {
   background: #FFFFFF;
-  padding: 15rem 0 9rem;
+  padding: 10rem 0 9rem;
   text-align: center;
   min-height: 600px;
 }
@@ -2721,7 +2721,7 @@ footer ul a:visited {
 
 .footer-social-list {
   font-size: 1.8rem;
-  margin-top: -1.5rem;
+  margin-top: 1.5rem;
   margin-bottom: 3rem;
 }
 
