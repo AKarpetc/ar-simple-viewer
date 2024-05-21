@@ -20,7 +20,7 @@ module.exports =
                 return {
                     arconfigurator: ['./src/arconfigurator/arconfigurator.js'],
                     viewer: ['./src/viewer/render.js'],
-                    index: ['./src/index/index.js']
+                    demo: ['./src/demo/demo.js']
                 }
             },
             module: {

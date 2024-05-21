@@ -9,9 +9,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const android = urlParams.get('android');
 const fbx = urlParams.get('fbx');
 const ios = urlParams.get('ios');
-const name = urlParams.get('name');
+const name = urlParams.get('alias');
 
-document.title = name;
+document.title = urlParams.get('name');
 
 let mv = document.getElementById("model-viewer");
 let attributes = {};

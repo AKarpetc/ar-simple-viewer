@@ -1,3 +1,4 @@
+let cards = [];
 let modelsInfo = [];
 
 window.onload = async (_) => {
@@ -7,7 +8,6 @@ window.onload = async (_) => {
 
 async function fetchModels() {
   let models;
-  const regexModel = /\/models\//;
 
   await fetch(window.location.origin + '/models/getModels.json')
     .then(response => response.json())
@@ -18,53 +18,57 @@ async function fetchModels() {
       console.error('Ошибка загрузки моделей:', error);
     });
 
-  console.log(models);
-
   return models;
 }
 
 function enrichModels(models) {
-  models.forEach(modelName => {
-    const imgLink = modelName.preview;
-    const gblLink = modelName.glb;
-    const usdzLink = modelName.usdz;
-    const viewerLink = `viewer.html?src=${gblLink}&ios-src=${usdzLink}&name=${modelName}`;
-    const configLink = `arconfigurator.html?android=${gblLink}&ios=${usdzLink}&name=${modelName}`
+  models.forEach(model => {
+    const modelAlias = model.alias;
+    const modelName = model.name;
+    const imgLink = model.preview;
+    const gblLink = model.glb;
+    const usdzLink = model.usdz;
+    const viewerLink = `viewer.html?src=${gblLink}&ios-src=${usdzLink}&name=${modelName}&alias=${modelAlias}`;
+    const configLink = `arconfigurator.html?android=${gblLink}&ios=${usdzLink}&name=${modelName}&alias=${modelAlias}`
 
     if (modelsInfo.find(x => x.name === modelName) === undefined) {
       modelsInfo.push({
         visible: true,
-        name: modelName.name,
+        name: modelName,
         imgLink: imgLink,
         viewerLink: viewerLink,
         configLink: configLink,
-        source: modelName
+        source: model,
       });
     }
   });
 }
 
 function drawCardsByModels() {
+  if (cards.length > 0) {
+    redrawCards();
+    return;
+  }
+  let id = 1;
   const cardsContainer = document.querySelector('#cards-row');
-  cardsContainer.replaceChildren();
-  modelsInfo.filter(x => x.visible).forEach(cardData => {
-    
+  modelsInfo.forEach(cardData => {
+    const key = id++;
+    console.log(key);
+    cards.push({
+      key: key,
+      value: cardData
+    });
     let card = document.createElement('div');
     card.classList.add('card', 'card-size');
-
-    let img = document.createElement('img');
-    img.setAttribute('style', 'cursor: pointer;');
-    img.onclick = () => window.open(cardData.viewerLink, '_self');
-    img.src = cardData.imgLink;
-    img.classList.add('card-img-top');
-    img.alt = cardData.name;
+    card.setAttribute("id", key);
 
     let ifrm = document.createElement('iframe');
     ifrm.setAttribute("src",cardData.source.previewLink);
     ifrm.style.height = "200px";
 
     let paddingDiv = document.createElement('div');
-    paddingDiv.setAttribute('style', 'padding: 10px;')
+    paddingDiv.setAttribute("name", "padding");
+    paddingDiv.setAttribute('style', 'padding: 10px;');
    
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body', 'card-body-text');
@@ -73,24 +77,44 @@ function drawCardsByModels() {
     title.classList.add('card-title');
     title.innerHTML = `<b>${cardData.name}</b>`;
    
-    let viewerLink = document.createElement('a');
-    viewerLink.href = cardData.viewerLink;
-    viewerLink.classList.add('btn', 'btn-success', 'd-flex', 'justify-content-center', 'mx-auto');
-    viewerLink.textContent = 'Просмотр';
-   
     let arconfiguratorLink = document.createElement('a');
     arconfiguratorLink.href = cardData.configLink;
     arconfiguratorLink.classList.add('btn', 'btn-primary', 'd-flex', 'justify-content-center', 'mx-auto', 'mt-2');
     arconfiguratorLink.textContent = 'Настройки';
 
     cardBody.appendChild(title);
-    cardBody.appendChild(viewerLink);
     cardBody.appendChild(arconfiguratorLink);
     card.appendChild(ifrm);
     card.appendChild(cardBody);
     paddingDiv.appendChild(card);
     cardsContainer.appendChild(paddingDiv);
   });
+}
+
+function redrawCards() {
+  if (cards.length > 0) {
+    const visibleCards = cards.filter(x => x.value.visible);
+    if (visibleCards.length === 1) {
+      let els = document.getElementsByName("padding");
+      els.forEach(el => {
+        el.setAttribute('style', 'padding: 0px;');
+        el.setAttribute('style', 'margin-top: 10px;');
+      });
+    }
+    else {
+      let els = document.getElementsByName("padding");
+      els.forEach(el => {
+        el.setAttribute('style', 'padding: 10px;');
+      });
+    }
+
+    cards.forEach(x => {
+      let el = document.getElementById(x.key);
+      x.value.visible 
+        ? el.setAttribute('style', 'display: ;') 
+        : el.setAttribute('style', 'display: none;');
+    });
+  }
 }
 
 window.searchModels = () => {
@@ -113,6 +137,7 @@ window.searchModels = () => {
 
 window.clearSearchResult = () => {
   const searchInput = document.getElementById('search-input');
+
   modelsInfo.forEach(x => x.visible = true);
   searchInput.value = '';
   drawCardsByModels();
