@@ -1523,6 +1523,11 @@ h1.intro-header::before {
 }
 
 .home-image-right {
+
+  background-image: url("../../img/index/iphone-app-940_empty.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
   display: block;
   position: absolute;
   right: 0;
@@ -1530,10 +1535,43 @@ h1.intro-header::before {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  padding-top: 13rem;
+  padding-top: 95px;
+  margin-top: 100px;
+
   z-index: 500;
   /* width: 50%; */
   text-align: right;
+
+  width: 400px;
+  height: 800px;
+}
+
+.demo {
+  display: flex;
+  width: 310px;
+  height: 545px;
+  min-height: 300px;
+  margin-left: 70px;
+}
+
+@media (max-width: 410px) {}
+
+@media (max-width: 900px) {
+
+  .demo {
+    margin-top: 0;
+    height: 350px;
+  }
+
+  .home-image-right {
+    width: 400px;
+    top: 800px;
+
+
+    bottom: 0;
+    padding-top: 70px;
+
+  }
 }
 
 .home-image-right img {
@@ -1738,9 +1776,6 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
     font-size: 4.8rem;
   }
 
-  .home-image-right {
-    padding-top: 18rem;
-  }
 
   .home-image-right img {
     vertical-align: top;
@@ -1772,10 +1807,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
     font-size: 4.2rem;
   }
 
-  .home-image-right {
-    width: 40%;
-    padding-top: 120px;
-  }
+
 
   .home-image-right img {
     vertical-align: top;
@@ -1806,18 +1838,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
     margin-bottom: 3.6rem;
   }
 
-  .home-image-right {
-    width: 400px;
-    right: auto;
-    top: auto;
-    left: 50%;
-    bottom: 0;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-    padding: 0;
-    margin-bottom: -133px;
-  }
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -1885,10 +1906,6 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
     margin: 0 0 1.2rem 0;
   }
 
-  .home-image-right {
-    width: 320px;
-    margin-bottom: -200px;
-  }
 }
 
 
@@ -3007,28 +3024,7 @@ footer ul a:visited {
   }
 }
 
-.demo {
-  display: flex;
-  border-radius: 20px;
-  width: 400px;
-  height: 700px;
-  min-height: 500px;
-  border-width: 5px;
-  border-color: mediumslateblue;
-  border-style: solid;
-}
 
-@media (max-width: 410px) {
-  .demo {
-    width: 320px;
-  }
-}
-
-@media (max-width: 900px) {
-  .demo {
-    height: 500px;
-  }
-}
 
 /* ------------------------------------------------------------------- 
  * header logo - (_site-layout.css) 
