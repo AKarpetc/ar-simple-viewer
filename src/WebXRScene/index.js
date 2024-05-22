@@ -12,6 +12,10 @@ import {
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
+//var mode = "work";
+//var mode = "text";
+var mode = "artool";
+
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -21,6 +25,8 @@ var arButton;
 let session = null;
 let scene = null;
 
+let modelsList;
+let typesList;
 
 const sceneLoader =
 {
@@ -52,10 +58,13 @@ async function fetchModels() {
     .then(response => response.json())
     .then(responce => {
       models = responce.data;
+      typesList = responce.types;
+
     })
     .catch(error => {
       console.error('Ошибка загрузки моделей:', error);
     });
+
 
   return models;
 }
@@ -103,6 +112,7 @@ function initializeXRApp() {
 
   fetchModels().then(async (models) => {
 
+    modelsList = models;
     let sceneModels = await LoadModels(models, gltfLoader);
 
     console.log(sceneModels);
@@ -110,9 +120,6 @@ function initializeXRApp() {
     scene = createScene(renderer, sceneModels, sceneLoader);
 
   });
-
-
-
 
 };
 
@@ -132,39 +139,43 @@ window.showAr = () => {
   arButton.click();
 }
 
-async function LoadModels(models, gltfLoader) {
-  for (let i = 0; i < models.length; i++) {
-    var sceneModel = await gltfLoader.loadAsync(models[i].glb);
+async function LoadModels(items, gltfLoader, type = "model") {
+  for (let i = 0; i < items.length; i++) {
 
-    var scale = models[i].scale;
-    if (models[i].scale)
-      sceneModel.scene.scale.set(scale.x, scale.y, scale.z);
-
-    models[i]["glb_model"] = sceneModel;
 
     var placeWrapper = document.getElementById("places");
 
     let button = document.createElement("button");
-
     button.classList.add("session-button");
-
-    button.dataset.alias = models[i].alias;
-
+    button.dataset.alias = items[i].alias;
     button.dataset.aliasindex = i;
-
-    button.innerHTML = `<img class="session-button__image" src="${models[i].preview}" />`;
+    button.innerHTML = `<img class="session-button__image"  src="${items[i].preview}" />`;
 
     button.addEventListener("click", (e) => {
-      var aliasindex = parseInt(e.currentTarget.dataset.aliasindex);
-      if (session != null && scene != null) {
-        scene.onSelect(aliasindex);
-      }
+      ClickToArButton(e);
     });
 
+    if (type == "model") {
+      var sceneModel = await gltfLoader.loadAsync(items[i].glb);
+      var scale = items[i].scale;
+      if (items[i].scale)
+        sceneModel.scene.scale.set(scale.x, scale.y, scale.z);
+
+      items[i]["glb_model"] = sceneModel;
+    }
+
     placeWrapper.appendChild(button);
+    
   }
 
-  return models;
+  return items;
+}
+
+function ClickToArButton(e) {
+  var aliasindex = parseInt(e.currentTarget.dataset.aliasindex);
+  if (session != null && scene != null) {
+    scene.onSelect(aliasindex);
+  }
 }
 
 function showQR() {
@@ -187,8 +198,18 @@ function showQR() {
 
 
 async function start() {
-  const isImmersiveArSupported = await browserHasImmersiveArCompatibility();
 
+  if (mode == "artool") {
+    document.getElementById("main").classList.add("hidden");
+    document.getElementById("ar-main").classList.remove("hidden");
+    initializeXRApp();
+
+    return;
+  }
+
+
+
+  const isImmersiveArSupported = await browserHasImmersiveArCompatibility();
   isImmersiveArSupported
     ? initializeXRApp()
     : showQR();
