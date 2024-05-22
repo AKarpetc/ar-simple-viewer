@@ -21,6 +21,31 @@ async function fetchModels() {
   return models;
 }
 
+function LoadIfraime() {
+
+  var imgs = [...document.getElementsByClassName("img-preview")];
+  imgs.forEach(e => {
+    e.style.display = "";
+  })
+
+  var ifrs = [...document.getElementsByClassName("ifr-preview")];
+  ifrs.forEach(e => {
+    e.remove();
+  })
+
+  let ifrm = document.createElement('iframe');
+  ifrm.setAttribute("src", this.dataset.previewLink);
+  ifrm.style.height = "200px";
+  ifrm.classList.add("ifr-preview");
+
+  var parent = this.parentElement;
+
+  this.style.display = "none";
+  parent.appendChild(ifrm);
+
+  console.log(this);
+}
+
 function enrichModels(models) {
   models.forEach(model => {
     const modelAlias = model.alias;
@@ -62,21 +87,33 @@ function drawCardsByModels() {
     card.classList.add('card', 'card-size');
     card.setAttribute("id", key);
 
-    let ifrm = document.createElement('iframe');
-    ifrm.setAttribute("src",cardData.source.previewLink);
-    ifrm.style.height = "200px";
+
+
+    let img = document.createElement('img');
+    img.setAttribute("src", cardData.source.preview);
+    img.style.height = "200px";
+    img.dataset.previewLink = cardData.source.previewLink;
+    img.classList.add("img-preview");
+
+
+    let ifrWrapper = document.createElement('div');
+    ifrWrapper.style.height = "200px";
+    ifrWrapper.classList.add("ifraime-wrapper");
+    ifrWrapper.appendChild(img);
+
+    img.addEventListener("click", LoadIfraime);
 
     let paddingDiv = document.createElement('div');
     paddingDiv.setAttribute("name", "padding");
     paddingDiv.setAttribute('style', 'padding: 10px;');
-   
+
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body', 'card-body-text');
-   
+
     let title = document.createElement('h4');
     title.classList.add('card-title');
     title.innerHTML = `<b>${cardData.name}</b>`;
-   
+
     let arconfiguratorLink = document.createElement('a');
     arconfiguratorLink.href = cardData.configLink;
     arconfiguratorLink.classList.add('btn', 'btn-primary', 'd-flex', 'justify-content-center', 'mx-auto', 'mt-2');
@@ -84,7 +121,13 @@ function drawCardsByModels() {
 
     cardBody.appendChild(title);
     cardBody.appendChild(arconfiguratorLink);
-    card.appendChild(ifrm);
+
+
+    card.appendChild(ifrWrapper);
+
+    // card.appendChild(ifrm);
+
+
     card.appendChild(cardBody);
     paddingDiv.appendChild(card);
     cardsContainer.appendChild(paddingDiv);
@@ -110,8 +153,8 @@ function redrawCards() {
 
     cards.forEach(x => {
       let el = document.getElementById(x.key);
-      x.value.visible 
-        ? el.setAttribute('style', 'display: ;') 
+      x.value.visible
+        ? el.setAttribute('style', 'display: ;')
         : el.setAttribute('style', 'display: none;');
     });
   }
