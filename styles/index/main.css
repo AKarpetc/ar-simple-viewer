@@ -1940,6 +1940,17 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
   padding-bottom: 6rem;
 }
 
+.pricing-content h1.intro-header {
+  text-align: center;
+}
+
+#pricing .pricing-content h1.intro-header::before {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
 .about-how h1.intro-header {
   text-align: center;
 }
@@ -2160,7 +2171,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 #pricing {
   background: #ebebeb;
   padding-top: 10rem;
-  padding-bottom: 12rem;
+  padding-bottom: 5rem;
 }
 
 #pricing h1 {
@@ -2196,7 +2207,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 .pricing-table .plan-block .plan-block-price {
   font-family: "montserrat-medium", sans-serif;
-  font-size: 7.8rem;
+  font-size: 30px;
   color: #151515;
   line-height: 1;
   margin-bottom: 0;
@@ -2204,8 +2215,8 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 .pricing-table .plan-block .plan-block-price sup {
   font-family: "montserrat-regular", sans-serif;
-  font-size: 3rem;
-  top: -3.6rem;
+  font-size: 2rem;
+  top: -1.6rem;
   margin-right: 3px;
 }
 
@@ -2656,7 +2667,7 @@ footer {
   padding-bottom: 4.2rem;
   font-size: 1.5rem;
   line-height: 2.7rem;
-  color: rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
 footer a,
@@ -2699,7 +2710,7 @@ footer ul li {
 
 footer ul a,
 footer ul a:visited {
-  color: rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
 .footer-logo {
@@ -2744,6 +2755,29 @@ footer ul a:visited {
   position: relative;
 }
 
+.ul-price-dot {
+  display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.b-ul-price-dot {
+  color: black;
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+  .ul-price-dot {
+    display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+  }
+}
+
+
+
 .footer-subscribe #mc-form {
   width: 100%;
 }
@@ -2752,7 +2786,7 @@ footer ul a:visited {
   width: 100%;
   height: 5.4rem;
   padding: 1.2rem 100px 1.2rem 60px;
-  background: url(../images/email-icon.png) 20px center no-repeat, rgba(0, 0, 0, 0.1);
+  background: url(../../img/index/email-icon.png) 20px center no-repeat, rgba(0, 0, 0, 0.1);
   background-size: 24px 16px, auto;
   margin-bottom: 1.8rem;
   color: rgba(255, 255, 255, 0.5);
@@ -3011,16 +3045,25 @@ footer ul a:visited {
   margin-top: 85px;
   margin-left: 40px;
   width: 320px;
-  height: 550px;
-  
+  height: 539px;
+
+}
+
+.index-li-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.index-p-price {
+  margin-bottom: 0rem;
 }
 
 .demo {
   background-image: url("../../img/index/iphone-app-940_empty.png");
   background-repeat: no-repeat;
-  background-size: 115% 115%;
+  background-size: 113% 113%;
   background-position: center;
-  background-position-y: -10px;
+  background-position-y: -8px;
   background-repeat: no-repeat;
   /* Do not repeat the image */
 
@@ -3036,10 +3079,11 @@ footer ul a:visited {
   .demo {
     height: 500px;
   }
+
   .demo-ifr {
     margin-top: 58px;
-    margin-left: 35px ;
-    width: 325px ;
+    margin-left: 35px;
+    width: 325px;
     height: 350px;
   }
 }

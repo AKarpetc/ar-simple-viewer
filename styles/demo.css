@@ -14,6 +14,12 @@
 	height: 175px;
 }
 
+.footer-company {
+	display: flex !important;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+}
+
 .card-list {
 	display: flex;
 	flex-direction: row;
@@ -48,6 +54,14 @@
 
 @media (max-width: 767px) {
 	.card-list {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 276px) {
+	.footer-company {
+		display: flex !important;
+		flex-wrap: wrap;
 		justify-content: center;
 	}
 }
