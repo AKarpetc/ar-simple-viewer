@@ -135,6 +135,11 @@ window.showAr = () => {
 async function LoadModels(models, gltfLoader) {
   for (let i = 0; i < models.length; i++) {
     var sceneModel = await gltfLoader.loadAsync(models[i].glb);
+
+    var scale = models[i].scale;
+    if (models[i].scale)
+      sceneModel.scene.scale.set(scale.x, scale.y, scale.z);
+
     models[i]["glb_model"] = sceneModel;
 
     var placeWrapper = document.getElementById("places");
