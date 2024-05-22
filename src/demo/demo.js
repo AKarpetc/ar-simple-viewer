@@ -21,8 +21,7 @@ async function fetchModels() {
   return models;
 }
 
-function LoadIfraime() {
-
+function loadIfraime() {
   var imgs = [...document.getElementsByClassName("img-preview")];
   imgs.forEach(e => {
     e.style.display = "";
@@ -42,8 +41,6 @@ function LoadIfraime() {
 
   this.style.display = "none";
   parent.appendChild(ifrm);
-
-  console.log(this);
 }
 
 function enrichModels(models) {
@@ -78,7 +75,6 @@ function drawCardsByModels() {
   const cardsContainer = document.querySelector('#cards-row');
   modelsInfo.forEach(cardData => {
     const key = id++;
-    console.log(key);
     cards.push({
       key: key,
       value: cardData
@@ -87,21 +83,18 @@ function drawCardsByModels() {
     card.classList.add('card', 'card-size');
     card.setAttribute("id", key);
 
-
-
     let img = document.createElement('img');
     img.setAttribute("src", cardData.source.preview);
     img.style.height = "200px";
     img.dataset.previewLink = cardData.source.previewLink;
     img.classList.add("img-preview");
 
-
     let ifrWrapper = document.createElement('div');
     ifrWrapper.style.height = "200px";
     ifrWrapper.classList.add("ifraime-wrapper");
     ifrWrapper.appendChild(img);
 
-    img.addEventListener("click", LoadIfraime);
+    img.addEventListener("click", loadIfraime);
 
     let paddingDiv = document.createElement('div');
     paddingDiv.setAttribute("name", "padding");
@@ -122,11 +115,7 @@ function drawCardsByModels() {
     cardBody.appendChild(title);
     cardBody.appendChild(arconfiguratorLink);
 
-
     card.appendChild(ifrWrapper);
-
-    // card.appendChild(ifrm);
-
 
     card.appendChild(cardBody);
     paddingDiv.appendChild(card);

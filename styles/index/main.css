@@ -2366,7 +2366,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 #testimonials {
   background: #FFFFFF;
-  padding: 10rem 0 9rem;
+  padding: 10rem 0 1rem;
   text-align: center;
   min-height: 600px;
 }
@@ -2663,7 +2663,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
   * ------------------------------------------------------------------- */
 
 footer {
-  padding-top: 9rem;
+  padding-top: 4rem;
   padding-bottom: 4.2rem;
   font-size: 1.5rem;
   line-height: 2.7rem;
@@ -2841,7 +2841,6 @@ footer ul a:visited {
 }
 
 .footer-bottom {
-  margin-top: 6.6rem;
   text-align: center;
 }
 

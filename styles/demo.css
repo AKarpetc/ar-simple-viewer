@@ -67,12 +67,11 @@
 }
 
 .ifr-preview {
-
 	width: 100%;
 }
 
 
 .img-preview {
 	width: 100%;
-
+	cursor: pointer;
 }
