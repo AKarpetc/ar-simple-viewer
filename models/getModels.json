@@ -2,11 +2,13 @@
     "types": [
         {
             "type": "sofa",
-            "name": "Диваны"
+            "name": "Диваны",
+            "preview": "models/sofa_1/img/sofa_1.jpg"
         },
         {
             "type": "armCheir",
-            "name": "Кресла"
+            "name": "Кресла",
+            "preview": "models/Armchair-1/img/Armchair-1.jpg"
         }
     ],
     "data": [
