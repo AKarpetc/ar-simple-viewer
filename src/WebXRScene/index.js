@@ -82,8 +82,8 @@ function initializeXRApp() {
   });
 
   renderer.xr.addEventListener('sessionend', function (event) {
-    session = null;
-    history.back();
+    document.getElementById("ar-main").classList.add("hidden");
+    document.getElementById("main").classList.remove("hidden");
   });
 
   arButton = ARButton.createButton(renderer,
@@ -108,11 +108,8 @@ window.closeSession = () => {
     session.end();
 }
 
-window.placeModel = () => {
-  if (session != null && scene != null) {
-    scene.onSelect(this.dataset.aliasindex);
-  }
-
+window.nextPlace = () => {
+  scene.nextPlace();
 }
 
 window.showAr = () => {
@@ -198,9 +195,12 @@ function showQR() {
   qrcodeElement.classList.remove("hidden");
 
   var baseUrl = window.location.origin;
+  console.log(window.location);
+
+  var host = window.location.host.toString();
 
   if (baseUrl.indexOf('127.0.0.1') >= 0 || baseUrl.indexOf('localhost') >= 0) {
-    baseUrl = "https://192.168.100.27:5501"
+    baseUrl = "https://192.168.100.27:"+host.split(':')[1];
   }
 
   new QRCode(qrcodeElement,

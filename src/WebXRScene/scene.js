@@ -67,6 +67,12 @@ export function createScene(renderer, sceneModels, loader = null) {
     models = sourceModels;
   }
 
+  function nextPlace() {
+    currentModel = null;
+    currentPosition = null;
+  }
+
+
   let installedModels = [];
 
   var currentModel = null;
@@ -152,5 +158,5 @@ export function createScene(renderer, sceneModels, loader = null) {
 
   renderer.setAnimationLoop(renderLoop);
 
-  return { scene, onSelect, setModels }
+  return { scene, onSelect, setModels, nextPlace }
 }
