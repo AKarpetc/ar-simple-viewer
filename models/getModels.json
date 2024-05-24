@@ -51,7 +51,7 @@
             "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvQ29yYWwgU29mYS9nbGIvQ29yYWwgU29mYS5nbGIiLCJpb3Mtc3JjIjoibW9kZWxzL0NvcmFsIFNvZmEvdXNkei9Db3JhbCBTb2ZhLnVzZHoiLCJuYW1lIjoiZGl2YW4zIn0=&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS43NTY5MTM1NjQ4OTQ5NjM5LCJ5IjoxLjU3MTA2NTQyNTIyNzk3ODMsInoiOjIuMjA1NTc1NzIxNDczNDc0NH0sImNhbWVyYVRhcmdldCI6eyJ4IjotMC4xNDA1OTA3NjU2ODAyMDU5OCwieSI6MC40ODU2NzM5MTYyMDY4NzgzMywieiI6LTAuMDU5ODUzNjM4MTA2MTczOTk0fSwiY2FtZXJhWm9vbWluZyI6eyJtaW4iOiIwLjIiLCJtYXgiOiIxMCJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiI0IiwiZmFyIjoiMTAifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         },
         {
-            "name": "Кресло",
+            "name": "Кресло 1",
             "alias": "armCheir1",
             "glb": "models/Armchair-1/glb/Armchair-1.glb",
             "usdz": "models/Armchair-1/usdz/Armchair-1.usdz",
@@ -59,6 +59,16 @@
             "scale": null,
             "type": "armCheir",
             "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvQXJtY2hhaXItMS9nbGIvQXJtY2hhaXItMS5nbGIiLCJpb3Mtc3JjIjoibW9kZWxzL0FybWNoYWlyLTEvdXNkei9Bcm1jaGFpci0xLnVzZHoiLCJuYW1lIjoiW29iamVjdCBPYmplY3RdIn0=&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMC44NjQwNTIxOTkxMjQ1ODc5LCJ5IjowLjcyNzk3MTU4Nzk0NzQ1MTUsInoiOjEuODY4NTY0MTI1MDY0Njc3OH0sImNhbWVyYVRhcmdldCI6eyJ4IjowLCJ5IjowLjM3MzU3ODExNjMzNDA5MzQsInoiOjAuMDk5OTk5OTk5OTk5OTk5OTl9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjIifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiMiIsImZhciI6IjQifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
+        },
+        {
+            "name": "Кресло мешок",
+            "alias": "armCheir2",
+            "glb": "models/bean-bag-chair/glb/bean-bag-chair.glb",
+            "usdz": "models/bean-bag-chair/usdz/bean-bag-chair.usdz",
+            "preview": "models/bean-bag-chair/img/preview.jpg",
+            "scale": null,
+            "type": "armCheir",
+            "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvYmVhbi1iYWctY2hhaXIvZ2xiL2JlYW4tYmFnLWNoYWlyLmdsYiIsImlvcy1zcmMiOiJtb2RlbHMvYmVhbi1iYWctY2hhaXIvdXNkei9iZWFuLWJhZy1jaGFpci51c2R6IiwibmFtZSI6ImFybUNoZWlyMiJ9&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMC45NTAyMDI0MTg3MDUwNzM2LCJ5IjowLjg2NjM4NjA2MzY2Mzg0NjcsInoiOjAuOTU1NTY2Mjc1MjYwNjg0Nn0sImNhbWVyYVRhcmdldCI6eyJ4IjowLCJ5IjowLjQzMzE4MTEzMTc4MjA0NTgsInoiOjAuMDk5OTk5OTk5OTk5OTk5OTl9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjIifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiMiIsImZhciI6IjQifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         }
     ],
     "total": 2
