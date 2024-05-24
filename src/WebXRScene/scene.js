@@ -41,11 +41,7 @@ export function createScene(renderer, sceneModels, loader = null) {
   /**
    * Load the gLTF model and assign result to variable.
    */
-
-  let model = sceneModels[0].glb_model.scene;
-  let models = sceneModels;
-
-  console.log(models);
+  var models = sceneModels;
 
   /**
    * Create the plane marker to show on tracked surfaces.
@@ -65,28 +61,52 @@ export function createScene(renderer, sceneModels, loader = null) {
    * The onSelect function is called whenever we tap the screen
    * in XR mode.
    */
+
+
+  function setModels(sourceModels) {
+    models = sourceModels;
+  }
+
+  function nextPlace() {
+    currentModel = null;
+    currentPosition = null;
+  }
+
+
   let installedModels = [];
+
+  var currentModel = null;
+  var currentPosition = null;
+
+
   function onSelect(i) {
+
+    console.log(models);
+    console.log(models[i]);
+
     if (planeMarker.visible) {
       try {
 
-        let curentModel = null;
 
-        if (installedModels.length < 20) {
-          curentModel = models[i].glb_model.scene.clone();
+        if (currentModel == null) {
+          currentModel = models[i].glb_model.scene.clone();
+          // Place the model on the spot where the marker is showing.
+          currentModel.position.setFromMatrixPosition(planeMarker.matrix);
+          currentPosition = planeMarker.matrix;
+
+          // Rotate the model randomly to give a bit of variation.
+          currentModel.setRotationFromMatrix(planeMarker.matrix);
+          currentModel.visible = true;
+          scene.add(currentModel);
 
         } else {
-          curentModel = installedModels.pop();
+          let newModel = models[i].glb_model.scene.clone();
+          newModel.position.setFromMatrixPosition(currentPosition);
+          newModel.setRotationFromMatrix(currentPosition);
+          scene.remove(currentModel);
+          scene.add(newModel);
+          currentModel = newModel;
         }
-        // Place the model on the spot where the marker is showing.
-        curentModel.position.setFromMatrixPosition(planeMarker.matrix);
-        // Rotate the model randomly to give a bit of variation.
-
-        curentModel.setRotationFromMatrix(planeMarker.matrix);
-        curentModel.visible = true;
-        scene.add(curentModel);
-
-        installedModels.unshift(curentModel);
 
       } catch (e) {
         alert(e);
@@ -138,5 +158,5 @@ export function createScene(renderer, sceneModels, loader = null) {
 
   renderer.setAnimationLoop(renderLoop);
 
-  return { scene, onSelect }
+  return { scene, onSelect, setModels, nextPlace }
 }

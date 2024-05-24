@@ -1,4 +1,16 @@
 {
+    "types": [
+        {
+            "type": "sofa",
+            "name": "Диваны",
+            "preview": "models/sofa_1/img/sofa_1.jpg"
+        },
+        {
+            "type": "armCheir",
+            "name": "Кресла",
+            "preview": "models/Armchair-1/img/Armchair-1.jpg"
+        }
+    ],
     "data": [
         {
             "name": "Диван 1",
@@ -7,7 +19,8 @@
             "usdz": "models/sofa_1/usdz/sofa_1.usdz",
             "preview": "models/sofa_1/img/sofa_1.jpg",
             "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvc29mYV8xL2dsYi9zb2ZhXzEuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9zb2ZhXzEvdXNkei9zb2ZhXzEudXNkeiIsIm5hbWUiOiJkaXZhbiJ9&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjoxLjA5MjE5MjExNDU4NjQ5ODMsInkiOjEuMTQzOTg2NDk4MTc1NTAxNywieiI6My40OTc5MjU0NjU4OTUwNDV9LCJjYW1lcmFUYXJnZXQiOnsieCI6MC42MjM5MjE3NzgxNzM3NzU0LCJ5IjowLjI3MTA2MjkyNjMzODcxMiwieiI6MC4xMTkxMjk0NzY5MjAzMjU5NH0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiNCJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiIzIiwiZmFyIjoiMTAifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ==",
-            "scale": null
+            "scale": null,
+            "type": "sofa"
         },
         {
             "name": "Диван 2",
@@ -20,6 +33,7 @@
                 "y": 0.7,
                 "z": 0.7
             },
+            "type": "sofa",
             "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvYnJvbnggYmVkL2dsYi9icm9ueCBiZWQuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9icm9ueCBiZWQvdXNkei9icm9ueCBiZWQudXNkeiIsIm5hbWUiOiJkaXZhbjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMi4yMTgwNjIwOTEwMzAxOTQyLCJ5IjoxLjgyMjgyMTU5NDA0MDk4MzUsInoiOjMuMzk3MjQ0MzUzNzQzMTkyMn0sImNhbWVyYVRhcmdldCI6eyJ4IjowLCJ5IjowLjUwNjgyMzAyNTAzMTA1ODQsInoiOjAuMDk5OTk5OTk5OTk5OTk5OTl9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjEwIn0sInpvb21BY3RpdmF0ZSI6dHJ1ZSwic2NlbmVEZWNvcmF0aW9uIjp7InNjZW5lQmFja2dyb3VuZCI6MTM3NTY5MjcsImZsb29yTWF0ZXJpYWxDb2xvciI6ODA3ODY0MCwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiNSIsImZhciI6IjEwIn0sImZvZ0VuYWJsZSI6dHJ1ZSwid2lkdGgiOiI3IiwiaGVpZ2h0IjoiNyJ9LCJtb2RlbFRpdGxlIjp0cnVlLCJtb2RlbFRpdGxlVGV4dCI6IiIsIm1vZGVsVGl0bGVTdHlsZSI6ImZvbnQtZmFtaWx5OiBSYWxld2F5O2ZvbnQtd2VpZ2h0OiA3MDA7Y29sb3I6ICNhOWE5YTk7Zm9udC1zaXplOiAxN3B4In0="
         },
         {
@@ -33,15 +47,17 @@
                 "y": 0.7,
                 "z": 0.7
             },
+            "type": "sofa",
             "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvQ29yYWwgU29mYS9nbGIvQ29yYWwgU29mYS5nbGIiLCJpb3Mtc3JjIjoibW9kZWxzL0NvcmFsIFNvZmEvdXNkei9Db3JhbCBTb2ZhLnVzZHoiLCJuYW1lIjoiZGl2YW4zIn0=&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS43NTY5MTM1NjQ4OTQ5NjM5LCJ5IjoxLjU3MTA2NTQyNTIyNzk3ODMsInoiOjIuMjA1NTc1NzIxNDczNDc0NH0sImNhbWVyYVRhcmdldCI6eyJ4IjotMC4xNDA1OTA3NjU2ODAyMDU5OCwieSI6MC40ODU2NzM5MTYyMDY4NzgzMywieiI6LTAuMDU5ODUzNjM4MTA2MTczOTk0fSwiY2FtZXJhWm9vbWluZyI6eyJtaW4iOiIwLjIiLCJtYXgiOiIxMCJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiI0IiwiZmFyIjoiMTAifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         },
         {
             "name": "Кресло",
-            "alias": "kreslo",
+            "alias": "armCheir1",
             "glb": "models/Armchair-1/glb/Armchair-1.glb",
             "usdz": "models/Armchair-1/usdz/Armchair-1.usdz",
             "preview": "models/Armchair-1/img/Armchair-1.jpg",
             "scale": null,
+            "type": "armCheir",
             "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvQXJtY2hhaXItMS9nbGIvQXJtY2hhaXItMS5nbGIiLCJpb3Mtc3JjIjoibW9kZWxzL0FybWNoYWlyLTEvdXNkei9Bcm1jaGFpci0xLnVzZHoiLCJuYW1lIjoiW29iamVjdCBPYmplY3RdIn0=&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMC44NjQwNTIxOTkxMjQ1ODc5LCJ5IjowLjcyNzk3MTU4Nzk0NzQ1MTUsInoiOjEuODY4NTY0MTI1MDY0Njc3OH0sImNhbWVyYVRhcmdldCI6eyJ4IjowLCJ5IjowLjM3MzU3ODExNjMzNDA5MzQsInoiOjAuMDk5OTk5OTk5OTk5OTk5OTl9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjIifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiMiIsImZhciI6IjQifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         }
     ],

@@ -37,9 +37,15 @@
 
 .session-buttons {
     bottom: 20px;
-    right: 10px;
+    margin-right: auto;
+    margin-left: auto;
     position: absolute;
     display: flex;
+    width: 100%;
+    height: 100px;
+    margin-left: 30px;
+    justify-content: center;
+    align-content: center;
 }
 
 .session-button {
@@ -51,21 +57,41 @@
     font-family: Roboto Regular, Helvetica Neue, sans-serif;
     font-size: 16px;
     color: black;
-    margin-left: 10px;
 
+    margin-left: 15px;
     line-height: 36px;
-    border-radius: 23px;
+    border-radius: 50%;
     border: 1px solid #DADCE0;
 
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     font-size: 18px;
+}
+
+.session-button__back {
+    
+}
+
+.session-button:first-child {
+    margin-left: 35px;
+}
+
+.option-buttons {
+    display: flex;
+    max-width: 280px;
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    margin-left: -30px;
+
+
 }
 
 .session-button__image {
 
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
 
 }
 

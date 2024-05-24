@@ -12,6 +12,10 @@ import {
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
+var mode = "work";
+//var mode = "text";
+//var mode = "artool";
+
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -21,6 +25,13 @@ var arButton;
 let session = null;
 let scene = null;
 
+let modelsList;
+let typesList;
+
+const gltfLoader = new GLTFLoader();
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath("decoder/");
+gltfLoader.setDRACOLoader(dracoLoader);
 
 const sceneLoader =
 {
@@ -36,28 +47,18 @@ const sceneLoader =
   }
 }
 
-
-function base64ToJson(encoded) {
-  if (encoded == 'undefined' || encoded == null || encoded == '')
-    return null;
-
-  var actual = JSON.parse(atob(encoded))
-  return actual;
-}
-
 async function fetchModels() {
-  let models;
-
   await fetch(window.location.origin + '/models/getModels.json')
     .then(response => response.json())
     .then(responce => {
-      models = responce.data;
+      modelsList = responce.data;
+      typesList = responce.types;
+
     })
     .catch(error => {
       console.error('Ошибка загрузки моделей:', error);
     });
 
-  return models;
 }
 
 function initializeXRApp() {
@@ -81,8 +82,8 @@ function initializeXRApp() {
   });
 
   renderer.xr.addEventListener('sessionend', function (event) {
-    session = null;
-    history.back();
+    document.getElementById("ar-main").classList.add("hidden");
+    document.getElementById("main").classList.remove("hidden");
   });
 
   arButton = ARButton.createButton(renderer,
@@ -92,27 +93,13 @@ function initializeXRApp() {
       domOverlay: { root: document.body }
     });
 
-
-  const gltfLoader = new GLTFLoader();
-  const dracoLoader = new DRACOLoader();
-  dracoLoader.setDecoderPath("decoder/");
-  gltfLoader.setDRACOLoader(dracoLoader);
-
   sceneLoader.init();
-
 
   fetchModels().then(async (models) => {
 
-    let sceneModels = await LoadModels(models, gltfLoader);
-
-    console.log(sceneModels);
-
-    scene = createScene(renderer, sceneModels, sceneLoader);
-
+    let sceneModels = await LoadModels(typesList, gltfLoader, "types");
+    scene = createScene(renderer, [], sceneLoader);
   });
-
-
-
 
 };
 
@@ -121,50 +108,86 @@ window.closeSession = () => {
     session.end();
 }
 
-window.placeModel = () => {
-  if (session != null && scene != null) {
-    scene.onSelect(this.dataset.aliasindex);
-  }
-
+window.nextPlace = () => {
+  scene.nextPlace();
 }
 
 window.showAr = () => {
   arButton.click();
 }
 
-async function LoadModels(models, gltfLoader) {
-  for (let i = 0; i < models.length; i++) {
-    var sceneModel = await gltfLoader.loadAsync(models[i].glb);
+function hideArButtons() {
+  document.getElementById("arBack").classList.add("hidden");
+  document.getElementById("arOk").classList.add("hidden");
 
-    var scale = models[i].scale;
-    if (models[i].scale)
-      sceneModel.scene.scale.set(scale.x, scale.y, scale.z);
+}
 
-    models[i]["glb_model"] = sceneModel;
+function showArButtons() {
+  document.getElementById("arBack").classList.remove("hidden");
+  document.getElementById("arOk").classList.remove("hidden");
+}
 
-    var placeWrapper = document.getElementById("places");
+window.arBack = async () => {
+  let sceneModels = await LoadModels(typesList, gltfLoader, "types");
+  scene.models = [];
+  hideArButtons();
+}
+
+async function LoadModels(items, gltfLoader, type = "models") {
+  var placeWrapper = document.getElementById("places");
+  placeWrapper.innerHTML = "";
+
+  for (let i = 0; i < items.length; i++) {
 
     let button = document.createElement("button");
-
     button.classList.add("session-button");
-
-    button.dataset.alias = models[i].alias;
-
+    button.dataset.alias = items[i].alias;
     button.dataset.aliasindex = i;
-
-    button.innerHTML = `<img class="session-button__image" src="${models[i].preview}" />`;
+    button.dataset.baseType = type;
+    button.dataset.type = items[i].type;
+    button.innerHTML = `<img class="session-button__image"  src="${items[i].preview}" />`;
 
     button.addEventListener("click", (e) => {
-      var aliasindex = parseInt(e.currentTarget.dataset.aliasindex);
-      if (session != null && scene != null) {
-        scene.onSelect(aliasindex);
-      }
+      ClickToArButton(e);
     });
 
+    if (type == "models") {
+      var sceneModel = await gltfLoader.loadAsync(items[i].glb);
+      var scale = items[i].scale;
+
+      if (items[i].scale)
+        sceneModel.scene.scale.set(scale.x, scale.y, scale.z);
+
+      items[i]["glb_model"] = sceneModel;
+    }
+
     placeWrapper.appendChild(button);
+
   }
 
-  return models;
+  return items;
+}
+
+function ClickToArButton(e) {
+
+  var dataset = e.currentTarget.dataset;
+  console.log(e.currentTarget.dataset);
+
+  if (dataset.baseType == "types") {
+    var models = modelsList.filter(x => x.type == dataset.type)
+    console.log(models);
+
+    LoadModels(models, gltfLoader, "models").then(models => {
+      scene.setModels(models);
+      showArButtons();
+    });
+    return;
+  }
+
+  var aliasindex = parseInt(e.currentTarget.dataset.aliasindex);
+  if (session != null && scene != null) {
+    scene.onSelect(aliasindex);
+  }
 }
 
 function showQR() {
@@ -172,9 +195,12 @@ function showQR() {
   qrcodeElement.classList.remove("hidden");
 
   var baseUrl = window.location.origin;
+  console.log(window.location);
+
+  var host = window.location.host.toString();
 
   if (baseUrl.indexOf('127.0.0.1') >= 0 || baseUrl.indexOf('localhost') >= 0) {
-    baseUrl = "https://192.168.100.27:5501"
+    baseUrl = "https://192.168.100.27:"+host.split(':')[1];
   }
 
   new QRCode(qrcodeElement,
@@ -187,8 +213,15 @@ function showQR() {
 
 
 async function start() {
-  const isImmersiveArSupported = await browserHasImmersiveArCompatibility();
 
+  if (mode == "artool") {
+    document.getElementById("main").classList.add("hidden");
+    document.getElementById("ar-main").classList.remove("hidden");
+    initializeXRApp();
+    return;
+  }
+
+  const isImmersiveArSupported = await browserHasImmersiveArCompatibility();
   isImmersiveArSupported
     ? initializeXRApp()
     : showQR();
