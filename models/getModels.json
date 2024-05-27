@@ -9,6 +9,17 @@
             "type": "armCheir",
             "name": "Кресла",
             "preview": "models/Armchair-1/img/Armchair-1.jpg"
+        },
+        {
+            "type": "rockCheir",
+            "name": "Кресла качалки",
+            "preview": "models/rocking-chair_1/img/preview.jpg"
+        }
+        ,
+        {
+            "type": "picnic_tables",
+            "name": "Столы для пикника",
+            "preview": "models/picnic_table_1/img/preview.jpg"
         }
     ],
     "data": [
@@ -19,7 +30,11 @@
             "usdz": "models/sofa_1/usdz/sofa_1.usdz",
             "preview": "models/sofa_1/img/sofa_1.jpg",
             "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvc29mYV8xL2dsYi9zb2ZhXzEuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9zb2ZhXzEvdXNkei9zb2ZhXzEudXNkeiIsIm5hbWUiOiJkaXZhbiJ9&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjoxLjA5MjE5MjExNDU4NjQ5ODMsInkiOjEuMTQzOTg2NDk4MTc1NTAxNywieiI6My40OTc5MjU0NjU4OTUwNDV9LCJjYW1lcmFUYXJnZXQiOnsieCI6MC42MjM5MjE3NzgxNzM3NzU0LCJ5IjowLjI3MTA2MjkyNjMzODcxMiwieiI6MC4xMTkxMjk0NzY5MjAzMjU5NH0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiNCJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiIzIiwiZmFyIjoiMTAifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ==",
-            "scale": null,
+            "scale": {
+                "x": 1.2,
+                "y": 1.2,
+                "z": 1.2
+            },
             "type": "sofa"
         },
         {
@@ -51,7 +66,7 @@
             "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvQ29yYWwgU29mYS9nbGIvQ29yYWwgU29mYS5nbGIiLCJpb3Mtc3JjIjoibW9kZWxzL0NvcmFsIFNvZmEvdXNkei9Db3JhbCBTb2ZhLnVzZHoiLCJuYW1lIjoiZGl2YW4zIn0=&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS43NTY5MTM1NjQ4OTQ5NjM5LCJ5IjoxLjU3MTA2NTQyNTIyNzk3ODMsInoiOjIuMjA1NTc1NzIxNDczNDc0NH0sImNhbWVyYVRhcmdldCI6eyJ4IjotMC4xNDA1OTA3NjU2ODAyMDU5OCwieSI6MC40ODU2NzM5MTYyMDY4NzgzMywieiI6LTAuMDU5ODUzNjM4MTA2MTczOTk0fSwiY2FtZXJhWm9vbWluZyI6eyJtaW4iOiIwLjIiLCJtYXgiOiIxMCJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiI0IiwiZmFyIjoiMTAifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         },
         {
-            "name": "Кресло",
+            "name": "Кресло 1",
             "alias": "armCheir1",
             "glb": "models/Armchair-1/glb/Armchair-1.glb",
             "usdz": "models/Armchair-1/usdz/Armchair-1.usdz",
@@ -59,6 +74,36 @@
             "scale": null,
             "type": "armCheir",
             "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvQXJtY2hhaXItMS9nbGIvQXJtY2hhaXItMS5nbGIiLCJpb3Mtc3JjIjoibW9kZWxzL0FybWNoYWlyLTEvdXNkei9Bcm1jaGFpci0xLnVzZHoiLCJuYW1lIjoiW29iamVjdCBPYmplY3RdIn0=&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMC44NjQwNTIxOTkxMjQ1ODc5LCJ5IjowLjcyNzk3MTU4Nzk0NzQ1MTUsInoiOjEuODY4NTY0MTI1MDY0Njc3OH0sImNhbWVyYVRhcmdldCI6eyJ4IjowLCJ5IjowLjM3MzU3ODExNjMzNDA5MzQsInoiOjAuMDk5OTk5OTk5OTk5OTk5OTl9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjIifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiMiIsImZhciI6IjQifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
+        },
+        {
+            "name": "Кресло мешок",
+            "alias": "armCheir2",
+            "glb": "models/bean-bag-chair/glb/bean-bag-chair.glb",
+            "usdz": "models/bean-bag-chair/usdz/bean-bag-chair.usdz",
+            "preview": "models/bean-bag-chair/img/preview.jpg",
+            "scale": null,
+            "type": "armCheir",
+            "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvYmVhbi1iYWctY2hhaXIvZ2xiL2JlYW4tYmFnLWNoYWlyLmdsYiIsImlvcy1zcmMiOiJtb2RlbHMvYmVhbi1iYWctY2hhaXIvdXNkei9iZWFuLWJhZy1jaGFpci51c2R6IiwibmFtZSI6ImFybUNoZWlyMiJ9&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMC45NTAyMDI0MTg3MDUwNzM2LCJ5IjowLjg2NjM4NjA2MzY2Mzg0NjcsInoiOjAuOTU1NTY2Mjc1MjYwNjg0Nn0sImNhbWVyYVRhcmdldCI6eyJ4IjowLCJ5IjowLjQzMzE4MTEzMTc4MjA0NTgsInoiOjAuMDk5OTk5OTk5OTk5OTk5OTl9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjIifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiMiIsImZhciI6IjQifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
+        },
+        {
+            "name": "Кресло качалка",
+            "alias": "armCheir2",
+            "glb": "models/rocking-chair_1/glb/rocking-chair_1.glb",
+            "usdz": "models/rocking-chair_1/usdz/rocking-chair_1.usdz",
+            "preview": "models/rocking-chair_1/img/preview.jpg",
+            "scale": null,
+            "type": "rockCheir",
+            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvcm9ja2luZy1jaGFpcl8xL2dsYi9yb2NraW5nLWNoYWlyXzEuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9yb2NraW5nLWNoYWlyXzEvdXNkei9yb2NraW5nLWNoYWlyXzEudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS4wNzM2NDYyMjIyNDE2ODA1LCJ5IjoxLjMzODgyMzMzNDgxNzc4MDcsInoiOjAuOTM2NTEyMjAzMTQ2NTg2N30sImNhbWVyYVRhcmdldCI6eyJ4IjowLCJ5IjowLjQwNzU4NzU5OTc3MjQ0NSwieiI6MC4wOTk5OTk5OTk5OTk5OTk5OX0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiMiJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiIyIiwiZmFyIjoiNCJ9LCJmb2dFbmFibGUiOnRydWUsIndpZHRoIjoiNyIsImhlaWdodCI6IjcifSwibW9kZWxUaXRsZSI6dHJ1ZSwibW9kZWxUaXRsZVRleHQiOiIiLCJtb2RlbFRpdGxlU3R5bGUiOiJmb250LWZhbWlseTogUmFsZXdheTtmb250LXdlaWdodDogNzAwO2NvbG9yOiAjYTlhOWE5O2ZvbnQtc2l6ZTogMTdweCJ9"
+        },
+        {
+            "name": "Стол для пикника",
+            "alias": "armCheir2",
+            "glb": "models/picnic_table_1/glb/picnic_table_1.glb",
+            "usdz": "models/picnic_table_1/usdz/picnic_table_1.usdz",
+            "preview": "models/picnic_table_1/img/preview.jpg",
+            "scale": null,
+            "type": "picnic_tables",
+            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvcGljbmljX3RhYmxlXzEvZ2xiL3BpY25pY190YWJsZV8xLmdsYiIsImlvcy1zcmMiOiJtb2RlbHMvcGljbmljX3RhYmxlXzEvdXNkei9waWNuaWNfdGFibGVfMS51c2R6IiwibmFtZSI6ImFybUNoZWlyMiJ9&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS41OTQ5NzA3NzQ3NzY1Mzc2LCJ5IjoxLjM2MjU0NjU1MDA3NTM5MDYsInoiOjEuNTE3MDI4MjEwNDUyMjg4NX0sImNhbWVyYVRhcmdldCI6eyJ4IjowLCJ5IjowLjM2MTM1MDI4NTEwNzY3NTIsInoiOjAuMDk5OTk5OTk5OTk5OTk5OTl9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjQifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiMyIsImZhciI6IjQifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         }
     ],
     "total": 2
