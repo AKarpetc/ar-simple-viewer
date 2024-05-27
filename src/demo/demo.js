@@ -1,24 +1,77 @@
 let cards = [];
 let modelsInfo = [];
+let typesInfo = [];
 
 window.onload = async (_) => {
-  enrichModels(await fetchModels());
+  enrichTypes(await fetchByKey('types'));
+  enrichModels(await fetchByKey('data'));
+  drawCategoriesFilter();
   drawCardsByModels();
 }
 
-async function fetchModels() {
-  let models;
+function createLiElement(dropdownMenu, type) {
+  var newLi = document.createElement('li');
+  var newA = document.createElement('a');
+  newA.className = 'dropdown-item';
+  newA.href = '#';
+  var formCheckDiv = document.createElement('div');
+  formCheckDiv.className = 'form-check';
+  var inputCheckbox = document.createElement('input');
+  inputCheckbox.className = 'form-check-input';
+  inputCheckbox.type = 'checkbox';
+  inputCheckbox.addEventListener('change', function(event) {
+
+    if (event.target.checked) {
+      console.log('Чекбокс отмечен');
+      type['active'] = true;
+    } else {
+      console.log('Чекбокс снят');
+      type['active'] = false;
+    }
+
+    window.searchModels();
+  });
+  var label = document.createElement('label');
+  label.className = 'form-check-label';
+  label.textContent = type.name;
+  formCheckDiv.appendChild(inputCheckbox);
+  formCheckDiv.appendChild(label);
+  newA.appendChild(formCheckDiv);
+  newLi.appendChild(newA);
+  dropdownMenu.appendChild(newLi);
+}
+
+function createDividerLiElement(dropdownMenu) {
+  var newLi = document.createElement('li');
+  var hr = document.createElement('hr');
+  hr.classList.add('dropdown-divider');
+  newLi.appendChild(hr);
+  dropdownMenu.appendChild(newLi);
+}
+
+function drawCategoriesFilter() {
+  const dropdownMenu = document.getElementById('dropdown-menu');
+  createLiElement(dropdownMenu, {name: 'Категории'});
+  createDividerLiElement(dropdownMenu);
+  typesInfo.forEach(x => {
+    createLiElement(dropdownMenu, x);
+  });
+  createLiElement(dropdownMenu, {name: 'Неизвестно'});
+}
+
+async function fetchByKey(key) {
+  let result;
 
   await fetch(window.location.origin + '/models/getModels.json')
     .then(response => response.json())
     .then(responce => {
-      models = responce.data;
+      result = responce[key];
     })
     .catch(error => {
       console.error('Ошибка загрузки моделей:', error);
     });
 
-  return models;
+  return result;
 }
 
 function loadIfraime() {
@@ -43,7 +96,12 @@ function loadIfraime() {
   parent.appendChild(ifrm);
 }
 
+function enrichTypes(types) {
+  typesInfo = types;
+}
+
 function enrichModels(models) {
+  
   models.forEach(model => {
     const modelAlias = model.alias;
     const modelName = model.name;
@@ -55,6 +113,7 @@ function enrichModels(models) {
 
     if (modelsInfo.find(x => x.name === modelName) === undefined) {
       modelsInfo.push({
+        type: typesInfo.find(x => x.type === model.type),
         visible: true,
         name: modelName,
         imgLink: imgLink,
@@ -152,15 +211,22 @@ function redrawCards() {
 window.searchModels = () => {
   const searchInput = document.getElementById('search-input');
   const searchValue = searchInput.value;
+  const activeTypes = typesInfo.filter(x => x.active);
 
-  if (searchValue === undefined || searchValue === null || searchValue === '') {
+  const motValidSeachValue = searchValue === undefined || searchValue === null || searchValue === ''
+
+  if (motValidSeachValue && activeTypes.length === 0) {
     clearSearchResult();
     return;
   }
 
   const regex = new RegExp(searchValue, "i");
   modelsInfo.forEach(x => {
-    let isMatch = x.name.match(regex);
+    let isMatch = activeTypes.length > 0 
+      ? !motValidSeachValue 
+        ? x.name.match(regex) && activeTypes.includes(x.type) 
+        : activeTypes.includes(x.type) 
+      : x.name.match(regex);
     x.visible = isMatch ? true : false;
   });
 

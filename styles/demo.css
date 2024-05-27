@@ -6,6 +6,13 @@
 	z-index: 100;
 }
 
+.dropdown-toggle::after {
+    border-top: 0.0em solid !important;
+    border-right: -0.1em solid transparent !important;
+    border-bottom: 0 !important;
+    border-left: .0em solid transparent !important;
+}
+
 .card-padding {
 	padding: 10px;
 }

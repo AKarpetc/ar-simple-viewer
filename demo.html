@@ -34,7 +34,18 @@
     <div id="search">
       <div class="text-center mt-2">
         <div class="d-flex">
-          <input oninput="searchModels()" id="search-input" type="text" class="form-control" placeholder="Поиск ... ">
+          <div class="dropdown">
+            <a style="width: 46px;" class="btn dropdown-toggle" data-bs-auto-close="outside" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 18L20 18" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M4 12L20 12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M4 6L20 6" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </a>
+          
+            <ul id="dropdown-menu" class="dropdown-menu"></ul>
+          </div>
+          <input oninput="searchModels()" id="search-input" type="text" style="margin-left: 5px;" class="form-control" placeholder="Поиск ... ">
           <div class="input-group-btn search-input-close-icon">
             <button onclick="clearSearchResult()" type="button" class="btn-close"></button>
           </div>
