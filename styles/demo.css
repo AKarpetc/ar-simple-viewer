@@ -7,10 +7,17 @@
 }
 
 .dropdown-toggle::after {
-    border-top: 0.0em solid !important;
-    border-right: -0.1em solid transparent !important;
-    border-bottom: 0 !important;
-    border-left: .0em solid transparent !important;
+	border-top: 0.0em solid !important;
+	border-right: -0.1em solid transparent !important;
+	border-bottom: 0 !important;
+	border-left: .0em solid transparent !important;
+}
+
+.search {
+	display: flex !important;
+	align-items: center;
+	flex-wrap: nowrap;
+	flex-direction: row;
 }
 
 .card-padding {

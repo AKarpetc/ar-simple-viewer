@@ -1,18 +1,20 @@
 let cards = [];
-let modelsInfo = [];
 let typesInfo = [];
+let modelsInfo = [];
 
 window.onload = async (_) => {
-  enrichTypes(await fetchByKey('types'));
+  typesInfo = await fetchByKey('types');
   enrichModels(await fetchByKey('data'));
   drawCategoriesFilter();
   drawCardsByModels();
 }
 
-function createLiElement(dropdownMenu, type) {
+function createLiElement(dropdownMenu, type, allCount = null) {
   var newLi = document.createElement('li');
   var newA = document.createElement('a');
-  newA.className = 'dropdown-item';
+  type.type === 'allCategories' 
+    ? newA.classList.add('disabled', 'dropdown-item') 
+    : newA.classList.add('dropdown-item');
   newA.href = '#';
   var formCheckDiv = document.createElement('div');
   formCheckDiv.className = 'form-check';
@@ -20,20 +22,14 @@ function createLiElement(dropdownMenu, type) {
   inputCheckbox.className = 'form-check-input';
   inputCheckbox.type = 'checkbox';
   inputCheckbox.addEventListener('change', function(event) {
-
-    if (event.target.checked) {
-      console.log('Чекбокс отмечен');
-      type['active'] = true;
-    } else {
-      console.log('Чекбокс снят');
-      type['active'] = false;
-    }
-
+    type['active'] = event.target.checked;
     window.searchModels();
   });
   var label = document.createElement('label');
   label.className = 'form-check-label';
-  label.textContent = type.name;
+  label.textContent = allCount === null 
+    ? type.name 
+    : `${type.name} (${allCount})`;
   formCheckDiv.appendChild(inputCheckbox);
   formCheckDiv.appendChild(label);
   newA.appendChild(formCheckDiv);
@@ -51,12 +47,14 @@ function createDividerLiElement(dropdownMenu) {
 
 function drawCategoriesFilter() {
   const dropdownMenu = document.getElementById('dropdown-menu');
-  createLiElement(dropdownMenu, {name: 'Категории'});
+  const allCategories = {name: 'Категории', type: 'allCategories'};
+  createLiElement(dropdownMenu, allCategories, modelsInfo.length);
   createDividerLiElement(dropdownMenu);
   typesInfo.forEach(x => {
-    createLiElement(dropdownMenu, x);
+    const allCount = modelsInfo.filter(y => y.type === x).length;
+    createLiElement(dropdownMenu, x, allCount);
   });
-  createLiElement(dropdownMenu, {name: 'Неизвестно'});
+  typesInfo.push(allCategories);
 }
 
 async function fetchByKey(key) {
@@ -94,10 +92,6 @@ function loadIfraime() {
 
   this.style.display = "none";
   parent.appendChild(ifrm);
-}
-
-function enrichTypes(types) {
-  typesInfo = types;
 }
 
 function enrichModels(models) {
@@ -184,26 +178,15 @@ function drawCardsByModels() {
 
 function redrawCards() {
   if (cards.length > 0) {
-    const visibleCards = cards.filter(x => x.value.visible);
-    if (visibleCards.length === 1) {
-      let els = document.getElementsByName("padding");
-      els.forEach(el => {
-        el.setAttribute('style', 'padding: 0px;');
-        el.setAttribute('style', 'margin-top: 10px;');
-      });
-    }
-    else {
-      let els = document.getElementsByName("padding");
-      els.forEach(el => {
-        el.setAttribute('style', 'padding: 10px;');
-      });
-    }
-
     cards.forEach(x => {
       let el = document.getElementById(x.key);
-      x.value.visible
-        ? el.setAttribute('style', 'display: ;')
-        : el.setAttribute('style', 'display: none;');
+      if (x.value.visible) {
+        el.setAttribute('style', 'display: ;');
+        el.parentElement.setAttribute('style', 'padding: 10px;');
+      } else {
+        el.setAttribute('style', 'display: none;');
+        el.parentElement.setAttribute('style', 'padding: 0px;');
+      }
     });
   }
 }
