@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Тест iFrame</title>
+  
+  <meta name="description" content="&lt;model-viewer&gt; template">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type="text/css" href="./styles/styles.css" rel="stylesheet">
+  <link type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container-fluid card-container">
+    <div>
+      Добавьте сюда код iFrame:
+    </div>
+    <textarea id="code" cols="100" rows="10"></textarea>
+  
+    <div>
+      <button class="btn btn-primary" onclick="addIFrame()">Проверить</button>
+    </div>
+    <div id="container" class="iframe-container"></div>
+  </div>
+</body>
+
+<script>
+  window.addIFrame = () => {
+    var container = document.getElementById("container");
+    var code = document.getElementById("code");
+    container.innerHTML = code.value;
+  }
+</script>
+
+</html>

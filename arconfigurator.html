@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AR Viewer</title>
+
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="./styles/styles.css" rel="stylesheet">
+    <link type="text/css" href="./styles/arconfigurator.css" rel="stylesheet">
+    <link type="text/css" href="./styles/loading.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="loader" class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <div class="viewer-wrapper">
+        <div class="viewer">
+            <div class="container-wrapper" id="container-wrapper">
+                <div class="viewer-box" id="container">
+                    <!-- <model-viewer> HTML element -->
+
+                    <div id="model-viewer-mixed">
+                        <model-viewer metalness="0" id="model-viewer" ar ar-modes="webxr scene-viewer quick-look"
+                            camera-controls poster="loading.jpeg" ar-scale="auto" shadow-softness="0" camera-controls
+                            touch-action="pan-y" shadow-intensity="1" environment-rotation="0">
+                            <effect-composer id="customComposer">
+
+                            </effect-composer>
+                            <div class="progress-bar" slot="progress-bar">
+                                <div class="update-bar"></div>
+                            </div>
+                            <div id="ar-prompt">
+                                <img src="./img/ar_hand_prompt.png">
+                            </div>
+                        </model-viewer>
+
+                        <button slot="ar-button" id="ar-button" class="ar-button">
+                            Просмотр в пространстве
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="veiwer-toolbox">
+                <div class="veiwer-toolbox__header"><b>Конфигуратор</b></div>
+                <div class="toolbox-item rounded">
+                    <div class="toolbox-item__box-header"><b>Сценография и камера</b></div>
+                    <label>Удерживайте правую кнопку мыши для постановки и используйте колесо мыши для
+                        масштабирования.</label>
+                    <div class="toolbox-item__box-body">
+                        <div class="box-item">
+                            <div class="par-name"><b>Позиция:</b></div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">x:</div>
+                            <div class="par-value">
+                                <input id="cam-x" class="position-element form-control" type="number">
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">y:</div>
+                            <div class="par-value">
+                                <input id="cam-y" class="position-element form-control" type="number">
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">z:</div>
+                            <div class="par-value">
+                                <input id="cam-z" class="position-element form-control" type="number">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Масштаб:</b></div>
+                            <div class="par-value">
+                                <span id="cam-zoom" class="position-element" type="number">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">мин масштаб:</div>
+                            <div class="par-value">
+                                <input id="cam-zoom-min" class="position-element form-control" value="0.2" type="number">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">макс масштаб:</div>
+                            <div class="par-value">
+                                <input id="cam-zoom-max" class="position-element form-control" value="2" type="number">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Позиционирование камеры:</b></div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">x:</div>
+                            <div class="par-value">
+                                <input id="tar-x" class="position-element form-control" type="number">
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">y:</div>
+                            <div class="par-value">
+                                <input id="tar-y" class="position-element form-control" type="number">
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name">z:</div>
+                            <div class="par-value">
+                                <input id="tar-z" class="position-element form-control" type="number">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="buttons-box">
+                        <button type="button" class="btn btn-success" onclick="applyCamera()">Применить</button>
+                        <button type="button" class="btn btn-danger" onclick="defaultCamera()">Сбросить</button>
+                    </div>
+                </div>
+
+                <div class="toolbox-item rounded">
+                    <div class="toolbox-item__box-header"><b>Фон</b>
+                    </div>
+                    <div class="toolbox-item__box-body">
+                        <div class="box-item">
+                            <div class="par-name"><b>Цвет фона:</b></div>
+                            <div class="par-value">
+                                <input id="back-color" type="color" class="form-control form-control-color"
+                                    value="#d1e9ff" oninput="rangeValueChange(this)">
+                                <span id="back-color-value">#d1e9ff</span>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Цвет пола:</b></div>
+                            <div class="par-value">
+                                <input id="floor-color" type="color" class="form-control form-control-color"
+                                    value="#d3cfcf" oninput="rangeValueChange(this)">
+                                <span id="floor-color-value">#d3cfcf</span>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Размер пола:</b></div>
+                            <div class="par-value">
+                                ширина: <input id="floor-width" class="form-control flor-input-display" type="number" value="7">
+                                высота: <input id="floor-height" class="form-control flor-input-display" type="number" value="7">
+                            </div>
+                        </div>
+
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Туман:</b></div>
+                            <div class="par-value">
+                                <div class="form-check">
+                                    <input id="fog" class="form-check-input" type="checkbox" checked value="true">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Цвет тумана:</b></div>
+                            <div class="par-value">
+                                <input id="fog-color" name="fog-color" type="color"
+                                    class="form-control form-control-color" value="#d1e9ff"
+                                    oninput="rangeValueChange(this)">
+                                <span id="fog-color-value">#d1e9ff</span>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name"><b>Туман неподалеку:</b></div>
+                            <div class="par-value par-value-margin">
+                                <input class="form-control" id="fog-near" type="number" value="2">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Туман в далеке:</b></div>
+                            <div class="par-value par-value-margin">
+                                <input class="form-control" id="fog-far" type="number" value="4">
+                            </div>
+                        </div>
+                        <div class="buttons-box">
+                            <button type="button" class="btn btn-success" onclick="applySkybox()">Применить</button>
+                            <button type="button" class="btn btn-danger" onclick="defaultSkybox()">Сбросить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toolbox-item rounded">
+                    <div class="toolbox-item__box-header"><b>Освещение</b>
+                    </div>
+
+                    <div class="box-item">
+                        <div class="par-name"><b>Направление освещения:</b></div>
+                    </div>
+                    <div class="toolbox-item__box-body">
+                        <div class="box-item">
+                            <div class="par-name">x :</div>
+                            <div class="par-value">
+                                <input class="form-range" id="light-x" name="light-x" value="-10" oninput="rangeValueChange(this)"
+                                    value="1" step="0.1" type="range" min="-30" max="30" /><span
+                                    id="light-x-value">-10</span>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">y :</div>
+                            <div class="par-value">
+                                <input class="form-range" id="light-y" name="light-y" value="10" oninput="rangeValueChange(this)" value="1"
+                                    step="0.1" type="range" min="-30" max="30" /><span id="light-y-value">10</span>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name">z :</div>
+                            <div class="par-value">
+                                <input class="form-range" id="light-z" name="light-z" value="-10" oninput="rangeValueChange(this)"
+                                    value="1" step="0.1" type="range" min="-30" max="30" /><span
+                                    id="light-z-value">-10</span>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Интенсивность:</b></div>
+                            <div class="par-value">
+                                <input class="form-range" id="intensity" name="intensity" value="3" oninput="rangeValueChange(this)"
+                                    value="1" step="0.1" type="range" min="0" max="10" /><span
+                                    id="intensity-value">3</span>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Цвет освещения:</b></div>
+                            <div class="par-value">
+                                <input id="direct-color" name="direct-color" type="color"
+                                    class="form-control form-control-color" value="#FFFFFF"
+                                    oninput="rangeValueChange(this)">
+                                <span id="direct-color-value">#FFFFFF</span>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="toolbox-item__box-header"><b>Источник света</b>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name"><b>Интенсивность:</b></div>
+                            <div class="par-value">
+                                <input id="hemis-intensity" name="hemis-intensity" value="3"
+                                    class="form-range"
+                                    oninput="rangeValueChange(this)" value="2" step="0.1" type="range" min="0"
+                                    max="10" /><span id="hemis-intensity-value">2</span>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Цвет неба:</b></div>
+                            <div class="par-value">
+                                <input id="hemis-sky-color" name="hemis-sky-color" type="color"
+                                    class="form-control form-control-color" value="#FFFFFF"
+                                    oninput="rangeValueChange(this)">
+                                <span id="hemis-sky-color-value">#FFFFFF</span>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Цвет пола:</b></div>
+                            <div class="par-value">
+                                <input id="hemis-ground-color" name="hemis-ground-color" type="color"
+                                    class="form-control form-control-color" value="#FFFFFF"
+                                    oninput="rangeValueChange(this)">
+                                <span id="hemis-ground-color-value">#FFFFFF</span>
+                            </div>
+                        </div>
+
+                        <div class="buttons-box">
+                            <button type="button" class="btn btn-danger" onclick="defaultLighting()">Сбросить</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toolbox-item rounded">
+                    <div class="toolbox-item__box-header"><b>Тень</b>
+                    </div>
+                    <div class="toolbox-item__box-body">
+                        <div class="box-item">
+                            <div class="par-name"><b>Cмещение:</b></div>
+                            <div class="par-value">
+                                <input id="shadow-bias" class="form-range" name="shadow-bias" oninput="rangeValueChange(this,'bias')"
+                                    value="0" step="0.0001" type="range" min="0" max="1" /><span
+                                    id="shadow-bias-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toolbox-item rounded">
+                    <div class="toolbox-item__box-header"><b>AR</b></div>
+                    <div class="toolbox-item__box-body">
+                        <div class="box-item">
+                            <div class="par-name"><b>Масштаб AR:</b></div>
+                            <div class="par-value">
+                                <select class="form-select ar-scale-select" name="" id="ar-scale">
+                                    <option value="auto">Автоматически</option>
+                                    <option value="fixed">Фиксированный</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name"><b>Крепить:</b></div>
+                            <div class="par-value">
+                                <select class="form-select ar-scale-select" name="" id="ar-attachment">
+                                    <option value="floor">К полу</option>
+                                    <option value="wall">К стене</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="buttons-box">
+                        <button type="button" class="btn btn-success" onclick="applyAR()">Применить</button>
+                    </div>
+                </div>
+
+                <div class="toolbox-item rounded">
+                    <div class="toolbox-item__box-header "><b>iFrame</b>
+                    </div>
+                    <div class="toolbox-item__box-body common">
+                        <div class="box-item">
+                            <div class="par-name"><b>Ширина (px):</b></div>
+                            <div class="par-value">
+                                <input class="form-control input-width" id="iframe-with" type="number" value="300" />
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name"><b>Высота (px):</b></div>
+                            <div class="par-value">
+                                <input class="form-control input-width" id="iframe-height" type="number" value="300" />
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name"><b>Заголовок:</b></div>
+                            <div class="par-value">
+                                <textarea class="form-control position-element" id="iframe-title"></textarea>
+                            </div>
+                        </div>
+                        <div class="box-item">
+                            <div class="par-name"><b>Др. название:</b></div>
+                            <div class="par-value">
+                                <textarea class="form-control position-element" id="iframe-alt"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toolbox-item rounded">
+                    <div class="toolbox-item__box-header"><b>Общие</b>
+                    </div>
+                    <div class="toolbox-item__box-body common">
+                        <div class="box-item">
+                            <div class="par-name"><b>Показать кнопку «Назад»</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-check-input" id="showBack" type="checkbox" />
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>URL-адрес кнопки</b></div>
+                            <div class="par-value">
+                                <textarea class="form-control position-element" id="buttonUrl" value=""></textarea>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Семейство шрифтов кнопки</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-control position-element" id="buttonFont" value="Raleway">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Размер шрифта кнопки</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-control input-width" id="buttonFontSize" value="17" type="number">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Толщина шрифта кнопки</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-control input-width" id="buttonFontWeight" type="number" value="700">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Цвет шрифта кнопки</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-control form-control-color" id="buttonFontColor" type="color" value="#4D840A">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Кэшировать модели</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-check-input" id="cacheModels" type="checkbox" />
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Кнопки увеличения</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-check-input" id="zoomActivate" type="checkbox" checked />
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Показать название модели</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-check-input" id="modelTitle" type="checkbox" checked />
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Иконка заголовка</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-control" id="iconfile" type="file" checked />
+                                <div class="d-flex justify-content-around">
+                                    <button type="button" class="btn btn-secondary" onclick="uploadIcon()">Загрузить</button>
+                                    <button type="button" class="btn btn-secondary" onclick="clearIcon()">Сбросить</button>
+                                </div>
+                                <label id="uploadStatus" class="icon-upload-process"></label>
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Семейство шрифтов заголовка</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-control position-element" id="titleFont" value="Raleway">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Размер шрифта заголовка</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-control input-width" id="titleFontSize" value="17" type="number">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Толщина шрифта заголовка</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-control input-width" id="titleFontWeight" type="number" value="700">
+                            </div>
+                        </div>
+
+                        <div class="box-item">
+                            <div class="par-name"><b>Цвет шрифта заголовка</b></div>
+                            <div class="par-value par-value-align">
+                                <input class="form-control form-control-color" id="titleFontColor" type="color" value="#A9A9A9">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-button">
+                    <button type="button" class="btn btn-secondary" onclick="generateLink()">Предпросмотр</button>
+                    <button type="button" class="btn btn-secondary" onclick="openInTheSameWindow()">Предпросмотр в этом же окне</button>
+                    <button type="button" class="btn btn-secondary" onclick="generateQR()">Показать QR для предпросмотра</button>
+                    <div id="qrcode"></div>
+                    <button type="button" class="btn btn-secondary" onclick="generateIFrame()">Показать код iFrame</button>
+                    <a href="./ifraime.html" target="_blank">Тестировать код iFrame:</a>
+                    <textarea class="form-control" id="iframeText" type="text" cols="40" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./src/common/loading.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script type="module" src="./dist/arconfigurator.bandle.js"></script>
+</body>
+
+</html>

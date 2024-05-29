@@ -1,0 +1,171 @@
+.viewer-wrapper {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.viewer {
+    display: flex;
+    height: 100%;
+}
+
+.container-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.viewer-box {
+    height: 500px;
+    width: 500px;
+    position: fixed;
+
+}
+
+.model-viewer-mixed {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.box-item {
+    display: flex;
+    margin-top: 10px;
+}
+
+.veiwer-toolbox {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    z-index: 100;
+}
+
+.toolbox-item {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border: 2px;
+    border-color: darkgrey;
+    border-style: outset;
+}
+
+.toolbox-item__box-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.body-deg {
+    width: 60px;
+}
+
+.par-name {
+    width: 110px;
+    margin-left: 7px;
+    align-content: space-evenly;
+}
+
+.par-value {
+    width: 300px;
+}
+
+.par-value>input[type=number] {
+    width: 60px;
+}
+
+.par-value>input[type=range] {
+    width: 220px;
+    margin-left: 20px;
+}
+
+.buttons-box {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10PX;
+}
+
+.buttons-box button {
+    width: 110px;
+}
+
+.veiwer-toolbox__header {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: large;
+    font-weight: 400;
+}
+
+.toolbox-item__box-header {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#model-viewer {
+
+    width: 60%;
+    height: 100%;
+    display: none;
+}
+
+#model-viewer-mixed {
+    position: fixed;
+
+}
+
+.final-button {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.final-button div,
+textarea,
+button {
+    margin-top: 5px;
+}
+
+.position-element {
+    width: 220px !important;
+}
+
+.icon-upload-success {
+    color: green;
+}
+
+.icon-upload-process {
+    color: blue;
+}
+
+.icon-upload-error {
+    color: red;
+}
+
+.flor-input-display {
+    display: inline
+}
+
+.par-value-margin {
+    margin-top: 6px;
+}
+
+.ar-scale-select {
+    width: 171px;
+}
+
+.input-width {
+    width: 80px !important;
+}
+
+.par-value-align {
+    align-content: space-evenly;
+}
+
+.file-width {
+    width: 284px;
+}
+
+.icon-upload-margin {
+    margin-top: 8px;
+    margin-left: 105px;
+}

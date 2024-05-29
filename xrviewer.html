@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Homeoutside AR viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles/styles.css" rel="stylesheet" />
+    <link type="text/css" href="./styles/loading.css" rel="stylesheet" />
+    <link type="text/css" href="./styles/xr.css" rel="stylesheet" />
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Acme|Alegreya|Alegreya+Sans|Anton|Archivo|Archivo+Black|Archivo+Narrow|Arimo|Arvo|Asap|Asap+Condensed|Bitter|Bowlby+One+SC|Bree+Serif|Cabin|Cairo|Catamaran|Crete+Round|Crimson+Text|Cuprum|Dancing+Script|Dosis|Droid+Sans|Droid+Serif|EB+Garamond|Exo|Exo+2|Faustina|Fira+Sans|Fjalla+One|Francois+One|Gloria+Hallelujah|Hind|Inconsolata|Indie+Flower|Josefin+Sans|Julee|Karla|Lato|Libre+Baskerville|Libre+Franklin|Lobster|Lora|Mada|Manuale|Maven+Pro|Merriweather|Merriweather+Sans|Montserrat|Montserrat+Subrayada|Mukta+Vaani|Muli|Noto+Sans|Noto+Serif|Nunito|Open+Sans|Open+Sans+Condensed:300|Oswald|Oxygen|PT+Sans|PT+Sans+Caption|PT+Sans+Narrow|PT+Serif|Pacifico|Passion+One|Pathway+Gothic+One|Play|Playfair+Display|Poppins|Questrial|Quicksand|Raleway|Roboto|Roboto+Condensed|Roboto+Mono|Roboto+Slab|Ropa+Sans|Rubik|Saira|Saira+Condensed|Saira+Extra+Condensed|Saira+Semi+Condensed|Sedgwick+Ave|Sedgwick+Ave+Display|Shadows+Into+Light|Signika|Slabo+27px|Source+Code+Pro|Source+Sans+Pro|Spectral|Titillium+Web|Ubuntu|Ubuntu+Condensed|Varela+Round|Vollkorn|Work+Sans|Yanone+Kaffeesatz|Zilla+Slab|Zilla+Slab+Highlight"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <div id="qr-code" class="qr-code hidden">
+
+    </div>
+    <div id="main" class="main hidden">
+        <div class="main-header">
+            Please Note:
+        </div>
+
+        <div class="main-description">
+            The app works best in a well-lit, outdoor environment, with enough space to move around.
+        </div>
+        <div class="main-description">
+            Please click Next to start the AR experience, then move your camera around to scan your space. Once the
+            circle icon appears, tap the "Place Model" button and it will appear where the circle is.
+        </div>
+
+        <button onclick="showAr()" id="ar-button-repiter" class="ar-button">
+            Next
+        </button>
+    </div>
+
+    <div id="ar-main" class="ar-main hidden">
+
+        <div  class="session-buttons">
+
+            <button  id="arBack" onclick="arBack()" class="session-button session-button__back hidden" data-alias="undefined" data-aliasindex="0" data-base-type="types"
+                data-type="sofa"><img class="session-button__image" src="img/back.png"></button>
+
+            <div id="places" class="option-buttons">
+
+            </div>
+
+            <button id="arOk" onclick="nextPlace()" class="session-button hidden"  data-aliasindex="0" data-base-type="types"
+                data-type="sofa"><img class="session-button__image" src="img/ok.png"></button>
+            <div>
+
+            </div>
+        </div>
+
+        <div id="place-finder" class="place-finder">
+
+        </div>
+
+        <a id="close" onclick="closeSession()" class="session-close"></a>
+    </div>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <script type="module" src="/dist/webXRScene.bandle.js?v=1.0.1"></script>
+</body>
+
+
+</html>

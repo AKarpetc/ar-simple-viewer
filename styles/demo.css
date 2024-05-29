@@ -1,0 +1,64 @@
+.search-input-close-icon {
+	margin-top: 7px;
+	/* -30px конечно не хорошо, но ничего не придумал */
+	margin-left: -30px;
+	cursor: pointer;
+	z-index: 100;
+}
+
+.card-padding {
+	padding: 10px;
+}
+
+.card-img-top {
+	height: 175px;
+}
+
+.card-list {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.card-size {
+	width: 16rem;
+}
+
+.card-body-text {
+	font-family: none;
+	text-align: center;
+}
+
+.empty-content {
+	min-height: calc(100vh - 200px);
+}
+
+.footer-color {
+	background-color: white;
+}
+
+.phone {
+	text-decoration: none;
+	color: black;
+}
+
+.footer-separator {
+	margin-bottom: 24px;
+}
+
+@media (max-width: 767px) {
+	.card-list {
+		justify-content: center;
+	}
+}
+
+.ifr-preview {
+
+	width: 100%;
+}
+
+
+.img-preview {
+	width: 100%;
+
+}

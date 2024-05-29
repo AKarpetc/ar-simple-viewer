@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>AR Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles/styles.css" rel="stylesheet" />
+    <link type="text/css" href="./styles/loading.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="loader" class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+    <div class="viewer-wrapper">
+        <div class="viewer" id="container">
+            <a class="back_button hidden" id="back" onclick="backOnClick()">&laquo; Назад</a>
+            <!-- <model-viewer> HTML element -->
+            <model-viewer id="model-viewer" ar ar-modes="webxr scene-viewer quick-look" loading="lazy" camera-controls
+                tone-mapping="commerce" shadow-intensity="1">
+                <div class="progress-bar hidden" slot="progress-bar">
+                    <div class="update-bar"></div>
+                </div>
+                <div id="ar-prompt">
+                    <img src="./img/ar_hand_prompt.png">
+                </div>
+                <button slot="ar-button" id="ar-button" class="ar-button">
+                    Просмотр в пространстве
+                </button>
+            </model-viewer>
+            <button onclick="aRShow()" id="ar-button-repiter" class="ar-button hidden">
+                <span class="view-span">
+                    Просмотр в пространстве
+                </span>
+            </button>
+            <div class="model-title">
+                <img id="titleIcon" class="title-icon hidden" width="50px" height="50px" />
+                <label id="modelTitle">
+                </label>
+            </div>
+            <div id="zoomButtons" class="zoom-buttons">
+                <a class="zoom zoom_in" onclick="zoomIn()"> <img src="./img/zoom_in.png"></a>
+                <a class="zoom zoom_out" onclick="zoomOut()"><img src="./img/zoom_out.png"> </a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="./src/common/loading.js"></script>
+
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <script type="module" src="./dist/viewer.bandle.js"></script>
+</body>
+
+</html>
