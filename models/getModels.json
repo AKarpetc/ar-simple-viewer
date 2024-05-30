@@ -28,12 +28,18 @@
         {
             "type": "bbq",
             "name": "Мангалы",
-            "preview": "models/mix patio/img/preview.jpg"
+            "preview": "models/barbecue_2/img/preview.jpg"
         },
         {
             "type": "table",
             "name": "Столы",
-            "preview": "models/mix patio/img/preview.jpg"
+            "preview": "models/table_2/img/preview.jpg"
+
+        },
+        {
+            "type": "littleTable",
+            "name": "Чпйные столики",
+            "preview": "models/little_table_2/img/preview.jpg"
 
         },
         {
@@ -236,7 +242,7 @@
             "preview": "models/new/barbecue_2/img/preview.jpg",
             "scale": null,
             "type": "bbq",
-            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L2JhcmJlY3VlXzIvZ2xiL2JhcmJlY3VlXzIuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvYmFyYmVjdWVfMi91c2R6L2JhcmJlY3VlXzIudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotNS42OTQ1NzUyMDQ1MDU4NTgsInkiOjcuNjAzODgwMzgwNTM3ODU5LCJ6IjotNC4wNzQ5MTQyNDcyMzYzNzV9LCJjYW1lcmFUYXJnZXQiOnsieCI6MCwieSI6My4wMzY0NzExMTc2NDcyOTU2LCJ6IjowLjF9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjEwIn0sInpvb21BY3RpdmF0ZSI6dHJ1ZSwic2NlbmVEZWNvcmF0aW9uIjp7InNjZW5lQmFja2dyb3VuZCI6MTM3NTY5MjcsImZsb29yTWF0ZXJpYWxDb2xvciI6MjE5ODI3NiwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiMTAiLCJmYXIiOiIxNiJ9LCJmb2dFbmFibGUiOnRydWUsIndpZHRoIjoiMTUiLCJoZWlnaHQiOiIxNSJ9LCJsaWdodG5pbmciOnsicG9zaXRpb24iOnsieCI6LTEwLCJ5IjoxMCwieiI6Ii0xOS45In0sImludGVuc2l0eSI6IjUiLCJjb2xvciI6MTY3NzcyMTUsImJpYXMiOjB9LCJoZW1pTGlnaHQiOnsiaW50ZW5zaXR5IjoyLCJncm91bmRDb2xvciI6MTY3NzcyMTUsImNvbG9yIjoxNjc3NzIxNX0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
+            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L2JhcmJlY3VlXzIvZ2xiL2JhcmJlY3VlXzIuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvYmFyYmVjdWVfMi91c2R6L2JhcmJlY3VlXzIudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS40ODE0NTI1ODg3MDI5MjQ2LCJ5IjoxLjU5NDA4MzI5ODAzNDE2OSwieiI6MS43OTIxOTE0MzEwNzk0NTE2fSwiY2FtZXJhVGFyZ2V0Ijp7IngiOi0wLjA2OTkwMTgzMjMxNDQ4MjEyLCJ5IjowLjk1OTMxNjIyNjUyNTY1NDQsInoiOi0wLjEyOTY4OTcwMjI5OTE0MTU2fSwiY2FtZXJhWm9vbWluZyI6eyJtaW4iOiIwLjIiLCJtYXgiOiIxMCJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiIxMCIsImZhciI6IjEwIn0sImZvZ0VuYWJsZSI6dHJ1ZSwid2lkdGgiOiI3IiwiaGVpZ2h0IjoiNyJ9LCJsaWdodG5pbmciOnsicG9zaXRpb24iOnsieCI6IjExLjQiLCJ5IjoiMzAiLCJ6IjoiMjkuNyJ9LCJpbnRlbnNpdHkiOiIxLjYiLCJjb2xvciI6MTY3NzcyMTUsImJpYXMiOjB9LCJoZW1pTGlnaHQiOnsiaW50ZW5zaXR5IjoiMS45IiwiZ3JvdW5kQ29sb3IiOjE2Nzc3MjE1LCJjb2xvciI6MTY3NzcyMTV9LCJtb2RlbFRpdGxlIjp0cnVlLCJtb2RlbFRpdGxlVGV4dCI6IiIsIm1vZGVsVGl0bGVTdHlsZSI6ImZvbnQtZmFtaWx5OiBSYWxld2F5O2ZvbnQtd2VpZ2h0OiA3MDA7Y29sb3I6ICNhOWE5YTk7Zm9udC1zaXplOiAxMHB4In0="
         },
         {
             "name": "Мангал 2",
@@ -253,20 +259,10 @@
             "alias": "armCheir2",
             "glb": "models/new/barbecue_6/glb/barbecue_6.glb",
             "usdz": "models/new/barbecue_6/usdz/barbecue_6.usdz",
-            "preview": "models/new/barbecue_5/img/preview.jpg",
+            "preview": "models/new/barbecue_6/img/preview.jpg",
             "scale": null,
             "type": "bbq",
             "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L2JhcmJlY3VlXzYvZ2xiL2JhcmJlY3VlXzYuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvYmFyYmVjdWVfNi91c2R6L2JhcmJlY3VlXzYudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMTUuNDE1NDYwMjA2NzgwMDg4LCJ5IjoyOC4zNzYwMzQzMDA4ODU3OCwieiI6MjQuODExOTQ5Nzc4ODk2MjZ9LCJjYW1lcmFUYXJnZXQiOnsieCI6MCwieSI6MTEuNjQwMzI0MzUwNjMzODE5LCJ6IjowLjA5OTk5OTk5OTk5OTk5OTk5fSwiY2FtZXJhWm9vbWluZyI6eyJtaW4iOiIwLjIiLCJtYXgiOiI1MDAifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjo2MTc3MzgsImZvZyI6eyJ0eXBlIjoiRm9nIiwibmFtZSI6IiIsImNvbG9yIjoxMzc1NjkyNywibmVhciI6IjUwMCIsImZhciI6IjUwMCJ9LCJmb2dFbmFibGUiOnRydWUsIndpZHRoIjoiMTAwIiwiaGVpZ2h0IjoiMTAwIn0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
-        },
-        {
-            "name": "Мангал 4",
-            "alias": "armCheir2",
-            "glb": "models/new/barbecue_7/glb/barbecue_7.glb",
-            "usdz": "models/new/barbecue_7/usdz/barbecue_7.usdz",
-            "preview": "models/new/barbecue_7/img/preview.jpg",
-            "scale": null,
-            "type": "bbq",
-            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L2JhcmJlY3VlXzcvZ2xiL2JhcmJlY3VlXzcuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvYmFyYmVjdWVfNy91c2R6L2JhcmJlY3VlXzcudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS4zMjI4NjEyOTQ5MTgwODkzLCJ5IjoxLjcxOTE0MjQ1OTAxMDQ2LCJ6IjoxLjA4NzQ1OTAzNDI4MjkzOTZ9LCJjYW1lcmFUYXJnZXQiOnsieCI6MCwieSI6MC41OTAwMDAwMTg5MTY4MTQsInoiOjAuMDk5OTk5OTk5OTk5OTk5OTl9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjIifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiMiIsImZhciI6IjQifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         },
         {
             "name": "Полки 1",
@@ -299,14 +295,56 @@
             "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L3NoZWxmXzMvZ2xiL3NoZWxmXzMuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvc2hlbGZfMy91c2R6L3NoZWxmXzMudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS43NTg3MTUyNzIzOTU4MDksInkiOjEuOTU0NTAxNjg0NDcwODUxNiwieiI6MS44MzYxNTI2MDY2ODM4NTM2fSwiY2FtZXJhVGFyZ2V0Ijp7IngiOjAsInkiOjAuODE2NDQ4MTA4NDc2NTQxNCwieiI6MC4wOTk5OTk5OTk5OTk5OTk5OX0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiMTAifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiNSIsImZhciI6IjcifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         },
         {
-            "name": "Стол 3",
+            "name": "Чайный стол 1",
             "alias": "armCheir2",
             "glb": "models/new/table_3/glb/table_3.glb",
             "usdz": "models/new/table_3/usdz/table_3.usdz",
             "preview": "models/new/table_3/img/preview.jpg",
             "scale": null,
-            "type": "table",
-            "previewLink": "https://192.168.100.27:5502/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L3RhYmxlXzMvZ2xiL3RhYmxlXzMuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvdGFibGVfMy91c2R6L3RhYmxlXzMudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4Ijo0LjYzMTIzNTI0ODI1MjU5NywieSI6My45MDUwNjk4NzgzMzYyNDIsInoiOi0zLjA3OTU0MDYwMTgwNDU3NDN9LCJjYW1lcmFUYXJnZXQiOnsieCI6MCwieSI6MS42NDIzODg4Nzg2ODI5OTkyLCJ6IjowLjA5OTk5OTk5OTk5OTk5OTk5fSwiY2FtZXJhWm9vbWluZyI6eyJtaW4iOiIwLjIiLCJtYXgiOiIxMCJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiIxMCIsImZhciI6IjEwIn0sImZvZ0VuYWJsZSI6dHJ1ZSwid2lkdGgiOiI3IiwiaGVpZ2h0IjoiNyJ9LCJtb2RlbFRpdGxlIjp0cnVlLCJtb2RlbFRpdGxlVGV4dCI6IiIsIm1vZGVsVGl0bGVTdHlsZSI6ImZvbnQtZmFtaWx5OiBSYWxld2F5O2ZvbnQtd2VpZ2h0OiA3MDA7Y29sb3I6ICNhOWE5YTk7Zm9udC1zaXplOiAxN3B4In0="
+            "type": "littleTable",
+            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L3RhYmxlXzMvZ2xiL3RhYmxlXzMuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvdGFibGVfMy91c2R6L3RhYmxlXzMudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4Ijo0LjYzMTIzNTI0ODI1MjU5NywieSI6My45MDUwNjk4NzgzMzYyNDIsInoiOi0zLjA3OTU0MDYwMTgwNDU3NDN9LCJjYW1lcmFUYXJnZXQiOnsieCI6MCwieSI6MS42NDIzODg4Nzg2ODI5OTkyLCJ6IjowLjA5OTk5OTk5OTk5OTk5OTk5fSwiY2FtZXJhWm9vbWluZyI6eyJtaW4iOiIwLjIiLCJtYXgiOiIxMCJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiIxMCIsImZhciI6IjEwIn0sImZvZ0VuYWJsZSI6dHJ1ZSwid2lkdGgiOiI3IiwiaGVpZ2h0IjoiNyJ9LCJtb2RlbFRpdGxlIjp0cnVlLCJtb2RlbFRpdGxlVGV4dCI6IiIsIm1vZGVsVGl0bGVTdHlsZSI6ImZvbnQtZmFtaWx5OiBSYWxld2F5O2ZvbnQtd2VpZ2h0OiA3MDA7Y29sb3I6ICNhOWE5YTk7Zm9udC1zaXplOiAxN3B4In0="
+       
+        },
+        {
+            "name": "Чайный стол 2",
+            "alias": "armCheir2",
+            "glb": "models/new/little_table_2/glb/little_table_2.glb",
+            "usdz": "models/new/little_table_2/usdz/little_table_2.usdz",
+            "preview": "models/new/little_table_2/img/preview.jpg",
+            "scale": null,
+            "type": "littleTable",
+            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L2xpdHRsZV90YWJsZV8yL2dsYi9saXR0bGVfdGFibGVfMi5nbGIiLCJpb3Mtc3JjIjoibW9kZWxzL25ldy9saXR0bGVfdGFibGVfMi91c2R6L2xpdHRsZV90YWJsZV8yLnVzZHoiLCJuYW1lIjoiYXJtQ2hlaXIyIn0=&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMC45NzUyMTMxNzA4NDE2MjIxLCJ5IjowLjkxNzExOTE1NzE1NTg4OSwieiI6MC44OTI3Mjc2NjkxOTE2NTc0fSwiY2FtZXJhVGFyZ2V0Ijp7IngiOjAsInkiOjAuMjUxMDkzNTYzNDIyODg3MywieiI6MC4xMDAwMDAwMDAwMDAwMDAwMn0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiMiJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiIyIiwiZmFyIjoiNCJ9LCJmb2dFbmFibGUiOnRydWUsIndpZHRoIjoiNyIsImhlaWdodCI6IjcifSwibW9kZWxUaXRsZSI6dHJ1ZSwibW9kZWxUaXRsZVRleHQiOiIiLCJtb2RlbFRpdGxlU3R5bGUiOiJmb250LWZhbWlseTogUmFsZXdheTtmb250LXdlaWdodDogNzAwO2NvbG9yOiAjYTlhOWE5O2ZvbnQtc2l6ZTogMTdweCJ9"
+
+        },
+        {
+            "name": "Чайный стол 3",
+            "alias": "armCheir2",
+            "glb": "models/new/little_table_3/glb/little_table_3.glb",
+            "usdz": "models/new/little_table_3/usdz/little_table_3.usdz",
+            "preview": "models/new/little_table_3/img/preview.jpg",
+            "scale": null,
+            "type": "littleTable",
+            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L2xpdHRsZV90YWJsZV8zL2dsYi9saXR0bGVfdGFibGVfMy5nbGIiLCJpb3Mtc3JjIjoibW9kZWxzL25ldy9saXR0bGVfdGFibGVfMy91c2R6L2xpdHRsZV90YWJsZV8zLnVzZHoiLCJuYW1lIjoiYXJtQ2hlaXIyIn0=&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjoyLjU4NjE5MjM4NTg4MjIxNiwieSI6MC43ODY5ODc5ODg2NzU2NzMzLCJ6IjotMi40OTQ3NTQwNDE2MjUxMjA2fSwiY2FtZXJhVGFyZ2V0Ijp7IngiOi0wLjEyMDg4OTg3NDMwMzgyODk0LCJ5IjowLjI2MDcwNDM2NDg2NTE1NTI1LCJ6IjotMC4wMjYxNzYyNjQyOTc4MDA4ODZ9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjEwIn0sInpvb21BY3RpdmF0ZSI6dHJ1ZSwic2NlbmVEZWNvcmF0aW9uIjp7InNjZW5lQmFja2dyb3VuZCI6MTM3NTY5MjcsImZsb29yTWF0ZXJpYWxDb2xvciI6MTM4ODEyOTUsImZvZyI6eyJ0eXBlIjoiRm9nIiwibmFtZSI6IiIsImNvbG9yIjoxMzc1NjkyNywibmVhciI6IjEwIiwiZmFyIjoiMTAifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sImxpZ2h0bmluZyI6eyJwb3NpdGlvbiI6eyJ4IjotMTAsInkiOiItMTguMyIsInoiOi0xMH0sImludGVuc2l0eSI6MywiY29sb3IiOjE2Nzc3MjE1LCJiaWFzIjowfSwiaGVtaUxpZ2h0Ijp7ImludGVuc2l0eSI6MiwiZ3JvdW5kQ29sb3IiOjE2Nzc3MjE1LCJjb2xvciI6MTY3NzcyMTV9LCJtb2RlbFRpdGxlIjp0cnVlLCJtb2RlbFRpdGxlVGV4dCI6IiIsIm1vZGVsVGl0bGVTdHlsZSI6ImZvbnQtZmFtaWx5OiBSYWxld2F5O2ZvbnQtd2VpZ2h0OiA3MDA7Y29sb3I6ICNhOWE5YTk7Zm9udC1zaXplOiAxN3B4In0="
+        },
+        {
+            "name": "Чайный стол 4",
+            "alias": "armCheir2",
+            "glb": "models/new/little_table_4/glb/little_table_4.glb",
+            "usdz": "models/new/little_table_4/usdz/little_table_4.usdz",
+            "preview": "models/new/little_table_4/img/preview.jpg",
+            "scale": null,
+            "type": "littleTable",
+            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L2xpdHRsZV90YWJsZV80L2dsYi9saXR0bGVfdGFibGVfNC5nbGIiLCJpb3Mtc3JjIjoibW9kZWxzL25ldy9saXR0bGVfdGFibGVfNC91c2R6L2xpdHRsZV90YWJsZV80LnVzZHoiLCJuYW1lIjoiYXJtQ2hlaXIyIn0=&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMC43MjQ4MTI5NDAwODQ1ODg5LCJ5IjoxLjAwNTU2ODk3MTgzMjc4MTIsInoiOjEuMDA1OTEyMzcwMzg0NTEzfSwiY2FtZXJhVGFyZ2V0Ijp7IngiOjAsInkiOjAuMTk3NTAwMTE2NDM1ODk0NjYsInoiOjAuMX0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiMiJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiIyIiwiZmFyIjoiNCJ9LCJmb2dFbmFibGUiOnRydWUsIndpZHRoIjoiNyIsImhlaWdodCI6IjcifSwibGlnaHRuaW5nIjp7InBvc2l0aW9uIjp7IngiOi0xMCwieSI6Ii03LjQiLCJ6IjoiLTcuMiJ9LCJpbnRlbnNpdHkiOiIzLjUiLCJjb2xvciI6MTY3NzcyMTUsImJpYXMiOjB9LCJoZW1pTGlnaHQiOnsiaW50ZW5zaXR5IjoyLCJncm91bmRDb2xvciI6MTY3NzcyMTUsImNvbG9yIjoxNjc3NzIxNX0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
+        },
+        {
+            "name": "Чайный стол 5",
+            "alias": "armCheir2",
+            "glb": "models/new/little_table_5/glb/little_table_5.glb",
+            "usdz": "models/new/little_table_5/usdz/little_table_5.usdz",
+            "preview": "models/new/little_table_5/img/preview.jpg",
+            "scale": null,
+            "type": "littleTable",
+            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L2xpdHRsZV90YWJsZV81L2dsYi9saXR0bGVfdGFibGVfNS5nbGIiLCJpb3Mtc3JjIjoibW9kZWxzL25ldy9saXR0bGVfdGFibGVfNS91c2R6L2xpdHRsZV90YWJsZV81LnVzZHoiLCJuYW1lIjoiYXJtQ2hlaXIyIn0=&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMC42ODgwMjY0NjIyMDEwNTg2LCJ5IjowLjYyMzUxMjc2MDU0NTAxMjksInoiOi0wLjU5NTc2ODI3MTg5NTI5NTJ9LCJjYW1lcmFUYXJnZXQiOnsieCI6MCwieSI6MC4xNDUyOTY3NzY1NTg4NTU3MywieiI6MC4wOTk5OTk5OTk5OTk5OTk5OX0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiMiJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiIyIiwiZmFyIjoiNCJ9LCJmb2dFbmFibGUiOnRydWUsIndpZHRoIjoiNyIsImhlaWdodCI6IjcifSwibGlnaHRuaW5nIjp7InBvc2l0aW9uIjp7IngiOiI5IiwieSI6IjcuNiIsInoiOiI0LjgifSwiaW50ZW5zaXR5IjozLCJjb2xvciI6MTY3NzcyMTUsImJpYXMiOjB9LCJoZW1pTGlnaHQiOnsiaW50ZW5zaXR5IjoyLCJncm91bmRDb2xvciI6MTY3NzcyMTUsImNvbG9yIjoxNjc3NzIxNX0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         },
         {
             "name": "Стол 4",
@@ -316,28 +354,9 @@
             "preview": "models/new/table_4/img/preview.jpg",
             "scale": null,
             "type": "table",
-            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L3NoZWxmXzMvZ2xiL3NoZWxmXzMuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvc2hlbGZfMy91c2R6L3NoZWxmXzMudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS43NTg3MTUyNzIzOTU4MDksInkiOjEuOTU0NTAxNjg0NDcwODUxNiwieiI6MS44MzYxNTI2MDY2ODM4NTM2fSwiY2FtZXJhVGFyZ2V0Ijp7IngiOjAsInkiOjAuODE2NDQ4MTA4NDc2NTQxNCwieiI6MC4wOTk5OTk5OTk5OTk5OTk5OX0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiMTAifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiNSIsImZhciI6IjcifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
+            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L3RhYmxlXzQvZ2xiL3RhYmxlXzQuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvdGFibGVfNC91c2R6L3RhYmxlXzQudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS41NzYxMTY3NjczNDM5Njk1LCJ5IjoxLjA5MTY0MjgyNDk1NjkyMTQsInoiOjAuOTcxOTc4ODc5NjM1NjQzNH0sImNhbWVyYVRhcmdldCI6eyJ4IjotMC4wNjY1MzQ2NDk1NjA2NDEwMywieSI6MC4zMTk5MDI0Mzk3NDUyMjUzLCJ6IjotMC4wMDA2NzYwOTMyNjk4MDU4NDM1fSwiY2FtZXJhWm9vbWluZyI6eyJtaW4iOiIwLjIiLCJtYXgiOiIyIn0sInpvb21BY3RpdmF0ZSI6dHJ1ZSwic2NlbmVEZWNvcmF0aW9uIjp7InNjZW5lQmFja2dyb3VuZCI6MTM3NTY5MjcsImZsb29yTWF0ZXJpYWxDb2xvciI6MTM4ODEyOTUsImZvZyI6eyJ0eXBlIjoiRm9nIiwibmFtZSI6IiIsImNvbG9yIjoxMzc1NjkyNywibmVhciI6IjIiLCJmYXIiOiI0In0sImZvZ0VuYWJsZSI6dHJ1ZSwid2lkdGgiOiI3IiwiaGVpZ2h0IjoiNyJ9LCJtb2RlbFRpdGxlIjp0cnVlLCJtb2RlbFRpdGxlVGV4dCI6IiIsIm1vZGVsVGl0bGVTdHlsZSI6ImZvbnQtZmFtaWx5OiBSYWxld2F5O2ZvbnQtd2VpZ2h0OiA3MDA7Y29sb3I6ICNhOWE5YTk7Zm9udC1zaXplOiAxN3B4In0="
         },
-        {
-            "name": "Стол 5",
-            "alias": "armCheir2",
-            "glb": "models/new/table_5/glb/table_5.glb",
-            "usdz": "models/new/table_5/usdz/table_5.usdz",
-            "preview": "models/new/table_5/img/preview.jpg",
-            "scale": null,
-            "type": "table",
-            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L3NoZWxmXzMvZ2xiL3NoZWxmXzMuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvc2hlbGZfMy91c2R6L3NoZWxmXzMudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS43NTg3MTUyNzIzOTU4MDksInkiOjEuOTU0NTAxNjg0NDcwODUxNiwieiI6MS44MzYxNTI2MDY2ODM4NTM2fSwiY2FtZXJhVGFyZ2V0Ijp7IngiOjAsInkiOjAuODE2NDQ4MTA4NDc2NTQxNCwieiI6MC4wOTk5OTk5OTk5OTk5OTk5OX0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiMTAifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiNSIsImZhciI6IjcifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
-        },
-        {
-            "name": "Стол 6",
-            "alias": "armCheir2",
-            "glb": "models/new/table_6/glb/table_6.glb",
-            "usdz": "models/new/table_6/usdz/table_6.usdz",
-            "preview": "models/new/table_6/img/preview.jpg",
-            "scale": null,
-            "type": "table",
-            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L3NoZWxmXzMvZ2xiL3NoZWxmXzMuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvc2hlbGZfMy91c2R6L3NoZWxmXzMudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS43NTg3MTUyNzIzOTU4MDksInkiOjEuOTU0NTAxNjg0NDcwODUxNiwieiI6MS44MzYxNTI2MDY2ODM4NTM2fSwiY2FtZXJhVGFyZ2V0Ijp7IngiOjAsInkiOjAuODE2NDQ4MTA4NDc2NTQxNCwieiI6MC4wOTk5OTk5OTk5OTk5OTk5OX0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiMTAifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiNSIsImZhciI6IjcifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
-        },
+       
         {
             "name": "Стол 7",
             "alias": "armCheir2",
@@ -346,7 +365,7 @@
             "preview": "models/new/table_7/img/preview.jpg",
             "scale": null,
             "type": "table",
-            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L3NoZWxmXzMvZ2xiL3NoZWxmXzMuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvc2hlbGZfMy91c2R6L3NoZWxmXzMudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS43NTg3MTUyNzIzOTU4MDksInkiOjEuOTU0NTAxNjg0NDcwODUxNiwieiI6MS44MzYxNTI2MDY2ODM4NTM2fSwiY2FtZXJhVGFyZ2V0Ijp7IngiOjAsInkiOjAuODE2NDQ4MTA4NDc2NTQxNCwieiI6MC4wOTk5OTk5OTk5OTk5OTk5OX0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiMTAifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiNSIsImZhciI6IjcifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
+            "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvbmV3L3RhYmxlXzcvZ2xiL3RhYmxlXzcuZ2xiIiwiaW9zLXNyYyI6Im1vZGVscy9uZXcvdGFibGVfNy91c2R6L3RhYmxlXzcudXNkeiIsIm5hbWUiOiJhcm1DaGVpcjIifQ==&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMS42NzczNTM5ODY1MzMxNDUzLCJ5IjowLjU5MTQyMjc0NTQwNzE2OTMsInoiOjEuMTE2NDk5OTA0NDg3MTE0fSwiY2FtZXJhVGFyZ2V0Ijp7IngiOjAsInkiOjAuMjAwMDAwMjc3OTM4NzcwNDgsInoiOjAuMDk5OTk5OTk5OTk5OTk5OTl9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjIifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiMiIsImZhciI6IjQifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         },
         {
             "name": "Стол 7",
