@@ -114,13 +114,20 @@ function drawCardsByModels() {
     title.classList.add('card-title');
     title.innerHTML = `<b>${cardData.name}</b>`;
 
+    let viewLink = document.createElement('a');
+    viewLink.href = cardData.source.previewLink;
+    viewLink.classList.add('btn', 'btn-primary', 'd-flex', 'justify-content-center', 'mx-auto', 'mt-2');
+    viewLink.textContent = 'Просмотр';
+
     let arconfiguratorLink = document.createElement('a');
     arconfiguratorLink.href = cardData.configLink;
-    arconfiguratorLink.classList.add('btn', 'btn-primary', 'd-flex', 'justify-content-center', 'mx-auto', 'mt-2');
-    arconfiguratorLink.textContent = 'Настройки';
+    arconfiguratorLink.classList.add('justify-content-center');
+    arconfiguratorLink.textContent = 'Настройка';
 
     cardBody.appendChild(title);
+    cardBody.appendChild(viewLink);
     cardBody.appendChild(arconfiguratorLink);
+
 
 
     card.appendChild(ifrWrapper);
