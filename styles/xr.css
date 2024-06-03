@@ -92,7 +92,12 @@
     width: 70px;
     height: 70px;
     border-radius: 50%;
+}
 
+.session-button__image__checked img{
+
+    border: black solid;
+    
 }
 
 

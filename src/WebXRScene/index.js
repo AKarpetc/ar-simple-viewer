@@ -13,7 +13,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 var mode = "work";
-//var mode = "text";
+///var mode = "text";
 //var mode = "artool";
 
 
@@ -109,6 +109,7 @@ window.closeSession = () => {
 }
 
 window.nextPlace = () => {
+  clearSelectedModel();
   scene.nextPlace();
 }
 
@@ -133,6 +134,15 @@ window.arBack = async () => {
   hideArButtons();
 }
 
+
+
+function uuidv4() {
+  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+    (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+  );
+}
+
+
 async function LoadModels(items, gltfLoader, type = "models") {
   var placeWrapper = document.getElementById("places");
   placeWrapper.innerHTML = "";
@@ -142,6 +152,8 @@ async function LoadModels(items, gltfLoader, type = "models") {
     let button = document.createElement("button");
     button.classList.add("session-button");
     button.dataset.alias = items[i].alias;
+    button.id = uuidv4();
+
     button.dataset.aliasindex = i;
     button.dataset.baseType = type;
     button.dataset.type = items[i].type;
@@ -168,6 +180,12 @@ async function LoadModels(items, gltfLoader, type = "models") {
   return items;
 }
 
+function clearSelectedModel() {
+  [...document.getElementsByClassName("session-button__image__checked")].forEach(item => {
+    item.classList.remove("session-button__image__checked");
+  })
+}
+
 function ClickToArButton(e) {
 
   var dataset = e.currentTarget.dataset;
@@ -183,6 +201,9 @@ function ClickToArButton(e) {
     });
     return;
   }
+
+  clearSelectedModel();
+  e.currentTarget.className += " session-button__image__checked";
 
   var aliasindex = parseInt(e.currentTarget.dataset.aliasindex);
   if (session != null && scene != null) {
@@ -200,7 +221,7 @@ function showQR() {
   var host = window.location.host.toString();
 
   if (baseUrl.indexOf('127.0.0.1') >= 0 || baseUrl.indexOf('localhost') >= 0) {
-    baseUrl = "https://192.168.100.27:"+host.split(':')[1];
+    baseUrl = "https://192.168.100.27:" + host.split(':')[1];
   }
 
   new QRCode(qrcodeElement,

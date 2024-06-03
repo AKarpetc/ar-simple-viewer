@@ -28,18 +28,18 @@
         {
             "type": "bbq",
             "name": "Мангалы",
-            "preview": "models/barbecue_2/img/preview.jpg"
+            "preview": "models/new/barbecue_5/img/preview.jpg"
         },
         {
             "type": "table",
             "name": "Столы",
-            "preview": "models/table_2/img/preview.jpg"
+            "preview": "models/new/table_7/img/preview.jpg"
 
         },
         {
             "type": "littleTable",
             "name": "Чпйные столики",
-            "preview": "models/little_table_2/img/preview.jpg"
+            "preview": "models/new/little_table_4/img/preview.jpg"
 
         },
         {
