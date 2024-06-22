@@ -1169,12 +1169,18 @@
    h1.intro-header {
      font-size: 3.1rem;
    }
+   h1.intro-header2 {
+    font-size: 3.1rem;
+  }
  }
  
  @media only screen and (max-width: 600px) {
    h1.intro-header {
      font-size: 2.6rem;
    }
+   h1.intro-header2 {
+    font-size: 2.6rem;
+  }
  }
  
  
@@ -1973,22 +1979,22 @@
    padding-bottom: 6rem;
  }
  
- .pricing-content h1.intro-header {
+ .pricing-content h1.intro-header h1.intro-header2 {
    text-align: center;
  }
  
- #pricing .pricing-content h1.intro-header::before {
+ #pricing .pricing-content h1.intro-header::before h1.intro-header2::before {
    left: 50%;
    -webkit-transform: translateX(-50%);
    -ms-transform: translateX(-50%);
    transform: translateX(-50%);
  }
  
- .about-how h1.intro-header {
+ .about-how h1.intro-header h1.intro-header2 {
    text-align: center;
  }
  
- #about .about-how h1.intro-header::before {
+ #about .about-how h1.intro-header::before h1.intro-header2::before {
    left: 50%;
    -webkit-transform: translateX(-50%);
    -ms-transform: translateX(-50%);
@@ -2084,6 +2090,21 @@
     max-width: 800px;
     text-align: center;
     padding-bottom: 0rem;
+  }
+
+  .about-intro2 h1::before {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
+  .about-intro2 [class*="col-"] {
+    width: 100% !important;
+    float: none !important;
+    clear: both !important;
+    margin-left: 0;
+    margin-right: 0;
   }
    
  
@@ -3122,7 +3143,7 @@
      margin-top: 58px;
      margin-left: 35px;
      width: 325px;
-     height: 350px;
+     height: 385px;
    }
  }
  
