@@ -1826,6 +1826,58 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
   }
 }
 
+.demo-ifr2 {
+  margin-top: 85px;
+  margin-left: 40px;
+  width: 320px;
+  height: 539px;
+
+}
+
+.demo2 {
+  background-image: url("../../img/index/iphone-app-940_empty.png");
+  background-repeat: no-repeat;
+  background-size: 113% 113%;
+  background-position: center;
+  background-position-y: -8px;
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+
+  display: flex;
+  width: 400px;
+  height: 700px;
+  min-height: 500px;
+
+}
+
+@media (max-width: 900px) {
+  .demo2 {
+    /* height: 535px;
+    width: 100%; */
+  }
+
+  .demo-ifr2 {
+    margin-top: 58px;
+    margin-left: 37px;
+    width: 325px;
+    height: 564px;
+  }
+}
+
+
+@media (max-width: 460px) {
+  .demo2 {
+    height: 100%;
+  }
+
+  .demo-ifr2 {
+    width: 80%;
+    height: 385px;
+    margin-left: 33px;
+  }
+
+}
+
 @media only screen and (max-width: 900px) {
   #home {
     height: auto;
