@@ -1,7 +1,7 @@
 
 
-const  conf =
+const conf =
 {
-    
+    idsFolder: "local"
 }
 export default conf;

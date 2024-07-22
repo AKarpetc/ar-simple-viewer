@@ -4,6 +4,11 @@ import Stats from 'three/addons/libs/stats.module.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { s3Client } from '../s3/s3Client'
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { GUID } from "../common/guid"
+import conf from "../config/config.js"
+
 
 const urlParams = new URLSearchParams(window.location.search);
 const android = urlParams.get('android');
@@ -26,6 +31,8 @@ let modelSize;
 let controls;
 let numAnimations;
 let sceneParamerters = {};
+
+
 
 
 const backgroundColor = "#d1e9ff",
@@ -303,8 +310,34 @@ var generateNewLink = async () => {
         baseUrl = "https://192.168.100.27:5502"
     }
 
+
+    var id = GUID();
+    const command = new PutObjectCommand({
+        Bucket: "avt-content",
+        Key: `${conf.idsFolder}/${id}.json`,
+        Body: JSON.stringify(
+            {
+                id: id,
+                armessage: armessage,
+                message: message
+            }),
+    });
+
+    try {
+        const response = await s3Client.send(command);
+        console.log(response);
+    } catch (err) {
+        console.error(err);
+    }
+
+
+    let newLink = baseUrl + `/viewer.html?id=${id}`;
+    console.log("new link", newLink)
+
     let link = baseUrl + `/viewer.html?armessage=${armessage}&message=${message}`;
-    return link;
+
+
+    return newLink;
 }
 
 window.generateLink = async () => {

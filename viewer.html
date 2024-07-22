@@ -13,6 +13,16 @@
     <div id="loader" class="loader-wrapper">
         <div class="loader"></div>
     </div>
+
+    <div id="qrcode-wrapper" class="qr-code-wrapper hidden" onclick="closeQR()">
+        <div class="qr-code-border">
+            <div id="qr-code" class="qr-code">
+            </div>
+        </div>
+        <span class="qr-code__text">Scan this QR code with your mobile device to see this model in AR.</span>
+    </div>
+
+
     <div class="viewer-wrapper">
         <div class="viewer" id="container">
             <a class="back_button hidden" id="back" onclick="backOnClick()">&laquo; Назад</a>
@@ -29,7 +39,7 @@
                     Просмотр в пространстве
                 </button>
             </model-viewer>
-            <button onclick="aRShow()" id="ar-button-repiter" class="ar-button hidden">
+            <button onclick="aRShow()" id="ar-button-repiter" class="ar-button">
                 <span class="view-span">
                     Просмотр в пространстве
                 </span>
@@ -47,6 +57,7 @@
     </div>
     </div>
     <script src="./src/common/loading.js"></script>
+    <script src="./src/common/qrcode.min.js"></script>
 
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>

@@ -4,7 +4,10 @@ import Stats from 'three/addons/libs/stats.module.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import osDetector from "../common/osDetector"
 import * as TWEEN from "three/addons/libs/tween.module.js";
+import conf from "../config/config.js"
+
 
 const container = document.getElementById('container');
 let mv = document.getElementById("model-viewer");
@@ -15,12 +18,20 @@ let controls;
 let numAnimations;
 let armessage = null;
 let newCache;
+let arButton = document.getElementById("ar-button-repiter");
+let os = osDetector.getMobileOperatingSystem();
 
 window.loaderShow();
 
 const urlParams = new URLSearchParams(window.location.search);
-armessage = urlParams?.get('armessage') == null ? null : base64ToJson(urlParams?.get('armessage'));
-message = urlParams?.get('message') == null ? null : base64ToJson(urlParams?.get('message'));
+const id = urlParams?.get('id');
+
+var modelParameters = await (await fetch(`https://storage.yandexcloud.kz/avt-content/${conf.idsFolder}/${id}.json?response-content-type=json`)).json();
+
+console.log(modelParameters);
+
+armessage = base64ToJson(modelParameters.armessage);
+message = base64ToJson(modelParameters.message);
 
 console.log(armessage, message);
 
@@ -85,12 +96,11 @@ fetch("https://api-gw.dev.homeoutside.com/armodels/uploadurl?name=" + name)
     .then((urlObj) => {
         signedUrl = urlObj.url;
     });*/
-
+let arWorks = false;
 const onProgress = (event) => {
     if (event.detail.totalProgress === 1) {
         if (mv.canActivateAR) {
-            var arButton = document.getElementById("ar-button-repiter");
-            arButton.classList.remove('hidden');
+            arWorks = true;
         }
         event.target.removeEventListener('progress', onProgress);
         mv.classList.add("hidden");
@@ -123,8 +133,47 @@ if ('caches' in window && message?.cacheModels == true) {
     init();
 }
 
+var generateQR = async (link) => {
+
+    var qrcodeElement = document.getElementById("qr-code");
+    var qrcodeWrapper = document.getElementById("qrcode-wrapper");
+    var qrcodeBorder = document.getElementsByClassName("qr-code-border")[0];
+
+    let width = 400;
+    let height = 400;
+    if (document.body.clientWidth < 550 || document.body.clientHeight < 550) {
+        width = 190;
+        height = 190;
+
+        qrcodeElement.classList.add("qr-code__min");
+        qrcodeBorder.classList.add("qr-code-border__min");
+    }
+
+    qrcodeElement.innerHTML = "";
+    qrcodeWrapper.classList.remove("hidden");
+
+    new QRCode(document.getElementById("qr-code"),
+        {
+            text: link,
+            width: width,
+            height: height,
+        });
+
+}
+
+function openArViewer() {
+
+    var baseUrl = window.location.origin;
+    let link = baseUrl + `/viewer.html?id=${id}`;
+    if (arWorks) {
+        document.getElementById("ar-button").click();
+    } else {
+        generateQR(link);
+    }
+}
+
 window.aRShow = () => {
-    document.getElementById("ar-button").click();
+    openArViewer();
 }
 
 window.backOnClick = () => {
@@ -402,3 +451,8 @@ function animate() {
 
     renderer.render(scene, camera);
 }
+
+window.closeQR = () => {
+    var qrcodeWrapper = document.getElementById("qrcode-wrapper");
+    qrcodeWrapper.classList.add("hidden");
+};
