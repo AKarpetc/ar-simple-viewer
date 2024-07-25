@@ -157,3 +157,68 @@
     width: 400px;
     margin-top: 50px;
 }
+
+
+.toolbar {
+    bottom: 150px;
+    right: 10px;
+    position: absolute;
+    width: 120px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.toolbar__buttons {
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.toolbar_button__place {
+    align-self: flex-end;
+    justify-content: flex-end;
+}
+
+.toolbar_button {
+    background-color: rgba(255, 255, 255, 0.2);
+    white-space: nowrap;
+    font-family: Roboto Regular, Helvetica Neue, sans-serif;
+    color: black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+
+    line-height: 36px;
+    border-radius: 23px;
+    border: 1px solid #DADCE0;
+
+    width: 120px;
+    height: 60px;
+    font-size: 18px;
+    margin-bottom: 10px;
+
+}
+
+
+.slider-container {
+    display: flex;
+    justify-content: center;
+}
+
+input[type=range][orient=vertical] {
+    writing-mode: vertical-lr;
+    direction: rtl;
+    appearance: slider-vertical;
+    width: 16px;
+    height: 220px;
+    vertical-align: bottom;
+
+}
+
+
+.hidden
+{
+    display: none;
+}

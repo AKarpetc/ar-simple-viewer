@@ -16,6 +16,11 @@ var mode = "work";
 //var mode = "text";
 //var mode = "artool";
 
+var operation = null;
+var rotate = "rotate";
+var scale = "scale";
+var maxModels = 5;
+
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -32,6 +37,8 @@ const gltfLoader = new GLTFLoader();
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath("decoder/");
 gltfLoader.setDRACOLoader(dracoLoader);
+
+var isModelSelected = false;
 
 const sceneLoader =
 {
@@ -97,15 +104,102 @@ function initializeXRApp() {
 
   fetchModels().then(async (models) => {
 
-    let sceneModels = await LoadModels(typesList, gltfLoader, "types");
-    scene = createScene(renderer, [], sceneLoader);
+    try {
+      await LoadModels(typesList, gltfLoader, "types");
+      scene = createScene(renderer, [], sceneLoader, selectModel, clearSelection);
+    } catch (e) { alert(e) }
   });
 
 };
 
+function selectModel() {
+  isModelSelected = true;
+
+  [...document.getElementsByClassName("toolbar_button__selected")].forEach(el => {
+    if (el.classList.contains("hidden"))
+      el.classList.remove("hidden")
+
+  });
+}
+
+function clearSelection() {
+  isModelSelected = false;
+
+  [...document.getElementsByClassName("toolbar_button__selected")].forEach(el => {
+    el.classList.add("hidden")
+  });
+}
+
+window.unselect = async () => {
+  scene.unselect();
+}
+
 window.closeSession = () => {
   if (session != null)
     session.end();
+}
+
+window.placeModel = () => {
+  window.event.stopPropagation();
+  if (session != null && scene != null) {
+    scene.onSelect();
+  }
+}
+
+function openSlider() {
+  scene.startTransform();
+  document.getElementById("toolbarSlider").classList.remove("hidden")
+  document.getElementById("toolbarButtons").classList.add("hidden")
+}
+
+function closeSlider() {
+  document.getElementById("toolbarSlider").classList.add("hidden")
+  document.getElementById("toolbarButtons").classList.remove("hidden")
+}
+
+window.transformDone = () => {
+  closeSlider();
+  setTimeout(scene.stopTransform(), 2000);
+
+}
+
+let oldRotation = 100;
+window.sliderChange = (element) => {
+
+  if (operation == rotate) {
+    if (oldRotation != element.value) {
+      scene.Rotate(oldRotation < element.value);
+      oldRotation = element.value;
+    }
+  }
+
+  if (operation == scale) {
+    scene.Scale(element.value);
+    oldScale = element.value;
+  }
+}
+
+window.rotateModel = () => {
+  window.event.stopPropagation()
+  operation = rotate;
+  document.getElementById("modelSlider").value = 100;
+  oldRotation = 100;
+  openSlider();
+}
+
+window.scaleModel = () => {
+  window.event.stopPropagation()
+  operation = scale;
+  document.getElementById("modelSlider").value = 100;
+  openSlider();
+}
+
+window.removeModel = async () => {
+  window.event.stopPropagation()
+
+  if (session != null && scene != null) {
+    await scene.onRemove();
+  }
 }
 
 window.nextPlace = () => {
@@ -146,7 +240,6 @@ async function LoadModels(items, gltfLoader, type = "models") {
     button.dataset.baseType = type;
     button.dataset.type = items[i].type;
     button.innerHTML = `<img class="session-button__image"  src="${items[i].preview}" />`;
-
     button.addEventListener("click", (e) => {
       ClickToArButton(e);
     });
@@ -200,7 +293,7 @@ function showQR() {
   var host = window.location.host.toString();
 
   if (baseUrl.indexOf('127.0.0.1') >= 0 || baseUrl.indexOf('localhost') >= 0) {
-    baseUrl = "https://192.168.100.27:"+host.split(':')[1];
+    baseUrl = "https://192.168.100.27:" + host.split(':')[1];
   }
 
   new QRCode(qrcodeElement,
