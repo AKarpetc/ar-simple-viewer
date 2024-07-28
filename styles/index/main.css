@@ -1707,6 +1707,12 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
   }
 }
 
+@media only screen and (max-width: 1105px) { 
+  .home-image-right {
+    bottom: -23% !important;
+  }
+}
+
 @media only screen and (max-width: 1200px) {
   #home {
     overflow: hidden;
@@ -1728,9 +1734,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
     font-size: 4.8rem;
   }
 
-  .home-image-right {
-    bottom: 24px;
-  }
+
 
   .home-image-right img {
     vertical-align: top;
@@ -1740,7 +1744,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 @media only screen and (max-width: 1175px) {
   .home-image-right {
-    bottom: -70px;
+    bottom: -8%;
   }
 }
 
@@ -1810,7 +1814,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 @media only screen and (max-width: 475px) {
   #H1 {
-    font-size: 18px !important;
+    font-size: 25px !important;
     margin-bottom: 0.6rem !important;
   }
 }
@@ -1864,6 +1868,11 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
   }
 }
 
+@media (max-width: 560px) { 
+  #home {
+    min-height: 780px !important;
+  }
+}
 
 @media (max-width: 460px) {
   .demo2 {
@@ -1881,7 +1890,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 @media only screen and (max-width: 900px) {
   #home {
     height: auto;
-    min-height: 840px;
+    min-height: 826px;
   }
 
   #home,
@@ -1916,9 +1925,9 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 }
 
 @media only screen and (max-width: 768px) {
-  #home {
+  /* #home {
     min-height: auto;
-  }
+  } */
 
   .home-content-left h3 {
     font-size: 1.4rem;

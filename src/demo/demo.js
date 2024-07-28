@@ -1,12 +1,18 @@
+import modelUtils from "../common/utils/modelUtils.js"
+
 let cards = [];
 let typesInfo = [];
 let modelsInfo = [];
+const mainGuid = 'ab9a9d67-f0fd-4d5b-a994-5fe2a0be8bf2';
 
 window.onload = async (_) => {
+  window.loaderShow();
+  var infos = await modelUtils.getObjectByGUID(mainGuid);
   typesInfo = await fetchByKey('types');
-  enrichModels(await fetchByKey('data'));
+  modelsInfo = infos === null ? await enrichModels(await fetchByKey('data')) : JSON.parse((infos).modelsInfos);
   drawCategoriesFilter();
   drawCardsByModels();
+  window.loaderHide();
 }
 
 function createLiElement(dropdownMenu, type, allCount = null) {
@@ -51,7 +57,7 @@ function drawCategoriesFilter() {
   createLiElement(dropdownMenu, allCategories, modelsInfo.length);
   createDividerLiElement(dropdownMenu);
   typesInfo.forEach(x => {
-    const allCount = modelsInfo.filter(y => y.type === x).length;
+    const allCount = modelsInfo.filter(y => y.type === x.type).length;
     createLiElement(dropdownMenu, x, allCount);
   });
   typesInfo.push(allCategories);
@@ -94,29 +100,39 @@ function loadIfraime() {
   parent.appendChild(ifrm);
 }
 
-function enrichModels(models) {
-  
-  models.forEach(model => {
-    const modelAlias = model.alias;
-    const modelName = model.name;
-    const imgLink = model.preview;
-    const gblLink = model.glb;
-    const usdzLink = model.usdz;
-    const viewerLink = `viewer.html?src=${gblLink}&ios-src=${usdzLink}&name=${modelName}&alias=${modelAlias}`;
-    const configLink = `arconfigurator.html?android=${gblLink}&ios=${usdzLink}&name=${modelName}&alias=${modelAlias}`
+async function enrichModels(models) {
+  for (var i = 0; i < models.length; i++) {
+    let strWitOutArMessageId = models[i].previewLink.replace('viewer.html?armessage=', '');
+    let parts = (strWitOutArMessageId[0] === '/' ? strWitOutArMessageId.replace('/', '') : strWitOutArMessageId).split('&message=')
+    const armessage = parts[0];
+    const message = parts[1];
+    const id = (await modelUtils.generateModel(armessage, message)).id;
+    const modelAlias = models[i].alias;
+    const modelName = models[i].name;
+    const imgLink = models[i].preview;
+    const gblLink = models[i].glb;
+    const usdzLink = models[i].usdz;
+    const configLink = `arconfigurator.html?android=${gblLink}&ios=${usdzLink}&name=${modelName}&alias=${modelAlias}&id=${id}`
 
     if (modelsInfo.find(x => x.name === modelName) === undefined) {
+      const type = typesInfo.find(x => x.type === models[i].type);
       modelsInfo.push({
-        type: typesInfo.find(x => x.type === model.type),
+        id: id,
+        type: type === undefined ? undefined : type.type,
         visible: true,
         name: modelName,
         imgLink: imgLink,
-        viewerLink: viewerLink,
         configLink: configLink,
-        source: model,
       });
     }
+  }
+
+  await modelUtils.saveMainItems({
+    id: mainGuid,
+    modelsInfos: JSON.stringify(modelsInfo)
   });
+
+  return modelsInfo;
 }
 
 function drawCardsByModels() {
@@ -137,9 +153,9 @@ function drawCardsByModels() {
     card.setAttribute("id", key);
 
     let img = document.createElement('img');
-    img.setAttribute("src", cardData.source.preview);
+    img.setAttribute("src", cardData.imgLink);
     img.style.height = "200px";
-    img.dataset.previewLink = cardData.source.previewLink;
+    img.dataset.previewLink = `/viewer.html?id=${cardData.id}`;
     img.classList.add("img-preview");
 
     let ifrWrapper = document.createElement('div');
@@ -161,7 +177,7 @@ function drawCardsByModels() {
     title.innerHTML = `<b>${cardData.name}</b>`;
 
     let viewLink = document.createElement('a');
-    viewLink.href = cardData.source.previewLink;
+    viewLink.href = `/viewer.html?id=${cardData.id}`;
     viewLink.classList.add('btn', 'btn-primary', 'd-flex', 'justify-content-center', 'mx-auto', 'mt-2');
     viewLink.textContent = 'Просмотр';
 
@@ -200,7 +216,7 @@ function redrawCards() {
 window.searchModels = () => {
   const searchInput = document.getElementById('search-input');
   const searchValue = searchInput.value;
-  const activeTypes = typesInfo.filter(x => x.active);
+  const activeTypes = typesInfo.filter(x => x.active).map(t => t.type);
 
   const motValidSeachValue = searchValue === undefined || searchValue === null || searchValue === ''
 
@@ -274,7 +290,7 @@ function createEmailMsg(msg, classList = []) {
   }, 3500);
 }
 
-validateEmail = (email) => {
+function validateEmail(email) {
   return email.match(
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   );
