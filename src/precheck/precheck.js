@@ -18,8 +18,8 @@ window.addEventListener('load', async function () {
     window.loaderShow();
     var infos = await modelUtils.getObjectByGUID(mainGuid);
     modelsInfo = JSON.parse((infos).modelsInfos);
-    drawHOne();
     drawCardsByModels();
+    drawHOne();
     window.loaderHide();
 
     const searchInput = document.getElementById('cards-row');
@@ -28,6 +28,9 @@ window.addEventListener('load', async function () {
 
         button.addEventListener('click', function () {
             this.parentElement.parentElement.parentElement.remove();
+            let searchInput2 = document.getElementById('cards-row');
+            const cardsContainers = document.querySelector('#H1');
+            cardsContainers.innerText = `Выбранно (${searchInput2.children.length}) позиций:`
         });
     });
 
@@ -44,7 +47,9 @@ function drawHOne() {
     const cardsContainers = document.querySelector('#cards-all');
     let h1 = document.createElement('h1');
     h1.classList.add('text-center', 'mb-4');
-    h1.innerText = `Выбранно (${modelsInfo.length}) позиций:`
+    let searchInput2 = document.getElementById('cards-row');
+    h1.innerText = `Выбранно (${searchInput2.children.length}) позиций:`
+    h1.setAttribute('id', 'H1')
     const lastElementChild = cardsContainers.lastElementChild;
     cardsContainers.removeChild(lastElementChild);
     cardsContainers.appendChild(h1);
