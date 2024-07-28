@@ -19,8 +19,27 @@
 </head>
 
 <body id="top">
-
-    <!-- header 
+    <!-- dialog window -->
+    <div id="dialog-container" class="dialog-container hidden">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h2 id="dialog-title">Заголовок Диалога</h2>
+                <span id="close-dialog" class="close-btn">&times;</span>
+            </div>
+            <div class="dialog-body">
+                <p id="dialog-text"></p>
+                <div>
+                    <input id="dialog-input" class="full-width" type="email" placeholder="Адрес эл. почты или тел."
+                        id="sampleInput">
+                </div>
+            </div>
+            <div class="dialog-footer">
+                <button class="button large" id="cancel-dialog">Отмена</button>
+                <button class="button button-primary large" id="confirm-dialog">Отправить запрос</button>
+            </div>
+        </div>
+    </div>
+   <!-- header 
    ================================================== -->
     <header id="header" class="row">
 
@@ -44,13 +63,13 @@
                 </ul>
 
                 <div class="in-nav-val">
-                    <a href="#">
+                    <a href="https://wa.me/77764086666">
                         <svg class="bi" viewBox="0 0 50 50" width="24" height="24">
                             <path fill="white"
                                 d="M25,2C12.318,2,2,12.318,2,25c0,3.96,1.023,7.854,2.963,11.29L2.037,46.73c-0.096,0.343-0.003,0.711,0.245,0.966 C2.473,47.893,2.733,48,3,48c0.08,0,0.161-0.01,0.24-0.029l10.896-2.699C17.463,47.058,21.21,48,25,48c12.682,0,23-10.318,23-23 S37.682,2,25,2z M36.57,33.116c-0.492,1.362-2.852,2.605-3.986,2.772c-1.018,0.149-2.306,0.213-3.72-0.231 c-0.857-0.27-1.957-0.628-3.366-1.229c-5.923-2.526-9.791-8.415-10.087-8.804C15.116,25.235,13,22.463,13,19.594 s1.525-4.28,2.067-4.864c0.542-0.584,1.181-0.73,1.575-0.73s0.787,0.005,1.132,0.021c0.363,0.018,0.85-0.137,1.329,1.001 c0.492,1.168,1.673,4.037,1.819,4.33c0.148,0.292,0.246,0.633,0.05,1.022c-0.196,0.389-0.294,0.632-0.59,0.973 s-0.62,0.76-0.886,1.022c-0.296,0.291-0.603,0.606-0.259,1.19c0.344,0.584,1.529,2.493,3.285,4.039 c2.255,1.986,4.158,2.602,4.748,2.894c0.59,0.292,0.935,0.243,1.279-0.146c0.344-0.39,1.476-1.703,1.869-2.286 s0.787-0.487,1.329-0.292c0.542,0.194,3.445,1.604,4.035,1.896c0.59,0.292,0.984,0.438,1.132,0.681 C37.062,30.587,37.062,31.755,36.57,33.116z" />
                         </svg>
                     </a>
-                    <a class="cta" href="#">
+                    <a class="cta" href="https://t.me/shmaps">
                         <svg class="bi" viewBox="0 0 50 50" width="24" height="24">
                             <path fill="white"
                                 d="M46.137,6.552c-0.75-0.636-1.928-0.727-3.146-0.238l-0.002,0C41.708,6.828,6.728,21.832,5.304,22.445 c-0.259,0.09-2.521,0.934-2.288,2.814c0.208,1.695,2.026,2.397,2.248,2.478l8.893,3.045c0.59,1.964,2.765,9.21,3.246,10.758 c0.3,0.965,0.789,2.233,1.646,2.494c0.752,0.29,1.5,0.025,1.984-0.355l5.437-5.043l8.777,6.845l0.209,0.125 c0.596,0.264,1.167,0.396,1.712,0.396c0.421,0,0.825-0.079,1.211-0.237c1.315-0.54,1.841-1.793,1.896-1.935l6.556-34.077 C47.231,7.933,46.675,7.007,46.137,6.552z M22,32l-3,8l-3-10l23-17L22,32z" />
@@ -80,8 +99,12 @@
                 <div class="home-content-left">
 
                     <div class="fluid-video-wrapper">
-                        <iframe style="border-radius: 15px;"
+                        <!-- <iframe style="border-radius: 15px;"
                             src="http://player.vimeo.com/video/14592941?title=0&amp;byline=0&amp;portrait=0&amp;color=F64B39"
+                            width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen
+                            allowfullscreen></iframe> -->
+                        <iframe style="border-radius: 15px;"
+                            src="/video/video_2024-07-29_02-29-45.mp4"
                             width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen
                             allowfullscreen></iframe>
                     </div>
@@ -369,7 +392,7 @@
                                     </li>
                                 </ul>
 
-                                <a class="button button-primary large" href="">Подключить</a>
+                                <button id="open-dialog" class="button button-primary large">Подключить</button>
                             </div>
 
                         </div>
@@ -404,7 +427,7 @@
                                     </li>
                                 </ul>
 
-                                <a class="button button-primary large" href="">Подключить</a>
+                                <button id="open-dialog2" class="button button-primary large">Подключить</button>
                             </div>
 
                         </div>
@@ -472,7 +495,7 @@
 
                     <textarea class="full-width" placeholder="Ваше обращение" id="exampleMessage"></textarea>
 
-                    <input class="button-primary" type="submit" value="Отправить">
+                    <button class="button-primary" type="button">Отправить</button>
 
                 </form>
 
@@ -501,7 +524,7 @@
 
                 <ul class="footer-social-list">
                     <li>
-                        <a href="#">
+                        <a href="https://wa.me/77764086666">
                             <svg class="bi" viewBox="0 0 50 50" width="24" height="24">
                                 <path fill="white"
                                     d="M25,2C12.318,2,2,12.318,2,25c0,3.96,1.023,7.854,2.963,11.29L2.037,46.73c-0.096,0.343-0.003,0.711,0.245,0.966 C2.473,47.893,2.733,48,3,48c0.08,0,0.161-0.01,0.24-0.029l10.896-2.699C17.463,47.058,21.21,48,25,48c12.682,0,23-10.318,23-23 S37.682,2,25,2z M36.57,33.116c-0.492,1.362-2.852,2.605-3.986,2.772c-1.018,0.149-2.306,0.213-3.72-0.231 c-0.857-0.27-1.957-0.628-3.366-1.229c-5.923-2.526-9.791-8.415-10.087-8.804C15.116,25.235,13,22.463,13,19.594 s1.525-4.28,2.067-4.864c0.542-0.584,1.181-0.73,1.575-0.73s0.787,0.005,1.132,0.021c0.363,0.018,0.85-0.137,1.329,1.001 c0.492,1.168,1.673,4.037,1.819,4.33c0.148,0.292,0.246,0.633,0.05,1.022c-0.196,0.389-0.294,0.632-0.59,0.973 s-0.62,0.76-0.886,1.022c-0.296,0.291-0.603,0.606-0.259,1.19c0.344,0.584,1.529,2.493,3.285,4.039 c2.255,1.986,4.158,2.602,4.748,2.894c0.59,0.292,0.935,0.243,1.279-0.146c0.344-0.39,1.476-1.703,1.869-2.286 s0.787-0.487,1.329-0.292c0.542,0.194,3.445,1.604,4.035,1.896c0.59,0.292,0.984,0.438,1.132,0.681 C37.062,30.587,37.062,31.755,36.57,33.116z" />
@@ -509,7 +532,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://t.me/shmaps">
                             <svg class="bi" viewBox="0 0 50 50" width="24" height="24">
                                 <path fill="white"
                                     d="M46.137,6.552c-0.75-0.636-1.928-0.727-3.146-0.238l-0.002,0C41.708,6.828,6.728,21.832,5.304,22.445 c-0.259,0.09-2.521,0.934-2.288,2.814c0.208,1.695,2.026,2.397,2.248,2.478l8.893,3.045c0.59,1.964,2.765,9.21,3.246,10.758 c0.3,0.965,0.789,2.233,1.646,2.494c0.752,0.29,1.5,0.025,1.984-0.355l5.437-5.043l8.777,6.845l0.209,0.125 c0.596,0.264,1.167,0.396,1.712,0.396c0.421,0,0.825-0.079,1.211-0.237c1.315-0.54,1.841-1.793,1.896-1.935l6.556-34.077 C47.231,7.933,46.675,7.007,46.137,6.552z M22,32l-3,8l-3-10l23-17L22,32z" />
@@ -549,6 +572,7 @@
     <script src="./styles/index/js/jquery-2.1.3.min.js"></script>
     <script src="./styles/index/js/plugins.js"></script>
     <script src="./styles/index/js/main.js"></script>
+    <script src="./styles/index/js/dialog.js"></script>
 
 </body>
 
