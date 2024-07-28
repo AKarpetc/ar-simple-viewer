@@ -78,7 +78,12 @@ async function fetchByKey(key) {
   return result;
 }
 
-function loadIfraime() {
+var prev = null;
+var prevP = null
+function loadIfraime(imgElement) {
+  if (prev != null && prevP != null) {
+    prev.parentElement.appendChild(prevP);
+  }
   var imgs = [...document.getElementsByClassName("img-preview")];
   imgs.forEach(e => {
     e.style.display = "";
@@ -90,13 +95,16 @@ function loadIfraime() {
   })
 
   let ifrm = document.createElement('iframe');
-  ifrm.setAttribute("src", this.dataset.previewLink);
+  ifrm.setAttribute("src", imgElement.dataset.previewLink);
   ifrm.style.height = "200px";
   ifrm.classList.add("ifr-preview");
 
-  var parent = this.parentElement;
-
-  this.style.display = "none";
+  var parent = imgElement.parentElement;
+  const pElements = parent.getElementsByTagName('p');
+  prev = imgElement;
+  prevP = pElements[0];
+  pElements[0].remove();
+  imgElement.style.display = "none";
   parent.appendChild(ifrm);
 }
 
@@ -158,12 +166,23 @@ function drawCardsByModels() {
     img.dataset.previewLink = `/viewer.html?id=${cardData.id}`;
     img.classList.add("img-preview");
 
+    let i2 = document.createElement('i');
+    i2.classList.add('bi', 'bi-hand-index-thumb-fill');
+    i2.setAttribute('style', 'color: white;');
+
+    let p2 = document.createElement('p');
+    p2.setAttribute("id", key);
+    p2.setAttribute('style', 'margin-left: 96px; margin-top: -143px; font-size: 50px;');
+    p2.appendChild(i2);
+    p2.addEventListener("click", x => loadIfraime(x.srcElement.parentElement.parentElement.getElementsByTagName('img')[0]));
+
     let ifrWrapper = document.createElement('div');
     ifrWrapper.style.height = "200px";
     ifrWrapper.classList.add("ifraime-wrapper");
     ifrWrapper.appendChild(img);
+    ifrWrapper.appendChild(p2);
 
-    img.addEventListener("click", loadIfraime);
+    img.addEventListener("click", x => loadIfraime(x.srcElement));
 
     let paddingDiv = document.createElement('div');
     paddingDiv.setAttribute("name", "padding");
@@ -178,17 +197,21 @@ function drawCardsByModels() {
 
     let viewLink = document.createElement('a');
     viewLink.href = `/viewer.html?id=${cardData.id}`;
-    viewLink.classList.add('btn', 'btn-primary', 'd-flex', 'justify-content-center', 'mx-auto', 'mt-2');
+    viewLink.classList.add('btn', 'btn-success', 'd-flex', 'justify-content-center', 'mx-auto', 'mt-2');
     viewLink.textContent = 'Просмотр';
 
     let arconfiguratorLink = document.createElement('a');
     arconfiguratorLink.href = cardData.configLink;
-    arconfiguratorLink.classList.add('justify-content-center');
+    arconfiguratorLink.classList.add('btn', 'btn-primary', 'd-flex', 'justify-content-center', 'mx-auto', 'mt-2');
     arconfiguratorLink.textContent = 'Настройка';
 
+    let div2 = document.createElement('div');
+    div2.setAttribute('style', 'display: flex;');
+    div2.appendChild(viewLink);
+    div2.appendChild(arconfiguratorLink);
+
     cardBody.appendChild(title);
-    cardBody.appendChild(viewLink);
-    cardBody.appendChild(arconfiguratorLink);
+    cardBody.appendChild(div2);
 
     card.appendChild(ifrWrapper);
 

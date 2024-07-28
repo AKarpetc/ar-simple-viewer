@@ -13,6 +13,10 @@
 	border-left: .0em solid transparent !important;
 }
 
+.ifraime-wrapper {
+	cursor: pointer;
+}
+
 .search {
 	display: flex !important;
 	align-items: center;
