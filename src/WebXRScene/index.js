@@ -12,6 +12,10 @@ import {
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
+import osDetector from "../common/osDetector"
+
+
+
 var mode = "work";
 //var mode = "text";
 //var mode = "artool";
@@ -21,6 +25,7 @@ var rotate = "rotate";
 var scale = "scale";
 var maxModels = 5;
 
+let os = osDetector.getMobileOperatingSystem();
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -93,12 +98,12 @@ function initializeXRApp() {
     document.getElementById("main").classList.remove("hidden");
   });
 
-  arButton = ARButton.createButton(renderer,
+  document.body.appendChild(ARButton.createButton(renderer,
     {
       requiredFeatures: ["hit-test"],
       optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
       domOverlay: { root: document.body }
-    });
+    }));
 
   sceneLoader.init();
 
@@ -304,7 +309,7 @@ function showQR() {
     });
 }
 
-
+const isImmersiveArSupported = await browserHasImmersiveArCompatibility();
 async function start() {
 
   if (mode == "artool") {
@@ -314,15 +319,35 @@ async function start() {
     return;
   }
 
-  const isImmersiveArSupported = await browserHasImmersiveArCompatibility();
   isImmersiveArSupported
     ? initializeXRApp()
     : showQR();
 }
 
 try {
-  await start();
-
+  if (os == "Android") {
+    let main = document.getElementById("main");
+    main.classList.remove("hidden");
+    await start(false);
+  } else if (os == "Windows") {
+    showQR();
+    document.body.appendChild(ARButton.createButton(renderer,
+      {
+        requiredFeatures: ["hit-test"],
+        optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
+        domOverlay: { root: document.body }
+      }));
+  }
+  else {
+    if (isImmersiveArSupported) {
+      let main = document.getElementById("main");
+      main.classList.remove("hidden");
+      await start(true);
+    } else {
+      var launchUrl = VLaunch.getLaunchUrl(window.location.href + '&instantWebxr=true')
+      window.location.href = launchUrl
+    }
+  }
 } catch (err) {
   alert(err);
 }
