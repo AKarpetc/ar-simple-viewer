@@ -108,7 +108,6 @@ function initializeXRApp() {
   sceneLoader.init();
 
   fetchModels().then(async (models) => {
-
     try {
       await LoadModels(typesList, gltfLoader, "types");
       scene = createScene(renderer, [], sceneLoader, selectModel, clearSelection);
@@ -309,9 +308,16 @@ function showQR() {
     });
 }
 
+
+window.addEventListener('vlaunch-initialized', async (event) => {
+  if (!isImmersiveArSupported) {
+     var launchUrl = VLaunch.getLaunchUrl(window.location.href + '?instantWebxr=true')
+    window.location.href = launchUrl
+  }  
+})
+
 const isImmersiveArSupported = await browserHasImmersiveArCompatibility();
 async function start() {
-
   if (mode == "artool") {
     document.getElementById("main").classList.add("hidden");
     document.getElementById("ar-main").classList.remove("hidden");
@@ -323,6 +329,7 @@ async function start() {
     ? initializeXRApp()
     : showQR();
 }
+
 
 try {
   if (os == "Android") {
@@ -337,17 +344,14 @@ try {
         optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
         domOverlay: { root: document.body }
       }));
-  }
-  else {
+  } else {
     if (isImmersiveArSupported) {
       let main = document.getElementById("main");
       main.classList.remove("hidden");
-      await start(true);
-    } else {
-      var launchUrl = VLaunch.getLaunchUrl(window.location.href + '&instantWebxr=true')
-      window.location.href = launchUrl
+      await start(false);
     }
   }
+
 } catch (err) {
   alert(err);
 }
