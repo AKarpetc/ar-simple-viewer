@@ -4,6 +4,7 @@ import Stats from 'three/addons/libs/stats.module.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 import osDetector from "../common/osDetector"
 import * as TWEEN from "three/addons/libs/tween.module.js";
 import conf from "../config/config.js"
@@ -306,7 +307,8 @@ function init() {
     const gltfLoader = new GLTFLoader();
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath("decoder/");
-    gltfLoader.setDRACOLoader(dracoLoader);
+    gltfLoader.setDRACOLoader(dracoLoader)
+    .setMeshoptDecoder(MeshoptDecoder);
 
     gltfLoader.load(android, async (gltf) => {
         scene.add(gltf.scene);

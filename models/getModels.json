@@ -118,17 +118,6 @@
             "type": "armCheir",
             "previewLink": "/viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvYmVhbi1iYWctY2hhaXIvZ2xiL2JlYW4tYmFnLWNoYWlyLmdsYiIsImlvcy1zcmMiOiJtb2RlbHMvYmVhbi1iYWctY2hhaXIvdXNkei9iZWFuLWJhZy1jaGFpci51c2R6IiwibmFtZSI6ImFybUNoZWlyMiJ9&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjotMC45NTAyMDI0MTg3MDUwNzM2LCJ5IjowLjg2NjM4NjA2MzY2Mzg0NjcsInoiOjAuOTU1NTY2Mjc1MjYwNjg0Nn0sImNhbWVyYVRhcmdldCI6eyJ4IjowLCJ5IjowLjQzMzE4MTEzMTc4MjA0NTgsInoiOjAuMDk5OTk5OTk5OTk5OTk5OTl9LCJjYW1lcmFab29taW5nIjp7Im1pbiI6IjAuMiIsIm1heCI6IjIifSwiem9vbUFjdGl2YXRlIjp0cnVlLCJzY2VuZURlY29yYXRpb24iOnsic2NlbmVCYWNrZ3JvdW5kIjoxMzc1NjkyNywiZmxvb3JNYXRlcmlhbENvbG9yIjoxMzg4MTI5NSwiZm9nIjp7InR5cGUiOiJGb2ciLCJuYW1lIjoiIiwiY29sb3IiOjEzNzU2OTI3LCJuZWFyIjoiMiIsImZhciI6IjQifSwiZm9nRW5hYmxlIjp0cnVlLCJ3aWR0aCI6IjciLCJoZWlnaHQiOiI3In0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
         },
-
-        {
-            "name": "Кресло 2",
-            "alias": "armCheir2",
-            "glb": "models/Armchair_2/glb/Armchair_2.glb",
-            "usdz": "models/Armchair_2/usdz/Armchair_2.usdz",
-            "preview": "models/Armchair_2/img/preview.jpg",
-            "scale": null,
-            "type": "armCheir",
-            "previewLink": "viewer.html?armessage=eyJzcmMiOiJtb2RlbHMvQXJtY2hhaXJfMi9nbGIvQXJtY2hhaXJfMi5nbGIiLCJpb3Mtc3JjIjoibW9kZWxzL0FybWNoYWlyXzIvdXNkei9Bcm1jaGFpcl8yLnVzZHoiLCJuYW1lIjoiYXJtQ2hlaXIyIn0=&message=eyJjYW1lcmFQb3NpdGlvbiI6eyJ4IjoxLjUyODc2ODg1MDA0MTkyOTQsInkiOjEuMTM4NDU4MzkyNDM2Nzk2OCwieiI6MS4xNzYxNDU5OTIxMzM2Nzk3fSwiY2FtZXJhVGFyZ2V0Ijp7IngiOjAsInkiOjAuNDI3OTgyNzcyMzM3MDY3NCwieiI6MC4wOTk5OTk5OTk5OTk5OTk5OX0sImNhbWVyYVpvb21pbmciOnsibWluIjoiMC4yIiwibWF4IjoiMiJ9LCJ6b29tQWN0aXZhdGUiOnRydWUsInNjZW5lRGVjb3JhdGlvbiI6eyJzY2VuZUJhY2tncm91bmQiOjEzNzU2OTI3LCJmbG9vck1hdGVyaWFsQ29sb3IiOjEzODgxMjk1LCJmb2ciOnsidHlwZSI6IkZvZyIsIm5hbWUiOiIiLCJjb2xvciI6MTM3NTY5MjcsIm5lYXIiOiIyIiwiZmFyIjoiNCJ9LCJmb2dFbmFibGUiOnRydWUsIndpZHRoIjoiNyIsImhlaWdodCI6IjcifSwibGlnaHRuaW5nIjp7InBvc2l0aW9uIjp7IngiOi0xMCwieSI6IjE2LjEiLCJ6IjoiMjEuNyJ9LCJpbnRlbnNpdHkiOiI0LjMiLCJjb2xvciI6MTY3NzcyMTUsImJpYXMiOjB9LCJoZW1pTGlnaHQiOnsiaW50ZW5zaXR5IjoyLCJncm91bmRDb2xvciI6MTY3NzcyMTUsImNvbG9yIjoxNjc3NzIxNX0sIm1vZGVsVGl0bGUiOnRydWUsIm1vZGVsVGl0bGVUZXh0IjoiIiwibW9kZWxUaXRsZVN0eWxlIjoiZm9udC1mYW1pbHk6IFJhbGV3YXk7Zm9udC13ZWlnaHQ6IDcwMDtjb2xvcjogI2E5YTlhOTtmb250LXNpemU6IDE3cHgifQ=="
-        },
         {
             "name": "Кресло 3",
             "alias": "armCheir2",
