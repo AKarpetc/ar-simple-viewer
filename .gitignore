@@ -10,3 +10,4 @@ dist
 .vs/ar-simple-viewer/FileContentIndex/*.vsidx
 .vs/ar-simple-viewer/config/applicationhost.config
 /.vs/slnx.sqlite-journal
+video/*.mp4
