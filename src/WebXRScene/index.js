@@ -11,6 +11,11 @@ import {
 
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+
+import osDetector from "../common/osDetector"
+
+
 
 var mode = "work";
 //var mode = "text";
@@ -21,6 +26,7 @@ var rotate = "rotate";
 var scale = "scale";
 var maxModels = 5;
 
+let os = osDetector.getMobileOperatingSystem();
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -36,7 +42,8 @@ let typesList;
 const gltfLoader = new GLTFLoader();
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath("decoder/");
-gltfLoader.setDRACOLoader(dracoLoader);
+gltfLoader.setDRACOLoader(dracoLoader)
+  .setMeshoptDecoder(MeshoptDecoder);
 
 var isModelSelected = false;
 
@@ -93,17 +100,16 @@ function initializeXRApp() {
     document.getElementById("main").classList.remove("hidden");
   });
 
-  arButton = ARButton.createButton(renderer,
+  document.body.appendChild(ARButton.createButton(renderer,
     {
       requiredFeatures: ["hit-test"],
       optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
       domOverlay: { root: document.body }
-    });
+    }));
 
   sceneLoader.init();
 
   fetchModels().then(async (models) => {
-
     try {
       await LoadModels(typesList, gltfLoader, "types");
       scene = createScene(renderer, [], sceneLoader, selectModel, clearSelection);
@@ -244,18 +250,20 @@ async function LoadModels(items, gltfLoader, type = "models") {
       ClickToArButton(e);
     });
 
-    if (type == "models") {
-      var sceneModel = await gltfLoader.loadAsync(items[i].glb);
-      var scale = items[i].scale;
-
-      if (items[i].scale)
-        sceneModel.scene.scale.set(scale.x, scale.y, scale.z);
-
-      items[i]["glb_model"] = sceneModel;
-    }
-
     placeWrapper.appendChild(button);
+  }
 
+  GetModelAsync(items).then(models => {
+    scene.setModels(models);
+  })
+
+  return items;
+}
+async function GetModelAsync(items) {
+  for (let i = 0; i < items.length; i++) {
+    var sceneModel = await gltfLoader.loadAsync(items[i].glb);
+    var scale = items[i].scale;
+    items[i]["glb_model"] = sceneModel;
   }
 
   return items;
@@ -305,8 +313,15 @@ function showQR() {
 }
 
 
-async function start() {
+window.addEventListener('vlaunch-initialized', async (event) => {
+  if (!isImmersiveArSupported && os != "Windows" && os != "Android") {
+    var launchUrl = VLaunch.getLaunchUrl(window.location.href + '?instantWebxr=true')
+    window.location.href = launchUrl
+  }
+})
 
+const isImmersiveArSupported = await browserHasImmersiveArCompatibility();
+async function start() {
   if (mode == "artool") {
     document.getElementById("main").classList.add("hidden");
     document.getElementById("ar-main").classList.remove("hidden");
@@ -314,14 +329,32 @@ async function start() {
     return;
   }
 
-  const isImmersiveArSupported = await browserHasImmersiveArCompatibility();
   isImmersiveArSupported
     ? initializeXRApp()
     : showQR();
 }
 
+
 try {
-  await start();
+  if (os == "Android") {
+    let main = document.getElementById("main");
+    main.classList.remove("hidden");
+    await start(false);
+  } else if (os == "Windows") {
+    showQR();
+    document.body.appendChild(ARButton.createButton(renderer,
+      {
+        requiredFeatures: ["hit-test"],
+        optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
+        domOverlay: { root: document.body }
+      }));
+  } else {
+    if (isImmersiveArSupported) {
+      let main = document.getElementById("main");
+      main.classList.remove("hidden");
+      await start(false);
+    }
+  }
 
 } catch (err) {
   alert(err);
