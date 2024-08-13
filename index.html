@@ -26,11 +26,10 @@
                 <h2 id="dialog-title">Заголовок Диалога</h2>
                 <span id="close-dialog" class="close-btn">&times;</span>
             </div>
-            <div class="dialog-body">
+            <div id="email-form" class="dialog-body">
                 <p id="dialog-text"></p>
                 <div>
-                    <input id="dialog-input" class="full-width" type="email" placeholder="Адрес эл. почты или тел."
-                        id="sampleInput">
+                    <input id="dialog-input" class="full-width" type="email" placeholder="Адрес эл. почты или тел.">
                 </div>
             </div>
             <div class="dialog-footer">
@@ -401,9 +400,14 @@
 
                             <div class="plan-bottom-part">
                                 <ul class="plan-block-features">
-                                    <li class="index-li-price">
+                                    <li style="display: flex;
+                                    flex-direction: column;
+                                    flex-wrap: nowrap;
+                                    align-content: center;
+                                    justify-content: center;
+                                    align-items: center;" class="index-li-price">
                                         <p class="index-p-price">Изготовление 3D модели</p>
-                                        <span>+ 10 моделей каждый месяц</span>
+                                        <span style="text-wrap: nowrap;">+ 10 моделей каждый месяц</span>
                                     </li>
                                     <li class="index-li-price">
                                         <p class="index-p-price">Оплата по просмотрам</p>
@@ -471,9 +475,9 @@
             <div class="col-six tab-full">
                 <h3>Обратная связь</h3>
 
-                <form>
+                <form id="email-form2">
                     <div>
-                        <input class="full-width" type="email" placeholder="Адрес эл. почты" id="sampleInput">
+                        <input class="full-width" type="email" placeholder="Адрес эл. почты" id="dialog-input2">
                     </div>
                     <div>
                         <div class="ss-custom-select">
@@ -485,9 +489,9 @@
                         </div>
                     </div>
 
-                    <textarea class="full-width" placeholder="Ваше обращение" id="exampleMessage"></textarea>
+                    <textarea class="full-width" placeholder="Ваше обращение" ></textarea>
 
-                    <button class="button-primary" type="button">Отправить</button>
+                    <button id="confirm-dialog2" class="button-primary" type="button">Отправить</button>
 
                 </form>
 
