@@ -14,3 +14,4 @@ video/*.mp4
 /BackEnd/BackgroundSupportApi/bin/Debug/net6.0
 /BackEnd/.vs
 /BackEnd/BackgroundSupportApi/obj
+/BackEnd/BackgroundSupportApi/appsettings.Development.json
