@@ -16,7 +16,7 @@ namespace BackgroundSupportApi.Extensions
             subjectType switch
             {
                 SubjectType.Lite => "Подписка Lite",
-                SubjectType.Pro => "Подписка Lite",
+                SubjectType.Pro => "Подписка Pro",
                 SubjectType.CallBack => "Обратная связь",
                 _ => "Тема не распознана",
             };

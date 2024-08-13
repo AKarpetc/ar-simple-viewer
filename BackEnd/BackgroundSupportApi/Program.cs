@@ -1,6 +1,7 @@
 using BackgroundSupportApi.Models;
 using BackgroundSupportApi.Services;
 using Microsoft.Extensions.Hosting.WindowsServices;
+using Microsoft.Extensions.Options;
 
 namespace BackgroundSupportApi
 {
@@ -29,6 +30,12 @@ namespace BackgroundSupportApi
                 builder.Host.UseWindowsService();
 
             var app = builder.Build();
+            var appSettings = app.Services.GetService<IOptions<AppSettings>>()?.Value;
+            app.UseCors(x =>
+                x.WithOrigins(appSettings?.AllowedCorsUrls!)
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    .AllowAnyMethod());
 
             if (app.Environment.IsDevelopment())
             {

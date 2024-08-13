@@ -5,10 +5,6 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
-import { s3Client } from '../s3/s3Client'
-import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { GUID } from "../common/guid"
-import conf from "../config/config.js"
 import modelUtils from "../common/utils/modelUtils.js"
 
 const urlParams = new URLSearchParams(window.location.search);

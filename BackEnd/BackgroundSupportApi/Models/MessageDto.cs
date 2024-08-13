@@ -4,7 +4,7 @@
     {
         public string Email { get; set; }
         public SubjectType Subject { get; set; }
-        public string OtherText { get; set; }
+        public string? OtherText { get; set; }
     }
 
     public enum SubjectType

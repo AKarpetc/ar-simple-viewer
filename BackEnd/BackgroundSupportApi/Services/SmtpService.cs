@@ -46,7 +46,7 @@ namespace BackgroundSupportApi.Services
                     Success = true
                 };
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new SmtpResponseInfo
                 {

@@ -3,6 +3,7 @@
     public class AppSettings
     {
         public SmtpInfo Smtp { get; set; }
+        public string[] AllowedCorsUrls { get; set; }
     }
 
     public class SmtpInfo

@@ -1,4 +1,5 @@
 import modelUtils from "../common/utils/modelUtils.js"
+import smtpUtils from "../common/utils/smtpUtils.js"
 
 let cards = [];
 let typesInfo = [];
@@ -285,7 +286,7 @@ window.sendEmail = () => {
     return;
   }
 
-  //ToDo использовать smtp для нам отправки уведомления
+  smtpUtils.send(value, 0);
   createEmailMsg('В ближайшее время наш менеджер с Вами свяжется.', ['alert-primary']);
   emailInput.classList.remove('is-invalid');
 }
