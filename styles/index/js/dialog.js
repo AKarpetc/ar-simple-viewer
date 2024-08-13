@@ -18,18 +18,17 @@ const dialogInput2 = document.getElementById(dialogInput2Id);
 
 function openDialog(x) {
     switch (x.srcElement.id) {
-        case dialogInput2Id:
+        case "open-dialog2":
             dialogTitle.innerHTML = "Тариф Pro";
             dialogText.innerHTML = "Тариф Pro - включает Lite и позволяет задействовать всю мощь XR технологии. <br> Из преимуществ: <br> - ежемесечно бесплатно выдается 10 жетонов на создание моделей по Вашим фото. Если модели не создаются то жетоны сгорают. Если моделей больше 10 в мес. оплата по тарифу Lite за модель. <br> - скидка не более 15% на просмотры относительно тарифа Lite. <br> - конфигуратор 3D просмотра (обсуждается индивидуально). <br> - кастомизация с XR (обсуждается индивидуально).";
             break;
-        case dialogInputId:
+        case "open-dialog":
             dialogTitle.innerHTML = "Тариф Lite";
             dialogText.innerHTML = "Тариф Lite - предлагает решение проверенное временем за меньшие деньги. <br> Из преимуществ: <br> - менее затратное изготовление моделей по Вашим фото, одна модель - один платеж от 3 000<sup>₽</sup> в зависимости от сложности. <br> - последущая оплата за клик т.е за фактическое взаимодействие пользователя с 3D моделью (не менее 7<sup>₽</sup> за клик). <br> - статистика по просмотрам моделей. <br> - экспорт созданных 3D моделей. <br> - высокая скорость загрузки 3D моделей для просмотра."
             break;
     }
 
     dialogTitle.value = x.srcElement.id;
-
     dialogContainer.classList.remove('hidden');
 }
 
