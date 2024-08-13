@@ -1172,6 +1172,32 @@ h1.intro-header::before {
   }
 }
 
+.video-container {
+  /* width: 100%; */
+  /* Ширина на 100% от родительского элемента */
+  /* max-width: 310px; */
+  /* Максимальная ширина видео */
+  /* margin: 0 auto; */
+  position: relative;
+  width: 100%;
+  max-width: 310px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-image: url('/img/index/videopreview.jpg');
+  background-size: cover;
+  border-radius: 20px;
+  background-position: center;
+  overflow: hidden;
+}
+
+video {
+  width: 100%;
+  /* Масштабировать видео по ширине контейнера */
+  height: auto;
+  /* Сохранять соотношение сторон */
+  display: block;
+}
+
 
 
 /* ===================================================================
@@ -1481,14 +1507,19 @@ h1.intro-header::before {
   fill: black;
 }
 
-.png-container:hover img {
-  filter: drop-shadow(0px 1000px 0 black);
-  transform: translateY(-1000px);
+.button:hover {
+  .png-container img {
+    filter: drop-shadow(0px 1000px 0 black);
+    transform: translateY(-1000px);
+  }
+  
 }
 
-.png-container img {
-  filter: drop-shadow(0px 1000px 0 white);
-  transform: translateY(-1000px);
+.button {
+  .png-container img {
+    filter: drop-shadow(0px 1000px 0 white);
+    transform: translateY(-1000px);
+  }
 }
 
 .home-content-left {
@@ -1539,6 +1570,7 @@ h1.intro-header::before {
   right: 0;
   bottom: 56px;
   width: 42%;
+  top: 28%
 }
 
 .home-image-right img {
@@ -1724,7 +1756,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 @media only screen and (max-width: 1105px) {
   .home-image-right {
-    bottom: -23% !important;
+    bottom: 4% !important;
   }
 }
 
@@ -1759,7 +1791,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
 @media only screen and (max-width: 1175px) {
   .home-image-right {
-    bottom: -8%;
+    top: 24%
   }
 }
 
@@ -1795,13 +1827,113 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
   .home-image-right {
     width: 40%;
-    bottom: -135px;
+    top: 20%;
   }
 
   .home-image-right img {
     vertical-align: top;
     width: 100%;
   }
+}
+
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  display: none;
+  /*Скрыта по умолчанию*/
+}
+
+.pause-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  display: none;
+  pointer-events: none;
+  /* Игнорировать клики */
+}
+
+.video-container.playing:hover .pause-btn {
+  display: block;
+}
+
+.video-container.paused .play-btn {
+  display: block;
+  /* Показывать, когда видео на паузе */
+}
+
+.paused .play-btn {
+  display: block;
+}
+
+.playing:hover .pause-btn {
+  display: block;
+}
+
+.style-button.button:hover a {
+  filter: drop-shadow(0px 10000px 0 black);
+  transform: translateY(-10000px);
+}
+
+.style-button.button a {
+  filter: drop-shadow(0px 10000px 0 white);
+  transform: translateY(-10000px);
+}
+
+.style-button {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 777px) {
+  .style-button {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-image-right .button.stroke {
+    color: #ffffff !important;
+    border-color: #ffffff;
+    margin: 0 0.6rem 0.2rem;
+    padding: 0 0.5rem;
+    min-width: 0px;
+  }
+  
+  .buttons a {
+    font-size: 10px;
+  }
+  .png-container img {
+    width: 17px !important;
+  }
+}
+
+.everley-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 @media only screen and (max-width: 540px) {
@@ -1811,7 +1943,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
 
   .buttons a {
     max-width: 70%;
-    min-width: 70% !important;
+    /* min-width: 70% !important; */
   }
 }
 
@@ -1984,25 +2116,24 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
     margin-bottom: 3.6rem;
   }
 
+  .video-container {
+    max-width: 200px;
+  }
+
   .home-image-right {
     width: 90%;
     right: auto;
-    top: 55%;
+    top: 60% !important;
     left: 50%;
     bottom: 0;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     padding: 0;
-    height: 45%;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  /* #home {
-     min-height: auto;
-   } */
-
   .home-content-left h3 {
     font-size: 1.4rem;
   }
@@ -2068,8 +2199,7 @@ html[data-useragent*='MSIE 10.0'] .home-scrolldown,
   }
 
   .home-image-right {
-    width: 320px;
-    margin-bottom: -150px;
+    top: 65% !important;
   }
 }
 
@@ -3254,8 +3384,8 @@ footer ul a:visited {
 
 
 @media (max-width: 410px) {
-  .demo {
-    width: 320px;
+  .home-image-right {
+    font-size: 1.4rem;
   }
 
   .demo-ifr {
