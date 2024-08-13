@@ -11,3 +11,6 @@ dist
 .vs/ar-simple-viewer/config/applicationhost.config
 /.vs/slnx.sqlite-journal
 video/*.mp4
+/BackEnd/BackgroundSupportApi/bin/Debug/net6.0
+/BackEnd/.vs
+/BackEnd/BackgroundSupportApi/obj
