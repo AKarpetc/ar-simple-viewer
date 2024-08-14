@@ -530,14 +530,18 @@ h1.intro-header::before {
     fill: black;
 }
 
-.png-container:hover img {
-    filter: drop-shadow(0px 10000px 0 black);
-    transform: translateY(-10000px);
+.button:hover {
+    .png-container a {
+        filter: drop-shadow(0px 10000px 0 black);
+        transform: translateY(-10000px);
+    }
 }
 
-.png-container img {
-    filter: drop-shadow(0px 10000px 0 white);
-    transform: translateY(-10000px);
+.button {
+    .png-container a {
+        filter: drop-shadow(0px 10000px 0 white);
+        transform: translateY(-10000px);
+    }
 }
 
 .home-content-left {

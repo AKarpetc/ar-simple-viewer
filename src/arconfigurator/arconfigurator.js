@@ -5,15 +5,12 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
-import { s3Client } from '../s3/s3Client'
-import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { GUID } from "../common/guid"
-import conf from "../config/config.js"
-
+import modelUtils from "../common/utils/modelUtils.js"
 
 const urlParams = new URLSearchParams(window.location.search);
 const android = urlParams.get('android');
 const fbx = urlParams.get('fbx');
+const id = urlParams.get('id');
 const ios = urlParams.get('ios');
 const name = urlParams.get('alias');
 
@@ -26,15 +23,10 @@ let scene, renderer, camera, stats;
 let model, skeleton, mixer, clock, container, containerWrapper, hemiLight;
 let floor;
 let dirLight
-
 let modelSize;
-
 let controls;
 let numAnimations;
 let sceneParamerters = {};
-
-
-
 
 const backgroundColor = "#d1e9ff",
     floorColor = "#d3cfcf",
@@ -44,7 +36,6 @@ const backgroundColor = "#d1e9ff",
     floorSize = { width: 7, height: 7 };
 
 const PosX = 0, PosY = 0.5, PosZ = 1.5, TarX = 0, TarY = 0.05, TarZ = 0.1
-
 
 window.loaderShow();
 
@@ -304,6 +295,7 @@ var generateNewLink = async () => {
 
     var armessage = jsonToBase64(attributes);
     var message = jsonToBase64(sceneParamerters);
+    await modelUtils.updateModel(id, armessage, message);
 
     var baseUrl = window.location.origin;
 
@@ -311,32 +303,7 @@ var generateNewLink = async () => {
         baseUrl = "https://192.168.100.27:5502"
     }
 
-
-    var id = GUID();
-    const command = new PutObjectCommand({
-        Bucket: "avt-content",
-        Key: `${conf.idsFolder}/${id}.json`,
-        Body: JSON.stringify(
-            {
-                id: id,
-                armessage: armessage,
-                message: message
-            }),
-    });
-
-    try {
-        const response = await s3Client.send(command);
-        console.log(response);
-    } catch (err) {
-        console.error(err);
-    }
-
-
     let newLink = baseUrl + `/viewer.html?id=${id}`;
-    console.log("new link", newLink)
-
-    let link = baseUrl + `/viewer.html?armessage=${armessage}&message=${message}`;
-
 
     return newLink;
 }
