@@ -1,4 +1,5 @@
-param([string]$repoUrl)
+param([string]$repoUrl,
+      [string]$branchName)
 
 # Клонирование репозитория
 git clone $repoUrl
@@ -6,13 +7,13 @@ $repoName = ($repoUrl -split '/|\\')[-1] -replace '\.git$', ''
 Set-Location $repoName
 
 $branches = git branch -r | ForEach-Object { $_.ToString().Trim() -replace 'origin/', '' }
-$mainBranch = $branches | Where-Object { $_ -eq 'main' }
+$mainBranch = $branches | Where-Object { $_ -eq $branchName }
 
 if ($mainBranch) {
-    Write-Host "Найдена ветка main"
+    Write-Host "Ветка найдена"
     git checkout $mainBranch
 } else {
-    Write-Host "Ветка main не найдена"
+    Write-Host "Ветка не найдена"
     exit
 }
 
