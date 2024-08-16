@@ -26,15 +26,30 @@ window.loaderShow();
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams?.get('id');
+
 let mainData = JSON.parse(localStorage.getItem('localId'));
 let searchModel = mainData.mainCollection.data.filter(x => x.id === id)[0];
 
-armessage = base64ToJson(searchModel.armessage);
-message = base64ToJson(searchModel.message);
-armessage['src'] = armessage['src'].replace('models', `${conf.awsEndPoint}/avt-models`);
-armessage['ios-src'] = armessage['ios-src'].replace('models', `${conf.awsEndPoint}/avt-models`);
+var modelParameters = null;
+try{
+    var modelParameters = await (await fetch(`${conf.awsEndPoint}/avt-content/${conf.idsFolder}/${mainData.id}/${searchModel.id}.json?response-content-type=json`)).json();
+}
+catch (err) {
+    console.log(err)
+}
 
-console.log(armessage, message);
+if (modelParameters == null) {
+    armessage = base64ToJson(searchModel.armessage);
+    message = base64ToJson(searchModel.message);
+    armessage['src'] = armessage['src'].replace('models', `${conf.awsEndPoint}/avt-models`);
+    armessage['ios-src'] = armessage['ios-src'].replace('models', `${conf.awsEndPoint}/avt-models`);
+}
+else {
+    armessage = base64ToJson(modelParameters.armessage);
+    message = base64ToJson(modelParameters.message);
+}
+
+console.log(armessage, message); 
 
 let signedUrl = null;
 

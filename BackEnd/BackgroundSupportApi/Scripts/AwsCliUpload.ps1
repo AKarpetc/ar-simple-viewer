@@ -26,6 +26,7 @@ Write-Host "Загрузка файлов из $sourceDirectory в $bucketName..."
     "src/s3",
     "src/WebXRScene",
     "src/viewer",
+    "src/index",
     "node_modules",
     ".gitignore",
     "babel.config.json",
@@ -34,14 +35,6 @@ Write-Host "Загрузка файлов из $sourceDirectory в $bucketName..."
     "package.json",
     "webpack.config.js"
 )
-# удаление каталога с моделями
-$subdirectories = Get-ChildItem -Path $sourceDirectory/models -Directory
-
-# Удаление всех подкаталогов
-foreach ($dir in $subdirectories) {
-    Remove-Item -Path $dir.FullName -Recurse -Force
-    Write-Host "Удален каталог: $($dir.FullName)"
-}
 
 # Удаляем ненужные файлы и каталоги
 foreach ($path in $pathsToRemove) {

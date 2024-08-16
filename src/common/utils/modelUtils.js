@@ -25,9 +25,10 @@ export async function updateModel(id, armessage, message) {
         armessage: armessage,
         message: message
     }
+    const mainData = JSON.parse(localStorage.getItem('localId'));
     const command = new PutObjectCommand({
         Bucket: "avt-content",
-        Key: `${conf.idsFolder}/${body.id}.json`,
+        Key: `${conf.idsFolder}/${mainData.id}/${body.id}.json`,
         Body: JSON.stringify(body),
     });
 
