@@ -26,13 +26,13 @@ window.loaderShow();
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams?.get('id');
+let mainData = JSON.parse(localStorage.getItem('localId'));
+let searchModel = mainData.mainCollection.data.filter(x => x.id === id)[0];
 
-var modelParameters = await (await fetch(`https://storage.yandexcloud.kz/avt-content/${conf.idsFolder}/${id}.json?response-content-type=json`)).json();
-
-console.log(modelParameters);
-
-armessage = base64ToJson(modelParameters.armessage);
-message = base64ToJson(modelParameters.message);
+armessage = base64ToJson(searchModel.armessage);
+message = base64ToJson(searchModel.message);
+armessage['src'] = armessage['src'].replace('models', `${conf.awsEndPoint}/avt-models`);
+armessage['ios-src'] = armessage['ios-src'].replace('models', `${conf.awsEndPoint}/avt-models`);
 
 console.log(armessage, message);
 
@@ -117,7 +117,7 @@ const onProgress = (event) => {
 };
 
 mv.addEventListener('progress', onProgress);
-mv.setAttribute("src", "/models/sofa_1/glb/sofa_1.glb")
+mv.setAttribute("src", armessage['src']);
 
 let cachedModels = [];
 if ('caches' in window && message?.cacheModels == true) {

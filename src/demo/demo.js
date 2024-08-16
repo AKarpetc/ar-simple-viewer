@@ -1,26 +1,33 @@
-import modelUtils from "../common/utils/modelUtils.js"
 import smtpUtils from "../common/utils/smtpUtils.js"
+import sessionUtils from "../common/utils/sessionUtils.js"
 
 let cards = [];
 let typesInfo = [];
 let modelsInfo = [];
-const mainGuid = 'ab9a9d67-f0fd-4d5b-a994-5fe2a0be8bf2';
+const key = 'localId';
 
 window.onload = async (_) => {
-  window.loaderShow();
-  var infos = await modelUtils.getObjectByGUID(mainGuid);
-  typesInfo = await fetchByKey('types');
-  modelsInfo = infos === null ? await enrichModels(await fetchByKey('data')) : JSON.parse((infos).modelsInfos);
-  drawCategoriesFilter();
-  drawCardsByModels();
-  window.loaderHide();
+  try {
+    window.loaderShow();
+    await sessionUtils.init();
+    const storage = JSON.parse(localStorage.getItem(key));
+    typesInfo = storage.mainCollection.types;
+    modelsInfo = storage.mainCollection.data;
+
+    drawCategoriesFilter();
+    drawCardsByModels();
+    window.loaderHide();
+  }
+  catch (err) {
+    // alert(err)
+  }
 }
 
 function createLiElement(dropdownMenu, type, allCount = null) {
   var newLi = document.createElement('li');
   var newA = document.createElement('a');
-  type.type === 'allCategories' 
-    ? newA.classList.add('disabled', 'dropdown-item') 
+  type.type === 'allCategories'
+    ? newA.classList.add('disabled', 'dropdown-item')
     : newA.classList.add('dropdown-item');
   newA.href = '#';
   var formCheckDiv = document.createElement('div');
@@ -28,14 +35,14 @@ function createLiElement(dropdownMenu, type, allCount = null) {
   var inputCheckbox = document.createElement('input');
   inputCheckbox.className = 'form-check-input';
   inputCheckbox.type = 'checkbox';
-  inputCheckbox.addEventListener('change', function(event) {
+  inputCheckbox.addEventListener('change', function (event) {
     type['active'] = event.target.checked;
     window.searchModels();
   });
   var label = document.createElement('label');
   label.className = 'form-check-label';
-  label.textContent = allCount === null 
-    ? type.name 
+  label.textContent = allCount === null
+    ? type.name
     : `${type.name} (${allCount})`;
   formCheckDiv.appendChild(inputCheckbox);
   formCheckDiv.appendChild(label);
@@ -54,7 +61,7 @@ function createDividerLiElement(dropdownMenu) {
 
 function drawCategoriesFilter() {
   const dropdownMenu = document.getElementById('dropdown-menu');
-  const allCategories = {name: 'Категории', type: 'allCategories'};
+  const allCategories = { name: 'Категории', type: 'allCategories' };
   createLiElement(dropdownMenu, allCategories, modelsInfo.length);
   createDividerLiElement(dropdownMenu);
   typesInfo.forEach(x => {
@@ -62,21 +69,6 @@ function drawCategoriesFilter() {
     createLiElement(dropdownMenu, x, allCount);
   });
   typesInfo.push(allCategories);
-}
-
-async function fetchByKey(key) {
-  let result;
-
-  await fetch(window.location.origin + '/models/getModels.json')
-    .then(response => response.json())
-    .then(responce => {
-      result = responce[key];
-    })
-    .catch(error => {
-      console.error('Ошибка загрузки моделей:', error);
-    });
-
-  return result;
 }
 
 var prev = null;
@@ -107,41 +99,6 @@ function loadIfraime(imgElement) {
   pElements[0].remove();
   imgElement.style.display = "none";
   parent.appendChild(ifrm);
-}
-
-async function enrichModels(models) {
-  for (var i = 0; i < models.length; i++) {
-    let strWitOutArMessageId = models[i].previewLink.replace('viewer.html?armessage=', '');
-    let parts = (strWitOutArMessageId[0] === '/' ? strWitOutArMessageId.replace('/', '') : strWitOutArMessageId).split('&message=')
-    const armessage = parts[0];
-    const message = parts[1];
-    const id = (await modelUtils.generateModel(armessage, message)).id;
-    const modelAlias = models[i].alias;
-    const modelName = models[i].name;
-    const imgLink = models[i].preview;
-    const gblLink = models[i].glb;
-    const usdzLink = models[i].usdz;
-    const configLink = `arconfigurator.html?android=${gblLink}&ios=${usdzLink}&name=${modelName}&alias=${modelAlias}&id=${id}`
-
-    if (modelsInfo.find(x => x.name === modelName) === undefined) {
-      const type = typesInfo.find(x => x.type === models[i].type);
-      modelsInfo.push({
-        id: id,
-        type: type === undefined ? undefined : type.type,
-        visible: true,
-        name: modelName,
-        imgLink: imgLink,
-        configLink: configLink,
-      });
-    }
-  }
-
-  await modelUtils.saveMainItems({
-    id: mainGuid,
-    modelsInfos: JSON.stringify(modelsInfo)
-  });
-
-  return modelsInfo;
 }
 
 function drawCardsByModels() {
@@ -251,10 +208,10 @@ window.searchModels = () => {
 
   const regex = new RegExp(searchValue, "i");
   modelsInfo.forEach(x => {
-    let isMatch = activeTypes.length > 0 
-      ? !motValidSeachValue 
-        ? x.name.match(regex) && activeTypes.includes(x.type) 
-        : activeTypes.includes(x.type) 
+    let isMatch = activeTypes.length > 0
+      ? !motValidSeachValue
+        ? x.name.match(regex) && activeTypes.includes(x.type)
+        : activeTypes.includes(x.type)
       : x.name.match(regex);
     x.visible = isMatch ? true : false;
   });
