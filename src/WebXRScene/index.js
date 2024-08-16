@@ -47,7 +47,7 @@ const sceneLoader =
   show: () => {
     sceneLoader.loader.style.display = ""
   },
-  hide: () => {
+  hide: () => { 
     sceneLoader.loader.style.display = "none"
   }
 }
@@ -232,7 +232,9 @@ async function LoadModels(items, gltfLoader, type = "models") {
     button.dataset.aliasindex = i;
     button.dataset.baseType = type;
     button.dataset.type = items[i].type;
-    button.innerHTML = `<img class="session-button__image"  src="${items[i].preview}" />`;
+    const a = items[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
+    alert(a)
+    button.innerHTML = `<img class="session-button__image"  src="${a}" />`;
     button.addEventListener("click", (e) => {
       ClickToArButton(e);
     });
@@ -248,7 +250,9 @@ async function LoadModels(items, gltfLoader, type = "models") {
 }
 async function GetModelAsync(items) {
   for (let i = 0; i < items.length; i++) {
-    var sceneModel = await gltfLoader.loadAsync(items[i].glb);
+    const a = items[i].glb.replace('models', `${conf.awsEndPoint}/avt-models`);
+    alert(a);
+    var sceneModel = await gltfLoader.loadAsync(a);
     var scale = items[i].scale;
     items[i]["glb_model"] = sceneModel;
   }
