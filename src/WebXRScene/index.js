@@ -7,6 +7,7 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 import osDetector from "../common/osDetector"
 import modelUtils from "../common/utils/modelUtils.js"
+import conf from "../config/config.js"
 
 var mode = "work";
 //var mode = "text";
@@ -57,6 +58,13 @@ async function fetchModels() {
       let responce = await modelUtils.getModels();
       modelsList = responce.data;
       typesList = responce.types;
+      for (let i = 0; i < modelsList.length; i++) {
+        modelsList[i].glb = modelsList[i].glb.replace('models', `${conf.awsEndPoint}/avt-models`);
+        modelsList[i].preview = modelsList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
+      }
+      for (let i = 0; i < typesList.length; i++) {
+        typesList[i].preview = typesList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
+      }
     } catch (err) {
       console.error('Ошибка загрузки моделей:', err);
     }
