@@ -58,7 +58,7 @@ async function fetchModels() {
       modelsList = responce.data;
       typesList = responce.types;
     } catch (err) {
-      console.error('Ошибка загрузки моделей:', error);
+      console.error('Ошибка загрузки моделей:', err);
     }
 }
 
