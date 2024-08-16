@@ -21,6 +21,7 @@ module.exports =
                     arconfigurator: ['./src/arconfigurator/arconfigurator.js'],
                     viewer: ['./src/viewer/render.js'],
                     demo: ['./src/demo/demo.js'],
+                    index: ['./src/index/index.js'],
                     precheck: ['./src/precheck/precheck.js'],
                     webXRScene: ['./src/WebXRScene/index.js'],
                 }

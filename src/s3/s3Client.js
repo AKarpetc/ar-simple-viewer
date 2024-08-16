@@ -1,13 +1,15 @@
 import { S3Client } from "@aws-sdk/client-s3";
+import conf from "../../src/config/config.js"
+
 // Установка региона Object Storage
-const REGION = "ru-central1";
+const REGION = conf.awsRegion;
 // Установка эндпоинта Object Storage
-const ENDPOINT = "https://storage.yandexcloud.kz";
+const ENDPOINT = conf.awsEndPoint;
 // Создание клиента для Object Storage
 const s3Client = new S3Client({
     region: REGION, endpoint: ENDPOINT, credentials: {
-        accessKeyId: 'YCB2BzjHd8epgNyLs6eDfFnW4',
-        secretAccessKey: 'YCMVWV1P3UxcIG-YJEcCVyq74jw49_-23UP6UQdT'
+        accessKeyId: conf.awsAccessKeyId,
+        secretAccessKey: conf.awsSecretAccessKey
     }
 });
 export { s3Client };

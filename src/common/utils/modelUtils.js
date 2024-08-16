@@ -2,7 +2,22 @@ import conf from "../../config/config.js"
 import { GUID } from "../guid.js"
 import { s3Client } from '../../s3/s3Client.js'
 import { ListObjectsV2Command, PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
-import { Buffer } from 'buffer';
+
+export async function getModels() {
+    try {
+        const command = new GetObjectCommand({
+            Bucket: "avt-models",
+            Key: `getModels.json`
+        });
+        const response = await s3Client.send(command);
+        const bodyContents = await streamToString(response.Body);
+        
+        const body = JSON.parse(bodyContents);
+        return body;
+    } catch (error) {
+        return null;
+    }
+}
 
 export async function updateModel(id, armessage, message) {
     const body = {
@@ -10,9 +25,10 @@ export async function updateModel(id, armessage, message) {
         armessage: armessage,
         message: message
     }
+    const mainData = JSON.parse(localStorage.getItem('localId'));
     const command = new PutObjectCommand({
         Bucket: "avt-content",
-        Key: `${conf.idsFolder}/${body.id}.json`,
+        Key: `${conf.idsFolder}/${mainData.id}/${body.id}.json`,
         Body: JSON.stringify(body),
     });
 
@@ -24,21 +40,40 @@ export async function updateModel(id, armessage, message) {
     }
 }
 
-export async function generateModel(armessage, message) {
+export function generateIdModel() {
+    return GUID();
+}
+
+export async function generateModel(mainId, modelId, armessage, message) {
     const body = {
-        id: GUID(),
+        id: modelId,
         armessage: armessage,
         message: message
     }
     const command = new PutObjectCommand({
         Bucket: "avt-content",
-        Key: `${conf.idsFolder}/${body.id}.json`,
+        Key: `${conf.idsFolder}/${mainId}/${body.id}.json`,
         Body: JSON.stringify(body),
     });
 
     try {
         const response = await s3Client.send(command);
         return body;
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export async function createMainfolder(id) {
+    const command = new PutObjectCommand({
+        Bucket: "avt-content",
+        Key: `${conf.idsFolder}/${id}/`,
+        Body: undefined // Убедитесь, что Body установлен в undefined или пустую строку ""
+    });
+
+    try {
+        const response = await s3Client.send(command);
+        return response; // Возвращаем результат вызова команду
     } catch (err) {
         console.error(err);
     }
@@ -115,25 +150,41 @@ export async function getAllModels() {
 export async function getOrCreate(armessage, message) {
     const foundModel = await fetchAndFilter(armessage, message);
 
-    const model = foundModel ? foundModel : await generateModel(armessage, message);
+    const model = foundModel ? foundModel : await generateIdModel(armessage, message);
     
     return model;
 }
 
 async function streamToString(stream) {
-    const chunks = [];
-    for await (const chunk of stream) {
-        chunks.push(chunk);
-    }
-    return Buffer.concat(chunks).toString('utf-8');
+    return new Promise((resolve, reject) => {
+        const reader = stream.getReader();
+        const chunks = [];
+        
+        function pump() {
+            reader.read().then(({ done, value }) => {
+                if (done) {
+                    const fullArray = new Uint8Array(chunks.reduce((acc, val) => acc.concat(Array.from(val)), []));
+                    resolve(new TextDecoder('utf-8').decode(fullArray));
+                    return;
+                }
+                
+                chunks.push(value);
+                pump();
+            }).catch(reject);
+        }
+        
+        pump();
+    });
 }
 
 export default {
-    generateModel,
+    createMainfolder,
+    generateIdModel,
     getAllModels,
     fetchAndFilter,
     getObjectByGUID,
     getOrCreate,
     saveMainItems,
-    updateModel
+    updateModel,
+    getModels
 };

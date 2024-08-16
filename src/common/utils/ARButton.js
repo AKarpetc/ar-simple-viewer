@@ -196,7 +196,7 @@ class ARButton {
 			if (window.isSecureContext === false) {
 
 				message.href = document.location.href.replace(/^http:/, 'https:');
-				message.innerHTML = 'WEBXR NEEDS HTTPS'; // TODO Improve message
+				message.innerHTML = 'Для работы XR требуется безопасное соединение с сайтом (https)'; // TODO Improve message
 
 			} else {
 
@@ -205,9 +205,10 @@ class ARButton {
 
 			}
 
-			message.style.left = 'calc(50% - 90px)';
 			message.style.width = '280px';
 			message.style.textDecoration = 'none';
+			message.style.textWrap = 'balance';
+			message.style.height = 'auto';
 
 			stylizeElement(message);
 

@@ -6,18 +6,44 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 import modelUtils from "../common/utils/modelUtils.js"
+import conf from "../config/config.js"
 
 const urlParams = new URLSearchParams(window.location.search);
-const android = urlParams.get('android');
-const fbx = urlParams.get('fbx');
+let message = null;
+let armessage = null;
+let android = urlParams.get('android');
 const id = urlParams.get('id');
-const ios = urlParams.get('ios');
+let ios = urlParams.get('ios');
 const name = urlParams.get('alias');
+let attributes = {};
+let sceneParamerters = {};
+
+let mainData = JSON.parse(localStorage.getItem('localId'));
+let searchModel = mainData.mainCollection.data.filter(x => x.id === id)[0];
+
+var modelParameters = null;
+try{
+    var modelParameters = await (await fetch(`${conf.awsEndPoint}/avt-content/${conf.idsFolder}/${mainData.id}/${searchModel.id}.json?response-content-type=json`)).json();
+}
+catch (err) {
+    console.log(err)
+}
+
+const data = modelParameters ?? searchModel;
+armessage = base64ToJson(data.armessage);
+message = base64ToJson(data.message);
+
+if (modelParameters == null) {
+    armessage['src'] = armessage['src'].replace('models', `${conf.awsEndPoint}/avt-models`);
+    armessage['ios-src'] = armessage['ios-src'].replace('models', `${conf.awsEndPoint}/avt-models`);
+}
+
+android = armessage['src'];
+ios = armessage['ios-src'];
 
 document.title = urlParams.get('name');
 
 let mv = document.getElementById("model-viewer");
-let attributes = {};
 
 let scene, renderer, camera, stats;
 let model, skeleton, mixer, clock, container, containerWrapper, hemiLight;
@@ -26,7 +52,6 @@ let dirLight
 let modelSize;
 let controls;
 let numAnimations;
-let sceneParamerters = {};
 
 const backgroundColor = "#d1e9ff",
     floorColor = "#d3cfcf",
@@ -38,6 +63,14 @@ const backgroundColor = "#d1e9ff",
 const PosX = 0, PosY = 0.5, PosZ = 1.5, TarX = 0, TarY = 0.05, TarZ = 0.1
 
 window.loaderShow();
+
+function base64ToJson(encoded) {
+    if (encoded == 'undefined' || encoded == null || encoded == '')
+        return null;
+
+    var actual = JSON.parse(atob(encoded))
+    return actual;
+}
 
 init();
 

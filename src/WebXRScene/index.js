@@ -1,21 +1,13 @@
 import { WebGLRenderer } from "three/src/renderers/WebGLRenderer";
-//import { ARButton } from "three/examples/jsm/webxr/ARButton";
 import { ARButton } from "../common/utils/ARButton.js";
-
 import { createScene } from "./scene.js";
-import conf from '../config/config.js'
-import {
-  browserHasImmersiveArCompatibility,
-  displayUnsupportedBrowserMessage,
-} from "../common/utils/domUtils.js";
-
+import { browserHasImmersiveArCompatibility } from "../common/utils/domUtils.js";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
-
 import osDetector from "../common/osDetector"
-
-
+import modelUtils from "../common/utils/modelUtils.js"
+import conf from "../config/config.js"
 
 var mode = "work";
 //var mode = "text";
@@ -62,17 +54,20 @@ const sceneLoader =
 }
 
 async function fetchModels() {
-  await fetch(window.location.origin + '/models/getModels.json')
-    .then(response => response.json())
-    .then(responce => {
+    try {
+      let responce = await modelUtils.getModels();
       modelsList = responce.data;
       typesList = responce.types;
-
-    })
-    .catch(error => {
-      console.error('Ошибка загрузки моделей:', error);
-    });
-
+      for (let i = 0; i < modelsList.length; i++) {
+        modelsList[i].glb = modelsList[i].glb.replace('models', `${conf.awsEndPoint}/avt-models`);
+        modelsList[i].preview = modelsList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
+      }
+      for (let i = 0; i < typesList.length; i++) {
+        typesList[i].preview = typesList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
+      }
+    } catch (err) {
+      console.error('Ошибка загрузки моделей:', err);
+    }
 }
 
 function initializeXRApp() {

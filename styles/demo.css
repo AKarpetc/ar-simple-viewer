@@ -6,6 +6,21 @@
 	z-index: 100;
 }
 
+#search {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white; 
+    padding: 10px;
+}
+
+#scrollTopButton {
+    margin-left: 10px;
+	font-size: 30px;
+    cursor: pointer;
+	display: none;
+}
+
 .dropdown-toggle::after {
 	border-top: 0.0em solid !important;
 	border-right: -0.1em solid transparent !important;
