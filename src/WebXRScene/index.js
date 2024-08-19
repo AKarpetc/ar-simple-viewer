@@ -54,20 +54,20 @@ const sceneLoader =
 }
 
 async function fetchModels() {
-    try {
-      let responce = await modelUtils.getModels();
-      modelsList = responce.data;
-      typesList = responce.types;
-      for (let i = 0; i < modelsList.length; i++) {
-        modelsList[i].glb = modelsList[i].glb.replace('models', `${conf.awsEndPoint}/avt-models`);
-        modelsList[i].preview = modelsList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
-      }
-      for (let i = 0; i < typesList.length; i++) {
-        typesList[i].preview = typesList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
-      }
-    } catch (err) {
-      console.error('Ошибка загрузки моделей:', err);
+  try {
+    let responce = await modelUtils.getModels();
+    modelsList = responce.data;
+    typesList = responce.types;
+    for (let i = 0; i < modelsList.length; i++) {
+      modelsList[i].glb = modelsList[i].glb.replace('models', `${conf.awsEndPoint}/avt-models`);
+      modelsList[i].preview = modelsList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
     }
+    for (let i = 0; i < typesList.length; i++) {
+      typesList[i].preview = typesList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
+    }
+  } catch (err) {
+    console.error('Ошибка загрузки моделей:', err);
+  }
 }
 
 function initializeXRApp() {
@@ -91,8 +91,8 @@ function initializeXRApp() {
   });
 
   renderer.xr.addEventListener('sessionend', function (event) {
-    document.getElementById("ar-main").classList.add("hidden");
-    document.getElementById("main").classList.remove("hidden");
+
+    window.location.reload();
   });
 
   document.body.appendChild(ARButton.createButton(renderer,
@@ -331,7 +331,7 @@ async function start() {
 
 
 try {
-  if (os == "Android") {
+  if (os == "Android" || mode == "artool") {
     let main = document.getElementById("main");
     main.classList.remove("hidden");
     await start(false);
