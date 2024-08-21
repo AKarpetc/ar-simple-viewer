@@ -107,11 +107,18 @@ function initializeXRApp() {
   fetchModels().then(async (models) => {
     try {
       await LoadModels(typesList, gltfLoader, "types");
-      scene = createScene(renderer, [], sceneLoader, selectModel, clearSelection);
+      scene = createScene(renderer, [], sceneLoader, selectModel, clearSelection, null, null, hitTestReady);
     } catch (e) { alert(e) }
   });
 
 };
+
+function hitTestReady() {
+  var optionsButtons = document.getElementById("optionsButtons");
+
+  if (optionsButtons.classList.contains("hidden"))
+    optionsButtons.classList.remove("hidden")
+}
 
 function selectModel() {
   isModelSelected = true;
@@ -235,12 +242,21 @@ async function LoadModels(items, gltfLoader, type = "models") {
   for (let i = 0; i < items.length; i++) {
 
     let button = document.createElement("button");
+
+    button.id = "buttonModel" + i;
     button.classList.add("session-button");
     button.dataset.alias = items[i].alias;
     button.dataset.aliasindex = i;
+    button.dataset.modelLoaded = false;
+
     button.dataset.baseType = type;
     button.dataset.type = items[i].type;
-    button.innerHTML = `<img class="session-button__image"  src="${items[i].preview}" />`;
+
+    if (type == "models")
+      button.innerHTML += `<i id="spinnerModel${i}" class="fa fa-spinner fa-pulse fa-3x fa-spin loading-model" aria-hidden="true"></i>`;
+
+    button.innerHTML += `<img class="session-button__image" src="${items[i].preview}" />`
+
     button.addEventListener("click", (e) => {
       ClickToArButton(e);
     });
@@ -259,6 +275,13 @@ async function GetModelAsync(items) {
     var sceneModel = await gltfLoader.loadAsync(items[i].glb);
     var scale = items[i].scale;
     items[i]["glb_model"] = sceneModel;
+
+    var spinner = document.getElementById(`spinnerModel${i}`);
+    spinner?.classList?.add("hidden");
+
+    var button = document.getElementById(`buttonModel${i}`);
+    button.dataset.modelLoaded = true;
+
   }
 
   return items;
@@ -281,6 +304,10 @@ function ClickToArButton(e) {
   }
 
   var aliasindex = parseInt(e.currentTarget.dataset.aliasindex);
+
+  if (e.currentTarget.dataset.modelLoaded == "false")
+    return;
+
   if (session != null && scene != null) {
     scene.onSelect(aliasindex);
   }
