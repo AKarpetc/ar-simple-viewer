@@ -54,20 +54,20 @@ const sceneLoader =
 }
 
 async function fetchModels() {
-    try {
-      let responce = await modelUtils.getModels();
-      modelsList = responce.data;
-      typesList = responce.types;
-      for (let i = 0; i < modelsList.length; i++) {
-        modelsList[i].glb = modelsList[i].glb.replace('models', `${conf.awsEndPoint}/avt-models`);
-        modelsList[i].preview = modelsList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
-      }
-      for (let i = 0; i < typesList.length; i++) {
-        typesList[i].preview = typesList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
-      }
-    } catch (err) {
-      console.error('Ошибка загрузки моделей:', err);
+  try {
+    let responce = await modelUtils.getModels();
+    modelsList = responce.data;
+    typesList = responce.types;
+    for (let i = 0; i < modelsList.length; i++) {
+      modelsList[i].glb = modelsList[i].glb.replace('models', `${conf.awsEndPoint}/avt-models`);
+      modelsList[i].preview = modelsList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
     }
+    for (let i = 0; i < typesList.length; i++) {
+      typesList[i].preview = typesList[i].preview.replace('models', `${conf.awsEndPoint}/avt-models`);
+    }
+  } catch (err) {
+    console.error('Ошибка загрузки моделей:', err);
+  }
 }
 
 function initializeXRApp() {
@@ -91,8 +91,8 @@ function initializeXRApp() {
   });
 
   renderer.xr.addEventListener('sessionend', function (event) {
-    document.getElementById("ar-main").classList.add("hidden");
-    document.getElementById("main").classList.remove("hidden");
+
+    window.location.reload();
   });
 
   document.body.appendChild(ARButton.createButton(renderer,
@@ -107,11 +107,18 @@ function initializeXRApp() {
   fetchModels().then(async (models) => {
     try {
       await LoadModels(typesList, gltfLoader, "types");
-      scene = createScene(renderer, [], sceneLoader, selectModel, clearSelection);
+      scene = createScene(renderer, [], sceneLoader, selectModel, clearSelection, null, null, hitTestReady);
     } catch (e) { alert(e) }
   });
 
 };
+
+function hitTestReady() {
+  var optionsButtons = document.getElementById("optionsButtons");
+
+  if (optionsButtons.classList.contains("hidden"))
+    optionsButtons.classList.remove("hidden")
+}
 
 function selectModel() {
   isModelSelected = true;
@@ -235,12 +242,21 @@ async function LoadModels(items, gltfLoader, type = "models") {
   for (let i = 0; i < items.length; i++) {
 
     let button = document.createElement("button");
+
+    button.id = "buttonModel" + i;
     button.classList.add("session-button");
     button.dataset.alias = items[i].alias;
     button.dataset.aliasindex = i;
+    button.dataset.modelLoaded = false;
+
     button.dataset.baseType = type;
     button.dataset.type = items[i].type;
-    button.innerHTML = `<img class="session-button__image"  src="${items[i].preview}" />`;
+
+    if (type == "models")
+      button.innerHTML += `<i id="spinnerModel${i}" class="fa fa-spinner fa-pulse fa-3x fa-spin loading-model" aria-hidden="true"></i>`;
+
+    button.innerHTML += `<img class="session-button__image" src="${items[i].preview}" />`
+
     button.addEventListener("click", (e) => {
       ClickToArButton(e);
     });
@@ -259,6 +275,13 @@ async function GetModelAsync(items) {
     var sceneModel = await gltfLoader.loadAsync(items[i].glb);
     var scale = items[i].scale;
     items[i]["glb_model"] = sceneModel;
+
+    var spinner = document.getElementById(`spinnerModel${i}`);
+    spinner?.classList?.add("hidden");
+
+    var button = document.getElementById(`buttonModel${i}`);
+    button.dataset.modelLoaded = true;
+
   }
 
   return items;
@@ -281,6 +304,10 @@ function ClickToArButton(e) {
   }
 
   var aliasindex = parseInt(e.currentTarget.dataset.aliasindex);
+
+  if (e.currentTarget.dataset.modelLoaded == "false")
+    return;
+
   if (session != null && scene != null) {
     scene.onSelect(aliasindex);
   }
@@ -331,7 +358,7 @@ async function start() {
 
 
 try {
-  if (os == "Android") {
+  if (os == "Android" || mode == "artool") {
     let main = document.getElementById("main");
     main.classList.remove("hidden");
     await start(false);

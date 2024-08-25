@@ -26,7 +26,7 @@ import {
 
 // Custom 3D model augmentation
 
-export function createScene(renderer, sceneModels, loader = null, selectModel = null, clearSelection = null, max = 5, changeModelsNumber = null) {
+export function createScene(renderer, sceneModels, loader = null, selectModel = null, clearSelection = null, max = 5, changeModelsNumber = null, hittestRady = null) {
   const scene = new Scene();
 
   var intersectedObject;
@@ -279,9 +279,11 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
       planeMarker.visible = true;
       planeMarker.matrix.fromArray(hitPoseTransformed);
 
+      if (hittestRady)
+        hittestRady()
+
       if (loader)
         loader.hide();
-
     }
   }
 
