@@ -76,6 +76,16 @@ html {
   }
 }
 
+.tech-lead {
+  margin-top: 0px !important;
+}
+
+@media only screen and (max-width: 1024px) {
+  .tech-lead {
+    margin-top: 60px !important;
+  }
+}
+
 html,
 body {
   height: 100%;
