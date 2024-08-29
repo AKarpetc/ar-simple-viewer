@@ -70,6 +70,10 @@ async function fetchModels() {
   }
 }
 
+function AddLogs(logs) {
+  document.getElementById("log").innerText = logs;
+}
+
 function initializeXRApp() {
   const { devicePixelRatio, innerHeight, innerWidth } = window;
 
@@ -107,7 +111,7 @@ function initializeXRApp() {
   fetchModels().then(async (models) => {
     try {
       await LoadModels(typesList, gltfLoader, "types");
-      scene = createScene(renderer, [], sceneLoader, selectModel, clearSelection, null, null, hitTestReady);
+      scene = createScene(renderer, [], sceneLoader, selectModel, clearSelection, null, null, hitTestReady, AddLogs);
     } catch (e) { alert(e) }
   });
 
@@ -120,14 +124,22 @@ function hitTestReady() {
     optionsButtons.classList.remove("hidden")
 }
 
-function selectModel() {
+function selectModel(mode = "all") {
   isModelSelected = true;
 
-  [...document.getElementsByClassName("toolbar_button__selected")].forEach(el => {
+  if (mode == "all") {
+    [...document.getElementsByClassName("toolbar_button__selected")].forEach(el => {
+      if (el.classList.contains("hidden"))
+        el.classList.remove("hidden")
+    });
+  }
+
+  if (mode == "put") {
+    let el = document.getElementById("putModel");
     if (el.classList.contains("hidden"))
       el.classList.remove("hidden")
+  }
 
-  });
 }
 
 function clearSelection() {
@@ -145,6 +157,12 @@ window.unselect = async () => {
 window.closeSession = () => {
   if (session != null)
     session.end();
+}
+
+window.putModel = () => {
+
+  if (scene)
+    scene.Place();
 }
 
 window.placeModel = () => {

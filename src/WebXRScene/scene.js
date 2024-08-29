@@ -1,4 +1,4 @@
-import { createPlaneMarker } from "./createPlaneMarker";
+import { createPlaneMarker, createPlaceButton } from "./createPlaneMarker";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { handleXRHitTest } from "../common/xr/hitTest";
@@ -26,7 +26,7 @@ import {
 
 // Custom 3D model augmentation
 
-export function createScene(renderer, sceneModels, loader = null, selectModel = null, clearSelection = null, max = 5, changeModelsNumber = null, hittestRady = null) {
+export function createScene(renderer, sceneModels, loader = null, selectModel = null, clearSelection = null, max = 5, changeModelsNumber = null, hittestRady = null, AddLogs = null) {
   const scene = new Scene();
 
   var intersectedObject;
@@ -55,7 +55,10 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
    * Create the plane marker to show on tracked surfaces.
    */
   const planeMarker = createPlaneMarker();
+
   scene.add(planeMarker);
+  //scene.add(placeButton);
+
 
   /**
    * Setup the controller to get input from the XR space.
@@ -92,8 +95,8 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
 
   function unHightLightObject(boundaryBox) {
     if (boundaryBox) {
-      let currentModel = installedModels.filter(x => x.boundaryBox == boundaryBox);
-      currentModel[0].hightLightBox.visible = false;
+      let model = installedModels.filter(x => x.boundaryBox == boundaryBox);
+      model[0].hightLightBox.visible = false;
       intersectedObject = null;
       if (clearSelection)
         clearSelection();
@@ -133,7 +136,7 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
 
         intersectedObject = intersects[0].object;
 
-        hightLightObject(intersectedObject)
+        hightLightObject(intersectedObject);
       }
 
     } catch (e) { alert(e); }
@@ -169,68 +172,87 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
     }
   }
 
-  function onSelect(i) {
+  function Place() {
 
+    currentModel.matrixAutoUpdate = true;
+    // Place the model on the spot where the marker is showing.
+    currentModel.position.setFromMatrixPosition(planeMarker.matrix);
+    currentModel.setRotationFromMatrix(planeMarker.matrix);
+    currentPosition = planeMarker.matrix;
+
+    // Rotate the model randomly to give a bit of variation.
+    // currentModel.setRotationFromMatrix(planeMarker.matrix);
+    const materialboundaryBox = new MeshBasicMaterial({
+      color: 0xffffff, // Green color
+      transparent: true, // Enable transparency
+      opacity: 0  // Set the opacity (50% transparent)
+    });
+
+    const box3 = new Box3().setFromObject(currentModel);
+    const boxGeometry = new BoxGeometry(
+      box3.getSize(new Vector3()).x,
+      box3.getSize(new Vector3()).y * 2,
+      box3.getSize(new Vector3()).z
+    );
+
+    const boundaryBox = new Mesh(boxGeometry, materialboundaryBox);
+    boundaryBox.setRotationFromMatrix(planeMarker.matrix);
+    boundaryBox.position.setFromMatrixPosition(planeMarker.matrix);
+    boundaryBox.name = "modelBox";
+    scene.add(boundaryBox);
+
+
+    const hightLightBoxGeometry = new BoxGeometry(
+      box3.getSize(new Vector3()).x + 0.01,
+      0.05,
+      box3.getSize(new Vector3()).z + 0.01,
+    );
+
+    const materialhightLightBox = new MeshBasicMaterial({
+      color: 0x7CFC00, // Green color
+      transparent: false,// Enable transparency
+    });
+
+    const hightLightBox = new Mesh(hightLightBoxGeometry, materialhightLightBox);
+    hightLightBox.setRotationFromMatrix(planeMarker.matrix);
+    hightLightBox.position.setFromMatrixPosition(planeMarker.matrix);
+    hightLightBox.name = "hightLightBox";
+    hightLightBox.visible = false;
+    scene.add(hightLightBox);
+
+    installedModels.push({
+      model: currentModel,
+      boundaryBox: boundaryBox,
+      hightLightBox: hightLightBox
+    });
+
+    if (currentModel.scale) {
+      currentModel.scale.set(1, 1, 1)
+    }
+
+    if (changeModelsNumber)
+      changeModelsNumber(installedModels.length);
+
+    currentModel = null;
+    clearSelection();
+  }
+
+  function onSelect(i) {
     if (planeMarker.visible) {
       try {
 
         currentModel = models[i].glb_model.scene.clone();
-        // Place the model on the spot where the marker is showing.
-        currentModel.position.setFromMatrixPosition(planeMarker.matrix);
-        currentPosition = planeMarker.matrix;
 
-        // Rotate the model randomly to give a bit of variation.
-        currentModel.setRotationFromMatrix(planeMarker.matrix);
+        if (currentModel.scale) {
+          currentModel.scale.set(0.7, 0.7, 0.7)
+        }
+
         currentModel.visible = true;
+        currentModel.matrixAutoUpdate = false;
+        currentModel.matrix.fromArray(planeMarker.matrix);
         scene.add(currentModel);
 
-        const materialboundaryBox = new MeshBasicMaterial({
-          color: 0xffffff, // Green color
-          transparent: true, // Enable transparency
-          opacity: 0  // Set the opacity (50% transparent)
-        });
-
-        const box3 = new Box3().setFromObject(currentModel);
-        const boxGeometry = new BoxGeometry(
-          box3.getSize(new Vector3()).x,
-          box3.getSize(new Vector3()).y * 2,
-          box3.getSize(new Vector3()).z
-        );
-
-        const boundaryBox = new Mesh(boxGeometry, materialboundaryBox);
-        boundaryBox.setRotationFromMatrix(planeMarker.matrix);
-        boundaryBox.position.setFromMatrixPosition(planeMarker.matrix);
-        boundaryBox.name = "modelBox";
-        scene.add(boundaryBox);
-
-
-        const hightLightBoxGeometry = new BoxGeometry(
-          box3.getSize(new Vector3()).x + 0.01,
-          0.05,
-          box3.getSize(new Vector3()).z + 0.01,
-        );
-
-        const materialhightLightBox = new MeshBasicMaterial({
-          color: 0x7CFC00, // Green color
-          transparent: false,// Enable transparency
-        });
-
-        const hightLightBox = new Mesh(hightLightBoxGeometry, materialhightLightBox);
-        hightLightBox.setRotationFromMatrix(planeMarker.matrix);
-        hightLightBox.position.setFromMatrixPosition(planeMarker.matrix);
-        hightLightBox.name = "hightLightBox";
-        hightLightBox.visible = false;
-        scene.add(hightLightBox);
-
-        installedModels.push({
-          model: currentModel,
-          boundaryBox: boundaryBox,
-          hightLightBox: hightLightBox
-        });
-
-        if (changeModelsNumber)
-          changeModelsNumber(installedModels.length);
-
+        selectModel("put");
 
       } catch (e) {
         alert(e);
@@ -255,9 +277,9 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
 
   function Rotate(isUp) {
     let currentModel = installedModels.filter(x => x.boundaryBox == intersectedObject)[0];
-    var rotationModel = currentModel.model;
-    var rotationBoundary = currentModel.boundaryBox;
-    var rotationHightLight = currentModel.hightLightBox;
+    let rotationModel = currentModel.model;
+    let rotationBoundary = currentModel.boundaryBox;
+    let rotationHightLight = currentModel.hightLightBox;
 
     if (isUp) {
       rotationModel.rotation.y += 0.1;
@@ -279,6 +301,11 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
       planeMarker.visible = true;
       planeMarker.matrix.fromArray(hitPoseTransformed);
 
+      if (currentModel) {
+        currentModel.matrix.fromArray(hitPoseTransformed);
+        currentModel.visible = true;
+      }
+
       if (hittestRady)
         hittestRady()
 
@@ -292,6 +319,11 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
    */
   function onHitTestResultEmpty() {
     planeMarker.visible = false;
+
+
+    if (currentModel) {
+      currentModel.visible = false;
+    }
   }
 
   /**
@@ -326,5 +358,5 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
 
   renderer.setAnimationLoop(renderLoop);
 
-  return { scene, onSelect, setModels, nextPlace, onRemove, Scale, Rotate, startTransform, stopTransform, unselect }
+  return { scene, onSelect, setModels, nextPlace, onRemove, Scale, Rotate, startTransform, stopTransform, unselect, Place }
 }
