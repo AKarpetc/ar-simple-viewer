@@ -1,5 +1,7 @@
 # MainScript.ps1
 
+param([string]$branchName)
+
 # 1. Проверка установки AWS CLI
 Write-Host "Шаг 1: Проверка установки AWS CLI..."
 .\AwsCliCheck.ps1
@@ -18,7 +20,7 @@ if ($LASTEXITCODE -ne 0) {
 
 # 3. Клонирование и сборка фронтенд проекта
 Write-Host "Шаг 3: Клонирование и сборка фронтенд проекта..."
-.\CloneAndBuildFrontProj.ps1 -repoUrl "repoUrl.git" -branchName "main"
+.\CloneAndBuildFrontProj.ps1 -repoUrl "repoUrl.git" -branchName $branchName
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Ошибка при клонировании или сборке фронтенд проекта."
     exit $LASTEXITCODE
