@@ -77,7 +77,7 @@ function trySend(userInput, formId, value = null) {
         }, successTimeOut);
     }
     else {
-        createEmailMsg(formId, 'Ошибка emeil адреса.', 3500, true);
+        createEmailMsg(formId, 'Ошибка: "Адрес эл. почты" введен неверно', 3500, true);
     }
 }
 
