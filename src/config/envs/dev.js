@@ -7,6 +7,6 @@ const  conf =
     awsEndPoint: "https://storage.yandexcloud.kz",
     awsAccessKeyId: "YCB2BzjHd8epgNyLs6eDfFnW4",
     awsSecretAccessKey: "YCMVWV1P3UxcIG-YJEcCVyq74jw49_-23UP6UQdT",
-    smtpApiUrl: "http://titan-auto-barnaul.ru:5000"
+    smtpApiUrl: "https://titan-auto-barnaul.ru:5000"
 }
 export default conf;
