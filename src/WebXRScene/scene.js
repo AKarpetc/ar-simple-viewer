@@ -450,8 +450,6 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
       currentModel = movingModel;
 
       currentModel.matrixAutoUpdate = false;
-      currentModel.scale.set(0.5, 0.5, 0.5)
-
       currentModel.updateMatrix();
 
       /*
