@@ -35,7 +35,7 @@
     </div>
 
     <div id="ar-main" class="ar-main hidden">
-        <span class="log" id="log">Text</span>
+        <span class="log" id="log"></span>
         <div id="toolbar" class="toolbar ">
 
             <div id="toolbarSlider" class="toolbar__model-slider hidden">
@@ -62,8 +62,12 @@
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
 
+                <button onclick="moveModel()" class="toolbar_button toolbar_button__selected hidden">
+                    <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                </button>
+
                 <button id="putModel" onclick="putModel()"
-                    class="toolbar_button toolbar_button__selected toolbar_button__selected__put  hidden">
+                    class="toolbar_button toolbar_button__selected__put  hidden">
                     <i class="fa fa-stop-circle" aria-hidden="true"></i>
                 </button>
             </div>

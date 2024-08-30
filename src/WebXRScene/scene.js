@@ -55,7 +55,7 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
    * Create the plane marker to show on tracked surfaces.
    */
   const planeMarker = createPlaneMarker();
-
+  let selectedModel;
   scene.add(planeMarker);
   //scene.add(placeButton);
 
@@ -85,11 +85,12 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
 
   function hightLightObject(boundaryBox) {
     if (boundaryBox) {
-      let currentModel = installedModels.filter(x => x.boundaryBox == boundaryBox)[0];
-      currentModel.hightLightBox.visible = true;
+      let hModel = installedModels.filter(x => x.boundaryBox == boundaryBox)[0];
+      hModel.hightLightBox.visible = true;
+      selectedModel = hModel;
 
       if (selectModel)
-        selectModel(currentModel.model);
+        selectModel(hModel.model);
     }
   }
 
@@ -98,6 +99,8 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
       let model = installedModels.filter(x => x.boundaryBox == boundaryBox);
       model[0].hightLightBox.visible = false;
       intersectedObject = null;
+      selectedModel = null;
+
       if (clearSelection)
         clearSelection();
     }
@@ -137,6 +140,8 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
         intersectedObject = intersects[0].object;
 
         hightLightObject(intersectedObject);
+
+        selectModel();
       }
 
     } catch (e) { alert(e); }
@@ -173,68 +178,71 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
   }
 
   function Place() {
+    try {
+      var matrix = currentModel.matrix;
+      currentModel.matrixAutoUpdate = true;
 
-    currentModel.matrixAutoUpdate = true;
-    // Place the model on the spot where the marker is showing.
-    currentModel.position.setFromMatrixPosition(planeMarker.matrix);
-    currentModel.setRotationFromMatrix(planeMarker.matrix);
-    currentPosition = planeMarker.matrix;
+      currentModel.position.setFromMatrixPosition(matrix);
 
-    // Rotate the model randomly to give a bit of variation.
-    // currentModel.setRotationFromMatrix(planeMarker.matrix);
-    const materialboundaryBox = new MeshBasicMaterial({
-      color: 0xffffff, // Green color
-      transparent: true, // Enable transparency
-      opacity: 0  // Set the opacity (50% transparent)
-    });
+      if (!currentModel?.isTransformed) {
+        currentModel.setRotationFromMatrix(matrix);
+      }
 
-    const box3 = new Box3().setFromObject(currentModel);
-    const boxGeometry = new BoxGeometry(
-      box3.getSize(new Vector3()).x,
-      box3.getSize(new Vector3()).y * 2,
-      box3.getSize(new Vector3()).z
-    );
+      // Rotate the model randomly to give a bit of variation.
+      // currentModel.setRotationFromMatrix(planeMarker.matrix);
+      const materialboundaryBox = new MeshBasicMaterial({
+        color: 0xffffff, // Green color
+        transparent: true, // Enable transparency
+        opacity: 0  // Set the opacity (50% transparent)
+      });
 
-    const boundaryBox = new Mesh(boxGeometry, materialboundaryBox);
-    boundaryBox.setRotationFromMatrix(planeMarker.matrix);
-    boundaryBox.position.setFromMatrixPosition(planeMarker.matrix);
-    boundaryBox.name = "modelBox";
-    scene.add(boundaryBox);
+      const box3 = new Box3().setFromObject(currentModel);
+      const boxGeometry = new BoxGeometry(
+        box3.getSize(new Vector3()).x,
+        box3.getSize(new Vector3()).y * 2,
+        box3.getSize(new Vector3()).z
+      );
 
+      const boundaryBox = new Mesh(boxGeometry, materialboundaryBox);
+      boundaryBox.setRotationFromMatrix(planeMarker.matrix);
+      boundaryBox.position.setFromMatrixPosition(planeMarker.matrix);
+      boundaryBox.name = "modelBox";
+      scene.add(boundaryBox);
 
-    const hightLightBoxGeometry = new BoxGeometry(
-      box3.getSize(new Vector3()).x + 0.01,
-      0.05,
-      box3.getSize(new Vector3()).z + 0.01,
-    );
+      const hightLightBoxGeometry = new BoxGeometry(
+        box3.getSize(new Vector3()).x + 0.01,
+        0.05,
+        box3.getSize(new Vector3()).z + 0.01,
+      );
 
-    const materialhightLightBox = new MeshBasicMaterial({
-      color: 0x7CFC00, // Green color
-      transparent: false,// Enable transparency
-    });
+      const materialhightLightBox = new MeshBasicMaterial({
+        color: 0x7CFC00, // Green color
+        transparent: false,// Enable transparency
+      });
 
-    const hightLightBox = new Mesh(hightLightBoxGeometry, materialhightLightBox);
-    hightLightBox.setRotationFromMatrix(planeMarker.matrix);
-    hightLightBox.position.setFromMatrixPosition(planeMarker.matrix);
-    hightLightBox.name = "hightLightBox";
-    hightLightBox.visible = false;
-    scene.add(hightLightBox);
+      const hightLightBox = new Mesh(hightLightBoxGeometry, materialhightLightBox);
+      hightLightBox.setRotationFromMatrix(planeMarker.matrix);
+      hightLightBox.position.setFromMatrixPosition(planeMarker.matrix);
+      hightLightBox.name = "hightLightBox";
+      hightLightBox.visible = false;
+      scene.add(hightLightBox);
 
-    installedModels.push({
-      model: currentModel,
-      boundaryBox: boundaryBox,
-      hightLightBox: hightLightBox
-    });
+      installedModels.push({
+        model: currentModel,
+        boundaryBox: boundaryBox,
+        hightLightBox: hightLightBox
+      });
 
-    if (currentModel.scale) {
-      currentModel.scale.set(1, 1, 1)
-    }
+      if (currentModel.scale) {
+        currentModel.scale.set(1, 1, 1)
+      }
 
-    if (changeModelsNumber)
-      changeModelsNumber(installedModels.length);
+      if (changeModelsNumber)
+        changeModelsNumber(installedModels.length);
 
-    currentModel = null;
-    clearSelection();
+      currentModel = null;
+      clearSelection();
+    } catch (e) { alert(e); }
   }
 
   function onSelect(i) {
@@ -249,9 +257,10 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
 
         currentModel.visible = true;
         currentModel.matrixAutoUpdate = false;
-        currentModel.matrix.fromArray(planeMarker.matrix);
-        scene.add(currentModel);
 
+        currentModel.matrix.fromArray(planeMarker.matrix);
+
+        scene.add(currentModel);
         selectModel("put");
 
       } catch (e) {
@@ -271,8 +280,6 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
     rotationModel.scale.set(value, value, value)
     rotationBoundary.scale.set(value, value, value)
     rotationHightLight.scale.set(value, value, value)
-
-
   }
 
   function Rotate(isUp) {
@@ -280,6 +287,8 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
     let rotationModel = currentModel.model;
     let rotationBoundary = currentModel.boundaryBox;
     let rotationHightLight = currentModel.hightLightBox;
+
+    //installedModels=installedModels.filter(x => x.boundaryBox != intersectedObject);
 
     if (isUp) {
       rotationModel.rotation.y += 0.1;
@@ -291,8 +300,13 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
       rotationBoundary.rotation.y -= 0.1;
       rotationHightLight.rotation.y -= 0.1;
     }
-  }
 
+    rotationModel.updateMatrix();
+
+    //installedModels.put(currentModel);
+
+    // resetRotation(rotationModel);
+  }
   /**
    * Called whenever a new hit test result is ready.
    */
@@ -348,15 +362,130 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
   };
 
 
+  let savedScale = null;
   function startTransform() {
     isTransforming = true;
   }
 
   function stopTransform() {
-    isTransforming = false;
+
+    try {
+      isTransforming = false;
+
+      let currentModel = selectedModel;
+      let rotationModel = currentModel.model;
+
+      rotationModel.isTransformed = true;
+
+      rotationModel["savedRotation"] = {
+        x: rotationModel.rotation.x,
+        y: rotationModel.rotation.y,
+        z: rotationModel.rotation.z
+      }
+      rotationModel["savedScale"] = {
+        x: rotationModel.scale.x,
+        y: rotationModel.scale.y,
+        z: rotationModel.scale.z
+      }
+
+    } catch (e) {
+      alert(e);
+    }
+
+  }
+
+  function bakeCurrentScaleAsDefault(mesh) {
+    // Capture the current scale
+    const currentScale = mesh.scale.clone();
+
+    // Create a scaling matrix
+    const scaleMatrix = new Matrix4();
+    scaleMatrix.makeScale(currentScale.x, currentScale.y, currentScale.z);
+
+    // Apply this scaling matrix to the mesh's geometry
+    mesh.geometry.applyMatrix4(scaleMatrix);
+
+    // Reset the object's scale to default (1, 1, 1)
+    mesh.scale.set(1, 1, 1);
+
+    // If your render loop doesn't update the geometry by default, ensure positions are marked updated
+    mesh.geometry.attributes.position.needsUpdate = true;
+
+    // Log for verification
+    console.log("The model's current scale has been set as default.");
+  }
+
+  function bakeCurrentRotationAsDefault(mesh) {
+    // Ensure matrix updates reflect current state
+    mesh.updateMatrixWorld(true);
+
+    // Get the current rotation as a quaternion
+    const currentQuaternion = mesh.quaternion.clone();
+
+    // Reset the object's rotation
+    mesh.rotation.set(0, 0, 0);
+
+    // Create a rotation matrix from the inverted current rotation quaternion
+    const rotationMatrix = new Matrix4();
+    rotationMatrix.makeRotationFromQuaternion(currentQuaternion.invert());
+
+    // Apply this matrix to the mesh's geometry, baking the rotation into the vertices
+    mesh.geometry.applyMatrix4(rotationMatrix);
+
+    // Flag the position for update, if necessary
+    mesh.geometry.attributes.position.needsUpdate = true;
+  }
+
+  let savedMatrix;
+
+  function moveModel() {
+
+    try {
+      let selected = selectedModel;
+
+      var movingModel = selected.model;
+      var movingBoundary = selected.boundaryBox;
+      var movingHightLight = selected.hightLightBox;
+
+      currentModel = movingModel;
+
+      currentModel.matrixAutoUpdate = false;
+      currentModel.scale.set(0.5, 0.5, 0.5)
+
+      currentModel.updateMatrix();
+
+      /*
+      if (currentModel.savedRotation)
+        currentModel.rotation.set(currentModel.savedRotation.x, currentModel.savedRotation.y, currentModel.savedRotation.z);
+
+
+      currentModel.traverse(function (node) { // or myObject.traverse(
+        if (node.isMesh) {
+          if (currentModel.savedRotation)
+            node.geometry.rotateY(currentModel.savedRotation.y);
+        }
+      });
+      */
+
+      /*
+      if (currentModel.currentQuaternion)
+        currentModel.setRotationFromQuaternion(currentModel.currentQuaternion)
+
+      currentModel.updateMatrix();
+    */
+
+
+      scene.remove(movingBoundary);
+      scene.remove(movingHightLight);
+
+      selectModel("put");
+    } catch (e) {
+      alert(e);
+
+    }
   }
 
   renderer.setAnimationLoop(renderLoop);
 
-  return { scene, onSelect, setModels, nextPlace, onRemove, Scale, Rotate, startTransform, stopTransform, unselect, Place }
+  return { scene, onSelect, setModels, nextPlace, onRemove, Scale, Rotate, startTransform, stopTransform, unselect, Place, moveModel }
 }
