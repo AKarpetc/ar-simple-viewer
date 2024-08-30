@@ -17,6 +17,7 @@ if (-not (Test-Path $sourceDirectory)) {
 Write-Host "Загрузка файлов из $sourceDirectory в $bucketName..."
 # Массив с путями для удаления
     $pathsToRemove = @(
+    ".git",
     "BackEnd",
     "https",
     "mailing_templates",
