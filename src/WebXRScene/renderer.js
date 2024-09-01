@@ -13,7 +13,6 @@ export function initializeXRApp(model) {
     renderer.xr.enabled = true;
 
     var arButton = ARButton.createButton(renderer, { requiredFeatures: ["hit-test"] });
-    arButton.classList.add("ar-button");
 
     document.body.appendChild(arButton);
 
