@@ -99,13 +99,11 @@ function initializeXRApp() {
     window.location.reload();
   });
 
-  const moreButton = document.getElementById("openModal");
-
-  moreButton.appendChild(ARButton.createButton(renderer,
+  document.body.appendChild(ARButton.createButton(renderer,
     {
       requiredFeatures: ["hit-test"],
       optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
-      domOverlay: { root: moreButton }
+      domOverlay: { root: document.body }
     }));
 
   sceneLoader.init();
