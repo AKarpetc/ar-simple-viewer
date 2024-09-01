@@ -3,7 +3,6 @@
 
 <head>
     <script src="https://launchar.app/sdk/v1?key=D1ZaHR8HW0yrah9liileJN2UT4qdpk2X"></script>
-
     <title>Art Vision Tech</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,15 +16,13 @@
 </head>
 
 <body>
-    <div id="qr-code" class="qr-code hidden">
-
-    </div>
+    <div id="qr-code" class="qr-code hidden"></div>
     <div id="main" class="main hidden">
         <div class="main-header">
-            <b>Инструкция по использованию пространства XR</b>
+            <a href="#" id="openModal">Узнать больше о XR</a>
         </div>
-
         <div class="main-description">
+            <b>Инструкция по использованию пространства XR</b>
             <br>
             <b>Выберите подходящее место:</b>
             <br>
@@ -47,15 +44,11 @@
             Если модель выбрана под ней отрисовывается зеленая подложка, в этом режиме возможно перемещать, изменять,
             добавлять и удалять модели в пространстве, для этого используйте кнопки в правой части экрана.
         </div>
-        <div class="main-description">
-            <a href="#" id="openModal">Узнать больше о XR</a>
-        </div>
     </div>
 
     <div id="ar-main" class="ar-main hidden">
         <span class="log" id="log"></span>
         <div id="toolbar" class="toolbar ">
-
             <div id="toolbarSlider" class="toolbar__model-slider hidden">
                 <div class="slider-container">
                     <input type="range" min="1" max="200" value="100" oninput="sliderChange(this)"
@@ -88,26 +81,18 @@
                     <i class="fa fa-stop-circle" aria-hidden="true"></i>
                 </button>
             </div>
-
-
         </div>
 
         <div id="optionsButtons" class="session-buttons hidden">
-
             <button id="arBack" onclick="arBack()" class="session-button hidden" data-alias="undefined"
                 data-aliasindex="0" data-base-type="types"><img class="session-button__image"
                     src="img/back.png"></button>
 
-            <div id="places" class="option-buttons">
-
-            </div>
+            <div id="places" class="option-buttons"></div>
         </div>
 
         <div id="place-finder" class="place-finder">
-            <div class="place-finder-hands">
-
-            </div>
-
+            <div class="place-finder-hands"></div>
         </div>
 
         <a id="close" onclick="closeSession()" class="session-close"></a>
@@ -117,22 +102,13 @@
     <div id="modal" class="modal hidden">
         <div class="modal-content">
             <span id="closeModal" class="close">&times;</span>
-            <div style="padding: 10px;">
-                <p><b>XR (Extended Reality)</b> — это общее название для технологий, которые объединяют реальный и
-                    виртуальный миры, включая <b>VR</b> (виртуальная реальность), <b>AR</b> (дополненная реальность) и
-                    <b>MR</b> (смешанная реальность).
-                </p>
-                <p>Пример:</p>
-                <ul>
-                    <li><b>В VR</b> вы надеваете гарнитуру и полностью погружаетесь в цифровую реальность.</li>
-                    <li><b>В AR</b>, как в игре Pokémon GO, виртуальные объекты накладываются на окружающий мир через
-                        экран смартфона.</li>
-                    <li><b>В MR</b>, как в HoloLens, виртуальные объекты взаимодействуют с реальным миром и с вами.</li>
-                </ul>
-                <p>XR охватывает все эти технологии и их комбинации.</p>
-            </div>
+            <iframe src="https://education.yandex.ru/journal/vr-ar-mr" style="width: 100%; height: 400px;"></iframe>
         </div>
     </div>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <script type="module" src="/dist/webXRScene.bandle.js?v=1.0.2"></script>
 
     <script>
         // Открытие модального окна
@@ -187,12 +163,6 @@
             cursor: pointer;
         }
     </style>
-
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-    <!-- Loads <model-viewer> for browsers: -->
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-    <script type="module" src="/dist/webXRScene.bandle.js?v=1.0.2"></script>
 </body>
-
 
 </html>
