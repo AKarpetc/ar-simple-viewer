@@ -10,6 +10,13 @@
     line-height: 36px;
 }
 
+.ar-button {
+    position: relative; /* Замените это при необходимости */
+    display: inline-block;
+    margin: 20px auto;
+    z-index: auto; /* Наверняка не превышает других значений */
+}
+
 .main-header {
     text-align: left;
     width: 80%;

@@ -99,12 +99,14 @@ function initializeXRApp() {
     window.location.reload();
   });
 
-  document.body.appendChild(ARButton.createButton(renderer,
+  let button = ARButton.createButton(renderer,
     {
       requiredFeatures: ["hit-test"],
       optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
       domOverlay: { root: document.body }
-    }));
+    });
+  button.classList.add("ar-button");
+  document.body.appendChild(button);
 
   sceneLoader.init();
 
@@ -425,12 +427,14 @@ try {
     await start(false);
   } else if (os == "Windows") {
     showQR();
-    document.body.appendChild(ARButton.createButton(renderer,
+    let button = ARButton.createButton(renderer,
       {
         requiredFeatures: ["hit-test"],
         optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
         domOverlay: { root: document.body }
-      }));
+      });
+    button.classList.add("ar-button");
+    document.body.appendChild(button);
   } else {
     if (isImmersiveArSupported) {
       let main = document.getElementById("main");
