@@ -88,7 +88,7 @@ function initializeXRApp() {
   renderer.xr.enabled = true;
 
   renderer.xr.addEventListener('sessionstart', function (event) {
-    mainElement.classList.add("hidden");
+    document.getElementById("main").classList.add("hidden");
     document.getElementById("ar-main").classList.remove("hidden");
 
     session = renderer.xr.getSession();
@@ -99,11 +99,13 @@ function initializeXRApp() {
     window.location.reload();
   });
 
-  mainElement.appendChild(ARButton.createButton(renderer,
+  const moreButton = document.getElementById("openModal");
+
+  moreButton.appendChild(ARButton.createButton(renderer,
     {
       requiredFeatures: ["hit-test"],
       optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
-      domOverlay: { root: mainElement }
+      domOverlay: { root: moreButton }
     }));
 
   sceneLoader.init();

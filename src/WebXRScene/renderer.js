@@ -15,7 +15,7 @@ export function initializeXRApp(model) {
     var arButton = ARButton.createButton(renderer, { requiredFeatures: ["hit-test"] });
     arButton.classList.add("ar-button");
 
-    document.body.appendChild(arButton);
+    document.getElementById("openModal").appendChild(arButton);
 
     createScene(renderer, model);
 
