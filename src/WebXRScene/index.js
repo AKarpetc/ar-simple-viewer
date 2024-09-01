@@ -71,7 +71,7 @@ async function fetchModels() {
 }
 
 function AddLogs(logs) {
-  document.getElementById("log").innerText += logs +"\n";
+  document.getElementById("log").innerText += logs + "\n";
 }
 
 function initializeXRApp() {
@@ -88,7 +88,7 @@ function initializeXRApp() {
   renderer.xr.enabled = true;
 
   renderer.xr.addEventListener('sessionstart', function (event) {
-    document.getElementById("main").classList.add("hidden");
+    mainElement.classList.add("hidden");
     document.getElementById("ar-main").classList.remove("hidden");
 
     session = renderer.xr.getSession();
@@ -99,14 +99,12 @@ function initializeXRApp() {
     window.location.reload();
   });
 
-  let button = ARButton.createButton(renderer,
+  mainElement.appendChild(ARButton.createButton(renderer,
     {
       requiredFeatures: ["hit-test"],
       optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
       domOverlay: { root: document.body }
-    });
-  button.classList.add("ar-button");
-  document.body.appendChild(button);
+    }));
 
   sceneLoader.init();
 
@@ -427,14 +425,12 @@ try {
     await start(false);
   } else if (os == "Windows") {
     showQR();
-    let button = ARButton.createButton(renderer,
+    document.body.appendChild(ARButton.createButton(renderer,
       {
         requiredFeatures: ["hit-test"],
         optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
         domOverlay: { root: document.body }
-      });
-    button.classList.add("ar-button");
-    document.body.appendChild(button);
+      }));
   } else {
     if (isImmersiveArSupported) {
       let main = document.getElementById("main");
