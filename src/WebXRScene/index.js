@@ -103,7 +103,7 @@ function initializeXRApp() {
     {
       requiredFeatures: ["hit-test"],
       optionalFeatures: ['dom-overlay', 'dom-overlay-for-handheld-ar'],
-      domOverlay: { root: document.body }
+      domOverlay: { root: mainElement }
     }));
 
   sceneLoader.init();
