@@ -13,7 +13,8 @@ if ($mainBranch) {
     Write-Host "Ветка найдена"
     git checkout $mainBranch
 } else {
-    Write-Host "Ветка не найдена"
+    Write-Host "Ветка не найдена" $mainBranch
+    Write-Host $mainBranch
     exit
 }
 

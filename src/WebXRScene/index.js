@@ -71,7 +71,7 @@ async function fetchModels() {
 }
 
 function AddLogs(logs) {
-  document.getElementById("log").innerText += logs +"\n";
+  document.getElementById("log").innerText += logs + "\n";
 }
 
 function initializeXRApp() {

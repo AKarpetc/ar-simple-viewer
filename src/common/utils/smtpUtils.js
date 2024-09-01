@@ -1,8 +1,7 @@
 import conf from "../../config/config.js"
 
 async function send(userInput, subj, value) {
-    console.log(conf)
-    return fetch(conf.smtpApiUrl, {
+    return fetch(`${conf.smtpApiUrl}/api/Smtp/SendMessage`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

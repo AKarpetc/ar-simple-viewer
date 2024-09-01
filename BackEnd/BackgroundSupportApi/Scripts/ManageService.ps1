@@ -1,10 +1,8 @@
-# пример команды
-# .\ManageService.ps1 -exePath "BackgroundSupportApi.exe" -serviceName "BackgroundSupportApi" -displayName "BackgroundSupportApi" -description "BackgroundSupportApi"
-
 param(
     [string]$exePath = "C:\path\to\your\app\YourApp.exe",
     [string]$serviceName = "YourAppService",
-    [string]$displayName = "Your App Service"
+    [string]$displayName = "Your App Service",
+    [int]$action = -1  # Новый параметр для выбора действия (по умолчанию -1 — без действия)
 )
 
 function Register-Service {
@@ -19,10 +17,8 @@ function Register-Service {
 
 function Unregister-Service {
     try {
-        # Проверяем, существует ли служба и остановлена ли она
         if (Get-Service -Name $serviceName -ErrorAction SilentlyContinue) {
             Stop-Service -Name $serviceName -Force -ErrorAction SilentlyContinue
-            # Ожидание остановки, если потребуется
             Start-Sleep -Seconds 2
             sc.exe delete $serviceName
             Write-Host "Служба $serviceName удалена."
@@ -35,12 +31,16 @@ function Unregister-Service {
 }
 
 function Main-Menu {
-    Write-Host "Выберите действие:"
-    Write-Host "1: Зарегистрировать службу"
-    Write-Host "2: Удалить службу"
-    Write-Host "0: Выход"
-    $choice = Read-Host "Введите номер"
-    
+    if ($action -eq -1) {
+        Write-Host "Выберите действие:"
+        Write-Host "1: Зарегистрировать службу"
+        Write-Host "2: Удалить службу"
+        Write-Host "0: Выход"
+        $choice = Read-Host "Введите номер"
+    } else {
+        $choice = $action
+    }
+   
     switch ($choice) {
         1 { Register-Service }
         2 { Unregister-Service }
