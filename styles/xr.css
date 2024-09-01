@@ -255,3 +255,9 @@ input[type=range][orient=vertical] {
 
 
 }
+
+.log{
+    position: absolute;
+    top: 50px;
+    left: 45%;
+}

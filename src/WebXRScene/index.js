@@ -70,6 +70,10 @@ async function fetchModels() {
   }
 }
 
+function AddLogs(logs) {
+  document.getElementById("log").innerText += logs +"\n";
+}
+
 function initializeXRApp() {
   const { devicePixelRatio, innerHeight, innerWidth } = window;
 
@@ -107,35 +111,75 @@ function initializeXRApp() {
   fetchModels().then(async (models) => {
     try {
       await LoadModels(typesList, gltfLoader, "types");
-      scene = createScene(renderer, [], sceneLoader, selectModel, clearSelection, null, null, hitTestReady);
+      scene = createScene(renderer, [], sceneLoader, selectModel, clearSelection, null, null, hitTestReady, AddLogs);
     } catch (e) { alert(e) }
   });
 
 };
 
 function hitTestReady() {
+  showArOptions();
+}
+
+function showArOptions() {
   var optionsButtons = document.getElementById("optionsButtons");
 
   if (optionsButtons.classList.contains("hidden"))
     optionsButtons.classList.remove("hidden")
+
 }
 
-function selectModel() {
-  isModelSelected = true;
+function hideArOptions() {
+  var optionsButtons = document.getElementById("optionsButtons");
+  optionsButtons.classList.add("hidden")
+}
 
+function showPut() {
+  let el = document.getElementById("putModel");
+  if (el.classList.contains("hidden"))
+    el.classList.remove("hidden")
+
+}
+
+function hidePut() {
+  let el = document.getElementById("putModel");
+  if (!el.classList.contains("hidden"))
+    el.classList.add("hidden")
+
+}
+
+function hideArButtons() {
+  [...document.getElementsByClassName("toolbar_button__selected")].forEach(el => {
+    el.classList.add("hidden")
+  });
+}
+
+function showArButtons() {
   [...document.getElementsByClassName("toolbar_button__selected")].forEach(el => {
     if (el.classList.contains("hidden"))
       el.classList.remove("hidden")
-
   });
+}
+
+function selectModel(mode = "all") {
+  isModelSelected = true;
+
+  if (mode == "all") {
+
+    hideArOptions();
+    showArButtons()
+
+  }
+
+  if (mode == "put") {
+    showPut();
+  }
+
 }
 
 function clearSelection() {
   isModelSelected = false;
-
-  [...document.getElementsByClassName("toolbar_button__selected")].forEach(el => {
-    el.classList.add("hidden")
-  });
+  hideArButtons();
 }
 
 window.unselect = async () => {
@@ -145,6 +189,15 @@ window.unselect = async () => {
 window.closeSession = () => {
   if (session != null)
     session.end();
+}
+
+window.putModel = () => {
+
+  if (scene) {
+    scene.Place();
+
+    hidePut();
+  }
 }
 
 window.placeModel = () => {
@@ -163,6 +216,17 @@ function openSlider() {
 function closeSlider() {
   document.getElementById("toolbarSlider").classList.add("hidden")
   document.getElementById("toolbarButtons").classList.remove("hidden")
+}
+
+window.moveModel = () => {
+
+  if (scene) {
+    scene.moveModel();
+
+    showPut();
+    hideArButtons();
+
+  }
 }
 
 window.transformDone = () => {
@@ -218,21 +282,18 @@ window.showAr = () => {
   arButton.click();
 }
 
-function hideArButtons() {
+function hideBack() {
   document.getElementById("arBack").classList.add("hidden");
-  document.getElementById("arOk").classList.add("hidden");
-
 }
 
-function showArButtons() {
+function showBack() {
   document.getElementById("arBack").classList.remove("hidden");
-  document.getElementById("arOk").classList.remove("hidden");
 }
 
 window.arBack = async () => {
   let sceneModels = await LoadModels(typesList, gltfLoader, "types");
   scene.models = [];
-  hideArButtons();
+  hideBack();
 }
 
 async function LoadModels(items, gltfLoader, type = "models") {
@@ -298,7 +359,7 @@ function ClickToArButton(e) {
 
     LoadModels(models, gltfLoader, "models").then(models => {
       scene.setModels(models);
-      showArButtons();
+      showBack();
     });
     return;
   }
