@@ -9,6 +9,7 @@ import osDetector from "../common/osDetector"
 import modelUtils from "../common/utils/modelUtils.js"
 import conf from "../config/config.js"
 
+
 var mode = "work";
 //var mode = "text";
 //var mode = "artool";
@@ -16,6 +17,8 @@ var mode = "work";
 var operation = null;
 var rotate = "rotate";
 var scale = "scale";
+var move = "move";
+
 var maxModels = 5;
 
 let os = osDetector.getMobileOperatingSystem();
@@ -38,6 +41,73 @@ gltfLoader.setDRACOLoader(dracoLoader)
   .setMeshoptDecoder(MeshoptDecoder);
 
 var isModelSelected = false;
+// Variables for tracking movement
+let joystickContainer = document.getElementById('joystick-container');
+let joystick = document.getElementById('joystick');
+let joystickActive = false;
+let startX, startY, currentX, currentY;
+let firstHittest = true;
+
+
+// Function to update joystick logic
+function updateJoystick(event) {
+  if (!joystickActive) return;
+
+  const touch = event.touches[0];
+  const diffX = touch.clientX - startX;
+  const diffY = touch.clientY - startY;
+
+  // Limit the joystick movement to within a 50px radius from the center
+  const angle = Math.atan2(diffY, diffX);
+  const distance = Math.min(50, Math.sqrt(diffX * diffX + diffY * diffY));
+
+  if (operation == rotate || operation == move) {
+    joystick.style.left = `${50 + distance * Math.cos(angle) - 25}px`;
+  }
+  if (operation == scale || operation == move) {
+    joystick.style.top = `${55 + distance * Math.sin(angle) - 30}px`;
+  }
+
+  if (scene && operation == move)
+    scene.Move(diffX, diffY);
+
+  if (scene && operation == rotate)
+    scene.Rotate(distance * Math.cos(angle) > 0);
+
+  if (scene && operation == scale) {
+
+    if (diffY > 100)
+      diffY = 100;
+
+    if (diffY < -100)
+      diffY = -100;
+
+    var coof = 200 - (diffY + 100);
+
+    scene.Scale(coof);
+  }
+
+
+  // Here you can update the movement of a 3D object
+  console.log('Joystick X:', diffX, 'Joystick Y:', diffY);
+}
+
+// Event listeners for joystick touch events
+joystickContainer.addEventListener('touchstart', (event) => {
+  joystickActive = true;
+  const touch = event.touches[0];
+  startX = touch.clientX;
+  startY = touch.clientY;
+  updateJoystick(event);
+}, false);
+
+joystickContainer.addEventListener('touchmove', updateJoystick, false);
+
+joystickContainer.addEventListener('touchend', () => {
+  joystickActive = false;
+  joystick.style.left = '25px';
+  joystick.style.top = '30px';
+}, false);
 
 const sceneLoader =
 {
@@ -71,7 +141,11 @@ async function fetchModels() {
 }
 
 function AddLogs(logs) {
-  document.getElementById("log").innerText += logs +"\n";
+  document.getElementById("log").innerText += logs + "\n";
+}
+
+function insertLogs(logs) {
+  document.getElementById("log").innerText = logs + "\n";
 }
 
 function initializeXRApp() {
@@ -117,16 +191,18 @@ function initializeXRApp() {
 
 };
 
+
 function hitTestReady() {
-  showArOptions();
+  if (firstHittest) {
+    showArOptions();
+    firstHittest = false;
+  }
 }
 
 function showArOptions() {
   var optionsButtons = document.getElementById("optionsButtons");
-
   if (optionsButtons.classList.contains("hidden"))
     optionsButtons.classList.remove("hidden")
-
 }
 
 function hideArOptions() {
@@ -138,7 +214,6 @@ function showPut() {
   let el = document.getElementById("putModel");
   if (el.classList.contains("hidden"))
     el.classList.remove("hidden")
-
 }
 
 function hidePut() {
@@ -146,6 +221,45 @@ function hidePut() {
   if (!el.classList.contains("hidden"))
     el.classList.add("hidden")
 
+}
+
+function hide(elName) {
+  let el = document.getElementById(elName);
+  if (!el.classList.contains("hidden"))
+    el.classList.add("hidden")
+}
+
+function show(elName) {
+  let el = document.getElementById(elName);
+  if (el.classList.contains("hidden"))
+    el.classList.remove("hidden")
+}
+
+function showJoystick() {
+  let el = document.getElementById("joystick-container");
+  if (el.classList.contains("hidden"))
+    el.classList.remove("hidden")
+
+  if (operation == rotate) {
+    hide("arrowHorizontalUp");
+    hide("arrowHorizontalDown");
+  }
+
+  if (operation == scale) {
+    hide("arrowHorizontalLeft");
+    hide("arrowHorizontalRight");
+  }
+}
+function hideJoystick() {
+  let el = document.getElementById("joystick-container");
+  if (!el.classList.contains("hidden"))
+    el.classList.add("hidden")
+
+
+  show("arrowHorizontalUp");
+  show("arrowHorizontalDown");
+  show("arrowHorizontalLeft");
+  show("arrowHorizontalRight");
 }
 
 function hideArButtons() {
@@ -165,15 +279,14 @@ function selectModel(mode = "all") {
   isModelSelected = true;
 
   if (mode == "all") {
-
-    hideArOptions();
     showArButtons()
-
   }
 
   if (mode == "put") {
     showPut();
   }
+
+  hideArOptions();
 
 }
 
@@ -184,6 +297,7 @@ function clearSelection() {
 
 window.unselect = async () => {
   scene.unselect();
+  showArOptions();
 }
 
 window.closeSession = () => {
@@ -192,11 +306,15 @@ window.closeSession = () => {
 }
 
 window.putModel = () => {
-
   if (scene) {
-    scene.Place();
+    if (operation == move) {
+      hideJoystick();
+    }
+    else
+      scene.Place();
 
     hidePut();
+    showArOptions();
   }
 }
 
@@ -208,31 +326,33 @@ window.placeModel = () => {
 }
 
 function openSlider() {
-  scene.startTransform();
-  document.getElementById("toolbarSlider").classList.remove("hidden")
-  document.getElementById("toolbarButtons").classList.add("hidden")
+  try {
+    scene.startTransform();
+    document.getElementById("toolbarButtons").classList.add("hidden");
+    showJoystick();
+    showPut();
+  } catch (ex) { alert(ex); }
 }
 
 function closeSlider() {
-  document.getElementById("toolbarSlider").classList.add("hidden")
-  document.getElementById("toolbarButtons").classList.remove("hidden")
+  document.getElementById("toolbarButtons").classList.remove("hidden");
+  hideJoystick();
+  hidePut();
+
+  operation = null;
 }
 
 window.moveModel = () => {
-
-  if (scene) {
-    scene.moveModel();
-
-    showPut();
-    hideArButtons();
-
-  }
+  operation = move;
+  openSlider();
+  hideArButtons();
+  showJoystick();
 }
 
 window.transformDone = () => {
-  closeSlider();
   setTimeout(scene.stopTransform(), 2000);
-
+  closeSlider();
+  showArButtons();
 }
 
 let oldRotation = 100;
@@ -271,12 +391,10 @@ window.removeModel = async () => {
 
   if (session != null && scene != null) {
     await scene.onRemove();
+    showArOptions();
   }
 }
 
-window.nextPlace = () => {
-  scene.nextPlace();
-}
 
 window.showAr = () => {
   arButton.click();
@@ -334,8 +452,9 @@ async function LoadModels(items, gltfLoader, type = "models") {
 async function GetModelAsync(items) {
   for (let i = 0; i < items.length; i++) {
     var sceneModel = await gltfLoader.loadAsync(items[i].glb);
-    var scale = items[i].scale;
     items[i]["glb_model"] = sceneModel;
+
+    console.log(sceneModel)
 
     var spinner = document.getElementById(`spinnerModel${i}`);
     spinner?.classList?.add("hidden");
@@ -405,6 +524,7 @@ window.addEventListener('vlaunch-initialized', async (event) => {
 
 const isImmersiveArSupported = await browserHasImmersiveArCompatibility();
 async function start() {
+
   if (mode == "artool") {
     document.getElementById("main").classList.add("hidden");
     document.getElementById("ar-main").classList.remove("hidden");
@@ -419,6 +539,7 @@ async function start() {
 
 
 try {
+
   if (os == "Android" || mode == "artool") {
     let main = document.getElementById("main");
     main.classList.remove("hidden");
@@ -442,3 +563,4 @@ try {
 } catch (err) {
   alert(err);
 }
+

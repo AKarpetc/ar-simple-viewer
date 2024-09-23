@@ -95,14 +95,18 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
   }
 
   function unHightLightObject(boundaryBox) {
-    if (boundaryBox) {
-      let model = installedModels.filter(x => x.boundaryBox == boundaryBox);
-      model[0].hightLightBox.visible = false;
-      intersectedObject = null;
-      selectedModel = null;
+    try {
+      if (boundaryBox) {
+        let model = installedModels.filter(x => x.boundaryBox == boundaryBox);
+        model[0].hightLightBox.visible = false;
+        intersectedObject = null;
+        selectedModel = null;
 
-      if (clearSelection)
-        clearSelection();
+        if (clearSelection)
+          clearSelection();
+      }
+    } catch (ex) {
+      alert(ex);
     }
   }
 
@@ -133,12 +137,12 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
       const intersects = raycaster.intersectObjects(scene.children, true).filter(x => x.object.name == "modelBox");
 
       if (intersects.length > 0) {
-
-        if (intersectedObject)
+        if (intersectedObject) {
           unHightLightObject(intersectedObject);
+        }
 
         intersectedObject = intersects[0].object;
-
+        
         hightLightObject(intersectedObject);
 
         selectModel();
@@ -177,29 +181,38 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
     }
   }
 
+  function getFirstMeshInScene(scene) {
+    for (let i = 0; i < scene.children.length; i++) {
+      const child = scene.children[i];
+      if (child.isMesh) {
+        return child;
+      }
+    }
+    return scene; // If no mesh is found
+  }
+
   function Place() {
     try {
       var matrix = currentModel.matrix;
       currentModel.matrixAutoUpdate = true;
 
       currentModel.position.setFromMatrixPosition(matrix);
-
-      if (!currentModel?.isTransformed) {
-        currentModel.setRotationFromMatrix(matrix);
-      }
+      currentModel.setRotationFromMatrix(matrix);
 
       // Rotate the model randomly to give a bit of variation.
       // currentModel.setRotationFromMatrix(planeMarker.matrix);
       const materialboundaryBox = new MeshBasicMaterial({
         color: 0xffffff, // Green color
         transparent: true, // Enable transparency
-        opacity: 0  // Set the opacity (50% transparent)
+        opacity: 0 // Set the opacity (50% transparent)
       });
 
-      const box3 = new Box3().setFromObject(currentModel);
+      var mesh = getFirstMeshInScene(currentModel);
+      const box3 = new Box3().setFromObject(mesh);
+
       const boxGeometry = new BoxGeometry(
         box3.getSize(new Vector3()).x,
-        box3.getSize(new Vector3()).y * 2,
+        box3.getSize(new Vector3()).y,
         box3.getSize(new Vector3()).z
       );
 
@@ -211,12 +224,12 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
 
       const hightLightBoxGeometry = new BoxGeometry(
         box3.getSize(new Vector3()).x + 0.01,
-        0.05,
+        0.02,
         box3.getSize(new Vector3()).z + 0.01,
       );
 
       const materialhightLightBox = new MeshBasicMaterial({
-        color: 0x7CFC00, // Green color
+        color: 0xe6ffe6, // Green color
         transparent: false,// Enable transparency
       });
 
@@ -249,11 +262,11 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
     if (planeMarker.visible) {
       try {
 
-        currentModel = models[i].glb_model.scene.clone();
-
-        if (currentModel.scale) {
-          currentModel.scale.set(0.7, 0.7, 0.7)
+        if (currentModel != null) {
+          scene.remove(currentModel);
         }
+
+        currentModel = models[i].glb_model.scene.clone();
 
         currentModel.visible = true;
         currentModel.matrixAutoUpdate = false;
@@ -261,6 +274,7 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
         currentModel.matrix.fromArray(planeMarker.matrix);
 
         scene.add(currentModel);
+
         selectModel("put");
 
       } catch (e) {
@@ -282,6 +296,23 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
     rotationHightLight.scale.set(value, value, value)
   }
 
+  function Move(diffX, diffY) {
+    let currentModel = installedModels.filter(x => x.boundaryBox == intersectedObject)[0];
+    let rotationModel = currentModel.model;
+    let rotationBoundary = currentModel.boundaryBox;
+    let rotationHightLight = currentModel.hightLightBox;
+
+    const speedFactor = 0.0001;
+    rotationModel.position.x += diffX * speedFactor;
+    rotationModel.position.z += diffY * speedFactor; // Invert y for intuitive upward motion
+
+    rotationBoundary.position.x += diffX * speedFactor;
+    rotationBoundary.position.z += diffY * speedFactor;
+
+    rotationHightLight.position.x += diffX * speedFactor;
+    rotationHightLight.position.z += diffY * speedFactor;
+  }
+
   function Rotate(isUp) {
     let currentModel = installedModels.filter(x => x.boundaryBox == intersectedObject)[0];
     let rotationModel = currentModel.model;
@@ -301,11 +332,6 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
       rotationHightLight.rotation.y -= 0.1;
     }
 
-    rotationModel.updateMatrix();
-
-    //installedModels.put(currentModel);
-
-    // resetRotation(rotationModel);
   }
   /**
    * Called whenever a new hit test result is ready.
@@ -361,129 +387,22 @@ export function createScene(renderer, sceneModels, loader = null, selectModel = 
     }
   };
 
-
-  let savedScale = null;
   function startTransform() {
     isTransforming = true;
   }
 
   function stopTransform() {
-
     try {
       isTransforming = false;
-
-      let currentModel = selectedModel;
-      let rotationModel = currentModel.model;
-
-      rotationModel.isTransformed = true;
-
-      rotationModel["savedRotation"] = {
-        x: rotationModel.rotation.x,
-        y: rotationModel.rotation.y,
-        z: rotationModel.rotation.z
-      }
-      rotationModel["savedScale"] = {
-        x: rotationModel.scale.x,
-        y: rotationModel.scale.y,
-        z: rotationModel.scale.z
-      }
-
+      currentModel = null;
     } catch (e) {
       alert(e);
     }
-
   }
 
-  function bakeCurrentScaleAsDefault(mesh) {
-    // Capture the current scale
-    const currentScale = mesh.scale.clone();
 
-    // Create a scaling matrix
-    const scaleMatrix = new Matrix4();
-    scaleMatrix.makeScale(currentScale.x, currentScale.y, currentScale.z);
-
-    // Apply this scaling matrix to the mesh's geometry
-    mesh.geometry.applyMatrix4(scaleMatrix);
-
-    // Reset the object's scale to default (1, 1, 1)
-    mesh.scale.set(1, 1, 1);
-
-    // If your render loop doesn't update the geometry by default, ensure positions are marked updated
-    mesh.geometry.attributes.position.needsUpdate = true;
-
-    // Log for verification
-    console.log("The model's current scale has been set as default.");
-  }
-
-  function bakeCurrentRotationAsDefault(mesh) {
-    // Ensure matrix updates reflect current state
-    mesh.updateMatrixWorld(true);
-
-    // Get the current rotation as a quaternion
-    const currentQuaternion = mesh.quaternion.clone();
-
-    // Reset the object's rotation
-    mesh.rotation.set(0, 0, 0);
-
-    // Create a rotation matrix from the inverted current rotation quaternion
-    const rotationMatrix = new Matrix4();
-    rotationMatrix.makeRotationFromQuaternion(currentQuaternion.invert());
-
-    // Apply this matrix to the mesh's geometry, baking the rotation into the vertices
-    mesh.geometry.applyMatrix4(rotationMatrix);
-
-    // Flag the position for update, if necessary
-    mesh.geometry.attributes.position.needsUpdate = true;
-  }
-
-  let savedMatrix;
-
-  function moveModel() {
-
-    try {
-      let selected = selectedModel;
-
-      var movingModel = selected.model;
-      var movingBoundary = selected.boundaryBox;
-      var movingHightLight = selected.hightLightBox;
-
-      currentModel = movingModel;
-
-      currentModel.matrixAutoUpdate = false;
-      currentModel.updateMatrix();
-
-      /*
-      if (currentModel.savedRotation)
-        currentModel.rotation.set(currentModel.savedRotation.x, currentModel.savedRotation.y, currentModel.savedRotation.z);
-
-
-      currentModel.traverse(function (node) { // or myObject.traverse(
-        if (node.isMesh) {
-          if (currentModel.savedRotation)
-            node.geometry.rotateY(currentModel.savedRotation.y);
-        }
-      });
-      */
-
-      /*
-      if (currentModel.currentQuaternion)
-        currentModel.setRotationFromQuaternion(currentModel.currentQuaternion)
-
-      currentModel.updateMatrix();
-    */
-
-
-      scene.remove(movingBoundary);
-      scene.remove(movingHightLight);
-
-      selectModel("put");
-    } catch (e) {
-      alert(e);
-
-    }
-  }
 
   renderer.setAnimationLoop(renderLoop);
 
-  return { scene, onSelect, setModels, nextPlace, onRemove, Scale, Rotate, startTransform, stopTransform, unselect, Place, moveModel }
+  return { scene, onSelect, setModels, nextPlace, onRemove, Scale, Rotate, startTransform, stopTransform, unselect, Place, Move }
 }
