@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     height: 90%;
     font-size: 22px;
     font-family: Roboto Regular, Helvetica Neue, sans-serif;
@@ -11,16 +11,26 @@
 }
 
 .main-header {
-    text-align: center;
-    width: 80%;
+    text-align: left;
+    width: 90%;
+    margin-top: 20px;
 }
 
 .main-description {
-    text-align: center;
-    width: 80%;
+    text-align: left;
+    width: 90%;
     margin-top: 10px;
-
 }
+
+@media only screen and (max-width: 760px) {
+    .main-description {
+        line-height: 20px;
+        font-size: 16px;
+    }
+    .main-header{
+        font-size: 16px;
+    }
+  }
 
 .ar-button {
     width: 180px;
@@ -28,11 +38,8 @@
     font-size: 22px;
 }
 
-
-
 .ar-main {
     width: 100%;
-
 }
 
 .session-buttons {
@@ -213,7 +220,6 @@
     padding-top: 5px;
     padding-bottom: 5px;
 
-
     line-height: 36px;
     border-radius: 23px;
     border: 1px solid #DADCE0;
@@ -222,9 +228,7 @@
     height: 70px;
     font-size: 18px;
     margin-bottom: 10px;
-
 }
-
 
 .slider-container {
     display: flex;
@@ -240,7 +244,6 @@ input[type=range][orient=vertical] {
     vertical-align: bottom;
 
 }
-
 
 .hidden {
     display: none;

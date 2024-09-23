@@ -17,6 +17,7 @@ if (-not (Test-Path $sourceDirectory)) {
 Write-Host "Загрузка файлов из $sourceDirectory в $bucketName..."
 # Массив с путями для удаления
     $pathsToRemove = @(
+    ".git",
     "BackEnd",
     "https",
     "mailing_templates",
@@ -52,3 +53,5 @@ Write-Host "Загрузка файлов из $sourceDirectory в $bucketName..."
 aws s3 cp $sourceDirectory "s3://$bucketName" --recursive
 
 Write-Host "Загрузка завершена!"
+Write-Host "Очистка каталога"
+Remove-Item $sourceDirectory -Recurse -Force

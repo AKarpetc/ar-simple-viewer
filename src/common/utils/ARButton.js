@@ -1,6 +1,6 @@
 class ARButton {
 
-	static createButton(renderer, sessionInit = {}, texts = { startText: "Старт", endText: "", notSupportedText: "AR не поддерживается" }) {
+	static createButton(renderer, sessionInit = {}, texts = { startText: "Старт", endText: "", notSupportedText: "Отсканируйте QR-код" }) {
 
 		const button = document.createElement('button');
 
