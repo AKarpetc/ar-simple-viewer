@@ -16,7 +16,19 @@
 </head>
 
 <body>
-    <div id="qr-code" class="qr-code hidden"></div>
+
+    <div id="joystick-container" class="toolbar_button button_move hidden">
+        <span id="arrowHorizontalLeft" class="arrow-h arrow-h__left"><i class="fa fa-caret-left" aria-hidden="true"></i></span>
+        <span id="arrowHorizontalUp" class="arrow-h arrow-h__up"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+        <span id="arrowHorizontalRight" class="arrow-h arrow-h__right"><i class="fa fa-caret-right" aria-hidden="true"></i></span>
+        <span id="arrowHorizontalDown" class="arrow-h arrow-h__down"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+
+        <div id="joystick"></div>
+    </div>
+
+    <div id="qr-code" class="qr-code hidden">
+
+    </div>
     <div id="main" class="main hidden">
         <div class="main-header">
             <a href="#" id="openModal">Узнать больше о XR</a>
@@ -43,6 +55,10 @@
             Если модель выбрана, под ней отображается зелёная подложка. В этом режиме можно перемещать, изменять,
             добавлять и удалять модели в пространстве, используя кнопки в правой части экрана
         </div>
+
+        
+
+
     </div>
 
     <div id="ar-main" class="ar-main hidden">
@@ -53,10 +69,11 @@
                     <input type="range" min="1" max="200" value="100" oninput="sliderChange(this)"
                         class="vertical-slider" id="modelSlider" orient="vertical" />
                 </div>
-                <button onclick="transformDone()" class="toolbar_button">
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                </button>
             </div>
+            
+            <button onclick="transformDone()" class="toolbar_button">
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
 
             <div id="toolbarButtons" class="toolbar__buttons">
                 <button onclick="unselect()" class="toolbar_button toolbar_button__selected hidden">
@@ -68,18 +85,23 @@
                 <button onclick="scaleModel()" class="toolbar_button toolbar_button__selected hidden">
                     <i class="fa fa-expand" aria-hidden="true"></i>
                 </button>
-                <button onclick="removeModel()" class="toolbar_button toolbar_button__selected hidden">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-
                 <button onclick="moveModel()" class="toolbar_button toolbar_button__selected hidden">
                     <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                </button>
+                <button onclick="removeModel()" class="toolbar_button toolbar_button__selected hidden">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
 
                 <button id="putModel" onclick="putModel()" class="toolbar_button toolbar_button__selected__put  hidden">
                     <i class="fa fa-stop-circle" aria-hidden="true"></i>
                 </button>
+
+
             </div>
+
+
+
+
         </div>
 
         <div id="optionsButtons" class="session-buttons hidden">

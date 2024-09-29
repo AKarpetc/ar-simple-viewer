@@ -31,7 +31,7 @@ let mainData = JSON.parse(localStorage.getItem('localId'));
 let searchModel = mainData.mainCollection.data.filter(x => x.id === id)[0];
 
 var modelParameters = null;
-try{
+try {
     var modelParameters = await (await fetch(`${conf.awsEndPoint}/avt-content/${conf.idsFolder}/${mainData.id}/${searchModel.id}.json?response-content-type=json`)).json();
 }
 catch (err) {
@@ -49,7 +49,7 @@ else {
     message = base64ToJson(modelParameters.message);
 }
 
-console.log(armessage, message); 
+console.log(armessage, message);
 
 let signedUrl = null;
 
@@ -323,10 +323,11 @@ function init() {
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath("decoder/");
     gltfLoader.setDRACOLoader(dracoLoader)
-    .setMeshoptDecoder(MeshoptDecoder);
+        .setMeshoptDecoder(MeshoptDecoder);
 
     gltfLoader.load(android, async (gltf) => {
         scene.add(gltf.scene);
+        console.log(gltf.scene);
         model = gltf.scene;
         setUpAnimation(model);
         window.loaderHide();
