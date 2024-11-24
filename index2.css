@@ -1,0 +1,120 @@
+body {
+    background-color: #DEDEDE !important;
+}
+
+.navbar-toggler {
+    border: none !important;
+    color: transparent !important;
+}
+
+.container-fluid {
+    --bs-gutter-x: 3.5rem !important;
+}
+
+.icon-img {
+    width: 30px;
+    height: auto;
+}
+
+.brand-logo {
+    width: 90%;
+    height: auto;
+}
+
+.container {
+    --bs-gutter-x: 0rem !important;
+}
+
+.main-img {
+    background-image: url(./img/главная-картинка---фон_десктоп.jpg);
+    background-position: center;
+    height: 100vh;
+    position: relative;
+}
+
+.custom-icon {
+    background-image: url('data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgb(255, 255, 255)\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e');
+}
+
+.main-img img {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+}
+
+.nav-social {
+    min-width: 80px;
+    width: 0px;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.navbar-color {
+    background-color: rgb(13 39 65);
+}
+
+.navbar {
+    --bs-navbar-padding-y: 1.5rem !important;
+}
+
+.navbar-brand {
+    margin-left: 0;
+}
+
+.nav-link-list {
+    text-wrap: nowrap;
+    margin-left: auto;
+    margin-right: 36px;
+    font-size: 25px;
+}
+
+.collapse-top {
+    margin-top: 2px;
+}
+
+.navbar-toggler {
+    margin-right: -20px;
+}
+
+.gamburger {
+    display: flex;
+}
+
+@media (min-width: 1024px) {
+    .navbar-brand {
+        margin-left: 40px;
+    }
+
+    .nav-social {
+        margin-bottom: 0em !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    .brand-logo {
+        width: 50%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .brand-logo {
+        width: 100%
+    }
+
+    .gamburger {
+        margin-right: 0%;
+    }
+
+    .nav-link-list {
+        font-size: 15px;
+    }
+
+    .nav-social {
+        margin-bottom: 0em !important;
+    }
+
+    .main-img {
+        background-image: url('./img/главная-картинка---телефон-моб-версия.jpg');
+        background-size: cover;
+    }
+}
