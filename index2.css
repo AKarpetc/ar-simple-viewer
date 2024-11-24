@@ -7,6 +7,23 @@ body {
     color: transparent !important;
 }
 
+.svg-button {
+    background-color: transparent;
+    border: none;                  
+    padding: 0;                     
+    cursor: pointer;               
+    display: inline-block;         
+    width: 130px;                  
+    height: 36px;                  
+}
+
+.svg-button svg {
+    width: 100%;                   
+    height: 100%;                  
+    display: block;                
+    margin: 0;                     
+}
+
 .container-fluid {
     --bs-gutter-x: 3.5rem !important;
 }
@@ -28,7 +45,8 @@ body {
 .main-img {
     background-image: url(./img/главная-картинка---фон_десктоп.jpg);
     background-position: center;
-    height: 100vh;
+    background-size: cover;
+    min-height: 100vh;
     position: relative;
 }
 
@@ -36,10 +54,14 @@ body {
     background-image: url('data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgb(255, 255, 255)\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e');
 }
 
-.main-img img {
+.main-img .phone {
     position: absolute;
     bottom: 0;
     width: 50%;
+}
+
+.ar-icon {
+    margin-top: -30px;
 }
 
 .nav-social {
@@ -93,6 +115,12 @@ body {
 @media (min-width: 1920px) {
     .brand-logo {
         width: 50%;
+    }
+}
+
+@media (max-height: 900px) {
+    .main-img img {
+        width: 43%;
     }
 }
 
