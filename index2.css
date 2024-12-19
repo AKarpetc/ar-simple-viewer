@@ -174,7 +174,7 @@ body {
 
 @media (min-width: 1200px) and (max-width: 1400px) {
     .svg-button-contact {
-        margin-top: 15px;
+        /* margin-top: 15px; */
     }
 }
 
@@ -185,16 +185,34 @@ body {
     }
 
     .svg-button-contact-top {
-        margin-top: 2vh !important;
+        margin-top: 4vh;
+        /* text-align: center; */
     }
 
     .svg-button-contact {
         height: 63px !important;
+        /* margin-top: 0px !important; */
+    }
+
+     .svg-button-ar {
+        /* height: 59px; */
+    } 
+    
+    .svg-button-xr {
+        /* height: 59px; */
     }
 
     .row-gap {
         --bs-gutter-x: -1.5rem !important;
     }
+
+
+}
+
+
+
+.phone-buttons {
+    margin-top: -55px;
 }
 
 .c-mt-div {
@@ -205,11 +223,38 @@ body {
     margin-top: 3rem;
 }
 
-@media (max-width: 766px) {
+.svg-button-top {
+    margin-bottom: 30px;
+}
+
+@media (max-width: 575px) {
+    .svg-button-contact-top {
+        /* margin-top: 10vh !important; */
+    }
+}
+
+@media (max-width: 414px) {
+    .svg-button-contact-top {
+        margin-top: 1vh !important;
+    }
+
+    .svg-button-top {
+        margin-bottom: 7px;
+    }
+}
+
+@media (max-width: 767px) {
     .phone {
         width: 75%;
         margin-left: -13px;
-        margin-top: 40px;
+        margin-top: 17px;
+        margin-bottom: 55px;
+    }
+
+    .phone-buttons {
+        margin-top: -160px !important; 
+        width: 93% !important;
+        margin-left: 13px !important;
     }
 
     .svg-button-contact-top {
@@ -217,7 +262,8 @@ body {
     }
 
     .svg-button-contact {
-        height: 70px;
+        /* height: 69.5px;
+        margin-left: 3px;  */
     }
 
     .row-gap {
