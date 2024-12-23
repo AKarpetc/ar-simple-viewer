@@ -29,6 +29,7 @@ body {
     padding: 0;
     cursor: pointer;
     height: 66px;
+    width: 100%;
 }
 
 .svg {
@@ -145,9 +146,40 @@ body {
 
 .fz-23 {}
 
+.ml-15 {
+    margin-left: 15px;
+}
+
+.ml-30 {
+    margin-left: 30px;
+}
+
+.ml-40 {
+    margin-left: 40px;
+}
+
+.mr-15 {
+    margin-right: 15px;
+}
+
+.about-icon-size {
+    height: 90px;
+}
+
 .button-text p {
     color: white;
     margin-left: 10px;
+}
+
+.about-row {
+    align-items: center;
+    margin-top: 66px !important;
+    margin-bottom: 66px;
+    margin-left: 10px !important;
+}
+
+.about-h1 {
+    white-space: nowrap;
 }
 
 @media (min-width: 1024px) {
@@ -170,11 +202,23 @@ body {
     .phone {
         width: 116%;
     }
+
+    .ml-30, .ml-40 {
+        margin-left: 55px;
+    }
+
+    
 }
 
 @media (min-width: 1200px) and (max-width: 1400px) {
     .svg-button-contact {
-        /* margin-top: 15px; */
+        margin-top: 15px;
+    }
+}
+
+@media (min-width: 540px) and (min-height: 720px) {
+    .svg-button-contact {
+        margin-top: 0px !important;
     }
 }
 
@@ -194,10 +238,10 @@ body {
         /* margin-top: 0px !important; */
     }
 
-     .svg-button-ar {
+    .svg-button-ar {
         /* height: 59px; */
-    } 
-    
+    }
+
     .svg-button-xr {
         /* height: 59px; */
     }
@@ -224,7 +268,7 @@ body {
 }
 
 .svg-button-top {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 575px) {
@@ -243,6 +287,26 @@ body {
     }
 }
 
+@media (max-width: 991px) {
+    .about-icon-size {
+        height: 69px !important;
+    }
+
+    .ml-30 {
+        margin-left: 70px !important;
+    }
+}
+
+@media (max-width: 991px) and (min-height: 1368px) {
+    .about-icon-size {
+        height: 69px !important;
+    }
+
+    .ml-30 {
+        margin-left: 82px !important
+    }
+}
+
 @media (max-width: 767px) {
     .phone {
         width: 75%;
@@ -252,7 +316,7 @@ body {
     }
 
     .phone-buttons {
-        margin-top: -160px !important; 
+        margin-top: -160px !important;
         width: 93% !important;
         margin-left: 13px !important;
     }
@@ -279,7 +343,7 @@ body {
     .c-mt-div {
         margin-top: 2rem !important;
     }
-    
+
     .c-mt-p {
         margin-top: 1rem !important;
     }
