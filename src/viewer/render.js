@@ -12,6 +12,7 @@ import conf from "../config/config.js"
 
 const container = document.getElementById('container');
 let mv = document.getElementById("model-viewer");
+
 let message = null;
 let scene, renderer, camera, stats;
 let model, skeleton, mixer, clock;
@@ -178,7 +179,6 @@ var generateQR = async (link) => {
 }
 
 function openArViewer() {
-
     var baseUrl = window.location.origin;
     let link = baseUrl + `/viewer.html?id=${id}`;
     if (arWorks) {
