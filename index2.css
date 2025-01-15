@@ -142,9 +142,24 @@ body {
     width: 100%
 }
 
+.c-mt-50 {
+    margin-top: -53px;
+}
+
 .text {
     text-align: center;
     color: white;
+}
+
+.svg-button-send {
+    width: 60% !important
+}
+
+.contact-us-container {
+    padding: 20px 50px 20px 50px;
+    background-color: white;
+    width: 60%;
+    margin: 0 auto;
 }
 
 .mb-c-5 {
@@ -160,6 +175,17 @@ body {
     -webkit-text-stroke-width: medium;
     font-size: 24px;
     margin-top: -48px;
+}
+
+.soc-icon-btn {
+    height: 35px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.text-sh-color {
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
 }
 
 .mb-c-2 {
@@ -280,8 +306,11 @@ body {
     align-items: stretch;
 }
 
+.row-footer {
+    align-items: center !important;
+}
+
 .button-text p {
-    /* color: #FFFFFF; */
     color: white;
     margin-left: 10px;
 }
@@ -317,9 +346,7 @@ body {
     }
 }
 
-.container-333 {
-    /* width: 90% !important; */
-}
+.container-333 {}
 
 @media (max-width: 1400px) {
     .border-radius-card {
@@ -335,11 +362,11 @@ body {
     }
 }
 
+.background-footer-color {
+    background-color: rgb(13 39 65) !important
+}
 
-
-
-
-.awd2-btn {
+.test-now-btn {
     background-color: transparent;
     border: none;
     padding: 0;
@@ -385,12 +412,8 @@ body {
         margin-left: 55px;
     }
 
-    .awd2 {
+    .c-le-50 {
         margin-left: 50px;
-    }
-
-    .awd2-btn {
-        margin-top: -17px !important;
     }
 
     .border-radius-card {
@@ -482,25 +505,21 @@ body {
     }
 }
 
-.awd {
+.c-w-50 {
     width: 50%;
 }
 
-.awd4 {
+.company-color {
     color: hsl(0deg 0% 51.5%) !important
 }
 
-.awd5 {
+.fs-24 {
     font-size: 24px;
 }
 
 @media (max-width: 991px) {
     .about-icon-size {
         height: 69px !important;
-    }
-
-    .awd2 {
-        margin-left: 25px;
     }
 
     .proccess-div {
@@ -519,15 +538,7 @@ body {
         width: 10rem !important;
     }
 
-    .awd {
-        width: 100% !important;
-    }
-
-    .awd4 {
-        font-size: 55%;
-    }
-
-    .awd3 {
+    .svg-button-size {
         margin-top: 12px !important;
         height: 59px !important;
     }
@@ -616,7 +627,7 @@ body {
         margin-top: -20px;
     }
 
-    .c-width-28-2 {
+    .c-width-40-perc {
         width: 40% !important;
     }
 
@@ -672,6 +683,10 @@ body {
     }
 }
 
+.c-mb-40 {
+    margin-bottom: -40px !important;
+}
+
 .arhive-btn {
     img {
         margin-top: -16px;
@@ -704,9 +719,7 @@ body {
     .brand-logo {
         width: 100%
     }
-
-
-
+    
     .gamburger {
         margin-right: 0%;
     }
