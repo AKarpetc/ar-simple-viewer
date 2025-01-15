@@ -416,6 +416,10 @@ body {
         margin-left: 50px;
     }
 
+    .test-now-btn {
+        margin-top: -17px !important;
+    }
+
     .border-radius-card {
         width: 14rem !important;
     }
@@ -432,6 +436,10 @@ body {
 
 .svg-height-90 {
     height: 90%;
+}
+
+.c-logo-w {
+    width: 60% !important;
 }
 
 @media (min-width: 1200px) and (max-width: 1400px) {
@@ -510,7 +518,7 @@ body {
 }
 
 .company-color {
-    color: hsl(0deg 0% 51.5%) !important
+    color: hsl(0deg 0% 51.5%) !important;
 }
 
 .fs-24 {
@@ -522,6 +530,10 @@ body {
         height: 69px !important;
     }
 
+    .c-le-50 {
+        margin-left: 25px;
+    }
+
     .proccess-div {
         p {
             font-size: 23px !important;
@@ -529,13 +541,12 @@ body {
         }
     }
 
-    .awd5 {
-        font-size: 17px !important;
-        margin-top: 7px;
-    }
-
     .border-radius-card {
         width: 10rem !important;
+    }
+
+    .company-color {
+        font-size: 55% !important;
     }
 
     .svg-button-size {
@@ -719,7 +730,7 @@ body {
     .brand-logo {
         width: 100%
     }
-    
+
     .gamburger {
         margin-right: 0%;
     }
