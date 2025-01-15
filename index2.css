@@ -519,6 +519,7 @@ body {
 
 .company-color {
     color: hsl(0deg 0% 51.5%) !important;
+    white-space: nowrap;
 }
 
 .fs-24 {
@@ -528,6 +529,18 @@ body {
 @media (max-width: 991px) {
     .about-icon-size {
         height: 69px !important;
+    }
+
+    .c-logo-w {
+        width: 100% !important;
+    }
+
+    .c-mt-50 {
+        margin-top: -47px;
+
+        p {
+            font-size: 18px !important;
+        }
     }
 
     .c-le-50 {
