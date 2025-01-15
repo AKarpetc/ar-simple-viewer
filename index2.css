@@ -162,6 +162,11 @@ body {
     margin: 0 auto;
 }
 
+.connect-btn-head {
+    width: auto;
+    margin-top: 0% !important;
+}
+
 .mb-c-5 {
     margin-bottom: 5%;
 }
