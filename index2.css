@@ -665,12 +665,6 @@ body {
     }
 }
 
-@media (min-width: 768px) {
-    .card-body {
-        padding: 5px !important;
-    }
-}
-
 @media (max-width: 767px) {
     .phone {
         width: 75%;
@@ -760,6 +754,10 @@ body {
 @media (max-width: 991px) {
     .svg-button-contact {
         margin-top: -20px;
+    }
+
+    .card-body {
+        padding: 5px !important;
     }
 
     .c-width-40-perc {
