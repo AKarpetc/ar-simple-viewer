@@ -233,15 +233,15 @@ body {
 .tarif-border-radius-card {
     background-image: url('./img/Frame 19.png') !important;
     width: 49% !important;
+}
 
-    .card-body {
-        color: white;
-        text-align: center;
+.tarif-border-radius-card .card-body {
+    color: white;
+    text-align: center;
+}
 
-        span {
-            font-weight: 100;
-        }
-    }
+.tarif-border-radius-card .card-body span {
+    font-weight: 100;
 }
 
 .gray {
@@ -359,6 +359,10 @@ body {
 
 .no-wrap-footer-menu {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media (max-width: 1400px) {
@@ -533,6 +537,7 @@ body {
 .company-color {
     color: hsl(0deg 0% 51.5%) !important;
     white-space: nowrap;
+    text-align: end;
 }
 
 .fs-24 {
@@ -545,15 +550,15 @@ body {
     }
 
     .c-logo-w {
-        width: 100% !important;
+        width: 70% !important;
     }
 
     .c-mt-50 {
         margin-top: -44.62px;
+    }
 
-        p {
-            font-size: 15px !important;
-        }
+    .c-mt-50 p {
+        font-size: 15px !important;
     }
 
     .svg-button-send {
@@ -564,11 +569,9 @@ body {
         margin-left: 25px;
     }
 
-    .proccess-div {
-        p {
-            font-size: 23px !important;
-            margin-top: 8px !important;
-        }
+    .proccess-div p {
+        font-size: 23px !important;
+        margin-top: 8px !important;
     }
 
     .border-radius-card {
@@ -584,17 +587,15 @@ body {
         height: 59px !important;
     }
 
-    .arhive-btn {
-        img {
-            margin-top: -10px !important;
-            width: 20% !important;
-        }
+    .arhive-btn img {
+        margin-top: -10px !important;
+        width: 20% !important;
+    }
 
-        p {
-            font-size: 16px !important;
-            margin-left: -15px !important;
-            margin-top: 7px !important;
-        }
+    .arhive-btn p {
+        font-size: 16px !important;
+        margin-left: -15px !important;
+        margin-top: 7px !important;
     }
 
     .ml-30 {
@@ -629,9 +630,29 @@ body {
     }
 }
 
-.awdawd {
+.con-price {
     display: flex;
     justify-content: space-between;
+}
+
+.c-mb-95 {
+    margin-bottom: -95px;
+}
+
+.send-order-title {
+    margin-top: -33px !important;
+    margin-left: -9px;
+}
+
+.send-order {
+    height: 40px !important;
+    width: fit-content;
+}
+
+.send-order-header {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media (max-width: 991px) and (min-height: 1368px) {
@@ -644,6 +665,12 @@ body {
     }
 }
 
+@media (min-width: 768px) {
+    .card-body {
+        padding: 5px !important;
+    }
+}
+
 @media (max-width: 767px) {
     .phone {
         width: 75%;
@@ -652,31 +679,41 @@ body {
         margin-bottom: 55px;
     }
 
+    .card-text {
+        font-size: 14px !important;
+    }
+
+    .company-color {
+        text-align: start;
+    }
+
+    .row-footer .col {
+        text-align: none;
+    }
+
     .no-wrap-footer-menu {
-        flex-wrap: wrap !important;
+        display: block;
     }
 
     .c-logo-w {
         width: 50% !important;
     }
 
-    .about-us {
-        h5 {
-            text-align: center;
-            margin-top: 25px;
-        }
+    .about-us h5 {
+        text-align: center;
+        margin-top: 25px;
     }
 
-    .awdawd {
+    .con-price {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-content: space-between;
         align-items: center;
+    }
 
-        .tarif-border-radius-card {
-            width: auto !important;
-        }
+    .tarif-border-radius-card {
+        width: auto !important;
     }
 
     .contact-us-container {
@@ -745,10 +782,10 @@ body {
 .contact-us-form {
     align-items: center !important;
     display: flex !important;
+}
 
-    label {
-        margin-left: 10px !important;
-    }
+.contact-us-form label {
+    margin-left: 10px !important;
 }
 
 .main img.line {
@@ -767,44 +804,42 @@ body {
     transition: transform 0.3s ease;
 }
 
+.card-body-2 h5 {
+    font-size: 16px;
+}
+
 .card-body-2 {
     margin-left: 8px;
     word-wrap: normal !important;
-    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    padding: 5px;
+}
 
-    h5 {
-        font-size: 16px;
-    }
+.arhive-row .c-mt-60 {
+    margin-top: -60px;
+}
+
+.arhive-row .c-width-100 {
+    margin-bottom: -85px;
 }
 
 .arhive-row {
     margin-top: 45px;
     align-items: center;
-
-    .c-mt-60 {
-        margin-top: -60px;
-    }
-
-    .c-width-100 {
-        margin-bottom: -85px;
-    }
 }
 
 .c-mb-40 {
     margin-bottom: -40px !important;
 }
 
-.arhive-btn {
-    img {
-        margin-top: -16px;
-        width: 16%;
-    }
+.arhive-btn img {
+    margin-top: -16px;
+    width: 16%;
+}
 
-    p {
-        color: #4285F4;
-        font-size: 20px;
-        margin-left: -10px;
-    }
+.arhive-btn p {
+    color: #4285F4;
+    font-size: 20px;
+    margin-left: -10px;
 }
 
 .card-title {
@@ -815,38 +850,31 @@ body {
     font-size: 32px;
 }
 
+.proccess-div button {
+    cursor: default !important;
+}
+
+.proccess-div p {
+    color: black;
+    font-size: 32px;
+    font-weight: bold;
+}
+
 .proccess-div {
-
-    button {
-        cursor: default !important;
-    }
-
-    p {
-        color: black;
-        font-size: 32px;
-        font-weight: bold;
-    }
-
     margin-left: 50px;
 }
 
 @media (max-width: 430px) {
     .card-body-2 {
         font-size: 13px;
-        line-height: 0.9;
+        line-height: 1;
         margin-left: 0px;
     }
 }
 
 @media (max-width: 375px) {
-    .card-body-2 {
-        h5 {
-            font-size: 13px !important;
-        }
-
-        p {
-            font-size: 13px !important;
-        }
+    .card-body-2 h5 p {
+        font-size: 13px !important;
     }
 }
 
