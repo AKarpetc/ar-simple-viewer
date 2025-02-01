@@ -152,7 +152,11 @@ body {
 }
 
 .svg-button-send {
-    width: 60% !important
+    width: 60% !important;
+
+    p {
+        color: white;
+    }
 }
 
 .contact-us-container {
@@ -179,7 +183,7 @@ body {
     color: black;
     -webkit-text-stroke-width: medium;
     font-size: 24px;
-    margin-top: -48px;
+    margin-top: -43px;
 }
 
 .soc-icon-btn {
@@ -228,7 +232,7 @@ body {
 
 .tarif-border-radius-card {
     background-image: url('./img/Frame 19.png') !important;
-    width: 100% !important;
+    width: 49% !important;
 
     .card-body {
         color: white;
@@ -290,8 +294,8 @@ body {
 }
 
 .border-none {
-    --bs-card-border-radius: none;
-    --bs-card-border-color: none;
+    --bs-card-border-radius: none !important;
+    --bs-card-border-color: none !important;
 }
 
 .card-text {
@@ -353,17 +357,21 @@ body {
 
 .container-333 {}
 
+.no-wrap-footer-menu {
+    display: flex;
+}
+
 @media (max-width: 1400px) {
     .border-radius-card {
         width: 16rem !important;
     }
 
-    .no-wrap-footer-menu {
-        flex-wrap: nowrap !important;
+    .company-color {
+        margin-top: 5px;
     }
 
-    .border-radius-card-2 {
-        width: 100% !important;
+    .no-wrap-footer-menu {
+        font-size: 10px;
     }
 }
 
@@ -541,11 +549,15 @@ body {
     }
 
     .c-mt-50 {
-        margin-top: -47px;
+        margin-top: -44.62px;
 
         p {
-            font-size: 18px !important;
+            font-size: 15px !important;
         }
+    }
+
+    .svg-button-send {
+        width: 80% !important;
     }
 
     .c-le-50 {
@@ -590,12 +602,36 @@ body {
     }
 }
 
+.h-80 {
+    height: 80% !important;
+}
+
+.tarif-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+.submit-btn {
+    margin-bottom: 30px !important;
+    margin-top: 5px !important;
+    height: 40px !important;
+    width: fit-content !important;
+}
+
 .img-fluid {}
 
 @media (min-width: 576px) and (max-height: 719px) {
     .svg-button-contact {
         margin-top: 0px !important;
     }
+}
+
+.awdawd {
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (max-width: 991px) and (min-height: 1368px) {
@@ -614,6 +650,39 @@ body {
         margin-left: -13px;
         margin-top: 17px;
         margin-bottom: 55px;
+    }
+
+    .no-wrap-footer-menu {
+        flex-wrap: wrap !important;
+    }
+
+    .c-logo-w {
+        width: 50% !important;
+    }
+
+    .about-us {
+        h5 {
+            text-align: center;
+            margin-top: 25px;
+        }
+    }
+
+    .awdawd {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-content: space-between;
+        align-items: center;
+
+        .tarif-border-radius-card {
+            width: auto !important;
+        }
+    }
+
+    .contact-us-container {
+        width: 100% !important;
+        margin-top: 6% !important;
+        padding: 20px 25px 20px 25px !important;
     }
 
     .container-333 {
@@ -673,6 +742,15 @@ body {
     }
 }
 
+.contact-us-form {
+    align-items: center !important;
+    display: flex !important;
+
+    label {
+        margin-left: 10px !important;
+    }
+}
+
 .main img.line {
     margin-top: -27px;
 }
@@ -691,8 +769,8 @@ body {
 
 .card-body-2 {
     margin-left: 8px;
-    font-size: 11px;
-    padding: none !important;
+    word-wrap: normal !important;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
 
     h5 {
         font-size: 16px;
@@ -729,6 +807,14 @@ body {
     }
 }
 
+.card-title {
+    word-wrap: normal !important;
+}
+
+.fz-32 {
+    font-size: 32px;
+}
+
 .proccess-div {
 
     button {
@@ -742,6 +828,26 @@ body {
     }
 
     margin-left: 50px;
+}
+
+@media (max-width: 430px) {
+    .card-body-2 {
+        font-size: 13px;
+        line-height: 0.9;
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 375px) {
+    .card-body-2 {
+        h5 {
+            font-size: 13px !important;
+        }
+
+        p {
+            font-size: 13px !important;
+        }
+    }
 }
 
 @media (max-width: 1024px) {
@@ -765,4 +871,59 @@ body {
         background-image: url('./img/главная-картинка---телефон-моб-версия.jpg');
         background-size: cover;
     }
+}
+
+.submit-aling {
+    margin-top: -33px !important;
+    margin-left: -9px;
+}
+
+.send-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+}
+
+.navbar-toggler-icon {
+    width: 30px;
+    height: 30px;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23D9D9D9' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    background-image: none !important;
+    position: relative;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before,
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.55);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
