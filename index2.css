@@ -37,6 +37,7 @@ body {
     height: 100%;
     display: block;
     margin: 0;
+    position: relative;
 }
 
 .container-fluid {
@@ -67,6 +68,10 @@ body {
     align-items: flex-end;
 }
 
+.c-pos-relative {
+    position: relative;
+}
+
 .custom-icon {
     background-image: url('data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgb(255, 255, 255)\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e');
 }
@@ -77,6 +82,7 @@ body {
 
 .ar-icon {
     margin-top: -45px;
+    position: relative;
 }
 
 .nav-social {
@@ -181,7 +187,7 @@ body {
 
 .connect-btn {
     color: black;
-    -webkit-text-stroke-width: medium;
+    position: relative;
     font-size: 24px;
     margin-top: -43px;
 }
@@ -599,7 +605,7 @@ body {
     }
 
     .ml-30 {
-        margin-left: 70px !important;
+        margin-left: 80px !important;
     }
 }
 
@@ -612,7 +618,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 1%;
+    margin-top: 1% !important;
 }
 
 .submit-btn {
