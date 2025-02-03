@@ -170,7 +170,7 @@
                             </div>
                         </div>
                         <div class="col-4 col-md-12">
-                            <button class="svg-button-contact">
+                            <button class="svg-button-contact wa-contact-us">
                                 <svg class="svg" width="490" height="67" viewBox="0 0 490 67" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g filter="url(#filter0_i_1)">
@@ -333,7 +333,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-12 text">
-                            <button class="svg-button-contact">
+                            <button class="svg-button-contact wa-contact-us">
                                 <svg class="svg" viewBox="0 0 490 67" preserveAspectRatio="xMidYMid meet" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g filter="url(#filter0_i_129_274)">
@@ -557,7 +557,7 @@
                             общаться между
                             собой и делиться мнениями о продукции.
                         </h6>
-                        <button class="svg-button-contact">
+                        <button class="svg-button-contact send-order-2">
                             <svg class="svg" width="718" height="50" viewBox="0 0 718 50" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g filter="url(#filter0_d_129_618)">
@@ -692,7 +692,7 @@
             <div class="row arhive-row mt-c-4">
                 <div class="col">
                     <img src="./img/Slide.png" class="c-width-100">
-                    <button class="svg-button-contact svg-button-size">
+                    <button class="svg-button-contact svg-button-size go-arhive">
                         <svg class="svg svg-height-90" width="291" height="70" viewBox="0 0 291 70" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g id="&#208;&#191;&#208;&#187;&#208;&#176;&#209;&#136;&#208;&#186;&#208;&#176;">
@@ -754,7 +754,7 @@
             <div class="mt-3 container-fluid">
                 <h1 class="text-center">Процесс</h1>
                 <img src="./img/Архив.png" class="line mt-4 c-mb-95">
-                <button class="svg-button-contact svg-button-size">
+                <button class="svg-button-contact svg-button-size go-arhive">
                     <svg class="svg svg-height-90" width="291" height="70" viewBox="0 0 291 70" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <g id="&#208;&#191;&#208;&#187;&#208;&#176;&#209;&#136;&#208;&#186;&#208;&#176;">
@@ -1237,10 +1237,30 @@
             }
         }
 
+        function scrollToIfNeeded(target, navbarHeight, timeout = 0) {
+            let targetElement = document.querySelector(target);
+            if (targetElement) {
+                let targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: targetPosition - navbarHeight,
+                        behavior: "smooth"
+                    });
+                }, timeout);
+            }
+        }
+
         function updateLinkListeners() {
             const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
             const footerLinks = document.querySelectorAll('.no-wrap-footer-menu .text');
             const navbarHeight = document.querySelector(".navbar").offsetHeight;
+
+            let sendOrderBtns = [];
+            sendOrderBtns.push(document.querySelector(".send-order"))
+            sendOrderBtns.push(document.querySelector(".send-order-2"));
+            sendOrderBtns.forEach(x => x.addEventListener("click", (event) => 
+                scrollToIfNeeded('#contact', navbarHeight, 100)));
+
             linkScrollToAddListener(document.querySelector(".navbar-brand"), navbarHeight);
             linkScrollToAddListener(document.querySelector(".footer-btn"), navbarHeight);
 
@@ -1253,6 +1273,7 @@
         }
 
         function linkScrollToAddListener(link, navbarHeight) {
+            const timeout = 100;
             const navbarCollapse = document.querySelector(".navbar-collapse");
             link.addEventListener("click", function (event) {
                 if (navbarCollapse.classList.contains("show")) {
@@ -1261,30 +1282,45 @@
 
                 let target = this.getAttribute("href");
 
-                if (target.startsWith("#")) {
+                if (target?.startsWith("#")) {
                     event.preventDefault();
 
-                    setTimeout(() => {
-                        if (target === "#" || target.length === 1) {
+                    if (target === "#" || target.length === 1) {
+                        setTimeout(() => {
                             window.scrollTo({ top: 0, behavior: "smooth" });
-                        } else {
-                            let targetElement = document.querySelector(target);
-                            if (targetElement) {
-                                let targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-                                window.scrollTo({
-                                    top: targetPosition - navbarHeight,
-                                    behavior: "smooth"
-                                });
-                            } else {
-                                window.scrollTo({ top: 0, behavior: "smooth" });
-                            }
-                        }
-                    }, 100);
+                        }, timeout);
+
+                        return;
+                    }
+
+                    scrollToIfNeeded(target, navbarHeight, timeout);
                 }
             });
         }
 
+        function createBtnAndClickListen(classNameWithDot, action) {
+            const btns = document.querySelectorAll(classNameWithDot);
+            btns.forEach(btn => {
+                btn.addEventListener("click", function (event) {
+                    action();
+                });
+            });
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
+            createBtnAndClickListen('.wa-contact-us', () => {
+                window.open("https://wa.me/+79612244666", "_blank");
+            });
+            createBtnAndClickListen('.svg-button-ar', () => {
+                window.open("./demo.html", "_blank");
+            });
+            createBtnAndClickListen('.svg-button-xr', () => {
+                window.open("./xrviewer.html", "_blank");
+            });
+            createBtnAndClickListen('.go-arhive', () => {
+                window.open("./demo.html", "_blank");
+            });
+
             new ResizeObserver(updateContainerHeight).observe(document.querySelector('.col-md-6'));
             document.getElementById("year").textContent = new Date().getFullYear();
             updateContainerHeight();
