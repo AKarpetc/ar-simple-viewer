@@ -154,15 +154,15 @@ body {
 
 .text {
     text-align: center;
+    text-decoration: none;
+}
+
+.svg-button-send p {
     color: white;
 }
 
 .svg-button-send {
     width: 60% !important;
-
-    p {
-        color: white;
-    }
 }
 
 .contact-us-container {
@@ -185,6 +185,11 @@ body {
     margin-bottom: 3%;
 }
 
+.header-text {
+    margin-top: 91px;
+    color: white;
+}
+
 .connect-btn {
     color: black;
     position: relative;
@@ -197,6 +202,10 @@ body {
     background-color: transparent;
     border: none;
     padding: 0;
+}
+
+.text-sh-color a {
+    color: #3d3131;
 }
 
 .text-sh-color {
@@ -363,8 +372,13 @@ body {
 
 .container-333 {}
 
+.no-wrap-footer-menu a {
+    color: white;
+}
+
 .no-wrap-footer-menu {
     display: flex;
+    color: white;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;

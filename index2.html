@@ -32,21 +32,21 @@
                         <a class="nav-link active" href="#">Главная</a>
                     </li>
                     <li class="nav-item me-3">
-                        <a class="nav-link active" href="#">О продукте</a>
+                        <a class="nav-link active" href="#about">О продукте</a>
                     </li>
                     <li class="nav-item me-3">
-                        <a class="nav-link active" href="#">Тарифы</a>
+                        <a class="nav-link active" href="#plans">Тарифы</a>
                     </li>
                     <li class="nav-item me-3">
-                        <a class="nav-link active" href="#">Контакты</a>
+                        <a class="nav-link active" href="#contact">Контакты</a>
                     </li>
                 </ul>
 
                 <div class="d-flex nav-social">
-                    <a href="https://t.me/+79513639858" target="_blank" class="c-header-message-icon">
+                    <a href="https://wa.me/+79612244666" target="_blank" class="c-header-message-icon">
                         <img class="icon-img" src="./img/Whatsaph_icon.png" />
                     </a>
-                    <a href="https://wa.me/+79513639858" target="_blank" class="c-header-message-icon">
+                    <a href="https://t.me/+79612244666" target="_blank" class="c-header-message-icon">
                         <img class="icon-img" src="./img/telegramm.png" />
                     </a>
                 </div>
@@ -54,7 +54,7 @@
         </div>
     </nav>
 
-    <div class="container tops main">
+    <div class="container tops main header-text">
         <div class="main-img">
             <div class="d-none d-md-block">
                 <div class="row">
@@ -390,7 +390,7 @@
         </div>
         <img src="./img/Line 1 (1).png" class="line">
     </div>
-    <div class="container container-333">
+    <div id="about" class="container container-333">
         <div class="d-none d-md-block">
             <div class="row about-row">
                 <div class="col col-2">
@@ -802,7 +802,7 @@
     </div>
     <div class="container mt-c-4">
         <img src="./img/Line 1 (1).png" class="line">
-        <h1 class="c-ft-32 mt-c-4 text-center">Тарифы</h1>
+        <h1 id="plans" class="c-ft-32 mt-c-4 text-center">Тарифы</h1>
         <div class="mt-c-4 con-price container-fluid">
             <div class="card border-radius-card-2 tarif-border-radius-card">
                 <div class="card-body">
@@ -949,18 +949,14 @@
     <div class="container mt-c-4">
         <img src="./img/Line 1 (1).png" class="line">
         <div class="mt-c-3 container-fluid">
-            <h1 class="c-ft-32 text-center">Связаться с нами </h1>
+            <h1 id="contact" class="c-ft-32 text-center">Связаться с нами </h1>
             <div class="contact-us-container mt-c-4">
                 <div class="mb-3">
                     <label for="formGroupExampleInput" class="form-label cus-bold">Имя*</label>
                     <input type="text" class="form-control gray" id="formGroupExampleInput">
                 </div>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label cus-bold">Телефон*</label>
-                    <input type="text" class="form-control gray" id="formGroupExampleInput2">
-                </div>
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label cus-bold">Email*</label>
+                    <label for="formGroupExampleInput2" class="form-label cus-bold">Телефон или Email*</label>
                     <input type="text" class="form-control gray" id="formGroupExampleInput2">
                 </div>
                 <div class="form-check contact-us-form cus-fs-69">
@@ -1117,14 +1113,16 @@
                 <div class="d-flex">
                     <div class="col">
                         <span class="fw-100 text-sh-color about-h1">
-                            <p class="mb-0">Email: info@art-vision-tech.ru</p>
-                            <p class="mb-0">Москва: +7 (953) 000-00-00</p>
-                            <p class="mb-0">Астана: +7 (777) 000-00-00</p>
+                            <p class="mb-0">Email: <a class="text" href="mailto:info@art-vision-tech.ru">
+                                    info@art-vision-tech.ru</a>
+                            </p>
+                            <p class="mb-0">Москва: <a class="text" href="tel:+79530000000">+7 (961) 224-46-66</a></p>
+                            <p class="mb-0">Астана: <a class="text" href="tel:+77764086666">+7 (776) 408-66-66</a></p>
                         </span>
                     </div>
                     <div class="col text-end">
                         <div class="send-button-container">
-                            <button class="mb-c-3 soc-icon-btn">
+                            <a href="https://wa.me/+79612244666" target="_blank" class="mb-c-3 soc-icon-btn">
                                 <svg class="svg" width="64" height="64" viewBox="0 0 64 64" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g id="icon">
@@ -1137,8 +1135,8 @@
                                         </g>
                                     </g>
                                 </svg>
-                            </button>
-                            <button class="mb-c-3 soc-icon-btn">
+                            </a>
+                            <a href="https://t.me/+79612244666" target="_blank" class="mb-c-3 soc-icon-btn">
                                 <svg class="svg" width="64" height="64" viewBox="0 0 64 64" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect x="0.644531" y="0.84375" width="62.7097" height="60.7921" rx="5"
@@ -1147,7 +1145,7 @@
                                         d="M52.6157 14.9428C52.1948 13.9998 51.3122 13.4668 50.1308 13.4668C49.2754 13.4668 48.515 13.7401 48.4199 13.7811C48.1619 13.8768 23.1774 23.4979 12.9256 27.7208C12.0294 28.0898 11.4455 28.6091 11.2011 29.2787C10.8209 30.3037 11.5406 31.356 12.2195 31.6567C14.7723 32.791 20.0679 34.3489 21.7245 34.8272C22.2677 36.6585 24.1822 43.0407 25.0784 45.7876C25.3092 46.4983 26.0017 46.9219 26.9115 46.9219C27.0473 46.9219 27.1288 46.9219 27.1288 46.9219C27.3732 46.8946 27.5904 46.7716 27.7398 46.5939C27.8756 46.4436 27.9571 46.2523 27.9706 46.0473L28.5002 38.3258C29.505 39.0775 30.9579 40.1844 32.5738 41.4007C35.7647 43.806 39.5667 46.6486 41.685 48.1929C42.4454 48.7395 43.165 49.0129 43.8575 49.0129C45.3919 49.0129 46.2745 47.6872 46.5732 46.5529C48.3385 39.6514 50.9184 26.6138 52.4663 18.824L52.8058 17.1157C53.0231 16.0361 52.833 15.4211 52.6293 14.9564L52.6157 14.9428ZM26.7214 36.4399L26.2462 43.2867C25.092 39.5695 23.3811 33.8433 23.3675 33.7749C23.3675 33.7613 23.3404 33.7476 23.3404 33.7203V33.6793L42.8799 20.8739C42.8799 20.8739 44.2106 19.9583 44.713 19.849C45.3919 19.6986 45.5549 19.972 45.4326 20.136C44.9574 20.7783 42.7169 22.7189 42.7169 22.7189L27.1423 35.7019C26.8979 35.8659 26.735 36.1392 26.7214 36.4262V36.4399Z"
                                         fill="white" />
                                 </svg>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1158,22 +1156,22 @@
     <footer class="footer mt-auto py-4 background-footer-color container-fluid">
         <div class="container">
             <div class="row row-footer">
-                <div class="col">
+                <a href="#" class="col footer-btn">
                     <img src="./img/Art vision tech long white.png" class="c-logo-w">
-                </div>
+                </a>
                 <div class="col">
                     <div class="no-wrap-footer-menu">
-                        <span class="text">Главная</span>
-                        <span class="text">|</span>
-                        <span class="text">О продукте</span>
-                        <span class="text">|</span>
-                        <span class="text">Тарифы</span>
-                        <span class="text">|</span>
-                        <span class="text">Контакты</span>
+                        <span><a class="text" href="#">Главная</a></span>
+                        <span>|</span>
+                        <span><a class="text" href="#about">О продукте</a></span>
+                        <span>|</span>
+                        <span><a class="text" href="#plans">Тарифы</a></span>
+                        <span>|</span>
+                        <span><a class="text" href="#contact">Контакты</a></span>
                     </div>
                 </div>
                 <div class="col company-color">
-                    <span>© 2025 ООО "АРТ ВИЖН ТЕХ"</span>
+                    <span>© <span id="year"></span> ООО "АРТ ВИЖН ТЕХ"</span>
                 </div>
             </div>
         </div>
@@ -1186,67 +1184,118 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
     <script>
+        const cssUpdatableClasses = [
+            {
+                selector: '.dynamic-column',
+                positive: el => el.classList.replace('col-md-4', 'col-md-5'),
+                negative: el => el.classList.replace('col-md-5', 'col-md-4'),
+                condition: () => window.innerWidth <= 1400
+            },
+            {
+                selector: '.row-footer',
+                positive: el => el.classList.add('row'),
+                negative: el => el.classList.remove('row'),
+                condition: () => window.innerWidth > 767
+            },
+            {
+                selector: '.con-price',
+                positive: el => el.classList.replace('container-fluid', 'container'),
+                negative: el => el.classList.replace('container', 'container-fluid'),
+                condition: () => window.innerWidth > 767
+            },
+            {
+                selector: '.about-us',
+                positive: el => el.classList.add('row'),
+                negative: el => el.classList.replace('row', 'container-fluid'),
+                condition: () => window.innerWidth > 767
+            }
+        ];
+
+        function updateClasses() {
+            cssUpdatableClasses.forEach(({ selector, condition, positive, negative }) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    condition() ? positive(element) : negative(element);
+                }
+            });
+        }
+
+        function updateContainerHeight() {
+            const colElement = document.querySelector('.col-md-6');
+            const imgContainer = document.querySelector('.main-img');
+            const navbarHeight = document.querySelector(".navbar").offsetHeight;
+            if (colElement && imgContainer) {
+                imgContainer.style.minHeight = `${colElement.clientHeight}px`;
+            }
+        }
+
+        function updateMarginTop() {
+            const nav = document.querySelector('nav');
+            const tops = document.querySelector('.tops');
+            if (nav && tops) {
+                tops.style.marginTop = `${nav.offsetHeight - 1}px`;
+            }
+        }
+
+        function updateLinkListeners() {
+            const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+            const footerLinks = document.querySelectorAll('.no-wrap-footer-menu .text');
+            const navbarHeight = document.querySelector(".navbar").offsetHeight;
+            linkScrollToAddListener(document.querySelector(".navbar-brand"), navbarHeight);
+            linkScrollToAddListener(document.querySelector(".footer-btn"), navbarHeight);
+
+            navLinks.forEach(function (link) {
+                linkScrollToAddListener(link, navbarHeight);
+            });
+            footerLinks.forEach(function (link) {
+                linkScrollToAddListener(link, navbarHeight);
+            });
+        }
+
+        function linkScrollToAddListener(link, navbarHeight) {
+            const navbarCollapse = document.querySelector(".navbar-collapse");
+            link.addEventListener("click", function (event) {
+                if (navbarCollapse.classList.contains("show")) {
+                    new bootstrap.Collapse(navbarCollapse, { toggle: true });
+                }
+
+                let target = this.getAttribute("href");
+
+                if (target.startsWith("#")) {
+                    event.preventDefault();
+
+                    setTimeout(() => {
+                        if (target === "#" || target.length === 1) {
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                        } else {
+                            let targetElement = document.querySelector(target);
+                            if (targetElement) {
+                                let targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                                window.scrollTo({
+                                    top: targetPosition - navbarHeight,
+                                    behavior: "smooth"
+                                });
+                            } else {
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                            }
+                        }
+                    }, 100);
+                }
+            });
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
-            const cssUpdatableClasses = [
-                {
-                    selector: '.dynamic-column',
-                    positive: el => el.classList.replace('col-md-4', 'col-md-5'),
-                    negative: el => el.classList.replace('col-md-5', 'col-md-4'),
-                    condition: () => window.innerWidth <= 1400
-                },
-                {
-                    selector: '.row-footer',
-                    positive: el => el.classList.add('row'),
-                    negative: el => el.classList.remove('row'),
-                    condition: () => window.innerWidth > 767
-                },
-                {
-                    selector: '.con-price',
-                    positive: el => el.classList.replace('container-fluid', 'container'),
-                    negative: el => el.classList.replace('container', 'container-fluid'),
-                    condition: () => window.innerWidth > 767
-                },
-                {
-                    selector: '.about-us',
-                    positive: el => el.classList.add('row'),
-                    negative: el => el.classList.replace('row', 'container-fluid'),
-                    condition: () => window.innerWidth > 767
-                }
-            ];
-
-            function updateClasses() {
-                cssUpdatableClasses.forEach(({ selector, condition, positive, negative }) => {
-                    const element = document.querySelector(selector);
-                    if (element) {
-                        condition() ? positive(element) : negative(element);
-                    }
-                });
-            }
-
-            function updateContainerHeight() {
-                const colElement = document.querySelector('.col-md-6');
-                const imgContainer = document.querySelector('.main-img');
-                if (colElement && imgContainer) {
-                    imgContainer.style.minHeight = `${colElement.clientHeight}px`;
-                }
-            }
-
-            function updateMarginTop() {
-                const nav = document.querySelector('nav');
-                const tops = document.querySelector('.tops');
-                if (nav && tops) {
-                    tops.style.marginTop = `${nav.offsetHeight - 1}px`;
-                }
-            }
-
             new ResizeObserver(updateContainerHeight).observe(document.querySelector('.col-md-6'));
+            document.getElementById("year").textContent = new Date().getFullYear();
             updateContainerHeight();
             updateClasses();
             updateMarginTop();
+            updateLinkListeners();
 
             window.addEventListener('resize', () => {
                 updateClasses();
                 updateMarginTop();
+                updateLinkListeners();
             });
         });
     </script>
