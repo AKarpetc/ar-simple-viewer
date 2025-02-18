@@ -76,8 +76,29 @@ body {
     background-image: url('data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 30 30\'%3e%3cpath stroke=\'rgb(255, 255, 255)\' stroke-linecap=\'round\' stroke-miterlimit=\'10\' stroke-width=\'2\' d=\'M4 7h22M4 15h22M4 23h22\'/%3e%3c/svg%3e');
 }
 
+.container-777 {
+    position: relative;
+    display: inline-block;
+}
+
 .phone {
     width: 100%;
+}
+
+.video-container {
+    position: absolute;
+    border-radius: 48px;
+    overflow: hidden;
+    height: 84.5%;
+    width: 46%;
+    top: 2.5%;
+    left: 32.8%;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .ar-icon {
@@ -390,6 +411,10 @@ body {
         width: 16rem !important;
     }
 
+    .video-container {
+        border-radius: 40px;
+    }
+
     .company-color {
         margin-top: 5px;
     }
@@ -426,6 +451,14 @@ body {
 @media (max-width: 1200px) {
     .phone {
         width: 116%;
+    }
+
+    .video-container {
+        border-radius: 38px;
+        height: 84.5%;
+        width: 53.1%;
+        top: 2.5%;
+        left: 38%;
     }
 
     .d-none-when-1200 {
@@ -538,6 +571,66 @@ body {
 
 @media (max-width: 575px) {
     .svg-button-contact-top {}
+
+    .video-container {
+        border-radius: 21px !important;
+        height: 51.3% !important;
+        width: 24.7% !important;
+        top: 4.3% !important;
+        left: 40.3% !important;
+    }
+}
+
+@media (max-width: 540px) {
+    .video-container {
+        border-radius: 21px !important;
+        height: 51% !important;
+        width: 24.7% !important;
+        top: 4.4% !important;
+        left: 40.2% !important;
+    }
+}
+
+@media (max-width: 510px) {
+    .video-container {
+        border-radius: 21px !important;
+        height: 50.5% !important;
+        width: 24.9% !important;
+        top: 4.8% !important;
+        left: 40% !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .video-container {
+        border-radius: 17px !important;
+        height: 49.6% !important;
+        width: 24.9% !important;
+        top: 5% !important;
+        left: 39.5% !important;
+    }
+}
+
+.demo-ifr2 {
+    margin-top: 11px;
+    margin-left: 46px;
+    width: 311px;
+    height: 677px;
+    border-radius: 48px;
+}
+
+.demo2 {
+    background-image: url(../../img/iPhone-16-Pro.png);
+    background-repeat: no-repeat;
+    background-size: 61% 100%;
+    background-position: center;
+    background-position-y: 0px;
+    background-position-x: 44px;
+    background-repeat: no-repeat;
+    display: flex;
+    width: 400px;
+    height: 700px;
+    min-height: 500px;
 }
 
 @media (max-width: 414px) {
@@ -545,9 +638,38 @@ body {
         margin-top: 1vh !important;
     }
 
+    .video-container {
+        border-radius: 16px !important;
+        height: 48.8% !important;
+        width: 24.8% !important;
+        top: 5.3% !important;
+        left: 39.2% !important;
+    }
+
     .svg-button-top {
         margin-bottom: 7px;
     }
+}
+
+@media (max-width: 390px) {
+    .video-container {
+        border-radius: 13px !important;
+        height: 48% !important;
+        width: 24.6% !important;
+        top: 5.6% !important;
+        left: 39% !important;
+    }
+}
+
+@media (max-width: 344px) {
+    .video-container {
+        border-radius: 12px !important;
+        height: 46.2% !important;
+        width: 24.9% !important;
+        top: 6.3% !important;
+        left: 38.2% !important;
+    }
+
 }
 
 .c-w-50 {
@@ -567,6 +689,10 @@ body {
 @media (max-width: 991px) {
     .about-icon-size {
         height: 69px !important;
+    }
+
+    .video-container {
+        border-radius: 28px;
     }
 
     .c-logo-w {
@@ -691,6 +817,14 @@ body {
         margin-left: -13px;
         margin-top: 17px;
         margin-bottom: 55px;
+    }
+
+    .video-container {
+        border-radius: 20px;
+        height: 51%;
+        width: 24.7%;
+        top: 4.5%;
+        left: 40.2%;
     }
 
     .card-text {
