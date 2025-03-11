@@ -59,7 +59,7 @@ body {
 }
 
 .main-img {
-    background-image: url(./img/главная-картинка---фон_десктоп.jpg);
+    background-image: url(./img/главная-картинка---фон_десктоп.webp);
     background-position: center;
     background-size: cover;
     min-height: 100vh;
@@ -267,7 +267,7 @@ video {
 }
 
 .tarif-border-radius-card {
-    background-image: url('./img/Frame 19.png') !important;
+    background-image: url('./img/Frame\ 19.webp') !important;
     width: 49% !important;
 }
 
@@ -701,7 +701,7 @@ video {
 }
 
 .demo {
-    background-image: url(../../img/iPhone-16-Pro.png);
+    background-image: url(../../img/iPhone-16-Pro.webp);
     background-repeat: no-repeat;
     background-size: 61% 100%;
     background-position: center;
@@ -714,7 +714,7 @@ video {
 }
 
 .demo2 {
-    background-image: url(../../img/iPhone-16-Pro.png);
+    background-image: url(../../img/iPhone-16-Pro.webp);
     background-repeat: no-repeat;
     background-size: contain;
     /* Автоматическое масштабирование */
@@ -949,12 +949,30 @@ body.modal-open {
     }
 }
 
+@media (min-width: 767px) { 
+    .demo2 {
+        display: none !important;
+    }
+
+    .mobile-container {
+        display: none !important;
+    }
+}
+
 @media (max-width: 767px) {
     .phone {
         width: 75%;
         margin-left: -13px;
         margin-top: 17px;
         margin-bottom: 55px;
+    }
+
+    .all-container {
+        display: none !important;
+    }
+
+    .demo {
+        display: none !important;
     }
 
     .video-container {
@@ -1186,7 +1204,7 @@ body.modal-open {
     }
 
     .main-img {
-        background-image: url('./img/главная-картинка---телефон-моб-версия.jpg');
+        background-image: url('./img/главная-картинка---телефон-моб-версия.webp');
         background-size: cover;
     }
 }
