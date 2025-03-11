@@ -8,8 +8,11 @@ window.onload = async (_) => {
         const modelsInfo = storage.mainCollection.data;
         const randomIndex = Math.floor(Math.random() * modelsInfo.length);
         const defaultModel = modelsInfo[randomIndex];
-        var el = document.getElementById('demo-ifr2');
-        el.setAttribute('src', `./viewer.html?id=${defaultModel.id}`);
+        var els = document.getElementsByClassName('ar-preview');
+
+        for (let i = 0; i < els.length; i++) {
+            els[i].setAttribute('src', `./viewer.html?id=${defaultModel.id}`);    
+        }
     }
     catch (err) {
         // alert(err)

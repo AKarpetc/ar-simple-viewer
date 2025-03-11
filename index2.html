@@ -13,6 +13,100 @@
 </head>
 
 <body>
+    <!-- Модальное окно -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">Заявка на подключение</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mt-c-3 container-fluid">
+                        <div class="modal-container mt-c-4">
+                            <div class="mb-3">
+                                <label for="modal-formGroupExampleInput" class="form-label cus-bold">Имя*</label>
+                                <input type="text" class="form-control gray" id="modal-formGroupExampleInput">
+                            </div>
+                            <div class="mb-3">
+                                <label for="modal-formGroupExampleInput2" class="form-label cus-bold">Телефон или
+                                    email*</label>
+                                <input type="text" class="form-control gray" id="modal-formGroupExampleInput2">
+                            </div>
+                            <div class="mb-3">
+                                <label for="modal-formGroupExampleInput3" class="form-label cus-bold">Тариф</label>
+                                <select class="form-control gray" id="modal-formGroupExampleInput3">
+                                    <option value="" disabled selected>Выберите тариф</option>
+                                    <option value="Lite">Lite</option>
+                                    <option value="Pro">Pro</option>
+                                </select>
+                            </div>
+                            <div class="form-check contact-us-form cus-fs-69">
+                                <input class="form-check-input" type="checkbox" value="" id="modal-flexCheckDefault1">
+                                <label class="form-check-label" for="modal-flexCheckDefault1">
+                                    Согласие на получение рассылки рекламных/информационных сообщений и материалов
+                                </label>
+                            </div>
+                            <div class="modal-form-check form-check contact-us-form cus-fs-69">
+                                <input class="form-check-input" type="checkbox" value="" id="modal-flexCheckChecked2"
+                                    checked>
+                                <label class="form-check-label" for="modal-flexCheckChecked2">
+                                    Cогласие на обработку персональных данных
+                                </label>
+                            </div>
+                            <div class="text-center c-mb-40">
+                                <button class="svg-button-contact submit-btn modal-btn">
+                                    <svg class="svg" width="180" height="36" viewBox="0 0 130 36" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g filter="url(#filter0_b_210_33182)">
+                                            <rect width="130" height="36" rx="5" fill="url(#paint0_linear_210_33182)" />
+                                            <rect width="130" height="36" rx="5" fill="url(#paint1_radial_210_33182)"
+                                                fill-opacity="0.2" />
+                                            <rect x="0.5" y="0.5" width="129" height="35" rx="4.5"
+                                                stroke="url(#paint2_radial_210_33182)" />
+                                        </g>
+                                        <defs>
+                                            <filter id="filter0_b_210_33182" x="-20" y="-20" width="170" height="76"
+                                                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                                <feGaussianBlur in="BackgroundImageFix" stdDeviation="10" />
+                                                <feComposite in2="SourceAlpha" operator="in"
+                                                    result="effect1_backgroundBlur_210_33182" />
+                                                <feBlend mode="normal" in="SourceGraphic"
+                                                    in2="effect1_backgroundBlur_210_33182" result="shape" />
+                                            </filter>
+                                            <linearGradient id="paint0_linear_210_33182" x1="28.2609" y1="-6.16457e-07"
+                                                x2="27.976" y2="35.9999" gradientUnits="userSpaceOnUse">
+                                                <stop stop-color="#20294D" />
+                                                <stop offset="1" stop-color="#0D101F" />
+                                            </linearGradient>
+                                            <radialGradient id="paint1_radial_210_33182" cx="0" cy="0" r="1"
+                                                gradientUnits="userSpaceOnUse"
+                                                gradientTransform="translate(66.6149 1.90837e-06) rotate(89.4884) scale(23.6259 61.005)">
+                                                <stop stop-color="white" stop-opacity="0.2" />
+                                                <stop offset="1" stop-color="#13151D" stop-opacity="0" />
+                                            </radialGradient>
+                                            <radialGradient id="paint2_radial_210_33182" cx="0" cy="0" r="1"
+                                                gradientUnits="userSpaceOnUse"
+                                                gradientTransform="translate(60.2899 12.0462) rotate(122.784) scale(97.1829 21.4336)">
+                                                <stop stop-color="white" />
+                                                <stop offset="1" stop-color="#999999" stop-opacity="0" />
+                                            </radialGradient>
+                                        </defs>
+                                    </svg>
+
+                                    <div class="ar-icon button-text submit-aling">
+                                        <p>Отправить</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="loader">Загрузка...</div>
     <nav class="navbar-color container navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
             <div class="gamburger">
@@ -59,14 +153,11 @@
                 <div class="row">
                     <div class="col-md-6 hand-img-top">
                         <div class="container-777">
-                            <img id="phoneImage" src="./img/главная-картинка-рука с телефон-моб-версия 2.png"
-                                alt="Phone in Hand" class="phone">
-                            <canvas id="canvas" style="display:none;"></canvas>
-                            <div class="video-container" id="videoContainer">
-                                <video autoplay loop muted playsinline webkit-playsinline preload="auto"
-                                    id="promoVideo">
-                                    <source src="https://storage.yandexcloud.net/avt-models/video/promo_video.mp4"
-                                        type="video/mp4">
+                            <img src="./img/главная-картинка-рука с телефон-моб-версия 2.png" alt="Phone in Hand"
+                                class="phone">
+                            <div class="video-container">
+                                <video autoplay loop muted playsinline webkit-playsinline preload="auto">
+                                    <source src="./video/output2.webm" type="video/webm">
                                     Ваш браузер не поддерживает видео.
                                 </video>
                             </div>
@@ -247,13 +338,10 @@
                     </div>
                     <div class="col-md-6">
                         <div class="container-777">
-                            <img id="phoneImage" src="./img/Рука-телефон.png" alt="Phone in Hand" class="phone">
-                            <canvas id="canvas" style="display:none;"></canvas>
-                            <div class="video-container" id="videoContainer">
-                                <video autoplay loop muted playsinline webkit-playsinline preload="auto"
-                                    id="promoVideo2">
-                                    <source src="https://storage.yandexcloud.net/avt-models/video/promo_video.mp4"
-                                        type="video/mp4">
+                            <img src="./img/Рука-телефон.png" alt="Phone in Hand" class="phone">
+                            <div class="video-container">
+                                <video autoplay loop muted playsinline webkit-playsinline preload="auto">
+                                    <source src="./video/output2.webm" type="video/webm">
                                     Ваш браузер не поддерживает видео.
                                 </video>
                             </div>
@@ -410,7 +498,7 @@
                 </div>
             </div>
         </div>
-        <img src="./img/Line 1 (1).png" class="line">
+        <img data-src="image.jpg" class="line">
     </div>
     <div id="about" class="container container-333">
         <div class="d-none d-md-block">
@@ -543,8 +631,8 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <img src="./img/Line 1 (1).png" class="line">
+    <div class="container mt-c-3">
+        <img data-src="image.jpg" class="line">
         <div class="d-none d-md-block">
             <div class="row about-row about-row-start">
                 <div class="col col-7">
@@ -632,20 +720,20 @@
                         </button>
                     </div>
                 </div>
-                <div class="demo2 col">
-                    <iframe id="demo-ifr2" class="demo-ifr2" src="./viewer.html?id=d235b352-afff-4fc5-9650-fbe5286d51fd"
+                <div class="demo col-5 col">
+                    <iframe class="demo-ifr ar-preview" src="./viewer.html?id=d235b352-afff-4fc5-9650-fbe5286d51fd"
                         frameborder="0" title="" alt="">
                     </iframe>
                 </div>
             </div>
         </div>
         <div class="d-md-none">
-            <div class="send-order-header">
+            <div class="send-order-header" style="margin-bottom: 4%;">
                 <h1 class="text-center mt-2 container-fluid">Развивайте свой бизнес с новыми технологиями и
                     вдохновляйтесь новыми
                     возможностями!</h1>
                 <div class="demo2">
-                    <iframe id="demo-ifr2" class="demo-ifr2" src="./viewer.html?id=d235b352-afff-4fc5-9650-fbe5286d51fd"
+                    <iframe class="demo-ifr2 ar-preview" src="./viewer.html?id=d235b352-afff-4fc5-9650-fbe5286d51fd"
                         frameborder="0" title="" alt="">
                     </iframe>
                 </div>
@@ -713,7 +801,7 @@
         </div>
     </div>
     <div class="container mb-c-2">
-        <img src="./img/Line 1 (1).png" class="line">
+        <img data-src="image.jpg" class="line">
         <div class="d-none d-md-block">
             <div class="row arhive-row mt-c-4">
                 <div class="col">
@@ -777,7 +865,7 @@
             </div>
         </div>
         <div class="d-md-none ">
-            <div class="mt-3 container-fluid">
+            <div class="mt-c-3 container-fluid">
                 <h1 class="text-center">Процесс</h1>
                 <img src="./img/Архив.png" class="line mt-4 c-mb-95">
                 <button class="svg-button-contact svg-button-size go-arhive">
@@ -827,7 +915,7 @@
         </div>
     </div>
     <div class="container mt-c-4">
-        <img src="./img/Line 1 (1).png" class="line">
+        <img data-src="image.jpg" class="line">
         <h1 id="plans" class="c-ft-32 mt-c-4 text-center">Тарифы</h1>
         <div class="mt-c-4 con-price container-fluid">
             <div class="card border-radius-card-2 tarif-border-radius-card">
@@ -893,7 +981,8 @@
                                 </radialGradient>
                             </defs>
                         </svg>
-                        <div class="connect-btn">
+                        <div class="connect-btn" data-bs-toggle="modal" data-bs-target="#contactModal"
+                            data-tariff="Lite">
                             <p>Подключить</p>
                         </div>
                     </button>
@@ -963,7 +1052,8 @@
                                 </radialGradient>
                             </defs>
                         </svg>
-                        <div class="connect-btn">
+                        <div class="connect-btn" data-bs-toggle="modal" data-bs-target="#contactModal"
+                            data-tariff="Pro">
                             <p>Подключить</p>
                         </div>
                     </button>
@@ -972,8 +1062,8 @@
 
         </div>
     </div>
-    <div class="container mt-c-4">
-        <img src="./img/Line 1 (1).png" class="line">
+    <div class="container mt-c-3">
+        <img data-src="image.jpg" class="line">
         <div class="mt-c-3 container-fluid">
             <h1 id="contact" class="c-ft-32 text-center">Связаться с нами </h1>
             <div class="contact-us-container mt-c-4">
@@ -982,7 +1072,7 @@
                     <input type="text" class="form-control gray" id="formGroupExampleInput">
                 </div>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label cus-bold">Телефон или Email*</label>
+                    <label for="formGroupExampleInput2" class="form-label cus-bold">Телефон или email*</label>
                     <input type="text" class="form-control gray" id="formGroupExampleInput2">
                 </div>
                 <div class="form-check contact-us-form cus-fs-69">
@@ -991,7 +1081,7 @@
                         Согласие на получение рассылки рекламных/информационных сообщений и материалов
                     </label>
                 </div>
-                <div class="form-check contact-us-form cus-fs-69">
+                <div class="form-check all-form-check contact-us-form cus-fs-69">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked>
                     <label class="form-check-label" for="flexCheckChecked2">
                         Cогласие на обработку персональных данных
@@ -999,7 +1089,7 @@
                 </div>
                 <div class="text-center c-mb-40">
                     <div class="d-none d-md-block">
-                        <button class="mb-c-3 svg-button-contact svg-button-send">
+                        <button class="mb-c-3 svg-button-contact svg-button-send empty-send-btn">
                             <svg class="svg" width="500" height="50" viewBox="0 0 500 50" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g id="Frame 40" clip-path="url(#clip0_129_535)">
@@ -1057,7 +1147,7 @@
                         </button>
                     </div>
                     <div class="d-md-none">
-                        <button class="svg-button-contact submit-btn">
+                        <button class="svg-button-contact submit-btn empty-send-btn">
                             <svg class="svg" width="180" height="36" viewBox="0 0 130 36" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g filter="url(#filter0_b_210_3318)">
@@ -1106,8 +1196,8 @@
             </div>
         </div>
     </div>
-    <div class="container mt-c-4">
-        <img src="./img/Line 1 (1).png" class="line">
+    <div class="container mt-c-3">
+        <img data-src="image.jpg" class="line">
         <div class="row mt-c-4 about-us align-items-center">
             <div class="col">
                 <img src="./img/лого_для_белого фона.png" class="line">
@@ -1333,6 +1423,12 @@
             });
         }
 
+
+        window.addEventListener("load", function () {
+            // Добавляем класс loaded, чтобы скрыть лоадер
+            document.body.classList.add("loaded");
+        });
+
         document.addEventListener("DOMContentLoaded", function () {
             createBtnAndClickListen('.wa-contact-us', () => {
                 window.open("https://wa.me/+79612244666", "_blank");
@@ -1364,7 +1460,28 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
 
-            const videos = [document.getElementById("promoVideo"), document.getElementById("promoVideo2")];
+            const contactModal = document.getElementById("contactModal");
+
+            contactModal.addEventListener("show.bs.modal", function (event) {
+                const button = event.relatedTarget;
+                const tariff = button.getAttribute("data-tariff");
+
+                // Находим select и устанавливаем значение
+                const tariffSelect = document.getElementById("modal-formGroupExampleInput3");
+                for (let option of tariffSelect.options) {
+                    if (option.textContent === tariff) {
+                        option.selected = true;
+                    }
+                }
+            });
+
+            const images = document.querySelectorAll("img[data-src]");
+            images.forEach(img => {
+                img.src = './img/Line 1 (1).png';
+            });
+
+
+            const videos = document.querySelectorAll(".video-container video");
 
             videos.forEach(video => {
                 // Принудительное воспроизведение на iPhone
@@ -1373,7 +1490,7 @@
                 });
 
                 // Воспроизведение при клике (если автозапуск не сработал)
-                document.addEventListener("click", function () {
+                video.addEventListener("click", function () {
                     if (video.paused) {
                         video.play();
                     } else {
@@ -1384,6 +1501,113 @@
             })
 
 
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function validateContactForm(nameInput, contactInput, consentCheckbox, submitButtons, consentContainer3) {
+                function validateInput(input) {
+                    let errorMessage = input.nextElementSibling;
+                    if (!errorMessage || !errorMessage.classList.contains("error-message")) {
+                        errorMessage = document.createElement("div");
+                        errorMessage.classList.add("error-message");
+                        input.parentNode.appendChild(errorMessage);
+                    }
+
+                    if (input.value.trim() === "") {
+                        errorMessage.textContent = "Это поле обязательно для заполнения";
+                        input.classList.add("is-invalid");
+                        return false;
+                    } else {
+                        errorMessage.textContent = "";
+                        input.classList.remove("is-invalid");
+                        return true;
+                    }
+                }
+
+                function validateContact(input) {
+                    let errorMessage = input.nextElementSibling;
+                    if (!errorMessage || !errorMessage.classList.contains("error-message")) {
+                        errorMessage = document.createElement("div");
+                        errorMessage.classList.add("error-message");
+                        input.parentNode.appendChild(errorMessage);
+                    }
+
+                    const value = input.value.trim();
+                    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                    const phonePattern = /^(\+7|8)?[\s-]?\(?\d{3}\)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/;
+
+                    if (!emailPattern.test(value) && !phonePattern.test(value)) {
+                        errorMessage.textContent = "Введите корректный телефон или email";
+                        input.classList.add("is-invalid");
+                        return false;
+                    } else {
+                        errorMessage.textContent = "";
+                        input.classList.remove("is-invalid");
+                        return true;
+                    }
+                }
+
+                function validateCheckbox(checkbox) {
+                    let errorMessage = consentContainer3.nextElementSibling;
+
+                    // Удаляем предыдущую ошибку перед новой проверкой
+                    if (errorMessage && errorMessage.classList.contains("error-message")) {
+                        errorMessage.remove();
+                    }
+
+                    // Добавляем новую ошибку, если чекбокс не выбран
+                    if (!checkbox.checked) {
+                        errorMessage = document.createElement("div");
+                        errorMessage.classList.add("error-message");
+                        errorMessage.textContent = "Вы должны дать согласие на обработку персональных данных";
+                        consentContainer3.parentNode.insertBefore(errorMessage, consentContainer3.nextSibling);
+                        return false;
+                    }
+                    return true;
+                }
+
+                function validateForm(event) {
+                    event.preventDefault(); // Остановка отправки формы
+                    const isNameValid = validateInput(nameInput);
+                    const isContactValid = validateContact(contactInput);
+                    const isConsentGiven = validateCheckbox(consentCheckbox);
+
+                    if (isNameValid && isContactValid && isConsentGiven) {
+                        alert("Форма успешно отправлена!");
+
+                        // Очищаем поля ввода
+                        nameInput.value = "";
+                        contactInput.value = "";
+
+                        // Убираем классы ошибок
+                        nameInput.classList.remove("is-invalid");
+                        contactInput.classList.remove("is-invalid");
+
+                        // Удаляем сообщения об ошибках
+                        document.querySelectorAll(".error-message").forEach(error => error.remove());
+                    }
+                }
+
+                submitButtons.forEach(button => {
+                    button.addEventListener("click", validateForm);
+                });
+            }
+
+            const nameInput = document.getElementById("formGroupExampleInput");
+            const contactInput = document.getElementById("formGroupExampleInput2");
+            const consentCheckbox = document.getElementById("flexCheckChecked2");
+            const consentContainer = consentCheckbox.closest(".all-form-check"); // Контейнер чекбокса
+            const submitButtons = document.querySelectorAll(".empty-send-btn");
+
+            const nameInput2 = document.getElementById("modal-formGroupExampleInput");
+            const contactInput2 = document.getElementById("modal-formGroupExampleInput2");
+            const consentCheckbox2 = document.getElementById("modal-flexCheckChecked2");
+            const consentContainer2 = consentCheckbox2.closest(".modal-form-check"); // Контейнер чекбокса
+            const submitButtons2 = document.querySelectorAll(".modal-btn");
+
+            validateContactForm(nameInput, contactInput, consentCheckbox, submitButtons, consentContainer)
+            validateContactForm(nameInput2, contactInput2, consentCheckbox2, submitButtons2, consentContainer2)
         });
     </script>
     <script src="./dist/index.bandle.js?v=1"></script>

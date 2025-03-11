@@ -363,7 +363,7 @@ video {
 .about-row {
     align-items: center;
     margin-top: 50px !important;
-    margin-bottom: 66px;
+    margin-bottom: 50px;
     margin-left: 10px !important;
 }
 
@@ -404,6 +404,20 @@ video {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+}
+
+
+
+@media screen and (min-width: 991px) and (max-width: 1200px) {
+    .demo {
+        background-size: 84% 100% !important;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+    .demo {
+        background-size: 71% 100% !important;
+    }
 }
 
 @media (max-width: 1400px) {
@@ -448,10 +462,38 @@ video {
     }
 }
 
+@media (max-width: 1024px) or (max-width: 1180px) {
+    .demo-ifr {
+        margin-top: 9px !important;
+        margin-left: 43px !important;
+        width: 264px !important;
+        height: 588px !important;
+        border-radius: 46px !important;
+    }
+
+    .demo {
+        background-size: 71% 100% !important;
+        height: 606px !important;
+    }
+
+}
+
 @media (max-width: 1200px) {
     .phone {
         width: 116%;
     }
+
+    @supports (-webkit-touch-callout: none) {
+        .phone {
+            margin-bottom: -0.25lh;
+
+        }
+
+        .video-container {
+            height: 86% !important;
+        }
+    }
+
 
     .video-container {
         border-radius: 38px;
@@ -510,6 +552,12 @@ video {
 
 .c-logo-w {
     width: 60% !important;
+}
+
+@media (max-width: 992) {
+    .demo {
+        background-size: 84% 100% !important;
+    }
 }
 
 @media (min-width: 1200px) and (max-width: 1400px) {
@@ -572,6 +620,12 @@ video {
 @media (max-width: 575px) {
     .svg-button-contact-top {}
 
+    .demo-ifr2 {
+        width: 70vw;
+        height: auto;
+        aspect-ratio: 234 / 470;
+    }
+
     .video-container {
         border-radius: 21px !important;
         height: 51.3% !important;
@@ -589,6 +643,25 @@ video {
         top: 4.4% !important;
         left: 40.2% !important;
     }
+}
+
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.93);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    z-index: 9999;
+}
+
+.loaded #loader {
+    display: none;
 }
 
 @media (max-width: 510px) {
@@ -612,25 +685,72 @@ video {
 }
 
 .demo-ifr2 {
+    margin-top: 7px;
+    width: 215px;
+    height: 468px;
+    border-radius: 34px;
+    margin-bottom: 8px;
+}
+
+.demo-ifr {
     margin-top: 11px;
-    margin-left: 46px;
+    margin-left: 45px;
     width: 311px;
     height: 677px;
     border-radius: 48px;
 }
 
-.demo2 {
+.demo {
     background-image: url(../../img/iPhone-16-Pro.png);
     background-repeat: no-repeat;
     background-size: 61% 100%;
     background-position: center;
     background-position-y: 0px;
     background-position-x: 44px;
-    background-repeat: no-repeat;
     display: flex;
     width: 400px;
     height: 700px;
     min-height: 500px;
+}
+
+.demo2 {
+    background-image: url(../../img/iPhone-16-Pro.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* Автоматическое масштабирование */
+    background-position: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.is-invalid {
+    border-color: red !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.dialog-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
 }
 
 @media (max-width: 414px) {
@@ -693,6 +813,20 @@ video {
 
     .video-container {
         border-radius: 28px;
+    }
+
+    .demo-ifr {
+        margin-top: 9px !important;
+        margin-left: 0px !important;
+        width: 264px !important;
+        height: 633px !important;
+        border-radius: 43px !important;
+    }
+
+    .demo {
+        background-size: 95% 100% !important;
+        background-position-x: 0px !important;
+        height: 653px !important;
     }
 
     .c-logo-w {
@@ -799,6 +933,10 @@ video {
     display: flex !important;
     flex-direction: column;
     align-items: center;
+}
+
+body.modal-open {
+    padding-right: 0px !important;
 }
 
 @media (max-width: 991px) and (min-height: 1368px) {
