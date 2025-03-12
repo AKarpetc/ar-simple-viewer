@@ -723,8 +723,7 @@
                     </div>
                 </div>
                 <div class="demo col-5 col">
-                    <iframe class="demo-ifr ar-preview"
-                        frameborder="0" title="" alt="">
+                    <iframe class="demo-ifr ar-preview" frameborder="0" title="" alt="">
                     </iframe>
                 </div>
             </div>
@@ -735,8 +734,7 @@
                     вдохновляйтесь новыми
                     возможностями!</h1>
                 <div class="demo2">
-                    <iframe class="demo-ifr2 ar-preview"
-                        frameborder="0" title="" alt="">
+                    <iframe class="demo-ifr2 ar-preview" frameborder="0" title="" alt="">
                     </iframe>
                 </div>
                 <button class="svg-button-contact mt-4 send-order">
@@ -1429,13 +1427,27 @@
         window.addEventListener("load", function () {
             // Добавляем класс loaded, чтобы скрыть лоадер
             document.body.classList.add("loaded");
-
+            
             const videos = document.querySelectorAll(".video-container video");
 
-            videos.forEach(video => {
+            if (window.innerWidth > 767) {
+                for (let i = 0; i < videos.length; i++) {
+                    if (videos[i].parentElement.classList.contains('all-container')) {
+                        awd3(videos[i]);
+                        break;
+                    }
+                }
+            } else {
+                for (let i = 0; i < videos.length; i++) {
+                    if (videos[i].parentElement.classList.contains('mobile-container')) {
+                        awd3(videos[i]);
+                        break;
+                    }
+                }
+            }
+
+            function awd3(video) {
                 let source = video.querySelectorAll("source")
-
-
 
                 for (i = 0; i < source.length; i++) {
                     const type = source[i].getAttribute('type');
@@ -1460,7 +1472,7 @@
                     }
 
                 });
-            })
+            }
         });
 
         document.addEventListener("DOMContentLoaded", function () {

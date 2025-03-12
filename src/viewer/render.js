@@ -31,27 +31,29 @@ const mainDataId = urlParams?.get('mainDataId');
 
 let mainData = JSON.parse(localStorage.getItem('localId'));
 let searchModel = mainData.mainCollection.data.filter(x => x.id === id)[0];
+const folderId = mainDataId ?? mainData.id;
 
 var modelParameters = null;
 try {
-    const folderId = mainDataId ?? mainData.id;
     const modelId = id;
-    modelParameters = await (await fetch(`${conf.awsEndPoint}/avt-content/${conf.idsFolder}/${folderId}/${modelId}.json?response-content-type=json`)).json();
-    console.log(modelParameters)
+    const responce = await fetch(`${conf.awsEndPoint}/avt-content/${conf.idsFolder}/${folderId}/${modelId}.json?response-content-type=json`);
+    if (responce.status === 200) {
+        modelParameters = await (responce).json();
+    }
 }
 catch (err) {
     console.log(err)
 }
 
-if (modelParameters == null) {
+if (!modelParameters) {
     armessage = base64ToJson(searchModel.armessage);
     message = base64ToJson(searchModel.message);
     armessage['src'] = armessage['src'].replace('models', `${conf.awsEndPoint}/avt-models`);
     armessage['ios-src'] = armessage['ios-src'].replace('models', `${conf.awsEndPoint}/avt-models`);
 }
 else {
-    armessage = modelParameters.armessage;
-    message = modelParameters.message;
+    armessage = base64ToJson(modelParameters.armessage);
+    message = base64ToJson(modelParameters.message);
 }
 
 console.log(armessage, message);
@@ -182,10 +184,15 @@ var generateQR = async (link) => {
 
 }
 
+function jsonToBase64(object) {
+    const json = JSON.stringify(object);
+    return btoa(json);
+}
+
 async function openArViewer() {
     var baseUrl = window.location.origin;
-    let link = baseUrl + `/viewer.html?id=${id}&mainDataId=${mainData.id}`;
-    await modelUtils.updateModel(id, armessage, message);
+    let link = baseUrl + `/viewer.html?id=${id}&mainDataId=${folderId}`;
+    await modelUtils.updateModel(id, jsonToBase64(armessage), jsonToBase64(message));
     if (arWorks) {
         document.getElementById("ar-button").click();
     } else {

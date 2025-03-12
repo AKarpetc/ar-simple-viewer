@@ -10,8 +10,20 @@ window.onload = async (_) => {
         const defaultModel = modelsInfo[randomIndex];
         var els = document.getElementsByClassName('ar-preview');
 
-        for (let i = 0; i < els.length; i++) {
-            els[i].setAttribute('src', `./viewer.html?id=${defaultModel.id}`);    
+        if (window.innerWidth > 767) {
+            for (let i = 0; i < els.length; i++) {
+                if (els[i].classList.contains('demo-ifr')) {
+                    els[i].setAttribute('src', `./viewer.html?id=${defaultModel.id}`);
+                    break;
+                }
+            }
+        } else {
+            for (let i = 0; i < els.length; i++) {
+                if (els[i].classList.contains('demo-ifr2')) {
+                    els[i].setAttribute('src', `./viewer.html?id=${defaultModel.id}`);
+                    break;
+                }
+            }
         }
     }
     catch (err) {
