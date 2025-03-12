@@ -23,7 +23,7 @@ let searchModel = mainData.mainCollection.data.filter(x => x.id === id)[0];
 
 var modelParameters = null;
 try{
-    var modelParameters = await (await fetch(`${conf.awsEndPoint}/avt-content/${conf.idsFolder}/${mainData.id}/${searchModel.id}.json?response-content-type=json`)).json();
+    modelParameters = await (await fetch(`${conf.awsEndPoint}/avt-content/${conf.idsFolder}/${mainData.id}/${searchModel.id}.json?response-content-type=json`)).json();
 }
 catch (err) {
     console.log(err)

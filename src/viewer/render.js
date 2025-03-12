@@ -8,7 +8,7 @@ import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.j
 import osDetector from "../common/osDetector"
 import * as TWEEN from "three/addons/libs/tween.module.js";
 import conf from "../config/config.js"
-
+import modelUtils from "../common/utils/modelUtils.js"
 
 const container = document.getElementById('container');
 let mv = document.getElementById("model-viewer");
@@ -27,13 +27,17 @@ window.loaderShow();
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams?.get('id');
+const mainDataId = urlParams?.get('mainDataId');
 
 let mainData = JSON.parse(localStorage.getItem('localId'));
 let searchModel = mainData.mainCollection.data.filter(x => x.id === id)[0];
 
 var modelParameters = null;
 try {
-    var modelParameters = await (await fetch(`${conf.awsEndPoint}/avt-content/${conf.idsFolder}/${mainData.id}/${searchModel.id}.json?response-content-type=json`)).json();
+    const folderId = mainDataId ?? mainData.id;
+    const modelId = id;
+    modelParameters = await (await fetch(`${conf.awsEndPoint}/avt-content/${conf.idsFolder}/${folderId}/${modelId}.json?response-content-type=json`)).json();
+    console.log(modelParameters)
 }
 catch (err) {
     console.log(err)
@@ -46,8 +50,8 @@ if (modelParameters == null) {
     armessage['ios-src'] = armessage['ios-src'].replace('models', `${conf.awsEndPoint}/avt-models`);
 }
 else {
-    armessage = base64ToJson(modelParameters.armessage);
-    message = base64ToJson(modelParameters.message);
+    armessage = modelParameters.armessage;
+    message = modelParameters.message;
 }
 
 console.log(armessage, message);
@@ -178,9 +182,10 @@ var generateQR = async (link) => {
 
 }
 
-function openArViewer() {
+async function openArViewer() {
     var baseUrl = window.location.origin;
-    let link = baseUrl + `/viewer.html?id=${id}`;
+    let link = baseUrl + `/viewer.html?id=${id}&mainDataId=${mainData.id}`;
+    await modelUtils.updateModel(id, armessage, message);
     if (arWorks) {
         document.getElementById("ar-button").click();
     } else {
@@ -188,8 +193,8 @@ function openArViewer() {
     }
 }
 
-window.aRShow = () => {
-    openArViewer();
+window.aRShow = async () => {
+    await openArViewer();
 }
 
 window.backOnClick = () => {
