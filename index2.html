@@ -158,6 +158,7 @@
                             <div class="video-container all-container">
                                 <video autoplay loop muted playsinline webkit-playsinline>
                                     <source type="video/webm">
+                                    <source type="video/mp4">
                                     Ваш браузер не поддерживает видео.
                                 </video>
                             </div>
@@ -342,6 +343,7 @@
                             <div class="video-container mobile-container">
                                 <video autoplay loop muted playsinline webkit-playsinline>
                                     <source type="video/webm">
+                                    <source type="video/mp4">
                                     Ваш браузер не поддерживает видео.
                                 </video>
                             </div>
@@ -721,7 +723,7 @@
                     </div>
                 </div>
                 <div class="demo col-5 col">
-                    <iframe class="demo-ifr ar-preview" src="./viewer.html?id=d235b352-afff-4fc5-9650-fbe5286d51fd"
+                    <iframe class="demo-ifr ar-preview"
                         frameborder="0" title="" alt="">
                     </iframe>
                 </div>
@@ -733,7 +735,7 @@
                     вдохновляйтесь новыми
                     возможностями!</h1>
                 <div class="demo2">
-                    <iframe class="demo-ifr2 ar-preview" src="./viewer.html?id=d235b352-afff-4fc5-9650-fbe5286d51fd"
+                    <iframe class="demo-ifr2 ar-preview"
                         frameborder="0" title="" alt="">
                     </iframe>
                 </div>
@@ -1431,11 +1433,34 @@
             const videos = document.querySelectorAll(".video-container video");
 
             videos.forEach(video => {
-                let source = video.querySelector("source")
+                let source = video.querySelectorAll("source")
 
-                // Устанавливаем реальный путь после небольшой задержки
-                source.src = './video/output2.webm';
+
+
+                for (i = 0; i < source.length; i++) {
+                    console.log(source[i])
+                    const type = source[i].getAttribute('type');
+                    const canPlay = video.canPlayType(type);
+
+                    if (canPlay === 'maybe') {
+                        let newSource = document.createElement("source");
+                        newSource.src = type === 'video/webm' ? './video/output2.webm' : './video/output2.mp4';
+                        newSource.type = type;
+                        video.innerHTML = "";
+                        video.appendChild(newSource);
+                        break;
+                    }
+                }
                 video.load();  // Перезагружаем видео с новым источником
+
+                video.addEventListener("click", function () {
+                    if (video.paused) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+
+                });
             })
         });
 
@@ -1484,33 +1509,6 @@
                     }
                 }
             });
-
-            // const images = document.querySelectorAll("img[data-src]");
-            // images.forEach(img => {
-            //     img.src = './img/Line 1 (1).webm';
-            // });
-
-
-            const videos = document.querySelectorAll(".video-container video");
-
-            videos.forEach(video => {
-                // Принудительное воспроизведение на iPhone
-                video.play().catch(error => {
-                    console.log("Автовоспроизведение заблокировано, требуется действие пользователя.");
-                });
-
-                // Воспроизведение при клике (если автозапуск не сработал)
-                video.addEventListener("click", function () {
-                    if (video.paused) {
-                        video.play();
-                    } else {
-                        video.pause();
-                    }
-
-                });
-            })
-
-
         });
     </script>
     <script>
