@@ -490,13 +490,15 @@ video {
         }
 
         .video-container {
-            height: 86% !important;
+            /* height: 51% !important; */
+            /* height: 86% !important; */
         }
     }
 
-
     .video-container {
         border-radius: 38px;
+        /* ToDo разобратся с айпадом */
+        /* height: 85.7%; */
         height: 84.5%;
         width: 53.1%;
         top: 2.5%;
@@ -760,10 +762,10 @@ video {
 
     .video-container {
         border-radius: 16px !important;
-        height: 48.8% !important;
+        height: 48.6% !important;
         width: 24.8% !important;
         top: 5.3% !important;
-        left: 39.2% !important;
+        left: 39% !important;
     }
 
     .svg-button-top {
@@ -786,7 +788,7 @@ video {
         border-radius: 12px !important;
         height: 46.2% !important;
         width: 24.9% !important;
-        top: 6.3% !important;
+        top: 6.2% !important;
         left: 38.2% !important;
     }
 
@@ -949,7 +951,7 @@ body.modal-open {
     }
 }
 
-@media (min-width: 767px) { 
+@media (min-width: 768px) { 
     .demo2 {
         display: none !important;
     }
