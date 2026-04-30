@@ -18,3 +18,5 @@ video/*.mp4
 /BackEnd/BackgroundSupportApi/Scripts/*/
 .hintrc
 video/*.webm
+.vs/*
+https/*

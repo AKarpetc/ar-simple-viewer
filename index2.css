@@ -60,11 +60,15 @@ body {
 
 .main-img {
     background-image: url(./img/главная-картинка---фон_десктоп.webp);
-    background-position: center;
+    background-position: center bottom;
     background-size: cover;
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: flex-end;
+}
+
+.main-img .row {
     align-items: flex-end;
 }
 
@@ -149,7 +153,9 @@ video {
 }
 
 .hand-img-top {
-    margin-top: 60px !important;
+    margin-top: 0 !important;
+    display: flex;
+    align-items: flex-end;
 }
 
 .dynamic-column {
@@ -239,6 +245,12 @@ video {
 
 .mt-c-4 {
     margin-top: 4% !important;
+}
+
+.about-text {
+    font-size: clamp(14px, 1.2vw + 6px, 20px);
+    line-height: 1.4;
+    color: #4b4b4b;
 }
 
 .mt-c-3 {
@@ -361,10 +373,13 @@ video {
 }
 
 .about-row {
+    display: flex;
+    flex-wrap: nowrap;
     align-items: center;
+    gap: 12px;
     margin-top: 50px !important;
     margin-bottom: 50px;
-    margin-left: 10px !important;
+    margin-left: 0 !important;
 }
 
 .text-center h1 {
@@ -373,6 +388,23 @@ video {
 
 .about-h1 {
     white-space: nowrap;
+}
+
+.about-row .col-2,
+.about-row .col-1 {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+}
+
+.about-row .ml-30,
+.about-row .ml-40 {
+    margin-left: 0 !important;
+}
+
+.about-row>.col:last-child {
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 @media (min-width: 1024px) {
@@ -575,10 +607,8 @@ video {
 }
 
 @media (max-width: 540px) {
-    .phone {
-        width: 96%;
-        margin-left: -8vh;
-    }
+    /* Удален сломанный margin-left для .phone */
+
 
     .svg-button-contact-top {
         margin-top: 4vh;
@@ -627,25 +657,9 @@ video {
         height: auto;
         aspect-ratio: 234 / 470;
     }
-
-    .video-container {
-        border-radius: 21px !important;
-        height: 51.3% !important;
-        width: 24.7% !important;
-        top: 4.3% !important;
-        left: 40.3% !important;
-    }
 }
 
-@media (max-width: 540px) {
-    .video-container {
-        border-radius: 21px !important;
-        height: 51% !important;
-        width: 24.7% !important;
-        top: 4.4% !important;
-        left: 40.2% !important;
-    }
-}
+/* Универсальные стили теперь в .d-md-none .mobile-container */
 
 #loader {
     position: fixed;
@@ -666,25 +680,9 @@ video {
     display: none;
 }
 
-@media (max-width: 510px) {
-    .video-container {
-        border-radius: 21px !important;
-        height: 50.5% !important;
-        width: 24.9% !important;
-        top: 4.8% !important;
-        left: 40% !important;
-    }
-}
+/* Удалено */
 
-@media (max-width: 460px) {
-    .video-container {
-        border-radius: 17px !important;
-        height: 49.6% !important;
-        width: 24.9% !important;
-        top: 5% !important;
-        left: 39.5% !important;
-    }
-}
+/* Удалено */
 
 .demo-ifr2 {
     margin-top: 7px;
@@ -760,12 +758,8 @@ video {
         margin-top: 1vh !important;
     }
 
-    .video-container {
-        border-radius: 16px !important;
-        height: 48.6% !important;
-        width: 24.8% !important;
-        top: 5.3% !important;
-        left: 39% !important;
+    .svg-button-top {
+        margin-bottom: 7px;
     }
 
     .svg-button-top {
@@ -773,26 +767,7 @@ video {
     }
 }
 
-@media (max-width: 390px) {
-    .video-container {
-        border-radius: 13px !important;
-        height: 48% !important;
-        width: 24.6% !important;
-        top: 5.6% !important;
-        left: 39% !important;
-    }
-}
-
-@media (max-width: 344px) {
-    .video-container {
-        border-radius: 12px !important;
-        height: 46.2% !important;
-        width: 24.9% !important;
-        top: 6.2% !important;
-        left: 38.2% !important;
-    }
-
-}
+/* Все специфичные media удалены для использования универсального правила */
 
 .c-w-50 {
     width: 50%;
@@ -951,7 +926,7 @@ body.modal-open {
     }
 }
 
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
     .demo2 {
         display: none !important;
     }
@@ -963,10 +938,9 @@ body.modal-open {
 
 @media (max-width: 767px) {
     .phone {
-        width: 75%;
-        margin-left: -13px;
-        margin-top: 17px;
-        margin-bottom: 55px;
+        width: 85%;
+        margin: 0;
+        display: block;
     }
 
     .all-container {
@@ -1206,8 +1180,43 @@ body.modal-open {
     }
 
     .main-img {
-        background-image: url('./img/главная-картинка---телефон-моб-версия.webp');
+        background-image: url('./img/главная-картинка---фон_десктоп.webp');
         background-size: cover;
+        background-position: center bottom;
+    }
+}
+
+@media (max-width: 767px) {
+    .d-md-none .container-777 {
+        position: relative;
+        display: inline-block;
+        margin-left: -33%;
+        margin-top: 17px;
+        /* Перенесли отступ сверху сюда */
+    }
+
+    .d-md-none .phone {
+        width: 85%;
+        margin: 0;
+        display: block;
+    }
+
+    .d-md-none .mobile-container {
+        overflow: hidden !important;
+        background: #000;
+        border-radius: 18px !important;
+        height: 58.7% !important;
+        width: 28.3% !important;
+        top: 1.5% !important;
+        left: 48.03% !important;
+    }
+
+    .d-md-none .mobile-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.04);
+        transform-origin: center;
     }
 }
 
