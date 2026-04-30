@@ -438,20 +438,6 @@ video {
     align-items: center;
 }
 
-
-
-@media screen and (min-width: 991px) and (max-width: 1200px) {
-    .demo {
-        background-size: 84% 100% !important;
-    }
-}
-
-@media screen and (min-width: 1200px) and (max-width: 1399px) {
-    .demo {
-        background-size: 71% 100% !important;
-    }
-}
-
 @media (max-width: 1400px) {
     .border-radius-card {
         width: 16rem !important;
@@ -494,21 +480,6 @@ video {
     }
 }
 
-@media (max-width: 1024px) or (max-width: 1180px) {
-    .demo-ifr {
-        margin-top: 9px !important;
-        margin-left: 43px !important;
-        width: 264px !important;
-        height: 588px !important;
-        border-radius: 46px !important;
-    }
-
-    .demo {
-        background-size: 71% 100% !important;
-        height: 606px !important;
-    }
-
-}
 
 @media (max-width: 1200px) {
     .phone {
@@ -693,28 +664,38 @@ video {
 }
 
 .demo-ifr {
-    margin-top: 11px;
-    margin-left: 45px;
-    width: 311px;
-    height: 677px;
-    border-radius: 48px;
+    position: absolute;
+    top: var(--screen-top, 1.6%);
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--screen-width, 92%);
+    height: var(--screen-height, 96.7%);
+    border-radius: 42px;
+    border: none;
+    z-index: 2;
 }
 
 .demo {
-    background-image: url(../../img/iPhone-16-Pro.webp);
+    /* Настройки экрана: подобраны с точностью до пикселя под картинку */
+    --screen-top: 1.6%;
+    --screen-width: 92.5%;
+    --screen-height: 96.7%;
+
+    background-image: url(./img/iPhone-16-Pro.webp);
     background-repeat: no-repeat;
-    background-size: 61% 100%;
+    background-size: 100% 100%;
     background-position: center;
-    background-position-y: 0px;
-    background-position-x: 44px;
+    position: relative;
     display: flex;
-    width: 400px;
-    height: 700px;
-    min-height: 500px;
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 927 / 1920;
+    height: auto;
+    margin: 0 auto;
 }
 
 .demo2 {
-    background-image: url(../../img/iPhone-16-Pro.webp);
+    background-image: url(./img/iPhone-16-Pro.webp);
     background-repeat: no-repeat;
     background-size: contain;
     /* Автоматическое масштабирование */
@@ -792,19 +773,6 @@ video {
         border-radius: 28px;
     }
 
-    .demo-ifr {
-        margin-top: 9px !important;
-        margin-left: 0px !important;
-        width: 264px !important;
-        height: 633px !important;
-        border-radius: 43px !important;
-    }
-
-    .demo {
-        background-size: 95% 100% !important;
-        background-position-x: 0px !important;
-        height: 653px !important;
-    }
 
     .c-logo-w {
         width: 70% !important;
