@@ -141,11 +141,14 @@ video {
 }
 
 .navbar-toggler {
-    margin-right: -20px;
+    margin-right: 0;
 }
 
 .gamburger {
     display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .row-top {
@@ -222,6 +225,25 @@ video {
     position: relative;
     font-size: 24px;
     margin-top: -43px;
+}
+
+.border-radius-card {
+    width: 19rem;
+    border-radius: 20px;
+    background-color: transparent !important;
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.border-radius-card .card-img-top {
+    height: 220px;
+    object-fit: cover;
+    flex-grow: 0;
+}
+
+.border-radius-card .card-body {
+    flex-grow: 1 !important;
 }
 
 .soc-icon-btn {
@@ -354,6 +376,21 @@ video {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    align-items: stretch;
+}
+
+/* Делаем колонки флексовыми, чтобы картинка могла занять 100% высоты */
+.mobile-card-container .col {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Картинка растягивается по высоте контейнера */
+.mobile-card-container img {
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .desktop-card-container {
