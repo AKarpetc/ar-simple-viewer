@@ -485,16 +485,12 @@ video {
     .phone {
         width: 116%;
     }
-
     @supports (-webkit-touch-callout: none) {
-        .phone {
+        /* Применяем твой отрицательный отступ не к самой картинке, а к её контейнеру! 
+           Это подтянет фон секции, как ты и хотел, но НЕ сплющит сам контейнер изнутри,
+           поэтому проценты для видео останутся идеальными и щель снизу пропадет! */
+        .container-777 {
             margin-bottom: -0.25lh;
-
-        }
-
-        .video-container {
-            /* height: 51% !important; */
-            /* height: 86% !important; */
         }
     }
 
@@ -670,7 +666,7 @@ video {
     transform: translateX(-50%);
     width: var(--screen-width, 92%);
     height: var(--screen-height, 96.7%);
-    border-radius: 42px;
+    border-radius: 45px;
     border: none;
     z-index: 2;
 }
@@ -1160,7 +1156,6 @@ body.modal-open {
         display: inline-block;
         margin-left: -33%;
         margin-top: 17px;
-        /* Перенесли отступ сверху сюда */
     }
 
     .d-md-none .phone {
@@ -1172,7 +1167,8 @@ body.modal-open {
     .d-md-none .mobile-container {
         overflow: hidden !important;
         background: #000;
-        border-radius: 18px !important;
+        /* Идеальное закругление через двойные проценты (ширина / высота) */
+        border-radius: 16% / 7.8% !important;
         height: 58.7% !important;
         width: 28.3% !important;
         top: 1.5% !important;
