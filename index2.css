@@ -227,25 +227,6 @@ video {
     margin-top: -43px;
 }
 
-.border-radius-card {
-    width: 19rem;
-    border-radius: 20px;
-    background-color: transparent !important;
-    border: none;
-    display: flex;
-    flex-direction: column;
-}
-
-.border-radius-card .card-img-top {
-    height: 220px;
-    object-fit: cover;
-    flex-grow: 0;
-}
-
-.border-radius-card .card-body {
-    flex-grow: 1 !important;
-}
-
 .soc-icon-btn {
     height: 35px;
     background-color: transparent;
