@@ -16,3 +16,7 @@ video/*.mp4
 /BackEnd/BackgroundSupportApi/obj
 /BackEnd/BackgroundSupportApi/appsettings.Development.json
 /BackEnd/BackgroundSupportApi/Scripts/*/
+.hintrc
+video/*.webm
+.vs/*
+https/*

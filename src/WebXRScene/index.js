@@ -125,8 +125,10 @@ const sceneLoader =
 
 async function fetchModels() {
   try {
+    window.gltfLoader = gltfLoader; // Expose for scene.js
     let responce = await modelUtils.getModels();
     modelsList = responce.data;
+    window.modelsList = modelsList; // Expose for scene.js
     typesList = responce.types;
     for (let i = 0; i < modelsList.length; i++) {
       modelsList[i].glb = modelsList[i].glb.replace('models', `${conf.awsEndPoint}/avt-models`);
@@ -194,9 +196,13 @@ function initializeXRApp() {
 
 function hitTestReady() {
   if (firstHittest) {
-    showArOptions();
     firstHittest = false;
+    scene.startCalibration();
   }
+}
+
+window.saveArRoom = () => {
+    if(scene) scene.saveRoom();
 }
 
 function showArOptions() {
@@ -329,6 +335,7 @@ function openSlider() {
   try {
     scene.startTransform();
     document.getElementById("toolbarButtons").classList.add("hidden");
+    document.getElementById("transformDoneBtn").classList.remove("hidden");
     showJoystick();
     showPut();
   } catch (ex) { alert(ex); }
@@ -336,6 +343,7 @@ function openSlider() {
 
 function closeSlider() {
   document.getElementById("toolbarButtons").classList.remove("hidden");
+  document.getElementById("transformDoneBtn").classList.add("hidden");
   hideJoystick();
   hidePut();
 

@@ -243,7 +243,7 @@ window.sendEmail = () => {
     return;
   }
 
-  smtpUtils.send(value, 0);
+  smtpUtils.send(value, 'Заявка с демо страницы AR');
   createEmailMsg('В ближайшее время наш менеджер с Вами свяжется.', ['alert-primary']);
   emailInput.classList.remove('is-invalid');
 }

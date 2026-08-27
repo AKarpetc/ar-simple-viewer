@@ -12,7 +12,8 @@ const urlParams = new URLSearchParams(window.location.search);
 let message = null;
 let armessage = null;
 let android = urlParams.get('android');
-const id = urlParams.get('id');
+const id = urlParams?.get('id');
+const mainDataId = urlParams?.get('mainDataId');
 let ios = urlParams.get('ios');
 const name = urlParams.get('alias');
 let attributes = {};
@@ -20,22 +21,29 @@ let sceneParamerters = {};
 
 let mainData = JSON.parse(localStorage.getItem('localId'));
 let searchModel = mainData.mainCollection.data.filter(x => x.id === id)[0];
+const folderId = mainDataId ?? mainData.id;
 
 var modelParameters = null;
-try{
-    var modelParameters = await (await fetch(`${conf.awsEndPoint}/avt-content/${conf.idsFolder}/${mainData.id}/${searchModel.id}.json?response-content-type=json`)).json();
+try {
+    const modelId = id;
+    const responce = await fetch(`${conf.awsEndPoint}/avt-content/${conf.idsFolder}/${folderId}/${modelId}.json?response-content-type=json`);
+    if (responce.status === 200) {
+        modelParameters = await (responce).json();
+    }
 }
 catch (err) {
     console.log(err)
 }
 
-const data = modelParameters ?? searchModel;
-armessage = base64ToJson(data.armessage);
-message = base64ToJson(data.message);
-
-if (modelParameters == null) {
+if (!modelParameters) {
+    armessage = base64ToJson(searchModel.armessage);
+    message = base64ToJson(searchModel.message);
     armessage['src'] = armessage['src'].replace('models', `${conf.awsEndPoint}/avt-models`);
     armessage['ios-src'] = armessage['ios-src'].replace('models', `${conf.awsEndPoint}/avt-models`);
+}
+else {
+    armessage = base64ToJson(modelParameters.armessage);
+    message = base64ToJson(modelParameters.message);
 }
 
 android = armessage['src'];
@@ -336,7 +344,7 @@ var generateNewLink = async () => {
         baseUrl = "https://192.168.100.27:5502"
     }
 
-    let newLink = baseUrl + `/viewer.html?id=${id}`;
+    let newLink = baseUrl + `/viewer.html?id=${id}&mainDataId=${folderId}`;
 
     return newLink;
 }

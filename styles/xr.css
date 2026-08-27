@@ -40,6 +40,7 @@
 
 .ar-main {
     width: 100%;
+    touch-action: none;
 }
 
 .session-buttons {
@@ -59,6 +60,7 @@
     flex-direction: column;
     height: 550px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .session-button {
@@ -191,7 +193,8 @@
 
 
 .toolbar {
-    bottom: 150px;
+    top: 90px;
+    bottom: 100px;
     right: 10px;
     position: absolute;
     width: 70px;
@@ -201,10 +204,12 @@
 }
 
 .toolbar__buttons {
-    height: 1000px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
 }
 
 .toolbar_button__place {

@@ -2,11 +2,12 @@
 
 const conf =
 {
-    idsFolder: "prod",
+    idsFolder: "dev",
     awsRegion: "ru-central1",
-    awsEndPoint: "https://storage.yandexcloud.kz",
-    awsAccessKeyId: "YCB2BzjHd8epgNyLs6eDfFnW4",
-    awsSecretAccessKey: "YCMVWV1P3UxcIG-YJEcCVyq74jw49_-23UP6UQdT",
-    smtpApiUrl: "https://titan-auto-barnaul.ru:5000"
+    awsEndPoint: "https://storage.yandexcloud.net",
+    awsAccessKeyId: "YCAJEVnmBMO0Q_qVm5co7-GiY",
+    awsSecretAccessKey: "YCNGaNsZH8KZHhNIGWdBBIWpXzjn_cFJrQT0z3qi",
+    smtpApiUrl: "https://api.smtp.bz",
+    smtpSecretAccessKey: "GN1wYuIKLBk2Acl7JB6VDbn7NAcKcwKJaB7Y"
 }
 export default conf;
